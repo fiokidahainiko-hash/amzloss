@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ec4899"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1060" cy="90" r="180" fill="#ffffff" opacity="0.08"/>
+  <circle cx="120" cy="560" r="220" fill="#ffffff" opacity="0.06"/>
+  <rect x="80" y="80" width="64" height="64" rx="16" fill="#fff"/>
+  <path d="M95 118 L113 96 L121 104 L137 86" stroke="#8b5cf6" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="160" y="130" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="#fff">AmzLoss</text>
+  <text x="80" y="300" font-family="Arial, sans-serif" font-size="72" font-weight="800" fill="#fff">How much did Amazon's</text>
+  <text x="80" y="380" font-family="Arial, sans-serif" font-size="72" font-weight="800" fill="#fff">commission cuts cost you?</text>
+  <text x="80" y="450" font-family="Arial, sans-serif" font-size="36" fill="#ffe3f2">Audit your Amazon Associates report — 100% in your browser.</text>
+  <rect x="80" y="500" width="320" height="64" rx="32" fill="#fff"/>
+  <text x="110" y="543" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ec4899">Audit my report</text>
+</svg>

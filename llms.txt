@@ -1,0 +1,36 @@
+# AmzLoss
+
+> AmzLoss is the independent check on Amazon Associates payouts. In 2026 Amazon cut affiliate commissions by up to 50% and removed detailed reporting, leaving affiliates unable to verify what they actually earned. AmzLoss lets any Amazon Associate audit their own earnings report — entirely in their browser, with no data uploaded — to find possible underpayments, quantify the impact of rate cuts, and generate claim reports.
+
+## Tools
+- [Earnings Audit](https://amzloss.com/audit.html): Upload your Amazon Associates earnings CSV. It is parsed 100% in your browser and compared against the published commission rates. Returns a summary, worst categories, and flagged "possible irregularity" line items (returns and ambiguous rows are excluded). No account or upload required.
+- [Commission Calculator](https://amzloss.com/calculator.html): Pick your market and category, enter your price and monthly sales, and see what you earned before the rate cuts vs. now, plus your monthly and annualised loss.
+- [Current Rates](https://amzloss.com/rates.html): Amazon Associates commission rates by category for 2026, with the pre-cut rate for comparison.
+
+## Pricing
+- Launch offer: until 2026-09-10 the full tool is unlocked for everyone with no ads. Paying is optional support.
+- Free: rate table, calculator, audit summary, worst categories, top 3 flagged items, and rate-change alerts. Ad-supported after launch.
+- Paid (weekly ₦2,332.20, monthly ₦6,232.20, yearly ₦46,020.00): unlocks the full flagged line-item list, the claim export, and removes all ads.
+
+## FAQ
+- [FAQ](https://amzloss.com/faq.html): Answers to the most asked Amazon Associates questions — commission rates, how much affiliates earn, the 24-hour cookie, why earnings drop, returns, bounties, disclosure, and how to audit for underpayments.
+
+## Learn
+- [Amazon 2026 Commission Cuts](https://amzloss.com/blogs/amazon-2026-commission-cuts.html): What changed, which categories were hit, and how to measure the impact on your account.
+- [Why Earnings Dropped But Clicks Didn't](https://amzloss.com/blogs/why-earnings-dropped-but-clicks-didnt.html): Rate cuts vs. category drift vs. tracking — how to tell them apart with EPC.
+- [How to Audit Your Amazon Earnings Report](https://amzloss.com/blogs/how-to-audit-amazon-earnings.html): Step-by-step audit walkthrough using your own CSV.
+
+## Key facts
+- Processing is 100% client-side; AmzLoss never uploads, stores, or sees your earnings data.
+- Results are labelled "possible irregularity" — never a guaranteed claim — to avoid false positives from returns, bounties, or delayed shipping.
+- Payments are handled by Paystack; AmzLoss never stores card details.
+- During launch (until 2026-09-10) the entire tool is free with no ads.
+- AmzLoss is independent and not affiliated with Amazon or Amazon Associates.
+
+## Links
+- Home: https://amzloss.com/
+- FAQ: https://amzloss.com/faq.html
+- About: https://amzloss.com/about.html
+- Contact: https://amzloss.com/contact.html
+- Privacy: https://amzloss.com/privacy.html
+- Terms: https://amzloss.com/terms.html

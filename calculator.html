@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRXMHQECWQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LRXMHQECWQ');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009" crossorigin="anonymous"></script>
+  <title>Amazon Affiliate Commission Calculator — How Much the 2026 Cuts Cost You | AmzLoss</title>
+  <meta name="description" content="Free Amazon Associates commission calculator. Pick your category and sales volume to see what you earned before the 2026 rate cuts vs now — and how much you're losing each month.">
+  <meta name="keywords" content="amazon affiliate commission calculator, amazon associates earnings calculator, amazon commission cut calculator, affiliate income calculator">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://amzloss.com/calculator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Amazon Affiliate Commission Calculator | AmzLoss">
+  <meta property="og:description" content="See exactly how much Amazon's 2026 commission cuts cost your account — free, no sign-up.">
+  <meta property="og:url" content="https://amzloss.com/calculator.html">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="assets/img/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#ec4899">
+  <meta name="theme-color" content="#ec4899">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Amazon Affiliate Commission Calculator",
+    "url": "https://amzloss.com/calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "description": "Compare Amazon Associates commission rates before and after the 2026 cuts and estimate your monthly and annual loss.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NGN" }
+  }
+  </script>
+  <script type="text/javascript" src="js/rates.js" defer></script>
+</head>
+<body>
+
+<div class="launch-bar">🎉 Launch offer: <strong>no ads, no limits — the full tool is 100% free for the first month</strong> as AmzLoss launches. Paying is purely optional support. <a href="pricing.html">Learn more</a></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="calculator.html">Calculator</a>
+      <a href="rates.html">Current Rates</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blogs.html">Learn</a>
+      <a href="faq.html">FAQ</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="audit.html">Audit my report</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Amazon Affiliate Commission Calculator</h1>
+    <p>Select your category and sales volume. We'll show what you earned before the cuts, what you earn now, and the money left on the table each month.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container calc-wrap">
+    <div class="calc-panel">
+      <div class="field">
+        <label for="market">Market</label>
+        <select id="market">
+          <option value="us">United States (Amazon.com)</option>
+          <option value="uk">United Kingdom (Amazon.co.uk)</option>
+          <option value="ca">Canada (Amazon.ca)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="category">Product category</label>
+        <select id="category"></select>
+      </div>
+      <div class="field">
+        <label for="price">Average price per sale ($)</label>
+        <input type="number" id="price" value="80" min="1" step="1">
+      </div>
+      <div class="field">
+        <label for="volume">Sales per month</label>
+        <input type="number" id="volume" value="100" min="1" step="1">
+      </div>
+      <button class="btn btn-primary btn-lg" id="calc" style="width:100%;">Calculate my loss</button>
+    </div>
+
+    <div class="result-panel">
+      <h3 style="margin-top:0;">Your numbers</h3>
+      <div class="result-item"><span>Pre-cut rate (2017–2020 avg)</span><strong id="r_old_pct">—</strong></div>
+      <div class="result-item"><span>Current rate (2026)</span><strong id="r_new_pct">—</strong></div>
+      <div class="result-item"><span>Commission now / month</span><strong id="r_new_dollar">—</strong></div>
+      <div class="result-item highlight"><span>What you'd earn at the old rate</span><strong id="r_old_dollar">—</strong></div>
+      <div class="result-item total"><span>You are losing</span><strong id="r_gap">—</strong></div>
+      <div class="result-item"><span>Annualised loss</span><strong id="r_gap_year">—</strong></div>
+      <p style="color:var(--muted);font-size:0.85rem;margin-top:14px;">Estimate only — uses published category rates. To audit your actual report line-by-line, use the <a href="audit.html">full earnings audit</a>.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="ad-slot-label">Advertisement</p>
+    <div class="ad-slot leader">
+      <ins class="adsbygoogle" style="display:block;width:100%;height:100%;" data-ad-client="ca-pub-1294523315450009" data-ad-slot="REPLACE_LEADER_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(function(){var el=document.currentScript.previousElementSibling;var slot=el&&el.getAttribute('data-ad-slot');if(slot&&slot.indexOf('REPLACE_')!==0){(adsbygoogle=window.adsbygoogle||[]).push({});}})();</script>
+    </div>
+    <p class="ad-slot-label">Advertisement</p>
+    <div class="ad-slot compact">
+      <ins class="adsbygoogle" style="display:block;width:100%;height:100%;" data-ad-client="ca-pub-1294523315450009" data-ad-slot="REPLACE_COMPACT_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(function(){var el=document.currentScript.previousElementSibling;var slot=el&&el.getAttribute('data-ad-slot');if(slot&&slot.indexOf('REPLACE_')!==0){(adsbygoogle=window.adsbygoogle||[]).push({});}})();</script>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container page-narrow">
+    <div class="section-head"><span class="kicker">Why this matters</span><h2>Two small rate changes, very different earnings</h2></div>
+    <p>The same 200 sales/month at a $60 average price earns <strong>$540/month</strong> at 4.5% — but only <strong>$360/month</strong> at 3%. That's <strong>$2,160 a year</strong> lost to a category you never rechecked. The calculator above shows you the gap in your own numbers. Then run the <a href="audit.html">full audit</a> on your real report to find the differences that are actually costing you.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
+        <p style="color:var(--muted);max-width:280px;margin-top:10px;">The independent check on Amazon Associates payouts.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="calculator.html">Commission Calculator</a>
+        <a href="audit.html">Earnings Audit</a>
+        <a href="rates.html">Current Rate Table</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <a href="blogs.html">Learn</a>
+        <a href="faq.html">FAQ</a>
+        <a href="https://www.trustpilot.com/review/amzloss.com" target="_blank" rel="noopener">Reviews on Trustpilot</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclosure.html">Affiliate Disclosure</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AmzLoss. All rights reserved.</span>
+      <span>Contact: <a href="mailto:admin@amzloss.com">admin@amzloss.com</a></span>
+      <span>Independent of Amazon or Amazon Associates.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const catSel = document.getElementById('category');
+    const marketSel = document.getElementById('market');
+    const RATES = window.AMZLOSS_RATES || { us: {} };
+
+    function usd(n) { return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); }
+
+    function fillCategories() {
+      const cats = Object.keys(RATES[marketSel.value] || {});
+      catSel.innerHTML = '';
+      cats.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c;
+        o.textContent = c;
+        catSel.appendChild(o);
+      });
+      render();
+    }
+
+    function render() {
+      const rec = (RATES[marketSel.value] || {})[catSel.value] || { current: 0, before: 0 };
+      const price = parseFloat(document.getElementById('price').value) || 0;
+      const qty = parseFloat(document.getElementById('volume').value) || 0;
+
+      const cur = rec.current || 0, old = rec.before || 0;
+      const newDollar = price * qty * cur / 100;
+      const oldDollar = price * qty * old / 100;
+
+      document.getElementById('r_old_pct').textContent = (old / 100).toLocaleString('en-US', { style: 'percent', minimumFractionDigits: 1 });
+      document.getElementById('r_new_pct').textContent = (cur / 100).toLocaleString('en-US', { style: 'percent', minimumFractionDigits: 1 });
+      document.getElementById('r_new_dollar').textContent = usd(newDollar);
+      document.getElementById('r_old_dollar').textContent = usd(oldDollar);
+      document.getElementById('r_gap').textContent = usd(oldDollar - newDollar);
+      document.getElementById('r_gap_year').textContent = usd((oldDollar - newDollar) * 12);
+    }
+
+    marketSel.addEventListener('change', fillCategories);
+    catSel.addEventListener('change', render);
+    document.getElementById('price').addEventListener('input', render);
+    document.getElementById('volume').addEventListener('input', render);
+    document.getElementById('calc').addEventListener('click', () => {
+      render();
+      document.querySelector('.result-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    fillCategories();
+  });
+</script>
+</body>
+</html>
