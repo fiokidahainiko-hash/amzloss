@@ -6,8 +6,6 @@
 window.AMZLOSS_SPONSORS = {
   // Example:  'AMZLOSS-ABCD-1234': 'Example Blog',
   codes: {
-    'AMZLOSS-SPONSOR-DEMO': 'Demo Sponsor'
-  },
   unlockDays: 90
 };
 
