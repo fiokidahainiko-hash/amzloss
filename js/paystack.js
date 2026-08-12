@@ -75,13 +75,17 @@ window.AMZLOSS_PAID = {
   /* Launch offer: for the first 30 days the whole tool is free with no
      ads. Change this to a past date once the launch period ends. */
   LAUNCH_FREE_UNTIL: new Date('2026-09-10T23:59:59').getTime(),
-  activate: function (tier) {
-    var days = { weekly: 7, monthly: 30, yearly: 365 }[tier] || 30;
+  /* Unlock the tool for a custom number of days (used by sponsor codes). */
+  activateDays: function (days) {
     try {
       var until = Date.now() + days * this.DAY;
       localStorage.setItem(this.KEY, String(until));
       return true;
     } catch (e) { return false; }
+  },
+  activate: function (tier) {
+    var days = { weekly: 7, monthly: 30, yearly: 365 }[tier] || 30;
+    return this.activateDays(days);
   },
   isPaid: function () {
     if (Date.now() < this.LAUNCH_FREE_UNTIL) return true;
