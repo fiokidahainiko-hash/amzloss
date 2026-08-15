@@ -16,6 +16,7 @@
 - [FAQ](https://amzloss.com/faq.html): Answers to the most asked Amazon Associates questions — commission rates, how much affiliates earn, the 24-hour cookie, why earnings drop, returns, bounties, disclosure, and how to audit for underpayments.
 
 ## Learn
+- [Amazon Halo Commission Gone (April 14)](https://amzloss.com/blogs/amazon-halo-commission-gone.html): Since April 14, 2026 Amazon pays only on the ASIN you linked. What changed, the 180-day deadline, and how to check the impact.
 - [Amazon 2026 Commission Cuts](https://amzloss.com/blogs/amazon-2026-commission-cuts.html): What changed, which categories were hit, and how to measure the impact on your account.
 - [Why Earnings Dropped But Clicks Didn't](https://amzloss.com/blogs/why-earnings-dropped-but-clicks-didnt.html): Rate cuts vs. category drift vs. tracking — how to tell them apart with EPC.
 - [How to Audit Your Amazon Earnings Report](https://amzloss.com/blogs/how-to-audit-amazon-earnings.html): Step-by-step audit walkthrough using your own CSV.
