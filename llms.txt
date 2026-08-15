@@ -20,6 +20,9 @@
 - [Amazon 2026 Commission Cuts](https://amzloss.com/blogs/amazon-2026-commission-cuts.html): What changed, which categories were hit, and how to measure the impact on your account.
 - [Why Earnings Dropped But Clicks Didn't](https://amzloss.com/blogs/why-earnings-dropped-but-clicks-didnt.html): Rate cuts vs. category drift vs. tracking — how to tell them apart with EPC.
 - [How to Audit Your Amazon Earnings Report](https://amzloss.com/blogs/how-to-audit-amazon-earnings.html): Step-by-step audit walkthrough using your own CSV.
+- [How to Check for Amazon Affiliate Underpayment](https://amzloss.com/blogs/how-to-check-amazon-affiliate-underpayment.html): Export your report, compare each line against 2026 rates, and total the shortfall.
+- [Amazon Associates Missing Commission](https://amzloss.com/blogs/amazon-associates-missing-commission.html): The eight most common reasons commission goes missing and how to check each.
+- [Amazon Product Earnings Report CSV Explained](https://amzloss.com/blogs/amazon-product-earnings-report-csv-explained.html): Column-by-column guide to reading your Product Earnings Report CSV.
 
 ## Key facts
 - Processing is 100% client-side; AmzLoss never uploads, stores, or sees your earnings data.
