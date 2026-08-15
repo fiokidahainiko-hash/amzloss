@@ -39,7 +39,7 @@ jobs:
       - name: Ping IndexNow (Bing, Yandex, Seznam, Naver)
         continue-on-error: true
         env:
-          INDEXNOW_KEY: "3d234cd6321e46b8a713e901e3990868"
+          INDEXNOW_KEY: "cfa51088e98e4d29b9d374a48ec20d85"
           HOST: "amzloss.com"
         run: |
           node -e '
