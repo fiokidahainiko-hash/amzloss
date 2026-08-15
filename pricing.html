@@ -27,6 +27,7 @@
   <meta name="msapplication-TileColor" content="#ec4899">
   <meta name="theme-color" content="#ec4899">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <script type="application/ld+json">
@@ -174,8 +175,8 @@
   <div class="container">
     <div class="section-head"><span class="kicker">Verified</span><h2>Payments are handled by Paystack</h2><p>Paystack is a PCI-DSS compliant payment provider approved for AmzLoss. Your card is never processed or stored by us.</p></div>
     <div class="trust-gallery" style="max-width:760px;margin:0 auto;">
-      <img src="assets/img/amzloss2_Paystack.png" alt="AmzLoss Paystack approval" loading="lazy">
-      <img src="assets/img/amzloss3_Paystack.png" alt="AmzLoss secure payments via Paystack" loading="lazy">
+      <img src="assets/img/amzloss2_Paystack.webp" alt="AmzLoss Paystack approval" loading="lazy" width="1000" height="1000">
+      <img src="assets/img/amzloss3_Paystack.webp" alt="AmzLoss secure payments via Paystack" loading="lazy" width="1000" height="1000">
     </div>
   </div>
 </section>
@@ -235,5 +236,6 @@
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script src="js/paystack.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
 </html>
