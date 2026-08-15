@@ -44,6 +44,18 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NGN" }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is my Amazon earnings data safe?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The audit runs entirely in your browser. We never upload, store, or see your numbers, and there is no account or sign-up required." } },
+      { "@type": "Question", "name": "Does a flag mean I was definitely underpaid?", "acceptedAnswer": { "@type": "Answer", "text": "No. We surface possible irregularities that clear a confidence threshold, with plain-language reasons. Returns and ambiguous rows are separated so they can never be falsely flagged against you." } },
+      { "@type": "Question", "name": "Which file do I upload?", "acceptedAnswer": { "@type": "Answer", "text": "The Product Earnings Report from Amazon Associates, downloaded as a CSV. The audit detects the columns automatically, so a raw download works." } },
+      { "@type": "Question", "name": "Does this work for UK and Canada accounts?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The audit matches categories against the applicable market rates where we hold them. The core check works the same way." } }
+    ]
+  }
+  </script>
   <script type="text/javascript" src="js/rates.js" defer></script>
   <script type="text/javascript" src="js/paystack.js" defer></script>
 <!-- This Script is the exclusive property of Website Speedy, Copyright (c) 2026. All rights reserved. -->
@@ -76,6 +88,45 @@
   <div class="container">
     <h1>Amazon Associates Earnings Audit</h1>
     <p>Upload your earnings CSV. It is parsed <strong>entirely in your browser</strong> — we never upload, store, or see your data. Free, no sign-up.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><span class="kicker">What this tool does</span><h2>It compares what you were paid with what the rate says you should have been paid</h2></div>
+    <p>After Amazon's 2026 commission cuts, earnings reports are harder to trust at a glance. This audit reads your Product Earnings Report CSV and checks each qualifying line item against the published commission rate that should have applied on that order's date. It flags line items where your reported commission is below what the rate implies — a <strong>possible underpayment</strong> — and separates returns and uncategorised rows so nothing is falsely flagged against you.</p>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container">
+    <div class="section-head"><span class="kicker">How it works</span><h2>Three steps, fully in your browser</h2></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Download your report</h3><p>In Amazon Associates, go to Reports → Product Earnings Report and download it as a CSV. No columns to reformat — the audit finds them automatically.</p></div>
+      <div class="step"><div class="num">2</div><h3>Run the audit</h3><p>Upload the CSV here. Everything is processed locally in your browser tab; your file is never uploaded or stored anywhere.</p></div>
+      <div class="step"><div class="num">3</div><h3>Review the report</h3><p>See your estimated shortfall, worst categories and flagged line items on a print-ready report, then export a claim CSV if you want to contact Amazon support.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container page-narrow">
+    <div class="section-head"><span class="kicker">Example</span><h2>How a flagged line item works</h2></div>
+    <p>Your report shows a <strong>PC &amp; PC Components</strong> order: price $200, quantity 1, referral fee $4.00. The current rate for that category is 2.5%, so the expected commission is <strong>$5.00</strong>. The gap is $1.00 (20% below expected) — the audit flags it as a possible irregularity for you to verify. It is never a guaranteed claim; you decide what to pursue.</p>
+    <p>If the gap doesn't clear the confidence threshold, or the row is a return or an uncategorised category, it is excluded rather than falsely flagged. That's deliberate.</p>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container page-narrow">
+    <div class="section-head"><span class="kicker">FAQ</span><h2>Earnings audit questions</h2></div>
+    <div class="faq">
+      <details><summary>Is my Amazon earnings data safe?</summary><p>Yes. The audit runs entirely in your browser. We never upload, store, or see your numbers, and there is no account or sign-up required.</p></details>
+      <details><summary>Does a flag mean I was definitely underpaid?</summary><p>No. We surface <strong>possible</strong> irregularities that clear a confidence threshold, with plain-language reasons. Returns and ambiguous rows are separated so they can never be falsely flagged against you.</p></details>
+      <details><summary>Which file do I upload?</summary><p>The Product Earnings Report from Amazon Associates, downloaded as a CSV. The audit detects the columns automatically, so a raw download works.</p></details>
+      <details><summary>Does this work for UK and Canada accounts?</summary><p>Yes. The audit matches categories against the applicable market rates where we hold them. The core check — comparing reported commission to the expected rate — works the same way.</p></details>
+      <details><summary>What do I do with the results?</summary><p>Review the flagged line items, cross-check them against your dashboard, then use the claim export to open a case with Amazon support. Your file never leaves your browser.</p></details>
+    </div>
   </div>
 </section>
 
