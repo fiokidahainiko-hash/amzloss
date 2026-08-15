@@ -135,14 +135,16 @@
 </footer>
 
 <script>
-  const RATES = (window.AMZLOSS_RATES || {}).us || {};
-  const tbody = document.getElementById('rows');
-  const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  Object.entries(RATES).forEach(([name, rec]) => {
-    const diff = rec.current - rec.before;
-    const cls = diff < -2 ? 'tag amber' : (diff > 2 ? 'tag green' : 'tag');
-    const label = diff < -2 ? 'CUT' : (diff > 2 ? 'raised' : 'steady');
-    tbody.innerHTML += `<tr><td>${esc(name)}</td><td><span class="tag">${rec.current}%</span></td><td>${rec.before}%</td><td><span class="${cls}">${esc(label)}</span></td></tr>`;
+  window.addEventListener('DOMContentLoaded', () => {
+    const RATES = (window.AMZLOSS_RATES || {}).us || {};
+    const tbody = document.getElementById('rows');
+    const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    Object.entries(RATES).forEach(([name, rec]) => {
+      const diff = rec.current - rec.before;
+      const cls = diff < -2 ? 'tag amber' : (diff > 2 ? 'tag green' : 'tag');
+      const label = diff < -2 ? 'CUT' : (diff > 2 ? 'raised' : 'steady');
+      tbody.innerHTML += `<tr><td>${esc(name)}</td><td><span class="tag">${rec.current}%</span></td><td>${rec.before}%</td><td><span class="${cls}">${esc(label)}</span></td></tr>`;
+    });
   });
 </script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>

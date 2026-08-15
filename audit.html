@@ -171,9 +171,6 @@
 
 <script>
 (function(){
-  const RATES = window.AMZLOSS_RATES || { us: {} };
-  const usRates = RATES.us || {};
-
   function parseCSV(text){
     const rows=[]; let field='', row=[], inQ=false;
     for(let i=0;i<text.length;i++){
@@ -206,10 +203,15 @@
 
   const num = v => { const n = parseFloat(String(v||'').replace(/[^0-9.\-]/g,'')); return isNaN(n)?0:n; };
 
+  function usRates(){
+    return ((window.AMZLOSS_RATES || {}).us || {});
+  }
+
   function lookupRate(catRaw){
+    const rates = usRates();
     const c = String(catRaw||'').toLowerCase();
-    for(const key of Object.keys(usRates)){
-      if(c.includes(key.toLowerCase())) return { current: usRates[key].current, name: key };
+    for(const key of Object.keys(rates)){
+      if(c.includes(key.toLowerCase())) return { current: rates[key].current, name: key };
     }
     return null;
   }
