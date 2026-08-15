@@ -32,3 +32,33 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Wait for Pages to serve the update
+        run: sleep 90
+
+      - name: Ping IndexNow (Bing, Yandex, Seznam, Naver)
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: "3d234cd6321e46b8a713e901e3990868"
+          HOST: "amzloss.com"
+        run: |
+          node -e '
+            const fs = require("fs");
+            const xml = fs.readFileSync("sitemap.xml", "utf8");
+            const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
+            const body = {
+              host: process.env.HOST,
+              key: process.env.INDEXNOW_KEY,
+              keyLocation: "https://" + process.env.HOST + "/" + process.env.INDEXNOW_KEY + ".txt",
+              urlList: urls
+            };
+            fs.writeFileSync("payload.json", JSON.stringify(body));
+          '
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" -H "Content-Type: application/json; charset=utf-8" --data @payload.json)
+            echo "IndexNow attempt $i -> HTTP $code"
+            if [ "$code" = "200" ] || [ "$code" = "202" ]; then echo "IndexNow ping accepted"; exit 0; fi
+            sleep 30
+          done
+          echo "IndexNow ping failed after retries"
+          exit 1
