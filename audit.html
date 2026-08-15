@@ -116,8 +116,6 @@
     </div>
   </div>
 
-  <div class="container" id="results" style="display:none;margin-top:36px;"></div>
-
   <div class="container" style="margin-top:20px;">
     <p class="ad-slot-label">Advertisement</p>
     <div class="ad-slot compact">
@@ -161,6 +159,7 @@
       <span>© 2026 AmzLoss. All rights reserved.</span>
       <span>Contact: <a href="mailto:admin@amzloss.com">admin@amzloss.com</a></span>
       <span>Independent of Amazon or Amazon Associates.</span>
+      <span><a href="sitemap.html">Sitemap</a></span>
     </div>
   </div>
 </footer>
@@ -248,92 +247,22 @@
     return { items, flagged, returns, unknown, totalRows: items.length };
   }
 
-  function renderResults(res){
-    const box = document.getElementById('results');
-    box.style.display = 'block';
-
-    const flaggedSum = res.flagged.reduce((a,b)=>a+b.gap,0);
-    const byCat = {};
-    res.flagged.forEach(f=>{ byCat[f.cat]=(byCat[f.cat]||0)+f.gap; });
-
-    const isPaid = window.AMZLOSS_PAID && window.AMZLOSS_PAID.isPaid();
-
-    const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-
-    let html = '<h2 style="margin-top:0;">Audit summary</h2>';
-
-    if(res.flagged.length === 0){
-      html += `<div class="card" style="border-color:#e7f7ef;background:var(--accent-soft);">
-        <h3 style="margin:0 0 6px;">No possible irregularities found</h3>
-        <p style="margin:0;">We reviewed ${res.items.length} qualifying line items against the current published rates and found nothing that cleared our confidence threshold. We separated ${res.returns.length} return/refund rows and ${res.unknown.length} uncategorised rows out of the analysis.</p></div>`;
-    } else {
-      html += `<div class="grid grid-2" style="margin-bottom:20px;">
-        <div class="card"><span style="color:var(--muted);font-size:0.85rem;">Line items flagged</span><div style="font-size:2rem;font-weight:800;">${res.flagged.length}</div><span style="color:var(--muted);font-size:0.85rem;">of ${res.totalRows} qualifying rows</span></div>
-        <div class="card"><span style="color:var(--muted);font-size:0.85rem;">Estimated total shortfall</span><div style="font-size:2rem;font-weight:800;color:var(--brand);">$${flaggedSum.toFixed(2)}</div><span style="color:var(--muted);font-size:0.85rem;">possible, not guaranteed — review below</span></div>
-      </div>`;
-
-      if(Object.keys(byCat).length){
-        html += '<div class="section-head" style="text-align:left;margin-bottom:14px;"><h2 style="font-size:1.2rem;">Worst categories</h2></div><div class="table-wrap" style="margin-bottom:24px;"><table class="rate"><thead><tr><th>Category</th><th>Possible shortfall</th></tr></thead><tbody>';
-        Object.entries(byCat).sort((a,b)=>b[1]-a[1]).slice(0,8).forEach(([c,v])=>{
-          html += `<tr><td>${esc(c)}</td><td><strong>$${v.toFixed(2)}</strong></td></tr>`;
-        });
-        html += '</tbody></table></div>';
+  /* Store the result and open the dedicated, print-ready report page. */
+  function openReport(res){
+    const payload = {
+      items: res.items,
+      flagged: res.flagged.slice(0, 250),
+      returns: res.returns,
+      unknown: res.unknown,
+      totalRows: res.totalRows,
+      meta: {
+        when: new Date().toLocaleString(),
+        file: fileEl.files[0] ? fileEl.files[0].name : 'Sample data'
       }
-
-      if(isPaid){
-        html += '<div class="section-head" style="text-align:left;margin-bottom:14px;"><h2 style="font-size:1.2rem;">Flagged line items</h2><p>Possible irregularity — not a confirmed claim. Verify each before pursuing.</p></div>';
-        html += '<div class="table-wrap" style="margin-bottom:24px;"><table class="rate"><thead><tr><th>Category</th><th>Price</th><th>Qty</th><th>Expected</th><th>Reported</th><th>Gap</th></tr></thead><tbody>';
-        res.flagged.slice(0,100).forEach(f=>{
-          html += `<tr><td>${esc(f.cat)}</td><td>$${f.price.toFixed(2)}</td><td>${f.qty}</td><td>$${f.expected.toFixed(2)}</td><td>$${f.comm.toFixed(2)}</td><td style="color:var(--brand);font-weight:700;">$${f.gap.toFixed(2)}</td></tr>`;
-        });
-        html += '</tbody></table></div>';
-
-        html += `<div class="cta-band" style="padding:34px 30px;">
-          <h2 style="font-size:1.4rem;">Your claim file is ready</h2>
-          <p style="font-size:0.95rem;">Download the claim CSV (flagged line items) and the draft message to send Amazon support.</p>
-          <button id="exportClaim" class="btn btn-primary" style="background:#fff;color:var(--brand);background-image:none;">Export claim file</button>
-        </div>`;
-      } else {
-        html += '<div class="section-head" style="text-align:left;margin-bottom:14px;"><h2 style="font-size:1.2rem;">Flagged line items</h2><p>Possible irregularity — not a confirmed claim. Verify each before pursuing.</p></div>';
-        html += '<div class="table-wrap" style="margin-bottom:24px;"><table class="rate"><thead><tr><th>Category</th><th>Price</th><th>Qty</th><th>Expected</th><th>Reported</th><th>Gap</th></tr></thead><tbody>';
-        res.flagged.slice(0,3).forEach(f=>{
-          html += `<tr><td>${esc(f.cat)}</td><td>$${f.price.toFixed(2)}</td><td>${f.qty}</td><td>$${f.expected.toFixed(2)}</td><td>$${f.comm.toFixed(2)}</td><td style="color:var(--brand);font-weight:700;">$${f.gap.toFixed(2)}</td></tr>`;
-        });
-        html += '</tbody></table></div>';
-
-        html += `<div class="card" style="text-align:center;border:2px solid var(--brand);background:var(--brand-soft);margin-bottom:24px;">
-          <h3 style="margin:0 0 6px;">🔒 Unlock the full detail + claim export</h3>
-          <p style="color:var(--ink-soft);margin:0 auto 16px;max-width:480px;">The free audit shows your summary and the top ${Math.min(3,res.flagged.length)} flagged items. Subscribe to see all ${res.flagged.length} flagged lines and export the ready-to-send claim file.</p>
-          <a class="btn btn-primary" href="pricing.html">See plans — from ₦2,332.20/wk</a>
-        </div>`;
-      }
-    }
-
-    html += `<div class="grid grid-2" style="margin-top:24px;">
-      <div class="card"><h3>Excluded from analysis</h3><p style="margin:0;font-size:0.9rem;">${res.returns.length} return/refund rows • ${res.unknown.length} uncategorised rows.<br><span style="color:var(--muted);">Separated so they can never be falsely flagged against you.</span></p></div>
-      <div class="card"><h3>What happens next?</h3><p style="margin:0;font-size:0.9rem;">Review flagged items, cross-check against your dashboard, and use the claim export to contact Amazon support. Your file never left this browser.</p></div>
-    </div>`;
-
-    box.innerHTML = html;
-    box.scrollIntoView({ behavior:'smooth' });
-
-    const exportBtn = document.getElementById('exportClaim');
-    if(exportBtn) exportClaim(res);
-  }
-
-  function exportClaim(res){
-    document.getElementById('exportClaim').addEventListener('click', function(){
-      let csv = 'Category,Price,Qty,Expected,Reported,Gap\n';
-      res.flagged.forEach(f=>{
-        csv += `"${f.cat}","${f.price.toFixed(2)}","${f.qty}","${f.expected.toFixed(2)}","${f.comm.toFixed(2)}","${f.gap.toFixed(2)}"\n`;
-      });
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'amzloss-claim.csv';
-      a.click();
-      URL.revokeObjectURL(a.href);
-    });
+    };
+    try { sessionStorage.setItem('amzloss_report', JSON.stringify(payload)); }
+    catch (e) { /* storage may be blocked; fall back to inline notice */ }
+    window.location.href = 'audit-results.html';
   }
 
   const fileEl = document.getElementById('file');
@@ -343,7 +272,7 @@
   fileEl.addEventListener('change', ()=>{ btnAudit.disabled = !fileEl.files[0]; });
 
   function auditText(text){
-    renderResults(runAudit(text));
+    openReport(runAudit(text));
   }
 
   btnAudit.addEventListener('click', ()=>{
