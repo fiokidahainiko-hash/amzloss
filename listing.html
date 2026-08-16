@@ -133,24 +133,41 @@
     const subs = (() => { try { return JSON.parse(localStorage.getItem('amzloss_dir_subs') || '[]'); } catch (err) { return []; } })();
     const all = [...DATA.LIST, ...subs];
 
-    const item = all.find(x => String(x.name || x.site || '').toLowerCase() === wanted);
+    const findItem = (list) => list.find(x => String(x.name || x.site || '').toLowerCase() === wanted);
 
-    if (!item) {
+    function renderSite(item) {
+      const name = item.name || item.site;
+      const url = item.url;
+      document.title = name + ' | AmzLoss Backlink Directory';
+      document.getElementById('site-title').textContent = name;
+      document.getElementById('site-name').textContent = name;
+      document.getElementById('site-cat').textContent = item.category || item.cat || 'General';
+      document.getElementById('site-desc').textContent = item.description || item.desc || '';
+      document.getElementById('site-link').href = url;
+    }
+
+    function renderNotFound() {
       document.getElementById('site-name').textContent = 'Listing not found';
       document.getElementById('site-desc').textContent = 'This listing could not be found. Browse the directory below.';
       document.getElementById('site-link').style.display = 'none';
       document.title = 'Listing not found | AmzLoss Backlink Directory';
-      return;
     }
 
-    const name = item.name || item.site;
-    const url = item.url;
-    document.title = name + ' | AmzLoss Backlink Directory';
-    document.getElementById('site-title').textContent = name;
-    document.getElementById('site-name').textContent = name;
-    document.getElementById('site-cat').textContent = item.category || item.cat || 'General';
-    document.getElementById('site-desc').textContent = item.description || item.desc || '';
-    document.getElementById('site-link').href = url;
+    const localItem = findItem(all);
+
+    if (localItem) {
+      renderSite(localItem);
+    } else {
+      const FORM_ENDPOINT = window.AMZLOSS_FORM_ENDPOINT || '';
+      fetch(FORM_ENDPOINT + '?action=list')
+        .then(r => r.json())
+        .then(res => {
+          const found = res.ok && Array.isArray(res.sites) ? findItem(res.sites) : null;
+          if (found) renderSite(found);
+          else renderNotFound();
+        })
+        .catch(() => renderNotFound());
+    }
   });
 </script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>

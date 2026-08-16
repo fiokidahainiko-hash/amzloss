@@ -345,6 +345,26 @@
         grid.appendChild(a);
       });
     }
+
+    function loadVerifiedSites() {
+      if (!FORM_ENDPOINT) return Promise.resolve();
+      return fetch(FORM_ENDPOINT + '?action=list')
+        .then(r => r.json())
+        .then(res => {
+          if (res.ok && Array.isArray(res.sites)) {
+            const existing = new Set(DATA.LIST.map(s => (s.url || '').toLowerCase()));
+            res.sites.forEach(s => {
+              if (s.url && !existing.has(s.url.toLowerCase())) {
+                DATA.LIST.push(s);
+                existing.add(s.url.toLowerCase());
+              }
+            });
+          }
+        })
+        .catch(() => {});
+    }
+
+    loadVerifiedSites().then(renderGrid);
     renderGrid();
 
     function makeToken() {

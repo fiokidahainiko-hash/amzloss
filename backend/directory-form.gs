@@ -20,10 +20,46 @@
 var SHEET_ID = "1GIj_vgCBC29T_-cGqMxKyHEsYHe-91kkze5s2mQNGWQ";
 var OWNER_EMAIL = "admin@amzloss.com";
 
-function doGet() {
+function doGet(e) {
+  var param = (e && e.parameter) || {};
+  if (param.action === "list") {
+    return listVerifiedSites_();
+  }
   return ContentService.createTextOutput(
     JSON.stringify({ ok: true, service: "amzloss-directory-form" })
   ).setMimeType(ContentService.MimeType.JSON);
+}
+
+/** Returns verified sites from the Verified tab as a JSON array for the directory page. */
+function listVerifiedSites_() {
+  try {
+    var sheet = SpreadsheetApp.openById(SHEET_ID);
+    var tab = sheet.getSheetByName("Verified");
+    if (!tab || tab.getLastRow() < 2) {
+      return ContentService.createTextOutput(
+        JSON.stringify({ ok: true, sites: [] })
+      ).setMimeType(ContentService.MimeType.JSON);
+    }
+    var rows = tab.getDataRange().getValues();
+    var sites = [];
+    for (var i = 1; i < rows.length; i++) {
+      var r = rows[i];
+      var obj = {
+        name: r[2] || "",
+        url: r[3] || "",
+        category: r[4] || "",
+        description: r[5] || ""
+      };
+      if (obj.url) sites.push(obj);
+    }
+    return ContentService.createTextOutput(
+      JSON.stringify({ ok: true, sites: sites })
+    ).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ ok: false, error: String(err), sites: [] })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
 }
 
 function doPost(e) {

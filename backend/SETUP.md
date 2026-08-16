@@ -48,6 +48,19 @@ and push.
 - **Submit** → row added to the `Submissions` tab.
 - **Verify** → row added to the `Verified` tab **and** you get an email with the
   site's details + verification token.
+- **Auto-display** → the directory page calls the web app with
+  `?action=list` on load and merges the `Verified` tab rows into the grid, so
+  verified sites appear for **all** visitors automatically. No code edits needed
+  when a site verifies.
+
+## Redeploying after a backend change
+Whenever you paste updated code into the script editor, the live `/exec` URL only
+runs the new version after you create a **new deployment version**:
+1. **Deploy → Manage deployments**
+2. Click the **edit (pencil)** icon on your web app deployment
+3. Under **Version**, choose **New version**
+4. Click **Deploy**
+5. The URL stays the same — no need to update the site.
 
 ## Troubleshooting
 - **No rows in the sheet:** make sure deployment is set to *Anyone* and the
