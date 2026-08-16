@@ -22,7 +22,7 @@ window.AMZLOSS_DIRECTORY = {
   ]
 };
 
-window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/YOUR_SCRIPT_WEB_APP_ID/exec";
+window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbyib6P0RK2_VGWMPbNEX-Y8Es_OHP2htuwxLZkeM97z9LgYoPzCVOu_7VN6-pT54CsB/exec";
 window.AMZLOSS_ACCESS_KEY = "";
 
 document.addEventListener('DOMContentLoaded', function () {
