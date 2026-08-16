@@ -202,7 +202,8 @@
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const DATA = window.AMZLOSS_DIRECTORY || { LIST: [], categories: [] };
-    const FORMSPREE = window.AMZLOSS_FORMSPREE || '';
+    const FORM_ENDPOINT = window.AMZLOSS_FORM_ENDPOINT || '';
+    const ACCESS_KEY = window.AMZLOSS_ACCESS_KEY || '';
     const grid = document.getElementById('dir-grid');
     const catSel = document.getElementById('site_cat');
 
@@ -250,12 +251,13 @@
     }
 
     function postForm(payload) {
-      if (!FORMSPREE || FORMSPREE.indexOf('YOUR_FORM_ID') !== -1) return;
+      if (!FORM_ENDPOINT || !ACCESS_KEY) return;
+      const body = Object.assign({ access_key: ACCESS_KEY }, payload);
       try {
-        fetch(FORMSPREE, {
+        fetch(FORM_ENDPOINT, {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(body)
         }).catch(() => {});
       } catch (err) {}
     }
