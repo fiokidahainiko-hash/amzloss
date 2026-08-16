@@ -1,6 +1,6 @@
-/* AmzLoss backlink directory data.
-   Sites are stored client-side and rendered into the directory page.
-   To add a site, add an object to the LIST array and commit the change.
+/* AmzLoss backlink directory.
+   Curated list is stored in LIST. Verified submissions from visitors are
+   stored in localStorage and rendered so every verified site gets a backlink.
 */
 window.AMZLOSS_DIRECTORY = {
   categories: [
@@ -21,6 +21,8 @@ window.AMZLOSS_DIRECTORY = {
     }
   ]
 };
+
+window.AMZLOSS_FORMSPREE = "https://formspree.io/f/YOUR_FORM_ID";
 
 document.addEventListener('DOMContentLoaded', function () {
   var burger = document.querySelector('.burger');
