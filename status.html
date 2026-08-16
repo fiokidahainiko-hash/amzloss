@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="msvalidate.01" content="007E92F701F1F5163F3EE66C2650600A" />
   <!-- Google tag (gtag.js) -->
+  <meta name="msvalidate.01" content="007E92F701F1F5163F3EE66C2650600A" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRXMHQECWQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-LRXMHQECWQ');
-  
   </script>
-  <title>Sponsor Login — 3 Months Free | AmzLoss</title>
-  <meta name="description" content="Sponsor access for AmzLoss. Enter your sponsor code to unlock 3 months of free full-tool access for you and your readers.">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009" crossorigin="anonymous"></script>
+  <title>Status — AmzLoss</title>
+  <meta name="description" content="Live status of the AmzLoss website, earnings audit, commission calculator, and rate table. All checks run from your browser.">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://amzloss.com/sponsor.html">
+  <link rel="canonical" href="https://amzloss.com/status.html">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
@@ -35,7 +36,7 @@
   </head>
 <body>
 
-<div class="launch-bar">🎉 Launch offer: <strong>no ads, no limits — the full tool is 100% free for the first month</strong> as AmzLoss launches. <a href="pricing.html">Learn more</a></div>
+<div class="launch-bar">🎉 Launch offer: <strong>no ads, no limits — the full tool is 100% free for the first month</strong> as AmzLoss launches. Paying is purely optional support. <a href="pricing.html">Learn more</a></div>
 
 <header class="site-header">
   <div class="container nav">
@@ -57,34 +58,20 @@
 
 <section class="page-head">
   <div class="container">
-    <h1>Sponsor access</h1>
-    <p>Thanks for being a founding sponsor. Enter your sponsor code below to unlock the full AmzLoss tool for 3 months — free.</p>
+    <h1>Status</h1>
+    <p>Live availability of the AmzLoss tools. Checks run from your browser against the live site.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <div class="calc-panel" style="max-width:520px;margin:0 auto;">
-      <div class="field">
-        <label for="sponsorCode">Sponsor code</label>
-        <input type="text" id="sponsorCode" placeholder="e.g. AMZLOSS-XXXX-XXXX" autocomplete="off" spellcheck="false">
-      </div>
-      <p id="sponsorMsg" style="display:none;font-weight:600;font-size:0.9rem;margin:4px 0 0;"></p>
-      <p style="color:var(--muted);font-size:0.85rem;margin:10px 0 0;">Your sponsor code came from the welcome email we sent you. If you don't have one, email <a href="mailto:admin@amzloss.com">admin@amzloss.com</a>.</p>
-      <div style="margin-top:18px;">
-        <button class="btn btn-primary" id="sponsorBtn" type="button">Unlock my 3 months</button>
+  <div class="container" style="max-width:720px;margin:0 auto;">
+    <div id="statusList" style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card" style="padding:18px 22px;display:flex;align-items:center;gap:14px;">
+        <span class="dot" style="width:12px;height:12px;border-radius:50%;background:#9ca3af;flex:0 0 auto;"></span>
+        <div style="flex:1;"><strong>Website</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">Checking…</div></div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="section soft">
-  <div class="container">
-    <div class="section-head"><span class="kicker">What you get</span><h2>Your sponsor benefits</h2><p>Every sponsor gets the full tool with no limits — during the launch period and beyond.</p></div>
-    <div class="trust-note" style="max-width:720px;margin:20px auto 0;">
-      <span>✅</span>
-      <span><strong>Full audit unlocked for 3 months:</strong> all flagged line items, claim report export, and no ads. Plus your site is listed as a sponsor on the <a href="about.html">About page</a>. Questions? <a href="mailto:admin@amzloss.com">admin@amzloss.com</a></span>
-    </div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:22px;text-align:center;">Last full check: <span id="lastCheck">—</span> · Auto-refreshes every 60 seconds.</p>
   </div>
 </section>
 
@@ -109,6 +96,7 @@
         <a href="blogs.html">Learn</a>
         <a href="faq.html">FAQ</a>
         <a href="https://www.trustpilot.com/review/amzloss.com" target="_blank" rel="noopener">Reviews on Trustpilot</a>
+        <a href="sponsor.html">Sponsor login</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
@@ -123,49 +111,70 @@
       <span>Independent of Amazon or Amazon Associates.</span>
       <span>Listed on <a href="https://www.findgreatsites.com/" target="_blank" rel="noopener">FindGreatSites</a></span>
       <span><a href="sitemap.html">Sitemap</a></span>
-    <span><a href="status.html">Status</a></span></div>
+      <span><a href="status.html">Status</a></span>
+    </div>
   </div>
 </footer>
 
-<script src="js/paystack.js"></script>
-<script src="js/sponsors.js"></script>
 <script>
-  document.querySelector('.burger')?.addEventListener('click', () => {
-    const nav = document.querySelector('.nav-links');
-    const cta = document.querySelector('.nav-cta');
-    document.querySelector('.burger')?.classList.toggle('open');
-    nav?.classList.toggle('open');
-    cta?.classList.toggle('open');
+document.addEventListener('DOMContentLoaded', function () {
+  var services = [
+    { name: 'Website', url: 'https://amzloss.com/' },
+    { name: 'Earnings Audit', url: 'https://amzloss.com/audit.html' },
+    { name: 'Commission Calculator', url: 'https://amzloss.com/calculator.html' },
+    { name: 'Current Rate Table', url: 'https://amzloss.com/rates.html' },
+    { name: 'Blog', url: 'https://amzloss.com/blogs.html' }
+  ];
+  var list = document.getElementById('statusList');
+  var lastCheck = document.getElementById('lastCheck');
+
+  function cardFor(name) {
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.style.cssText = 'padding:18px 22px;display:flex;align-items:center;gap:14px;';
+    card.innerHTML = '<span class="dot" style="width:12px;height:12px;border-radius:50%;background:#9ca3af;flex:0 0 auto;"></span>' +
+      '<div style="flex:1;"><strong></strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">Checking…</div></div>';
+    card.querySelector('strong').textContent = name;
+    return card;
+  }
+
+  services.forEach(function (s) {
+    var card = cardFor(s.name);
+    list.appendChild(card);
   });
 
-  (function () {
-    var input = document.getElementById('sponsorCode');
-    var btn = document.getElementById('sponsorBtn');
-    var msg = document.getElementById('sponsorMsg');
-    if (!input || !btn || !msg) return;
-
-    function flash(text, ok) {
-      msg.style.display = 'block';
-      msg.style.color = ok ? 'var(--success, #059669)' : 'var(--danger, #dc2626)';
-      msg.textContent = text;
-    }
-
-    btn.addEventListener('click', function () {
-      var name = window.AMZLOSS_SPONSORS.redeem(input.value);
-      if (name) {
-        flash('Welcome, ' + name + '! Your 3 months of full access are unlocked. Redirecting you to the audit…', true);
-        input.value = '';
-        setTimeout(function () { window.location.href = 'audit.html'; }, 1800);
-      } else {
-        flash('That code isn\'t valid. Check the email we sent you and try again.', false);
-        input.focus();
+  async function check() {
+    var cards = list.querySelectorAll('.card');
+    await Promise.all(services.map(async function (s, i) {
+      var card = cards[i];
+      var dot = card.querySelector('.dot');
+      var meta = card.querySelector('.meta');
+      try {
+        var res = await fetch(s.url, { method: 'GET', cache: 'no-store' });
+        if (res.ok) {
+          dot.style.background = '#22c55e';
+          meta.textContent = 'Operational · HTTP ' + res.status;
+        } else {
+          dot.style.background = '#ef4444';
+          meta.textContent = 'Issues · HTTP ' + res.status;
+        }
+      } catch (e) {
+        dot.style.background = '#f59e0b';
+        meta.textContent = 'Unreachable from your browser';
       }
-    });
+    }));
+    lastCheck.textContent = new Date().toLocaleString();
+  }
 
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') { e.preventDefault(); btn.click(); }
-    });
-  })();
+  check();
+  setInterval(check, 60000);
+});
+</script>
+<script>
+  document.querySelector('.burger')?.addEventListener('click', () => {
+    const l = document.querySelector('.nav-links');
+    l.style.display = l.style.display === 'flex' ? 'none' : 'flex';
+  });
 </script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
