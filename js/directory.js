@@ -22,8 +22,8 @@ window.AMZLOSS_DIRECTORY = {
   ]
 };
 
-window.AMZLOSS_FORM_ENDPOINT = "https://api.web3forms.com/submit";
-window.AMZLOSS_ACCESS_KEY = "REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY";
+window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/YOUR_SCRIPT_WEB_APP_ID/exec";
+window.AMZLOSS_ACCESS_KEY = "";
 
 document.addEventListener('DOMContentLoaded', function () {
   var burger = document.querySelector('.burger');
