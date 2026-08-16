@@ -126,10 +126,110 @@
         <button type="button" class="btn btn-ghost" id="copy-snippet">Copy</button>
       </div>
       <p style="color:var(--muted);font-size:0.85rem;margin:10px 0 14px;">Paste it, save the file, and deploy. Then click <strong>Verify my site</strong> — we'll fetch your page and check the code is really there before listing you.</p>
-      <button type="button" class="btn btn-primary btn-lg" id="verify-btn" style="width:100%;">Verify my site</button>
+<button type="button" class="btn btn-primary btn-lg" id="verify-btn" style="width:100%;">Verify my site</button>
       <p id="verify-msg" style="text-align:center;font-weight:600;min-height:1.4em;margin-top:12px;"></p>
     </div>
     <div class="trust-note" style="margin-top:18px;"><span>🔗</span><span><strong>How backlinks work here:</strong> verified sites get a link from this page and from our <a href="sitemap.html">sitemap</a>. We check your site really hosts the snippet before the backlink goes live — no link farms, no dead sites.</span></div>
+  </div>
+</section>
+
+<section class="section" id="tutorial">
+  <div class="container page-narrow">
+    <div class="section-head"><span class="kicker">Tutorial</span><h2>Where do I paste the code?</h2><p>You need to add the snippet to the <strong>HTML of the exact URL you submitted</strong> (usually your homepage). Pick your platform below.</p></div>
+
+    <div class="faq">
+      <details>
+        <summary>WordPress — easiest (no code needed)</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li>In your WordPress dashboard, go to <strong>Appearance → Theme File Editor</strong>.</li>
+            <li>Click <strong>footer.php</strong> in the list on the right.</li>
+            <li>Find the closing <code>&lt;/body&gt;</code> tag near the bottom.</li>
+            <li>Paste the snippet just <strong>before</strong> <code>&lt;/body&gt;</code>.</li>
+            <li>Click <strong>Update File</strong>, then load your homepage and click <strong>Verify my site</strong>.</li>
+          </ol>
+          <p style="margin:12px 0 0;"><strong>No-code alternative:</strong> install the free "Insert Headers and Footers" plugin, paste the snippet in its <em>Footer</em> box, and save.</p>
+        </div>
+      </details>
+      <details>
+        <summary>WordPress — with a page builder (Elementor, Divi, etc.)</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li>Edit your homepage with the builder.</li>
+            <li>Add an <strong>HTML</strong> widget (Elementor) or <strong>Code</strong> module (Divi).</li>
+            <li>Paste the snippet into that widget and publish the page.</li>
+            <li>Open your live homepage and click <strong>Verify my site</strong>.</li>
+          </ol>
+          <p style="margin:12px 0 0;">Tip: drag the widget near the bottom of the page (like a footer) so it's out of the way.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Wix</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li>In the Wix editor, click <strong>Site → Site Tools → Custom Code</strong>.</li>
+            <li>Click <strong>+ Add Custom Code</strong>.</li>
+            <li>Paste the snippet in the code box.</li>
+            <li>Choose <strong>Place code in: All pages</strong> (or Home) and click <strong>Apply</strong>.</li>
+            <li>Publish the site, then click <strong>Verify my site</strong>.</li>
+          </ol>
+        </div>
+      </details>
+      <details>
+        <summary>Squarespace</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li>In the editor, go to <strong>Pages → Home → ⚙️ (gear) → Advanced</strong>.</li>
+            <li>Scroll to <strong>Header/Footer Code Injection</strong>.</li>
+            <li>Paste the snippet into the <strong>Footer</strong> box.</li>
+            <li>Click <strong>Save</strong>, then load your live homepage and click <strong>Verify my site</strong>.</li>
+          </ol>
+        </div>
+      </details>
+      <details>
+        <summary>Blogger (Blogspot)</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li>In Blogger, go to <strong>Theme → Edit HTML</strong>.</li>
+            <li>Press <code>Ctrl+F</code> and search for <code>&lt;/body&gt;</code>.</li>
+            <li>Paste the snippet just <strong>before</strong> that tag.</li>
+            <li>Click <strong>Save</strong>, then click <strong>Verify my site</strong>.</li>
+          </ol>
+        </div>
+      </details>
+      <details>
+        <summary>Shopify</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li>Go to <strong>Online Store → Themes → ⋯ → Edit code</strong>.</li>
+            <li>Open <strong>layout/theme.liquid</strong>.</li>
+            <li>Find <code>&lt;/body&gt;</code> and paste the snippet just before it.</li>
+            <li>Click <strong>Save</strong>, then click <strong>Verify my site</strong>.</li>
+          </ol>
+        </div>
+      </details>
+      <details>
+        <summary>Plain HTML site (hand-coded, GitHub Pages, Netlify, etc.)</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li>Open your homepage file (usually <code>index.html</code>) in a code editor.</li>
+            <li>Scroll to the very bottom and find <code>&lt;/body&gt;</code>.</li>
+            <li>Paste the snippet just <strong>before</strong> <code>&lt;/body&gt;</code>.</li>
+            <li>Save the file and upload/deploy it to your host.</li>
+            <li>Load your live homepage and click <strong>Verify my site</strong>.</li>
+          </ol>
+        </div>
+      </details>
+      <details>
+        <summary>Weebly, Jimdo, Strikingly &amp; other builders</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <p>Most drag-and-drop builders have a <strong>"Custom Code"</strong>, <strong>"Embed Code"</strong> or <strong>"HTML"</strong> element. Add that element to your homepage, paste the snippet inside it, and publish.</p>
+          <p>If you can't find it, Google: <em>"[builder name] add custom HTML to homepage"</em> — every builder supports it somewhere.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="trust-note" style="margin-top:18px;"><span>💡</span><span><strong>Common gotchas:</strong> the code must be on the <strong>exact URL you submitted</strong> (e.g. <code>yourdomain.com</code> or <code>yourdomain.com/</code>). After pasting, hard-refresh your page (<code>Ctrl+Shift+R</code>) so it's live before verifying.</span></div>
   </div>
 </section>
 
