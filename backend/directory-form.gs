@@ -42,6 +42,9 @@ function doPost(e) {
     if (!tab) {
       tab = sheet.getSheetByName("Submissions");
     }
+    if (!tab) {
+      tab = ensureTabs_(sheet);
+    }
 
     var row = [
       new Date().toISOString(),
@@ -79,14 +82,20 @@ function doPost(e) {
   }
 }
 
-/** Run once from the editor to authorize and create the sheet tabs. */
-function setup_() {
-  var sheet = SpreadsheetApp.openById(SHEET_ID);
+/** Ensures the Submissions and Verified tabs exist; creates them on first run. */
+function ensureTabs_(sheet) {
   ["Submissions", "Verified"].forEach(function (name) {
     if (!sheet.getSheetByName(name)) {
       var tab = sheet.insertSheet(name);
       tab.appendRow(["timestamp", "stage", "site_name", "site_url", "category", "description", "email", "token"]);
     }
   });
+  return sheet.getSheetByName("Submissions");
+}
+
+/** Run once from the editor to authorize and create the sheet tabs. */
+function setup_() {
+  var sheet = SpreadsheetApp.openById(SHEET_ID);
+  ensureTabs_(sheet);
   Logger.log("Setup complete. Sheet ID: " + SHEET_ID);
 }
