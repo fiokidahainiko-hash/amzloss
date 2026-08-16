@@ -323,7 +323,20 @@
     function renderGrid() {
       grid.innerHTML = '';
       const subs = loadSubs().filter(s => s.verified);
-      [...DATA.LIST, ...subs].forEach(item => {
+      const blocked = (DATA.BLOCKLIST || []).map(b => String(b).toLowerCase());
+      const seen = new Set();
+      const all = [...DATA.LIST, ...subs].filter(item => {
+        const url = String(item.url || '').toLowerCase().replace(/\/+$/, '').replace(/^https?:\/\//, '');
+        const name = String(item.name || item.site || '').toLowerCase().trim();
+        const haystack = url + ' ' + name;
+        if (blocked.some(b => haystack.indexOf(b) !== -1)) return false;
+        if (!url && !name) return false;
+        const key = url || name;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+      all.forEach(item => {
         const a = document.createElement('a');
         a.className = 'card';
         a.href = item.url;
