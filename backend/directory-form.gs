@@ -17,7 +17,7 @@
  * We read the raw POST body because Apps Script echoes CORS.
  */
 
-var SHEET_ID = "REPLACE_WITH_YOUR_GOOGLE_SHEET_ID";
+var SHEET_ID = "1GIj_vgCBC29T_-cGqMxKyHEsYHe-91kkze5s2mQNGWQ";
 var OWNER_EMAIL = "admin@amzloss.com";
 
 function doGet() {
