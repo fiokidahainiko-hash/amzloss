@@ -93,10 +93,6 @@ window.AMZLOSS_DIRECTORY = {
       category: "Affiliate Tools",
       description: "Audit your Amazon Associates earnings report and compare affiliate network commission rates."
     }
-  ],
-  BLOCKLIST: [
-    "flakcreatorstudios",
-    "flakcreator"
   ]
 };
 

@@ -323,13 +323,10 @@
     function renderGrid() {
       grid.innerHTML = '';
       const subs = loadSubs().filter(s => s.verified);
-      const blocked = (DATA.BLOCKLIST || []).map(b => String(b).toLowerCase());
       const seen = new Set();
       const all = [...DATA.LIST, ...subs].filter(item => {
         const url = String(item.url || '').toLowerCase().replace(/\/+$/, '').replace(/^https?:\/\//, '');
         const name = String(item.name || item.site || '').toLowerCase().trim();
-        const haystack = url + ' ' + name;
-        if (blocked.some(b => haystack.indexOf(b) !== -1)) return false;
         if (!url && !name) return false;
         const key = url || name;
         if (seen.has(key)) return false;
@@ -339,9 +336,7 @@
       all.forEach(item => {
         const a = document.createElement('a');
         a.className = 'card';
-        a.href = item.url;
-        a.target = '_blank';
-        a.rel = 'noopener nofollow sponsored';
+        a.href = 'listing.html?site=' + encodeURIComponent(item.name || item.site || item.url);
         a.style.cssText = 'color:inherit;text-decoration:none;';
         a.innerHTML =
           '<h3 style="margin:0 0 6px;">' + (item.name || item.site) + '</h3>' +
