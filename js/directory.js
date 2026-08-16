@@ -96,7 +96,7 @@ window.AMZLOSS_DIRECTORY = {
   ]
 };
 
-window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwd2qG3sdYnC-OOkKI4esLtIYTexbLF5MlGyBtiuYfrPe66mS-nIKEunEjPVFR02HAl/exec";
+window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzFrgHm0fkVP3QLqFTKYlFM8Ba460BugRz6fBpdZaOgDwniteyuAr9ZPXp12SEO_R23/exec";
 window.AMZLOSS_ACCESS_KEY = "";
 
 document.addEventListener('DOMContentLoaded', function () {
