@@ -1,12 +1,14 @@
 /* AmzLoss service worker — caches static assets for faster repeat visits.
    Network-first for pages (so content stays fresh after deploys),
    cache-first for styles, scripts, images and fonts. */
-const VERSION = 'amzloss-v3';
+const VERSION = 'amzloss-v4';
 const ASSETS = [
   'assets/css/style.css',
   'js/rates.js',
   'js/networks.js',
   'js/directory.js',
+  'js/breakeven.js',
+  'js/link-tools.js',
   'js/paystack.js'
 ];
 
