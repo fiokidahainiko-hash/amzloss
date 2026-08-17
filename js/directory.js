@@ -91,7 +91,7 @@ window.AMZLOSS_DIRECTORY = {
       name: "AmzLoss",
       url: "https://amzloss.com",
       category: "Affiliate Tools",
-      description: "Audit your Amazon Associates earnings report and compare affiliate network commission rates."
+      description: "Free Amazon Associates tools: commission calculator, 2026 rate table, earnings audit, break-even calculator, affiliate network comparison, link builder, backlink checker, IndexNow URL submitter and a curated backlink directory."
     }
   ]
 };
