@@ -235,7 +235,7 @@
 
   /* ================= AUTO-SUBMIT (server-powered pings) ================= */
 
-  var PING_ENDPOINT = "https://script.google.com/macros/s/AKfycbzFrgHm0fkVP3QLqFTKYlFM8Ba460BugRz6fBpdZaOgDwniteyuAr9ZPXp12SEO_R23/exec";
+  var PING_ENDPOINT = "https://script.google.com/macros/s/AKfycbx0rPije45RXFg8VmYJebGHKU9Z5TfoI92NthqkHo_mf89QXd5teFC1KmDrxPjR8DlZ/exec";
 
   var autoPanel = $("#auto_panel");
   var autoUrlInput = $("#auto_url");

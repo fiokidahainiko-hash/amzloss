@@ -96,5 +96,5 @@ window.AMZLOSS_DIRECTORY = {
   ]
 };
 
-window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzFrgHm0fkVP3QLqFTKYlFM8Ba460BugRz6fBpdZaOgDwniteyuAr9ZPXp12SEO_R23/exec";
+window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbx0rPije45RXFg8VmYJebGHKU9Z5TfoI92NthqkHo_mf89QXd5teFC1KmDrxPjR8DlZ/exec";
 window.AMZLOSS_ACCESS_KEY = "";
