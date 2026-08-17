@@ -55,6 +55,6 @@ View the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions
           gh issue list --repo "$GITHUB_REPOSITORY" --label "site-check" --state open --search "Site check failed" --json number -q '.[].number' | while read n; do gh issue close "$n" --repo "$GITHUB_REPOSITORY" -c "Auto-closed: superseded by a newer check."; done
 
           gh issue create --repo "$GITHUB_REPOSITORY" \
-            --title "Site check failed — $SITE_CHECK_FAILURES broken page(s)" \
+            --title "Site check failed - $SITE_CHECK_FAILURES broken page(s)" \
             --label "site-check" \
             --body "$body"
