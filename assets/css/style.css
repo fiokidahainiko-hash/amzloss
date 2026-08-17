@@ -377,8 +377,10 @@ table.rate tbody tr:hover { background: var(--bg-soft); }
 .ad-slot-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 6px; }
 
 /* Paystack trust gallery */
-.trust-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.trust-gallery img { width: 100%; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow-sm); background: #fff; }
+.trust-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 720px; }
+.paystack-card { margin: 0; background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; box-shadow: var(--shadow-sm); text-align: center; }
+.paystack-card img { width: 200px; height: 200px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); background: #fff; display: block; margin: 0 auto; }
+.paystack-card figcaption { color: var(--ink-soft); font-size: 0.86rem; font-weight: 600; margin-top: 10px; }
 .badge.paystack { border-color: var(--line-strong); }
 .badge.paystack .pill { background: rgba(26, 99, 184, 0.2); color: #7ab7ff; }
 
