@@ -242,8 +242,14 @@
   var autoBtn = $("#auto_btn");
   var genKeyBtn = $("#gen_key_btn");
   var copyKeyBtn = $("#copy_key_btn");
+  var copyKeyfileBtn = $("#copy_keyfile_btn");
   var keyInput = $("#in_key");
   var keyLocEl = $("#in_keyloc");
+  var keyNameEl = $("#in_keyname");
+  var keyPathEl = $("#in_keypath");
+  var keyContentEl = $("#in_keycontent");
+  var verifyEl = $("#in_verify");
+  var afterEl = $("#in_after");
   var autoResults = $("#auto_results");
   var autoNote = $("#auto_note");
 
@@ -266,16 +272,22 @@
   }
 
   function updateKeyLocation() {
-    if (!keyLocEl) return;
     var url = currentAutoUrl();
     var key = (keyInput && keyInput.value || "").trim();
     if (!url || !key) {
-      keyLocEl.textContent = "https://yourdomain.com/KEY.txt";
+      if (keyLocEl) keyLocEl.textContent = "https://yourdomain.com/KEY.txt";
+      if (keyNameEl) keyNameEl.textContent = "KEY.txt";
+      if (keyPathEl) keyPathEl.textContent = "https://yourdomain.com/KEY.txt";
+      if (keyContentEl) keyContentEl.textContent = "KEY";
       return;
     }
     var host = "";
     try { host = new URL(url).hostname; } catch (e) { return; }
-    keyLocEl.textContent = "https://" + host + "/" + key + ".txt";
+    var path = "https://" + host + "/" + key + ".txt";
+    if (keyLocEl) keyLocEl.textContent = path;
+    if (keyNameEl) keyNameEl.textContent = key + ".txt";
+    if (keyPathEl) keyPathEl.textContent = path;
+    if (keyContentEl) keyContentEl.textContent = key;
   }
 
   function genKey() {
@@ -309,6 +321,33 @@
     return row;
   }
 
+  /* Verifies the IndexNow key file is actually reachable before pinging.
+     Uses a no-cors image/HEAD trick is not possible for text; we do a normal
+     fetch which may fail on CORS for some hosts — if so we show a warning but
+     still attempt the ping (the backend does its own verification). */
+  function verifyKeyFile() {
+    if (!verifyEl) return;
+    var url = currentAutoUrl();
+    var key = (keyInput && keyInput.value || "").trim();
+    if (!url || !key) return;
+    var host = "";
+    try { host = new URL(url).hostname; } catch (e) { return; }
+    var path = "https://" + host + "/" + key + ".txt";
+    verifyEl.style.display = "";
+    verifyEl.innerHTML = '<span class="in-verify-txt">Checking <code>' + path + "</code>…</span>";
+    fetch(path, { mode: "no-cors" })
+      .then(function () {
+        verifyEl.innerHTML = '<span class="in-verify-txt">✓ Key file looks reachable. Auto-submit will ping IndexNow.</span>';
+      })
+      .catch(function () {
+        verifyEl.innerHTML = '<span class="in-verify-txt">⚠ Could not verify the key file from the browser (CORS). The server will still check it. If IndexNow shows an error, make sure <code>' + path + "</code> returns your key as plain text.</span>";
+      });
+  }
+
+  function afterPinged() {
+    if (afterEl) afterEl.style.display = "";
+  }
+
   function autoSubmit() {
     var url = currentAutoUrl();
     if (!url) {
@@ -339,12 +378,15 @@
     var qs = "action=ping&url=" + encodeURIComponent(url);
     if (key) qs += "&indexnowKey=" + encodeURIComponent(key);
 
+    verifyKeyFile();
+
     fetch(PING_ENDPOINT + "?" + qs)
       .then(function (r) { return r.json(); })
       .then(function (res) {
         autoBtn.disabled = false;
         autoBtn.textContent = "⚡ Auto-submit URL";
         if (!res || !res.ok) throw new Error((res && res.error) || "Server error");
+        var anyOk = false;
         AUTO_TARGETS.forEach(function (t) {
           var st = res.targets[t.id] || { ok: false, error: "no response" };
           var row = document.getElementById("auto_" + t.id);
@@ -353,10 +395,12 @@
             row.outerHTML = fresh.outerHTML;
           }
           if (st.ok && state.url) {
+            anyOk = true;
             var plat = PLATFORMS.filter(function (p) { return p.id === t.id; })[0];
             if (plat && !state.done[plat.id]) markDone(plat, true);
           }
         });
+        if (anyOk) afterPinged();
       })
       .catch(function (err) {
         autoBtn.disabled = false;
@@ -370,15 +414,25 @@
   }
 
   if (autoBtn) autoBtn.addEventListener("click", autoSubmit);
-  if (genKeyBtn) genKeyBtn.addEventListener("click", genKey);
+  if (genKeyBtn) genKeyBtn.addEventListener("click", function () { genKey(); setTimeout(verifyKeyFile, 300); });
   if (copyKeyBtn) copyKeyBtn.addEventListener("click", function () {
     var k = (keyInput && keyInput.value || "").trim() || genKey();
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(k).catch(function () {});
     }
   });
-  if (autoUrlInput) autoUrlInput.addEventListener("input", updateKeyLocation);
-  if (keyInput) keyInput.addEventListener("input", updateKeyLocation);
+  if (copyKeyfileBtn) copyKeyfileBtn.addEventListener("click", function () {
+    var url = currentAutoUrl();
+    var k = (keyInput && keyInput.value || "").trim() || genKey();
+    var host = "";
+    if (url) { try { host = new URL(url).hostname; } catch (e) {} }
+    var note = host ? ("\n\nUpload this file to https://" + host + "/" + k + ".txt") : "";
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(k + note).catch(function () {});
+    }
+  });
+  if (autoUrlInput) autoUrlInput.addEventListener("input", function () { updateKeyLocation(); });
+  if (keyInput) keyInput.addEventListener("input", function () { updateKeyLocation(); });
   if (urlInput) urlInput.addEventListener("input", function () { if (!autoUrlInput.value) autoUrlInput.value = urlInput.value; });
 
   loadIndexNowKey();

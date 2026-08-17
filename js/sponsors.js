@@ -4,8 +4,9 @@
    Format: '<CODE>': '<Sponsor site name>'   */
 
 window.AMZLOSS_SPONSORS = {
-  // Example:  'AMZLOSS-ABCD-1234': 'Example Blog',
   codes: {
+    // Example:  'AMZLOSS-ABCD-1234': 'Example Blog',
+  },
   unlockDays: 90
 };
 

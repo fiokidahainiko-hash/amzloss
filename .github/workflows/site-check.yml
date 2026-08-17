@@ -1,0 +1,56 @@
+name: Site Checker
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "**.html"
+      - "sitemap.xml"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run site check against sitemap.xml
+        id: check
+        env:
+          SITE_BASE: "https://amzloss.com"
+          MAX_URLS: "200"
+        run: |
+          node .github/site-check.mjs || true
+
+      - name: Show result
+        run: |
+          echo "URLS: $SITE_CHECK_URLS | OK: $SITE_CHECK_OK | FAIL: $SITE_CHECK_FAILURES | RESULT: $SITE_CHECK_RESULT"
+          echo "DETAIL: $SITE_CHECK_DETAIL"
+
+      - name: Open issue on failure
+        if: env.SITE_CHECK_RESULT == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          body="Automated site check failed on $(date -u +'%Y-%m-%d %H:%M UTC').
+
+Checked $SITE_CHECK_URLS URLs ($SITE_CHECK_OK OK).
+
+Failures:
+$SITE_CHECK_DETAIL
+
+View the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          gh issue list --repo "$GITHUB_REPOSITORY" --label "site-check" --state open --search "Site check failed" --json number -q '.[].number' | while read n; do gh issue close "$n" --repo "$GITHUB_REPOSITORY" -c "Auto-closed: superseded by a newer check."; done
+
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Site check failed — $SITE_CHECK_FAILURES broken page(s)" \
+            --label "site-check" \
+            --body "$body"
