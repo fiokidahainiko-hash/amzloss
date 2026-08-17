@@ -17,16 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     verdict: document.getElementById('verdict')
   };
 
-  var burger = document.querySelector('.burger');
-  if (burger) {
-    burger.addEventListener('click', function () {
-      var nav = document.querySelector('.nav-links');
-      var open = nav.style.display === 'flex';
-      nav.style.display = open ? 'none' : 'flex';
-      burger.setAttribute('aria-expanded', open ? 'false' : 'true');
-    });
-  }
-
   function money(v) {
     if (!isFinite(v)) return '—';
     return '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

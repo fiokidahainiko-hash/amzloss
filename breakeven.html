@@ -79,18 +79,27 @@
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="calculator.html">Calculator</a>
-      <a href="networks.html">Networks</a>
-      <a href="directory.html">Directory</a>
-      <a href="breakeven.html">Break-Even</a>
-      <a href="link-tools.html">Link Tools</a>
-      <a href="rates.html">Current Rates</a>
+    <nav class="nav-links" aria-label="Main navigation">      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">Amazon Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="calculator.html">Commission Calculator</a>
+          <a href="breakeven.html">Break-Even Calculator</a>
+          <a href="rates.html">Current Rates</a>
+          <a href="audit.html">Earnings Audit</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">More Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="networks.html">Network Calculator</a>
+          <a href="link-tools.html">Link Tools</a>
+          <a href="directory.html">Backlink Directory</a>
+        </div>
+      </div>
       <a href="pricing.html">Pricing</a>
       <a href="blogs.html">Learn</a>
       <a href="faq.html">FAQ</a>
-      <a href="about.html">About</a>
-    </nav>
+      <a href="about.html">About</a></nav>
     <div class="nav-cta">
       <a class="btn btn-primary" href="audit.html">Audit my report</a>
     </div>
@@ -153,6 +162,20 @@
   <div class="container page-narrow">
     <div class="section-head"><span class="kicker">Why this matters</span><h2>A "great deal" can quietly cut your income</h2></div>
     <p>Amazon flashes a product on sale and it looks like a win — but you're paid a <strong>percentage of the sale price</strong>. When a $80 product drops to $60 at a 6% rate, your commission falls from <strong>$4.80</strong> to <strong>$3.60</strong> per sale. On 50 sales a month, that's <strong>$60 gone</strong> — and you'd need to sell <strong>67 items</strong> (34% more) just to earn the same amount. The calculator tells you in one click whether a deal is worth your traffic.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container page-narrow">
+    <div class="section-head"><span class="kicker">Amazon commission math</span><h2>How price drops affect Amazon Associates earnings</h2></div>
+    <p>Amazon Associates pays a percentage of the <strong>sale price</strong>, so any discount — a Lightning Deal, a coupon, a price-drop alert — reduces your commission on that order. The effect is easy to miss because the rate percentage looks unchanged while the actual dollar amount quietly shrinks. Use this <strong>Amazon price drop calculator</strong> to convert any discount into real dollars, compare it against your <a href="calculator.html">before/after 2026 commission rates</a>, and decide whether the deal deserves a blog post, video, or a share.</p>
+    <p>Three rules of thumb for affiliates:</p>
+    <ul style="line-height:2;color:var(--ink-soft);">
+      <li><strong>Deep discounts on big-ticket items</strong> — always run the numbers; a 25–30% drop can cut a $5+ commission by a dollar or more per sale.</li>
+      <li><strong>Low-priced items under $20</strong> — the absolute loss is small, so promotion is usually still worthwhile if it converts.</li>
+      <li><strong>Flat-rate bounty programs</strong> — a price change doesn't affect your earnings, so break-even math doesn't apply.</li>
+    </ul>
+    <div class="trust-note"><span>💡</span><span><strong>Pair this with the audit.</strong> The <a href="audit.html">earnings audit</a> checks what Amazon <em>actually</em> paid you against the rate that applied on your order dates — the price-drop calculator helps you plan, the audit verifies the past.</span></div>
   </div>
 </section>
 
@@ -238,12 +261,7 @@
   </div>
 </footer>
 
-<script>
-  document.querySelector('.burger')?.addEventListener('click', () => {
-    const l = document.querySelector('.nav-links');
-    l.style.display = l.style.display === 'flex' ? 'none' : 'flex';
-  });
-</script>
+<script src="js/nav.js"></script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
 </html>

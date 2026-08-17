@@ -2,16 +2,6 @@
    Everything runs in the browser. */
 
 document.addEventListener('DOMContentLoaded', function () {
-  var burger = document.querySelector('.burger');
-  if (burger) {
-    burger.addEventListener('click', function () {
-      var nav = document.querySelector('.nav-links');
-      var open = nav.style.display === 'flex';
-      nav.style.display = open ? 'none' : 'flex';
-      burger.setAttribute('aria-expanded', open ? 'false' : 'true');
-    });
-  }
-
   /* ---------- Copy buttons ---------- */
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {

@@ -38,18 +38,27 @@
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="calculator.html">Calculator</a>
-      <a href="networks.html">Networks</a>
-      <a href="directory.html">Directory</a>
-      <a href="breakeven.html">Break-Even</a>
-      <a href="link-tools.html">Link Tools</a>
-      <a href="rates.html">Current Rates</a>
+    <nav class="nav-links" aria-label="Main navigation">      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">Amazon Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="calculator.html">Commission Calculator</a>
+          <a href="breakeven.html">Break-Even Calculator</a>
+          <a href="rates.html">Current Rates</a>
+          <a href="audit.html">Earnings Audit</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">More Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="networks.html">Network Calculator</a>
+          <a href="link-tools.html">Link Tools</a>
+          <a href="directory.html">Backlink Directory</a>
+        </div>
+      </div>
       <a href="pricing.html">Pricing</a>
       <a href="blogs.html">Learn</a>
       <a href="faq.html">FAQ</a>
-      <a href="about.html">About</a>
-    </nav>
+      <a href="about.html">About</a></nav>
     <div class="nav-cta">
       <a class="btn btn-primary" href="audit.html">Audit my report</a>
     </div>
@@ -133,44 +142,7 @@
 
 <script src="js/paystack.js"></script>
 <script src="js/sponsors.js"></script>
-<script>
-  document.querySelector('.burger')?.addEventListener('click', () => {
-    const nav = document.querySelector('.nav-links');
-    const cta = document.querySelector('.nav-cta');
-    document.querySelector('.burger')?.classList.toggle('open');
-    nav?.classList.toggle('open');
-    cta?.classList.toggle('open');
-  });
-
-  (function () {
-    var input = document.getElementById('sponsorCode');
-    var btn = document.getElementById('sponsorBtn');
-    var msg = document.getElementById('sponsorMsg');
-    if (!input || !btn || !msg) return;
-
-    function flash(text, ok) {
-      msg.style.display = 'block';
-      msg.style.color = ok ? 'var(--success, #059669)' : 'var(--danger, #dc2626)';
-      msg.textContent = text;
-    }
-
-    btn.addEventListener('click', function () {
-      var name = window.AMZLOSS_SPONSORS.redeem(input.value);
-      if (name) {
-        flash('Welcome, ' + name + '! Your 3 months of full access are unlocked. Redirecting you to the audit…', true);
-        input.value = '';
-        setTimeout(function () { window.location.href = 'audit.html'; }, 1800);
-      } else {
-        flash('That code isn\'t valid. Check the email we sent you and try again.', false);
-        input.focus();
-      }
-    });
-
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') { e.preventDefault(); btn.click(); }
-    });
-  })();
-</script>
+<script src="js/nav.js"></script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
 </html>

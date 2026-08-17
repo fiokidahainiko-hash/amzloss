@@ -49,18 +49,27 @@
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="calculator.html">Calculator</a>
-      <a href="networks.html">Networks</a>
-      <a href="directory.html">Directory</a>
-      <a href="breakeven.html">Break-Even</a>
-      <a href="link-tools.html">Link Tools</a>
-      <a href="rates.html">Current Rates</a>
+    <nav class="nav-links" aria-label="Main navigation">      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">Amazon Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="calculator.html">Commission Calculator</a>
+          <a href="breakeven.html">Break-Even Calculator</a>
+          <a href="rates.html">Current Rates</a>
+          <a href="audit.html">Earnings Audit</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">More Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="networks.html">Network Calculator</a>
+          <a href="link-tools.html">Link Tools</a>
+          <a href="directory.html">Backlink Directory</a>
+        </div>
+      </div>
       <a href="pricing.html">Pricing</a>
       <a href="blogs.html">Learn</a>
       <a href="faq.html">FAQ</a>
-      <a href="about.html">About</a>
-    </nav>
+      <a href="about.html">About</a></nav>
     <div class="nav-cta">
       <a class="btn btn-primary" href="audit.html">Audit my report</a>
     </div>
@@ -80,7 +89,7 @@
       <span class="tag" id="site-cat" style="margin-bottom:14px;">—</span>
       <h2 id="site-name" style="margin:8px 0 6px;font-size:1.6rem;">—</h2>
       <p id="site-desc" style="color:var(--ink-soft);margin:0 0 20px;">—</p>
-      <div id="preview-wrap" style="display:none;margin-bottom:20px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
+      <div id="preview-wrap" style="display:none;margin-bottom:20px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg-card);">
         <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg-soft);border-bottom:1px solid var(--border);font-size:0.85rem;">
           <span style="color:var(--muted);">Preview:</span>
           <span id="site-url-label" style="word-break:break-all;color:var(--ink-soft);"></span>
@@ -206,6 +215,6 @@
     }
   });
 </script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
+<script src="js/nav.js"></script><script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
 </html>

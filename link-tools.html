@@ -67,18 +67,27 @@
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="calculator.html">Calculator</a>
-      <a href="networks.html">Networks</a>
-      <a href="directory.html">Directory</a>
-      <a href="breakeven.html">Break-Even</a>
-      <a href="link-tools.html">Link Tools</a>
-      <a href="rates.html">Current Rates</a>
+    <nav class="nav-links" aria-label="Main navigation">      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">Amazon Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="calculator.html">Commission Calculator</a>
+          <a href="breakeven.html">Break-Even Calculator</a>
+          <a href="rates.html">Current Rates</a>
+          <a href="audit.html">Earnings Audit</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-toggle" aria-haspopup="true">More Tools<span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="networks.html">Network Calculator</a>
+          <a href="link-tools.html">Link Tools</a>
+          <a href="directory.html">Backlink Directory</a>
+        </div>
+      </div>
       <a href="pricing.html">Pricing</a>
       <a href="blogs.html">Learn</a>
       <a href="faq.html">FAQ</a>
-      <a href="about.html">About</a>
-    </nav>
+      <a href="about.html">About</a></nav>
     <div class="nav-cta">
       <a class="btn btn-primary" href="audit.html">Audit my report</a>
     </div>
@@ -182,9 +191,16 @@
 
 <section class="section">
   <div class="container page-narrow">
-    <div class="section-head"><span class="kicker">Why it matters</span><h2>Links are how a niche site grows</h2></div>
-    <p>Every affiliate site runs on two loops: <strong>traffic</strong> (which products and deals you promote) and <strong>links</strong> (the reputation that makes rankings stick). The <a href="directory.html">AmzLoss backlink directory</a> gives you a free, relevant starting point; these tools keep your links clean and verifiable. Together they're a small but honest link-building kit — no spam, no paid link schemes.</p>
+    <div class="section-head"><span class="kicker">Affiliate link best practices</span><h2>Clean links convert better and keep you compliant</h2></div>
+    <p>Every Amazon Associates link should include your <strong>tracking ID (tag=)</strong> so clicks and purchases are credited to you — publishing a bare product URL earns nothing. This <strong>Amazon affiliate link builder</strong> strips old tracking parameters and appends your tag in one step. It also marks links <code>rel="nofollow sponsored"</code>, which both Amazon's operating agreement and the FTC require when you get paid to recommend a product. The same hygiene applies across networks: build a <a href="networks.html">network calculator</a> strategy for ShareASale, CJ, Impact or Awin, then create clean, tagged links for each merchant.</p>
     <div class="trust-note"><span>🔒</span><span><strong>Private by design.</strong> Both tools run entirely in your browser. The backlink checker fetches pages through a public CORS proxy, but your tracking ID and links never leave your device or get stored.</span></div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container page-narrow">
+    <div class="section-head"><span class="kicker">Backlink maintenance</span><h2>Why you should check your backlinks regularly</h2></div>
+    <p>Links disappear. A site redesign, a cleanup plugin, or a page moving to a new URL can silently drop the <a href="directory.html">directory backlink</a> you earned. A backlink that vanishes loses you both traffic and the link equity that supports your rankings. Run this free <strong>backlink checker</strong> monthly on every site that lists you — paste the page URL and your domain name, and it scans the live HTML for your link. If it's gone, ask the site owner to restore it, or re-submit and rebuild the relationship.</p>
   </div>
 </section>
 
@@ -233,12 +249,7 @@
   </div>
 </footer>
 
-<script>
-  document.querySelector('.burger')?.addEventListener('click', () => {
-    const l = document.querySelector('.nav-links');
-    l.style.display = l.style.display === 'flex' ? 'none' : 'flex';
-  });
-</script>
+<script src="js/nav.js"></script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
 </html>
