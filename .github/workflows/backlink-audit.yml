@@ -1,0 +1,56 @@
+name: Backlink Audit
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run backlink audit
+        id: audit
+        run: |
+          node .github/backlink-audit.mjs | tee -a "$GITHUB_ENV"
+          if grep -q '^BACKLINK_AUDIT_CHANGED=1$' "$GITHUB_ENV"; then
+            echo "changed=1" >> "$GITHUB_ENV"
+          else
+            echo "changed=0" >> "$GITHUB_ENV"
+          fi
+
+      - name: Commit removals
+        if: env.changed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "amzloss-bot"
+          git config user.email "admin@amzloss.com"
+          git add js/directory.js .github/backlink-audit-report.json
+          git commit -m "Backlink audit: remove sites that stopped linking back"
+          git push
+
+      - name: Open issue when sites were removed
+        if: env.changed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          removed=$(node -e "const r=require('./.github/backlink-audit-report.json');console.log(r.removedDomains.join(', ')||'none')")
+          body="Weekly backlink audit ran on $(date -u +'%Y-%m-%d %H:%M UTC').
+          Checked $BACKLINK_AUDIT_CHECKED sites — removed $BACKLINK_AUDIT_REMOVED that no longer link back.
+
+          Removed domains: $removed
+
+          Details: .github/backlink-audit-report.json ($BACKLINK_AUDIT_OK OK, $BACKLINK_AUDIT_UNFETCHABLE could not be fetched)."
+          gh issue list --repo "$GITHUB_REPOSITORY" --label "backlink-audit" --state open --search "Backlink audit" --json number -q '.[].number' | while read n; do gh issue close "$n" --repo "$GITHUB_REPOSITORY" -c "Auto-closed: superseded by a newer audit."; done
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Backlink audit: $BACKLINK_AUDIT_REMOVED site(s) removed" \
+            --label "backlink-audit" \
+            --body "$body"

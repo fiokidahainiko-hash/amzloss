@@ -59,46 +59,4 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('out_markdown').value = markdown;
   });
 
-  /* ---------- Backlink checker ---------- */
-  var PROXY = 'https://api.allorigins.win/raw?url=';
-
-  function setStatus(el, cls, msg) {
-    el.className = 'verdict-banner ' + cls;
-    el.textContent = msg;
-  }
-
-  document.getElementById('check_link').addEventListener('click', function () {
-    var url = document.getElementById('check_url').value.trim();
-    var target = document.getElementById('check_target').value.trim();
-    var status = document.getElementById('check_status');
-    var detail = document.getElementById('check_detail');
-
-    if (!url || !target) {
-      setStatus(status, 'neutral', 'Enter both a page URL and a keyword/link to search for.');
-      detail.textContent = '';
-      return;
-    }
-    if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
-    var needle = target.toLowerCase();
-
-    setStatus(status, 'neutral', 'Checking ' + url + ' …');
-    detail.textContent = '';
-
-    fetch(PROXY + encodeURIComponent(url))
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-      .then(function (html) {
-        var found = html.toLowerCase().indexOf(needle) !== -1;
-        if (found) {
-          setStatus(status, 'good', '✓ Backlink found on the page');
-          detail.textContent = 'The page contains "' + target + '". Your link is live.';
-        } else {
-          setStatus(status, 'bad', '✕ Backlink not found');
-          detail.textContent = 'The page did not contain "' + target + '". Either the link was removed, the page changed, or the page content loaded dynamically (JavaScript) and can\u2019t be seen by this simple check.';
-        }
-      })
-      .catch(function (err) {
-        setStatus(status, 'bad', 'Could not fetch the page');
-        detail.textContent = 'The site blocked automated requests or the URL is unreachable (' + err.message + '). Open the page in your browser and search for "' + target + '" to confirm manually.';
-      });
   });
-});

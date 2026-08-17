@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-08-17T21:39:47.910Z",
+  "checked": 1,
+  "ok": 1,
+  "removed": 0,
+  "unfetchable": 0,
+  "removedDomains": [],
+  "details": [
+    {
+      "name": "AmzLoss",
+      "url": "https://amzloss.com",
+      "status": "ok"
+    }
+  ]
+}

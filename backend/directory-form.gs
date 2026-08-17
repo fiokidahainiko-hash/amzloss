@@ -51,7 +51,9 @@ function listVerifiedSites_() {
         name: r[2] || "",
         url: r[3] || "",
         category: r[4] || "",
-        description: r[5] || ""
+        description: r[5] || "",
+        youtube: r[8] || "",
+        tiktok: r[9] || ""
       };
       if (obj.url) sites.push(obj);
     }
@@ -93,7 +95,9 @@ function doPost(e) {
       data.category || data.cat || "",
       data.description || data.desc || "",
       data.email || "",
-      data.token || ""
+      data.token || "",
+      data.youtube || "",
+      data.tiktok || ""
     ];
     tab.appendRow(row);
 

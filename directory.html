@@ -56,7 +56,7 @@
   </head>
 <body>
 
-<div class="launch-bar">🎉 Launch offer: <strong>no ads, no limits — the full tool is 100% free for the first month</strong> as AmzLoss launches. Paying is purely optional support. <a href="pricing.html">Learn more</a></div>
+<div class="launch-bar">🎉 The full tool is <strong>free forever</strong> — rate table, calculators, full audit and export. Paid plans are optional extras (ad-free, priority help). <a href="pricing.html">Learn more</a></div>
 
 <header class="site-header">
   <div class="container nav">
@@ -125,6 +125,14 @@
         <input type="text" id="site_desc" maxlength="120" required placeholder="What does your site do?">
       </div>
       <div class="field">
+        <label for="site_youtube">YouTube channel URL (optional — gets a Follow button)</label>
+        <input type="url" id="site_youtube" placeholder="https://youtube.com/@yourchannel">
+      </div>
+      <div class="field">
+        <label for="site_tiktok">TikTok profile URL (optional — gets a Follow button)</label>
+        <input type="url" id="site_tiktok" placeholder="https://tiktok.com/@yourhandle">
+      </div>
+      <div class="field">
         <label for="site_email">Your email (never shown publicly)</label>
         <input type="email" id="site_email" placeholder="you@example.com">
       </div>
@@ -144,6 +152,36 @@
       <p id="verify-msg" style="text-align:center;font-weight:600;min-height:1.4em;margin-top:12px;"></p>
     </div>
     <div class="trust-note" style="margin-top:18px;"><span>🔗</span><span><strong>How backlinks work here:</strong> verified sites get a link from this page and from our <a href="sitemap.html">sitemap</a>. We check your site really hosts the snippet before the backlink goes live — no link farms, no dead sites.</span></div>
+  </div>
+</section>
+
+<section class="section soft" id="checker">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Backlink checker</span>
+      <h2>Check whether a site still links to you</h2>
+      <p>Listed sites are checked automatically every week. Use this to check any site yourself — paste the page URL and your link (or keyword like your domain name). Uses public CORS proxies with automatic fallback.</p>
+    </div>
+    <div class="calc-wrap">
+      <div class="calc-panel">
+        <div class="field">
+          <label for="check_url">Page to check</label>
+          <input type="url" id="check_url" placeholder="https://example.com/resources">
+        </div>
+        <div class="field">
+          <label for="check_target">Your link or keyword to find</label>
+          <input type="text" id="check_target" placeholder="amzloss.com or your full URL">
+        </div>
+        <button class="btn btn-primary btn-lg" id="check_link" style="width:100%;">Check backlink</button>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Some sites block automated requests. If a check fails, open the page in your browser and search for your keyword to confirm manually.</p>
+      </div>
+      <div class="result-panel">
+        <h3 style="margin-top:0;">Result</h3>
+        <div id="check_status" class="verdict-banner neutral">Enter a URL and keyword to check.</div>
+        <div id="check_detail" style="color:var(--ink-soft);font-size:0.92rem;margin-top:14px;word-break:break-word;"></div>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:14px;">Every listed site below is re-checked every week. Sites that stop linking back are removed automatically.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -336,11 +374,14 @@
 
     function renderGrid() {
       grid.innerHTML = '';
+      const removed = (window.AMZLOSS_REMOVED || []).map(d => d.toLowerCase().replace(/^www\./, ''));
       const subs = loadSubs().filter(s => s.verified);
       const seen = new Set();
       const all = [...DATA.LIST, ...subs].filter(item => {
         const url = String(item.url || '').toLowerCase().replace(/\/+$/, '').replace(/^https?:\/\//, '');
         const name = String(item.name || item.site || '').toLowerCase().trim();
+        const host = url.split('/')[0].replace(/^www\./, '');
+        if (removed.indexOf(host) !== -1) return false;
         if (!url && !name) return false;
         const key = url || name;
         if (seen.has(key)) return false;
@@ -351,11 +392,15 @@
         const a = document.createElement('a');
         a.className = 'card';
         a.href = 'listing.html?site=' + encodeURIComponent(item.name || item.site || item.url);
-        a.style.cssText = 'color:inherit;text-decoration:none;';
+        a.style.cssText = 'color:inherit;text-decoration:none;display:flex;flex-direction:column;';
+        let socials = '';
+        if (item.youtube) socials += '<a class="btn-social btn-youtube" href="' + item.youtube + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">▶ YouTube</a>';
+        if (item.tiktok) socials += '<a class="btn-social btn-tiktok" href="' + item.tiktok + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">♫ TikTok</a>';
         a.innerHTML =
           '<h3 style="margin:0 0 6px;">' + (item.name || item.site) + '</h3>' +
           '<span class="tag">' + (item.category || item.cat) + '</span>' +
-          '<p style="margin-top:10px;">' + (item.description || item.desc) + '</p>';
+          '<p style="margin-top:10px;flex:1;">' + (item.description || item.desc) + '</p>' +
+          (socials ? '<div style="display:flex;gap:8px;margin-top:12px;">' + socials + '</div>' : '');
         grid.appendChild(a);
       });
     }
@@ -417,15 +462,17 @@
       const url = document.getElementById('site_url').value.trim();
       const cat = document.getElementById('site_cat').value;
       const desc = document.getElementById('site_desc').value.trim();
+      const youtube = document.getElementById('site_youtube').value.trim();
+      const tiktok = document.getElementById('site_tiktok').value.trim();
       const email = document.getElementById('site_email').value.trim();
 
       pendingToken = makeToken();
 
       const subs = loadSubs();
-      subs.push({ name, url, cat, desc, email, token: pendingToken, verified: false, at: new Date().toISOString() });
+      subs.push({ name, url, cat, desc, youtube, tiktok, email, token: pendingToken, verified: false, at: new Date().toISOString() });
       saveSubs(subs);
 
-      postForm({ site_name: name, site_url: url, category: cat, description: desc, email: email, token: pendingToken, stage: 'submitted' });
+      postForm({ site_name: name, site_url: url, category: cat, description: desc, youtube: youtube, tiktok: tiktok, email: email, token: pendingToken, stage: 'submitted' });
 
       snippetBox.value = buildSnippet(name, pendingToken);
       msg.textContent = 'Step 1 done, ' + name + '. Now add the snippet below to your site.';
@@ -443,7 +490,7 @@
       setTimeout(() => { document.getElementById('copy-snippet').textContent = 'Copy'; }, 1500);
     });
 
-    verifyBtn.addEventListener('click', async () => {
+    verifyBtn.addEventListener('click', () => {
       const subs = loadSubs();
       const sub = subs[subs.length - 1];
       if (!sub || !sub.token) return;
@@ -454,32 +501,32 @@
       verifyMsg.textContent = '';
 
       const url = sub.url.replace(/\/$/, '');
-      const proxied = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
       const haystack = 'AmzLoss directory listing: ' + sub.token;
 
-      try {
-        const res = await fetch(proxied, { mode: 'cors' });
-        const html = await res.text();
-        if (html.indexOf(haystack) !== -1) {
+      window.AZLBacklinkCheck(url, haystack, (res) => {
+        verifyBtn.disabled = false;
+        verifyBtn.textContent = 'Verify my site';
+        if (!res.ok) {
+          verifyMsg.textContent = 'Could not fetch your site. It may block external checks or the page needs a moment to deploy. Try again shortly.';
+          verifyMsg.style.color = 'var(--warn)';
+          return;
+        }
+        if (res.found) {
           sub.verified = true;
           saveSubs(subs);
           renderGrid();
-          postForm({ site_name: sub.name, site_url: sub.url, category: sub.cat, description: sub.desc, email: sub.email, token: sub.token, stage: 'verified' });
+          postForm({ site_name: sub.name, site_url: sub.url, category: sub.cat, description: sub.desc, youtube: sub.youtube, tiktok: sub.tiktok, email: sub.email, token: sub.token, stage: 'verified' });
           verifyMsg.textContent = 'Verified! Your site is now listed in the directory with a backlink.';
           verifyMsg.style.color = 'var(--accent)';
         } else {
           verifyMsg.textContent = 'Snippet not found on ' + sub.url + '. Make sure it is live, then try again.';
           verifyMsg.style.color = 'var(--danger)';
         }
-      } catch (err) {
-        verifyMsg.textContent = 'Could not fetch your site. It may block external checks or the page needs a moment to deploy. Try again shortly.';
-        verifyMsg.style.color = 'var(--warn)';
-      }
-      verifyBtn.disabled = false;
-      verifyBtn.textContent = 'Verify my site';
+      });
     });
   });
 </script>
+<script src="js/backlink-checker.js"></script>
 <script src="js/nav.js"></script><script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
 </html>

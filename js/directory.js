@@ -98,3 +98,6 @@ window.AMZLOSS_DIRECTORY = {
 
 window.AMZLOSS_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbx0rPije45RXFg8VmYJebGHKU9Z5TfoI92NthqkHo_mf89QXd5teFC1KmDrxPjR8DlZ/exec";
 window.AMZLOSS_ACCESS_KEY = "";
+/* Sites removed by the weekly backlink audit (they stopped linking back).
+   Their domains are filtered out of the directory listing. */
+window.AMZLOSS_REMOVED = [];

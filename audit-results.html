@@ -45,7 +45,7 @@
   </head>
 <body>
 
-<div class="launch-bar">🎉 Launch offer: <strong>no ads, no limits — the full tool is 100% free for the first month</strong> as AmzLoss launches. Paying is purely optional support. <a href="pricing.html">Learn more</a></div>
+<div class="launch-bar">🎉 The full tool is <strong>free forever</strong> — rate table, calculators, full audit and export. Paid plans are optional extras (ad-free, priority help). <a href="pricing.html">Learn more</a></div>
 
 <header class="site-header">
   <div class="container nav">
@@ -159,7 +159,6 @@
   const money = n => '$' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   const flaggedSum = res.flagged.reduce((a, b) => a + b.gap, 0);
-  const isPaid = window.AMZLOSS_PAID && window.AMZLOSS_PAID.isPaid();
   const flagCount = (res.flagged || []).length;
 
   const byCat = {};
@@ -212,7 +211,7 @@
     html += `</div>`;
   }
 
-  const shown = isPaid ? (res.flagged || []).slice(0, 250) : (res.flagged || []).slice(0, 3);
+  const shown = (res.flagged || []).slice(0, 250);
 
   html += `<div class="res-tools" style="margin-bottom:14px;">
     <h2 style="font-size:1.2rem;margin:0;flex:1;">Flagged line items</h2>
@@ -235,11 +234,11 @@
     });
     html += `</tbody></table></div>`;
 
-if (!isPaid && res.flagged.length > 3) {
+if (res.flagged.length > 3) {
       html += `<div class="card" style="text-align:center;border:2px solid var(--brand);background:var(--brand-soft);margin-bottom:24px;">
-        <h3 style="margin:0 0 6px;">See all ${res.flagged.length} flagged lines on screen</h3>
-        <p style="color:var(--ink-soft);margin:0 auto 16px;max-width:480px;">Your claim file below downloads free — this shows the top 3 lines at a glance. Upgrade for the full on-screen list, no limits.</p>
-        <a class="btn btn-primary" href="pricing.html">See plans — from ₦2,332.20/wk</a>
+        <h3 style="margin:0 0 6px;">Showing all ${res.flagged.length} flagged lines — on every plan</h3>
+        <p style="color:var(--ink-soft);margin:0 auto 16px;max-width:480px;">The full list is free. Supporter plans add ad-free browsing, priority support and early access to new tools — not feature gates.</p>
+        <a class="btn btn-primary" href="pricing.html">Become a Supporter — from ₦2,332.20/wk</a>
       </div>`;
     }
 
