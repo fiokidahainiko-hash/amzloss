@@ -22,6 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Wait for Pages deploy (push-triggered)
+        if: github.event_name == 'push'
+        run: sleep 180
+
       - name: Run site check against sitemap.xml
         id: check
         env:
@@ -34,12 +38,13 @@ jobs:
           if grep -q '^SITE_CHECK_RESULT=error$' "$GITHUB_ENV"; then exit 3; fi
 
       - name: Show result
+        if: always()
         run: |
           echo "URLS: $SITE_CHECK_URLS | OK: $SITE_CHECK_OK | FAIL: $SITE_CHECK_FAILURES | RESULT: $SITE_CHECK_RESULT"
           echo "DETAIL: $SITE_CHECK_DETAIL"
 
       - name: Open issue on failure
-        if: env.SITE_CHECK_RESULT == 'failure'
+        if: always() && env.SITE_CHECK_RESULT == 'failure'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
