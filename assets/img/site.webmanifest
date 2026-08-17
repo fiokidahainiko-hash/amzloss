@@ -1,7 +1,7 @@
 {
-  "name": "AmzLoss — Amazon Associates Earnings Audit",
+  "name": "AmzLoss — Free Affiliate & Webmaster Tools",
   "short_name": "AmzLoss",
-  "description": "Find out how much Amazon's 2026 commission cuts actually cost your account.",
+  "description": "Free affiliate and webmaster tools: Amazon earnings audit, commission calculators, link tools, URL submitter and backlinks — all in your browser.",
   "icons": [
     {
       "src": "favicon-48x48.png",
@@ -19,7 +19,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ec4899",
+  "theme_color": "#4b286d",
   "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "/"
