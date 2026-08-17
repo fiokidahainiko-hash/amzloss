@@ -9,6 +9,7 @@ on:
     paths:
       - "**.html"
       - "sitemap.xml"
+      - ".github/**"
 
 permissions:
   contents: read
@@ -27,7 +28,10 @@ jobs:
           SITE_BASE: "https://amzloss.com"
           MAX_URLS: "200"
         run: |
-          node .github/site-check.mjs || true
+          node .github/site-check.mjs | tee -a "$GITHUB_ENV"
+          echo "script exit: $?"
+          if grep -q '^SITE_CHECK_RESULT=failure$' "$GITHUB_ENV"; then exit 2; fi
+          if grep -q '^SITE_CHECK_RESULT=error$' "$GITHUB_ENV"; then exit 3; fi
 
       - name: Show result
         run: |
