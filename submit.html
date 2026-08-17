@@ -14,7 +14,7 @@
   </script>
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009" crossorigin="anonymous"></script>
-  <title>URL Submitter — Submit to 28+ Platforms | AmzLoss</title>
+  <title>URL Submitter — Submit to 31+ Platforms | AmzLoss</title>
   <meta name="description" content="Submit your URL to search engines, directories, bookmarking sites and ping services in minutes. The more platforms you submit to, the faster you get indexed and the stronger your backlinks. Free URL submitter from AmzLoss.">
   <meta name="keywords" content="url submitter, submit url to search engines, link blaster, free url submission, web directory submission, ping search engines, backlink builder, site submitter">
   <meta name="author" content="AmzLoss">
@@ -36,7 +36,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AmzLoss">
-  <meta property="og:title" content="URL Submitter — Submit to 28+ Platforms">
+  <meta property="og:title" content="URL Submitter — Submit to 31+ Platforms">
   <meta property="og:description" content="Submit one URL to search engines, directories, bookmarking sites and ping services. More platforms = better indexing and stronger backlinks. Free.">
   <meta property="og:url" content="https://amzloss.com/submit.html">
   <meta property="og:image" content="https://amzloss.com/assets/img/og-cover.png">
@@ -44,7 +44,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="URL Submitter — AmzLoss">
-  <meta name="twitter:description" content="Submit your URL to 28+ platforms. More platforms = better results.">
+  <meta name="twitter:description" content="Submit your URL to 31+ platforms. More platforms = better results.">
   <meta name="twitter:image" content="https://amzloss.com/assets/img/og-cover.png">
 
   <script type="application/ld+json">
@@ -132,15 +132,49 @@
     </div>
 
     <div id="results" style="display:none;margin-top:36px;"></div>
+
+    <!-- ============ AUTO-SUBMIT (SERVER-POWERED) ============ -->
+    <div class="auto-panel" id="auto_panel">
+      <div class="auto-panel-head">
+        <span class="auto-panel-icon">⚡</span>
+        <div>
+          <h3 style="margin:0 0 4px;">One-click auto-submit</h3>
+          <p style="margin:0;color:var(--muted);font-size:0.9rem;">Fire real, no-login pings straight from our server. We ping <strong>Ping-O-Matic</strong> (the classic aggregator that still accepts anonymous XML-RPC) and, if you add an IndexNow key, push your URL to <strong>Bing, Yandex, Seznam, Naver and Baidu</strong> through the official IndexNow protocol. Google retired its old sitemap ping, so Google is covered by the manual Search Console card below.</p>
+        </div>
+      </div>
+
+      <div class="auto-fields">
+        <div class="field">
+          <label for="auto_url">URL to ping</label>
+          <input type="url" id="auto_url" placeholder="https://yoursite.com/page-or-home">
+        </div>
+        <div class="field">
+          <label for="in_key">IndexNow key <span style="font-weight:400;color:var(--muted);">(optional — for Bing/Yandex/etc.)</span></label>
+          <input type="text" id="in_key" placeholder="Paste your IndexNow key, or generate one below" spellcheck="false">
+          <p style="color:var(--muted);font-size:0.8rem;margin-top:6px;">Your key file must be live at <strong><span id="in_keyloc">https://yourdomain.com/KEY.txt</span></strong> before IndexNow accepts submissions. Use the generator below to create one, then upload that file to your site root.</p>
+        </div>
+      </div>
+
+      <div class="auto-actions">
+        <button class="btn btn-primary" id="auto_btn" type="button">⚡ Auto-submit URL</button>
+        <button class="btn btn-ghost btn-sm" id="gen_key_btn" type="button" style="margin-left:8px;">Generate IndexNow key</button>
+        <button class="btn btn-ghost btn-sm" id="copy_key_btn" type="button" style="margin-left:8px;" title="Copy the generated key">Copy key</button>
+      </div>
+
+      <div id="auto_results" class="auto-results" style="display:none;"></div>
+      <div id="auto_note" class="trust-note" style="display:none;margin-top:14px;">
+        <span>🔒</span><span><strong>How this works:</strong> your URL is sent to the AmzLoss server, which fires the pings on your behalf. We never store it — the URL is used once and discarded.</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section soft">
   <div class="container page-narrow">
     <div class="section-head"><span class="kicker">Why it works</span><h2>The more platforms you submit to, the better your results</h2></div>
-    <p>Search engines only find new pages through <strong>links and pings</strong>. Submit your URL to just one place and you might wait weeks to get indexed; submit it to <strong>28+ platforms</strong> — search engines, web directories, bookmarking sites and ping services — and each one becomes a signal that your page exists and is worth crawling. Every submission is also a <strong>free backlink</strong>, which is exactly how small sites win: not one strong link, but many weak ones from many different domains.</p>
-    <p>That is the whole idea behind this free <strong>URL submitter</strong>. You do one action — paste your link — and work through a checklist across every platform that accepts free submissions. Each one is another vote for your page.</p>
-    <div class="trust-note"><span>🔒</span><span><strong>Private by design.</strong> Your URL never leaves your browser except when you open a platform's own submission page. Nothing is stored on our server.</span></div>
+    <p>Search engines only find new pages through <strong>links and pings</strong>. Submit your URL to just one place and you might wait weeks to get indexed; submit it to <strong>31+ platforms</strong> — search engines, web directories, bookmarking sites and ping services — and each one becomes a signal that your page exists and is worth crawling. Every submission is also a <strong>free backlink</strong>, which is exactly how small sites win: not one strong link, but many weak ones from many different domains.</p>
+    <p>That is the whole idea behind this free <strong>URL submitter</strong>. Paste your link once, and two things happen: the <strong>auto-submit</strong> button fires real, no-login pings to Ping-O-Matic and IndexNow (Bing, Yandex, Seznam, Naver, Baidu) from our server, and the checklist below walks you through every platform that still needs a human click — Google, directories and social all require an account. Each one is another vote for your page.</p>
+    <div class="trust-note"><span>🔒</span><span><strong>Private by design.</strong> Manual checklist links open in your browser and never touch our server. The optional auto-submit sends your URL to the AmzLoss ping service only — it is used once, never stored, and never sold.</span></div>
   </div>
 </section>
 

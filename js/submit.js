@@ -1,4 +1,4 @@
-/* AmzLoss URL Submitter — blast one URL across 28+ platforms with saved progress. */
+/* AmzLoss URL Submitter — blast one URL across 31+ platforms with saved progress. */
 (function () {
   "use strict";
 
@@ -232,4 +232,155 @@
 
   load();
   updateProgress();
+
+  /* ================= AUTO-SUBMIT (server-powered pings) ================= */
+
+  var PING_ENDPOINT = "https://script.google.com/macros/s/AKfycbzFrgHm0fkVP3QLqFTKYlFM8Ba460BugRz6fBpdZaOgDwniteyuAr9ZPXp12SEO_R23/exec";
+
+  var autoPanel = $("#auto_panel");
+  var autoUrlInput = $("#auto_url");
+  var autoBtn = $("#auto_btn");
+  var genKeyBtn = $("#gen_key_btn");
+  var copyKeyBtn = $("#copy_key_btn");
+  var keyInput = $("#in_key");
+  var keyLocEl = $("#in_keyloc");
+  var autoResults = $("#auto_results");
+  var autoNote = $("#auto_note");
+
+  var AUTO_TARGETS = [
+    { id: "pingomatic", label: "Ping-O-Matic", icon: "📡" },
+    { id: "indexnow", label: "IndexNow (Bing/Yandex/Seznam/Naver/Baidu)", icon: "🚀" }
+  ];
+
+  var INDEXNOW_KEY_LS = "amzloss_indexnow_key";
+
+  function currentAutoUrl() {
+    var v = (autoUrlInput.value || "").trim();
+    return normalizeUrl(v) || (state.url ? state.url : null);
+  }
+
+  function loadIndexNowKey() {
+    var k = "";
+    try { k = localStorage.getItem(INDEXNOW_KEY_LS) || ""; } catch (e) { k = ""; }
+    if (k && keyInput) { keyInput.value = k; updateKeyLocation(); }
+  }
+
+  function updateKeyLocation() {
+    if (!keyLocEl) return;
+    var url = currentAutoUrl();
+    var key = (keyInput && keyInput.value || "").trim();
+    if (!url || !key) {
+      keyLocEl.textContent = "https://yourdomain.com/KEY.txt";
+      return;
+    }
+    var host = "";
+    try { host = new URL(url).hostname; } catch (e) { return; }
+    keyLocEl.textContent = "https://" + host + "/" + key + ".txt";
+  }
+
+  function genKey() {
+    var hex = "";
+    var u = window.crypto;
+    if (u && u.getRandomValues) {
+      var arr = new Uint8Array(16);
+      u.getRandomValues(arr);
+      for (var i = 0; i < arr.length; i++) hex += ("0" + arr[i].toString(16)).slice(-2);
+    } else {
+      for (var i = 0; i < 32; i++) hex += Math.floor(Math.random() * 16).toString(16);
+    }
+    if (keyInput) {
+      keyInput.value = hex;
+      try { localStorage.setItem(INDEXNOW_KEY_LS, hex); } catch (e) {}
+      updateKeyLocation();
+    }
+    return hex;
+  }
+
+  function renderAutoResult(id, label, icon, status) {
+    var row = document.createElement("div");
+    row.className = "auto-row " + (status.ok ? "ok" : "fail") + (status.skipped ? " skip" : "");
+    row.innerHTML =
+      '<span class="auto-ico">' + icon + "</span>" +
+      "<span class=\"auto-label\">" + label + "</span>" +
+      '<span class="auto-status">' +
+      (status.skipped ? "skipped" : (status.ok ? "✓ pinged" : (status.error ? "✗ " + status.error : "✗ failed"))) +
+      (status.code ? " (HTTP " + status.code + ")" : "") +
+      "</span>";
+    return row;
+  }
+
+  function autoSubmit() {
+    var url = currentAutoUrl();
+    if (!url) {
+      autoUrlInput.focus();
+      autoUrlInput.style.borderColor = "var(--danger)";
+      setTimeout(function () { autoUrlInput.style.borderColor = ""; }, 1400);
+      return;
+    }
+    var key = (keyInput && keyInput.value || "").trim();
+    autoUrlInput.value = url;
+    if (!state.url) { state.url = url; urlInput.value = url; save(); }
+
+    autoBtn.disabled = true;
+    autoBtn.textContent = "Pinging…";
+    autoResults.style.display = "";
+    autoNote.style.display = "";
+    autoResults.innerHTML = "";
+    AUTO_TARGETS.forEach(function (t) {
+      var pending = document.createElement("div");
+      pending.className = "auto-row pending";
+      pending.id = "auto_" + t.id;
+      pending.innerHTML = '<span class="auto-ico">' + t.icon + "</span>" +
+        '<span class="auto-label">' + t.label + "</span>" +
+        '<span class="auto-status">…</span>';
+      autoResults.appendChild(pending);
+    });
+
+    var qs = "action=ping&url=" + encodeURIComponent(url);
+    if (key) qs += "&indexnowKey=" + encodeURIComponent(key);
+
+    fetch(PING_ENDPOINT + "?" + qs)
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        autoBtn.disabled = false;
+        autoBtn.textContent = "⚡ Auto-submit URL";
+        if (!res || !res.ok) throw new Error((res && res.error) || "Server error");
+        AUTO_TARGETS.forEach(function (t) {
+          var st = res.targets[t.id] || { ok: false, error: "no response" };
+          var row = document.getElementById("auto_" + t.id);
+          if (row) {
+            var fresh = renderAutoResult(t.id, t.label, t.icon, st);
+            row.outerHTML = fresh.outerHTML;
+          }
+          if (st.ok && state.url) {
+            var plat = PLATFORMS.filter(function (p) { return p.id === t.id; })[0];
+            if (plat && !state.done[plat.id]) markDone(plat, true);
+          }
+        });
+      })
+      .catch(function (err) {
+        autoBtn.disabled = false;
+        autoBtn.textContent = "⚡ Auto-submit URL";
+        autoResults.innerHTML = "";
+        var row = document.createElement("div");
+        row.className = "auto-row fail";
+        row.innerHTML = '<span class="auto-ico">⚠️</span><span class="auto-label">Could not reach the ping service</span><span class="auto-status">' + err.message + "</span>";
+        autoResults.appendChild(row);
+      });
+  }
+
+  if (autoBtn) autoBtn.addEventListener("click", autoSubmit);
+  if (genKeyBtn) genKeyBtn.addEventListener("click", genKey);
+  if (copyKeyBtn) copyKeyBtn.addEventListener("click", function () {
+    var k = (keyInput && keyInput.value || "").trim() || genKey();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(k).catch(function () {});
+    }
+  });
+  if (autoUrlInput) autoUrlInput.addEventListener("input", updateKeyLocation);
+  if (keyInput) keyInput.addEventListener("input", updateKeyLocation);
+  if (urlInput) urlInput.addEventListener("input", function () { if (!autoUrlInput.value) autoUrlInput.value = urlInput.value; });
+
+  loadIndexNowKey();
+  updateKeyLocation();
 })();

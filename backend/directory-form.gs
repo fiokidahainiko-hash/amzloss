@@ -25,6 +25,9 @@ function doGet(e) {
   if (param.action === "list") {
     return listVerifiedSites_();
   }
+  if (param.action === "ping") {
+    return handlePing_(param);
+  }
   return ContentService.createTextOutput(
     JSON.stringify({ ok: true, service: "amzloss-directory-form" })
   ).setMimeType(ContentService.MimeType.JSON);
@@ -134,4 +137,100 @@ function setup_() {
   var sheet = SpreadsheetApp.openById(SHEET_ID);
   ensureTabs_(sheet);
   Logger.log("Setup complete. Sheet ID: " + SHEET_ID);
+}
+
+/* ---------------------------------------------------------------------------
+ * URL Submitter auto-ping proxy.
+ *
+ * The browser cannot fire cross-site pings (CORS), so the submit page calls
+ * this backend with ?action=ping and we fire the real server-side requests
+ * here. The same deployment URL powers both the directory and the submitter,
+ * so no second web app is needed.
+ * ------------------------------------------------------------------------- */
+
+/** XML-RPC body for weblogUpdates.ping (used by the classic ping services). */
+function xmlRpcPingBody_(blogName, blogUrl) {
+  return '<?xml version="1.0"?>' +
+    "<methodCall>" +
+    "<methodName>weblogUpdates.ping</methodName>" +
+    "<params>" +
+    "<param><value><string>" + blogName + "</string></value></param>" +
+    "<param><value><string>" + blogUrl + "</string></value></param>" +
+    "</params>" +
+    "</methodCall>";
+}
+
+/** Fires the free, no-login pings that still work: Ping-O-Matic and IndexNow. */
+function handlePing_(p) {
+  var results = { ok: false, targets: {} };
+  try {
+    var url = String(p.url || "").trim();
+    if (!/^https?:\/\//i.test(url)) throw new Error("Invalid URL");
+
+    var name = "AmzLoss URL Submission";
+
+    /* Classic XML-RPC ping services. Google's old sitemap ping was retired in
+     * 2023/2024 (it now returns 404), so there is no automatic Google ping —
+     * Google is covered by the manual Search Console checklist instead.
+     * Of the remaining free pingers, only Ping-O-Matic still accepts anonymous
+     * XML-RPC pings (Pingler now requires an API key; PingMyURL returns HTML).
+     * SuperPing and MyPing endpoints no longer respond, so they are dropped
+     * from the automatic targets to keep results honest. */
+    var xml = xmlRpcPingBody_(name, url);
+    var pingers = {
+      pingomatic: "https://rpc.pingomatic.com/"
+    };
+    Object.keys(pingers).forEach(function (k) {
+      try {
+        var r = UrlFetchApp.fetch(pingers[k], {
+          method: "post",
+          payload: xml,
+          contentType: "text/xml",
+          muteHttpExceptions: true,
+          followRedirects: false
+        });
+        results.targets[k] = { code: r.getResponseCode(), ok: r.getResponseCode() < 400 };
+      } catch (err) {
+        results.targets[k] = { code: 0, ok: false, error: String(err) };
+      }
+    });
+
+    /* 3. IndexNow — Bing, Yandex, Seznam, Naver, Baidu. Needs the key file. */
+    if (p.indexnowKey) {
+      var host = "";
+      try { host = new URL(url).hostname; } catch (e) { host = url.replace(/^https?:\/\//i, "").split("/")[0]; }
+      var key = String(p.indexnowKey || "").trim();
+      var keyLocation = String(p.indexnowKeyLocation || "").trim();
+      if (!keyLocation && host) keyLocation = "https://" + host + "/" + key + ".txt";
+      try {
+        var inRes = UrlFetchApp.fetch("https://api.indexnow.org/indexnow", {
+          method: "post",
+          payload: JSON.stringify({
+            host: host,
+            key: key,
+            keyLocation: keyLocation,
+            urlList: [url]
+          }),
+          contentType: "application/json; charset=utf-8",
+          muteHttpExceptions: true,
+          followRedirects: false
+        });
+        var inCode = inRes.getResponseCode();
+        results.targets.indexnow = { code: inCode, ok: inCode === 200 || inCode === 202 };
+        if (!results.targets.indexnow.ok) {
+          results.targets.indexnow.error = String(inRes.getContentText()).slice(0, 200);
+        }
+      } catch (err) {
+        results.targets.indexnow = { code: 0, ok: false, error: String(err) };
+      }
+    } else {
+      results.targets.indexnow = { code: 0, ok: false, skipped: true, error: "No IndexNow key provided" };
+    }
+
+    results.ok = true;
+    results.url = url;
+  } catch (err) {
+    results.error = String(err);
+  }
+  return ContentService.createTextOutput(JSON.stringify(results)).setMimeType(ContentService.MimeType.JSON);
 }
