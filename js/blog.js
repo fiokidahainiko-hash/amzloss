@@ -3,6 +3,7 @@
   "use strict";
 
   var POSTS = [
+    { cat: "Tools", icon: "🔍", title: "Spotting underpaid Amazon commissions in your report (AmzLoss Daily)", date: "Aug 18, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-18.html", desc: "Your Product Earnings Report can quietly underpay. How the free audit finds it line by line." },
     /* ---- Amazon ---- */
     { cat: "Amazon", icon: "📉", title: "What the 2026 Amazon Commission Cuts Mean for Affiliates", date: "Aug 14, 2026", read: "8 min", url: "blogs/amazon-2026-commission-cuts.html", desc: "Which categories were cut, by how much, and how to quantify the hit on your own account." },
     { cat: "Amazon", icon: "🛒", title: "Amazon Halo Commission Is Gone (April 14)", date: "Aug 13, 2026", read: "6 min", url: "blogs/amazon-halo-commission-gone.html", desc: "Amazon now pays only on the exact product you link. What changed and how to check its impact on your report." },
