@@ -621,3 +621,12 @@ code { background: var(--brand-soft); border: 1px solid rgba(75, 40, 109, 0.18);
 .tools-bar-label { font-weight: 800; color: var(--accent); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; }
 .tools-bar a { color: var(--ink); font-weight: 700; text-decoration: none; }
 .tools-bar a:hover { text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
