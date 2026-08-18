@@ -670,6 +670,10 @@ function metaEsc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+function truncateStr(s, n) {
+  return String(s).length > n ? String(s).slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : String(s);
+}
+
 function buildPage(post) {
   const { slug, title, desc, keywords, faq, faqAns, tool, dateISO, dateDisplay, bodyHtml } = post;
   const url = "https://amzloss.com/blogs/" + slug + ".html";
@@ -898,7 +902,7 @@ function main() {
 
   const post = {
     slug,
-    title: tip.title + " (AmzLoss Daily)",
+    title: truncateStr(tip.title + " (AmzLoss)", 52),
     desc: tip.desc,
     keywords,
     faq: tip.faq,
