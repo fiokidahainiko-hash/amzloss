@@ -145,12 +145,15 @@ async function sendTwitter(post) {
 
 async function sendPinterest(post, img) {
   const token = process.env.PINTEREST_ACCESS_TOKEN;
+  const board = process.env.PINTEREST_BOARD_ID;
   if (!token) return { name: "Pinterest", status: "skipped (no PINTEREST_ACCESS_TOKEN)" };
+  if (!board) return { name: "Pinterest", status: "skipped (no PINTEREST_BOARD_ID)" };
   const data = fs.readFileSync(img.file).toString("base64");
   const r = await jsonFetch("https://api.pinterest.com/v5/pins", {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({
+      board_id: board,
       title: truncate(post.title, 100),
       description: truncate(`${post.desc} ${post.full}`, 500),
       link: post.full,
