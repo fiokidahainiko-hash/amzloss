@@ -9,17 +9,17 @@
     { id: "yandex", cat: "Search Engines", icon: "🇷🇺", name: "Yandex Webmaster", url: "https://webmaster.yandex.com/", type: "page", desc: "Submit to Yandex — one of the largest search engines outside Google." },
     { id: "indexnow", cat: "Search Engines", icon: "⚡", name: "IndexNow", url: "https://www.indexnow.org/", type: "page", desc: "A one-protocol ping used by Bing, Yandex, Seznam, Naver and others for near-instant indexing." },
     { id: "duckduckgo", cat: "Search Engines", icon: "🦆", name: "DuckDuckGo", url: "https://duckduckgo.com/webmaster", type: "page", desc: "Submit via the DuckDuckGo webmaster program for inclusion in its index." },
-    { id: "brave", cat: "Search Engines", icon: "🦁", name: "Brave Search", url: "https://search.brave.com/help/indexing", type: "page", desc: "Request indexing on Brave Search, the privacy-first engine with an open index." },
+    { id: "brave", cat: "Search Engines", icon: "🦁", name: "Brave Search", url: "https://search.brave.com/submit-url", type: "page", desc: "Paste your homepage URL — Brave typically crawls within 1–3 days. No account needed." },
 
     /* ---- Web Directories ---- */
-    { id: "chamber", cat: "Web Directories", icon: "🏛️", name: "Chamber of Commerce", url: "https://www.chamberofcommerce.com/add-your-business", type: "page", desc: "Free business directory listing that search engines trust." },
-    { id: "manta", cat: "Web Directories", icon: "📇", name: "Manta", url: "https://www.manta.com/add-my-company", type: "page", desc: "One of the oldest free small-business directories on the web." },
-    { id: "cylex", cat: "Web Directories", icon: "🗂️", name: "Cylex", url: "https://www.cylex.us/", type: "page", desc: "International free business directory with decent domain authority." },
+    { id: "chamber", cat: "Web Directories", icon: "🏛️", name: "Chamber of Commerce", url: "https://www.chamberofcommerce.com/", type: "page", desc: "Claim your business listing on one of the web's most trusted business directories." },
+    { id: "manta", cat: "Web Directories", icon: "📇", name: "Manta", url: "https://www.manta.com/", type: "page", desc: "One of the oldest free small-business directories — claim your listing from the homepage." },
+    { id: "cylex", cat: "Web Directories", icon: "🗂️", name: "Cylex", url: "https://www.cylex.de/", type: "page", desc: "International free business directory — strong in European markets." },
     { id: "hotfrog", cat: "Web Directories", icon: "🐸", name: "Hotfrog", url: "https://www.hotfrog.com/", type: "page", desc: "Free directory with strong local search visibility." },
     { id: "merchantcircle", cat: "Web Directories", icon: "⭕", name: "MerchantCircle", url: "https://www.merchantcircle.com/", type: "page", desc: "Free listing that often ranks for local queries." },
-    { id: "yelp", cat: "Web Directories", icon: "💛", name: "Yelp", url: "https://www.yelp.com/business/add", type: "page", desc: "Claim your business on Yelp — even service sites benefit from the citation." },
+    { id: "yelp", cat: "Web Directories", icon: "💛", name: "Yelp", url: "https://biz.yelp.com/", type: "page", desc: "Claim your business on Yelp — even service sites benefit from the citation." },
     { id: "bingplaces", cat: "Web Directories", icon: "📌", name: "Bing Places", url: "https://www.bingplaces.com/", type: "page", desc: "Free Bing business listing that feeds into Microsoft's index." },
-    { id: "foursquare", cat: "Web Directories", icon: "📍", name: "Foursquare", url: "https://foursquare.com/add-business", type: "page", desc: "Add a free business profile used by many map apps and data aggregators." },
+    { id: "foursquare", cat: "Web Directories", icon: "📍", name: "Foursquare", url: "https://business.foursquare.com/", type: "page", desc: "Add a free business profile used by many map apps and data aggregators." },
 
     /* ---- Social Bookmarking & Sharing ---- */
     { id: "reddit", cat: "Social & Bookmarking", icon: "🤖", name: "Reddit", url: "https://www.reddit.com/submit?url={url}", type: "direct", desc: "Pre-filled Reddit post — bookmarking is free backlinks and real traffic." },
@@ -38,7 +38,7 @@
     /* ---- Ping Services ---- */
     { id: "pingomatic", cat: "Ping Services", icon: "📡", name: "Ping-O-Matic", url: "https://pingomatic.com/", type: "page", desc: "The classic free pinger — tells dozens of aggregators your page changed." },
     { id: "pingler", cat: "Ping Services", icon: "🛰️", name: "Pingler", url: "https://pingler.com/", type: "page", desc: "Free ping service that notifies search engines and directories." },
-    { id: "superping", cat: "Ping Services", icon: "⚡", name: "SuperPing", url: "https://superping.com/", type: "page", desc: "Pings multiple indexes and blog search engines at once." },
+    { id: "indexnow2", cat: "Ping Services", icon: "⚡", name: "IndexMyURL", url: "https://indexmyurl.com/", type: "page", desc: "Free backlink indexer that pushes crawl signals to Google, Bing and AI search." },
     { id: "myping", cat: "Ping Services", icon: "📣", name: "MyPing", url: "https://mypingboard.com/", type: "page", desc: "Free bulk pinger covering major engines and feed readers." },
     { id: "pingmyurl", cat: "Ping Services", icon: "🔔", name: "PingMyURL", url: "https://www.pingmyurl.com/", type: "page", desc: "Submit and ping your URL to multiple crawlers in one go." }
   ];

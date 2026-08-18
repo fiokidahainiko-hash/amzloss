@@ -117,40 +117,14 @@
 <!-- ============ THE SUBMITTER ============ -->
 <section class="section" id="submitter">
   <div class="container">
-    <div class="calc-wrap">
-      <div class="calc-panel">
-        <div class="field">
-          <label for="url_input">Your URL</label>
-          <input type="url" id="url_input" placeholder="https://yoursite.com/page-or-home">
-        </div>
-        <button class="btn btn-primary btn-lg" id="blast_btn" style="width:100%;">🚀 Generate submission links</button>
-        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Works for any website or page. One click per platform opens its submission page with your URL ready to paste — or pre-filled where the platform supports it. Progress is saved in your browser.</p>
-      </div>
 
-      <div class="result-panel" id="submit_panel" style="min-height:100%;">
-        <h3 style="margin-top:0;">Your blast progress</h3>
-        <div class="blast-score">
-          <div class="blast-score-left">
-            <div class="blast-count" id="blast_count">0<span>/0</span></div>
-            <div class="blast-caption">platforms submitted</div>
-          </div>
-          <div class="blast-radial" id="blast_radial">0%</div>
-        </div>
-        <div class="track blast-track"><div class="fill" id="blast_fill" style="width:0%"></div></div>
-        <div class="blast-tip" id="blast_tip">Enter a URL above, then click every platform. More platforms = faster indexing + more backlinks.</div>
-        <button class="btn btn-ghost btn-sm" id="reset_btn" style="margin-top:14px;">Reset progress</button>
-      </div>
-    </div>
-
-    <div id="results" style="display:none;margin-top:36px;"></div>
-
-    <!-- ============ AUTO-SUBMIT (SERVER-POWERED) ============ -->
+    <!-- ============ AUTO-SUBMIT (SERVER-POWERED) — FIRST, IT'S THE FASTEST ============ -->
     <div class="auto-panel" id="auto_panel">
       <div class="auto-panel-head">
         <span class="auto-panel-icon">⚡</span>
         <div>
           <h3 style="margin:0 0 4px;">One-click auto-submit</h3>
-          <p style="margin:0;color:var(--muted);font-size:0.9rem;">Fire real, no-login pings straight from our server. We ping <strong>Ping-O-Matic</strong> (the classic aggregator) and, with your IndexNow key, push your URL to <strong>Bing, Yandex, Seznam, Naver and Baidu</strong> in one request. Google retired its old sitemap ping, so Google is covered by the manual Search Console card below.</p>
+          <p style="margin:0;color:var(--muted);font-size:0.9rem;">The fastest way to get found. Fire real, no-login pings straight from our server: <strong>Ping-O-Matic</strong> (the classic aggregator) and, with your free IndexNow key, <strong>Bing, Yandex, Seznam, Naver and Baidu</strong> in one request. Google retired its old ping, so Google is covered by the manual Search Console card below. This auto-submit also marks your progress automatically.</p>
         </div>
       </div>
 
@@ -163,6 +137,7 @@
 
       <div class="auto-actions">
         <button class="btn btn-primary" id="auto_btn" type="button">⚡ Auto-submit URL</button>
+        <span style="color:var(--muted);font-size:0.8rem;">No account. One click. Done in seconds.</span>
       </div>
 
       <div id="auto_results" class="auto-results" style="display:none;"></div>
@@ -214,6 +189,34 @@
         <span>🔒</span><span><strong>How this works:</strong> your URL is sent to the AmzLoss server, which fires the pings on your behalf. We never store it — the URL is used once and discarded.</span>
       </div>
     </div>
+
+    <div class="calc-wrap">
+      <div class="calc-panel">
+        <div class="field">
+          <label for="url_input">Your URL</label>
+          <input type="url" id="url_input" placeholder="https://yoursite.com/page-or-home">
+        </div>
+        <button class="btn btn-primary btn-lg" id="blast_btn" style="width:100%;">🚀 Generate submission links</button>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Works for any website or page. One click per platform opens its submission page with your URL ready to paste — or pre-filled where the platform supports it. Progress is saved in your browser.</p>
+      </div>
+
+      <div class="result-panel" id="submit_panel" style="min-height:100%;">
+        <h3 style="margin-top:0;">Your blast progress</h3>
+        <div class="blast-score">
+          <div class="blast-score-left">
+            <div class="blast-count" id="blast_count">0<span>/0</span></div>
+            <div class="blast-caption">platforms submitted</div>
+          </div>
+          <div class="blast-radial" id="blast_radial">0%</div>
+        </div>
+        <div class="track blast-track"><div class="fill" id="blast_fill" style="width:0%"></div></div>
+        <div class="blast-tip" id="blast_tip">Enter a URL above, then click every platform. More platforms = faster indexing + more backlinks.</div>
+        <button class="btn btn-ghost btn-sm" id="reset_btn" style="margin-top:14px;">Reset progress</button>
+      </div>
+    </div>
+
+    <div id="results" style="display:none;margin-top:36px;"></div>
+
   </div>
 </section>
 

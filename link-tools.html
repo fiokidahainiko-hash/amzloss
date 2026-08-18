@@ -15,9 +15,9 @@
   </script>
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009" crossorigin="anonymous"></script>
-  <title>Affiliate Link Builder & Backlink Checker | AmzLoss</title>
-  <meta name="description" content="Generate clean Amazon affiliate links with your tracking tag, and check whether a site still contains your backlink. Free browser-only link tools from AmzLoss.">
-  <meta name="keywords" content="amazon affiliate link builder, affiliate link generator, backlink checker, link checker, amazon tag url, nofollow link builder">
+  <title>Link Tools: Affiliate Builder, Backlink Tools | AmzLoss</title>
+  <meta name="description" content="Build clean Amazon affiliate links, check if a site still has your backlink, and count a domain's backlinks across the web. Free browser-only tools.">
+  <meta name="keywords" content="amazon affiliate link builder, affiliate link generator, backlink checker, backlink counter, backlink count, link checker, amazon tag url, nofollow link builder">
   <meta name="author" content="AmzLoss">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://amzloss.com/link-tools.html">
@@ -37,15 +37,15 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AmzLoss">
-  <meta property="og:title" content="Link Tools — Affiliate Link Builder & Backlink Checker">
-  <meta property="og:description" content="Build clean Amazon affiliate links with your tracking tag and check whether your backlinks are still live. Free and browser-only.">
+  <meta property="og:title" content="Link Tools — Affiliate Builder, Backlink Checker & Counter">
+  <meta property="og:description" content="Build clean Amazon affiliate links, check whether your backlinks are still live, and count a domain's backlinks at large. Free and browser-only.">
   <meta property="og:url" content="https://amzloss.com/link-tools.html">
   <meta property="og:image" content="https://amzloss.com/assets/img/og-cover.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Link Tools — AmzLoss">
-  <meta name="twitter:description" content="Amazon affiliate link builder + backlink checker. Free, browser-only.">
+  <meta name="twitter:description" content="Amazon affiliate link builder, backlink checker & backlink counter. Free, browser-only.">
   <meta name="twitter:image" content="https://amzloss.com/assets/img/og-cover.png">
 
   <script type="application/ld+json">
@@ -110,7 +110,7 @@
 <section class="page-head">
   <div class="container">
     <h1>Link Tools</h1>
-    <p>Two free, browser-only tools that work with the AmzLoss directory: build clean Amazon affiliate links with your tracking tag, and check whether a site still carries your backlink.</p>
+    <p>Three free, browser-only tools for affiliates: <strong>build clean Amazon links</strong> with your tracking tag, <strong>count any domain's backlinks</strong> across the whole internet, and <strong>check whether a site still carries your backlink</strong>.</p>
   </div>
 </section>
 
@@ -169,6 +169,49 @@
   </div>
 </section>
 
+<!-- ============ BACKLINK COUNTER (AT LARGE) ============ -->
+<section class="section" id="counter">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Tool 3 · Backlink counter</span>
+      <h2>How many backlinks does a site really have?</h2>
+      <p>Paste any domain to see how many sites on the internet link to it — the total backlink count, referring domains, and an authority score. This is the "backlink profile" number SEO tools sell subscriptions for, now free.</p>
+    </div>
+    <div class="calc-wrap">
+      <div class="calc-panel">
+        <div class="field">
+          <label for="bl_domain">Domain to analyze</label>
+          <input type="text" id="bl_domain" placeholder="example.com" spellcheck="false">
+        </div>
+        <button class="btn btn-primary btn-lg" id="bl_check" style="width:100%;">🌐 Count backlinks</button>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Data comes from the Open PageRank index, built from the open Common Crawl web graph — the same style of index used by paid SEO tools. Free tier: thousands of lookups per month. Your API key (optional) is stored only in your browser.</p>
+      </div>
+
+      <div class="result-panel">
+        <h3 style="margin-top:0;">Backlink profile</h3>
+        <div id="bl_status" class="verdict-banner neutral">Enter a domain to count its backlinks.</div>
+        <div id="bl_metrics" style="display:none;margin-top:16px;">
+          <div class="stat-grid cols-3">
+            <div class="stat-tile"><div class="label">Backlinks</div><div class="value" id="bl_rd">—</div><div class="sub">links pointing at the domain</div></div>
+            <div class="stat-tile"><div class="label">Global rank</div><div class="value" id="bl_rank">—</div><div class="sub">lower is better (1 = most linked)</div></div>
+            <div class="stat-tile"><div class="label">Authority score</div><div class="value" id="bl_score">—</div><div class="sub">Open PageRank 0–10</div></div>
+          </div>
+        </div>
+        <div id="bl_detail" style="color:var(--ink-soft);font-size:0.92rem;margin-top:14px;word-break:break-word;"></div>
+        <details style="margin-top:16px;font-size:0.85rem;">
+          <summary style="cursor:pointer;color:var(--brand);font-weight:600;">Optional: add a free API key for higher limits</summary>
+          <div class="in-key-row" style="margin-top:10px;">
+            <input type="text" id="bl_key" placeholder="opr_live_xxxx" spellcheck="false" aria-label="OpenPageRank API key">
+            <button class="btn btn-ghost btn-sm" id="bl_key_save" type="button">Save</button>
+          </div>
+          <p style="color:var(--muted);font-size:0.8rem;margin:8px 0 0;">Get a free key at <a href="https://www.domcop.com/openpagerank/" target="_blank" rel="noopener">domcop.com/openpagerank</a> (30,000 domain lookups/month free). Without a key the tool uses the public demo key, which has low limits.</p>
+        </details>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:20px;">Want a fresh, relevant backlink right now? <a href="directory.html">List your site in the AmzLoss directory</a> — every listing is human-reviewed so the link actually carries weight.</p>
+  </div>
+</section>
+
 <!-- ============ BACKLINK CHECKER ============ -->
 <section class="section soft" id="checker">
   <div class="container">
@@ -205,7 +248,7 @@
   <div class="container page-narrow">
     <div class="section-head"><span class="kicker">Affiliate link best practices</span><h2>Clean links convert better and keep you compliant</h2></div>
     <p>Every Amazon Associates link should include your <strong>tracking ID (tag=)</strong> so clicks and purchases are credited to you — publishing a bare product URL earns nothing. This <strong>Amazon affiliate link builder</strong> strips old tracking parameters and appends your tag in one step. It also marks links <code>rel="nofollow sponsored"</code>, which both Amazon's operating agreement and the FTC require when you get paid to recommend a product. The same hygiene applies across networks: build a <a href="networks.html">network calculator</a> strategy for ShareASale, CJ, Impact or Awin, then create clean, tagged links for each merchant.</p>
-    <div class="trust-note"><span>🔒</span><span><strong>Private by design.</strong> Both tools run entirely in your browser. The backlink checker fetches pages through a public CORS proxy, but your tracking ID and links never leave your device or get stored.</span></div>
+    <div class="trust-note"><span>🔒</span><span><strong>Private by design.</strong> All three tools run entirely in your browser. The backlink checker fetches pages through a public CORS proxy and the counter reads the public Open PageRank API — but your tracking ID, keywords and API key never leave your device or get stored.</span></div>
   </div>
 </section>
 
@@ -213,6 +256,7 @@
   <div class="container page-narrow">
     <div class="section-head"><span class="kicker">Backlink maintenance</span><h2>Why you should check your backlinks regularly</h2></div>
     <p>Links disappear. A site redesign, a cleanup plugin, or a page moving to a new URL can silently drop the <a href="directory.html">directory backlink</a> you earned. A backlink that vanishes loses you both traffic and the link equity that supports your rankings. Run this free <strong>backlink checker</strong> monthly on every site that lists you — paste the page URL and your domain name, and it scans the live HTML for your link. If it's gone, ask the site owner to restore it, or re-submit and rebuild the relationship.</p>
+    <p>To measure the whole picture — not just one page but every page on the internet — use the <strong>backlink counter</strong> above it. Paste any domain and it reports the total number of backlinks pointing at it, its global rank, and its authority score from the Open PageRank index. Track your own domain's count as you build links, and snoop on competitors to see whose link-building is working. It's the same "number of backlinks" stat paid SEO tools charge for, free here.</p>
   </div>
 </section>
 
