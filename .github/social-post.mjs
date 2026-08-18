@@ -143,6 +143,38 @@ async function sendTwitter(post) {
   return { name: "X", status: r.ok ? "posted" : `failed (${r.status} ${JSON.stringify(r.data).slice(0, 200)})` };
 }
 
+async function sendTumblr(post, img) {
+  const need = ["TUMBLR_CONSUMER_KEY", "TUMBLR_CONSUMER_SECRET", "TUMBLR_TOKEN", "TUMBLR_TOKEN_SECRET", "TUMBLR_BLOG_IDENTIFIER"];
+  if (need.some((k) => !process.env[k])) return { name: "Tumblr", status: "skipped (no TUMBLR_* secrets)" };
+  const blog = process.env.TUMBLR_BLOG_IDENTIFIER;
+  const url = `https://api.tumblr.com/v2/blog/${blog}/post`;
+  const text = truncate(`${post.title}\n\n${post.desc}\n\nRead more: ${post.full}`, 4000);
+  const params = { type: "text", title: truncate(post.title, 300), body: text };
+  if (img) params.type = "photo", params.source = img.url, params.caption = `${post.title} — ${post.desc}\n\nRead more: ${post.full}`;
+  const oauth = {
+    oauth_consumer_key: process.env.TUMBLR_CONSUMER_KEY,
+    oauth_nonce: crypto.randomBytes(16).toString("hex"),
+    oauth_signature_method: "HMAC-SHA1",
+    oauth_timestamp: Math.floor(Date.now() / 1000).toString(),
+    oauth_token: process.env.TUMBLR_TOKEN,
+    oauth_version: "1.0"
+  };
+  const allParams = { ...oauth, ...params };
+  const paramString = Object.keys(allParams).sort().map((k) => pct(k) + "=" + pct(allParams[k])).join("&");
+  const base = `POST&${pct(url)}&${pct(paramString)}`;
+  const key = pct(process.env.TUMBLR_CONSUMER_SECRET) + "&" + pct(process.env.TUMBLR_TOKEN_SECRET);
+  const sig = crypto.createHmac("sha1", key).update(base).digest("base64");
+  const header = "OAuth " + Object.keys(oauth).map((k) => `${k}="${pct(oauth[k])}"`).join(", ") + `, oauth_signature="${pct(sig)}"`;
+  const form = new URLSearchParams();
+  for (const k of Object.keys(params)) form.append(k, params[k]);
+  const r = await jsonFetch(url, {
+    method: "POST",
+    headers: { Authorization: header, "Content-Type": "application/x-www-form-urlencoded" },
+    body: form.toString()
+  });
+  return { name: "Tumblr", status: r.ok ? "posted" : `failed (${r.status} ${JSON.stringify(r.data).slice(0, 200)})` };
+}
+
 async function sendPinterest(post, img) {
   const token = process.env.PINTEREST_ACCESS_TOKEN;
   const board = process.env.PINTEREST_BOARD_ID;
@@ -231,7 +263,7 @@ async function main() {
     }
   }
 
-  const tasks = [sendTelegram(post), sendTwitter(post)];
+  const tasks = [sendTelegram(post), sendTwitter(post), sendTumblr(post, img)];
   if (img) tasks.push(sendPinterest(post, img), sendInstagram(post, img));
 
   const results = await Promise.all(tasks);
