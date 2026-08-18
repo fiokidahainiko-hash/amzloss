@@ -143,6 +143,19 @@ async function sendTwitter(post) {
   return { name: "X", status: r.ok ? "posted" : `failed (${r.status} ${JSON.stringify(r.data).slice(0, 200)})` };
 }
 
+async function sendMastodon(post) {
+  const need = ["MASTODON_TOKEN", "MASTODON_INSTANCE"];
+  if (need.some((k) => !process.env[k])) return { name: "Mastodon", status: "skipped (no MASTODON_* secrets)" };
+  const inst = process.env.MASTODON_INSTANCE;
+  const text = truncate(`📌 New on AmzLoss: ${post.title}\n\n${post.desc}\n\n${post.full}`, 500);
+  const r = await jsonFetch(`https://${inst}/api/v1/statuses`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${process.env.MASTODON_TOKEN}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ status: text })
+  });
+  return { name: "Mastodon", status: r.ok ? "posted" : `failed (${r.status} ${JSON.stringify(r.data).slice(0, 200)})` };
+}
+
 async function sendTumblr(post, img) {
   const need = ["TUMBLR_CONSUMER_KEY", "TUMBLR_CONSUMER_SECRET", "TUMBLR_TOKEN", "TUMBLR_TOKEN_SECRET", "TUMBLR_BLOG_IDENTIFIER"];
   if (need.some((k) => !process.env[k])) return { name: "Tumblr", status: "skipped (no TUMBLR_* secrets)" };
@@ -263,7 +276,7 @@ async function main() {
     }
   }
 
-  const tasks = [sendTelegram(post), sendTwitter(post), sendTumblr(post, img)];
+  const tasks = [sendTelegram(post), sendTwitter(post), sendMastodon(post), sendTumblr(post, img)];
   if (img) tasks.push(sendPinterest(post, img), sendInstagram(post, img));
 
   const results = await Promise.all(tasks);
