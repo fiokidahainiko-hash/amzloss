@@ -52,8 +52,13 @@ function listVerifiedSites_() {
         url: r[3] || "",
         category: r[4] || "",
         description: r[5] || "",
+        platform: r[10] || "",
         youtube: r[8] || "",
-        tiktok: r[9] || ""
+        tiktok: r[9] || "",
+        instagram: r[11] || "",
+        x: r[12] || "",
+        facebook: r[13] || "",
+        pinterest: r[14] || ""
       };
       if (obj.url) sites.push(obj);
     }
@@ -97,7 +102,12 @@ function doPost(e) {
       data.email || "",
       data.token || "",
       data.youtube || "",
-      data.tiktok || ""
+      data.tiktok || "",
+      data.platform || "",
+      data.instagram || "",
+      data.x || "",
+      data.facebook || "",
+      data.pinterest || ""
     ];
     tab.appendRow(row);
 
@@ -130,7 +140,7 @@ function ensureTabs_(sheet) {
   ["Submissions", "Verified"].forEach(function (name) {
     if (!sheet.getSheetByName(name)) {
       var tab = sheet.insertSheet(name);
-      tab.appendRow(["timestamp", "stage", "site_name", "site_url", "category", "description", "email", "token"]);
+      tab.appendRow(["timestamp", "stage", "site_name", "site_url", "category", "description", "email", "token", "youtube", "tiktok", "platform", "instagram", "x", "facebook", "pinterest"]);
     }
   });
   return sheet.getSheetByName("Submissions");

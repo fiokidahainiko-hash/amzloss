@@ -117,7 +117,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="section-head"><span class="kicker">The directory</span><h2>Listed sites</h2><p>Curated, human-reviewed listings. We only accept real sites with real content — no spam, no PBNs, no auto-submitted junk.</p></div>
+    <div class="section-head"><span class="kicker">The directory</span><h2>Listed sites &amp; profiles</h2><p>Curated, human-reviewed listings. We accept real websites, YouTube channels and social profiles with real content — no spam, no PBNs, no auto-submitted junk.</p></div>
     <div id="dir-grid" class="grid grid-3" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));">
     </div>
   </div>
@@ -125,14 +125,30 @@
 
 <section class="section soft">
   <div class="container page-narrow">
-<div class="section-head"><span class="kicker">Add your site</span><h2>Get a free backlink</h2><p>Fill in your site, add our verification snippet to your homepage, and we'll link to your site — proof first, then the backlink.</p></div>
+<div class="section-head"><span class="kicker">Add your listing</span><h2>Get a free backlink</h2><p>Have a website <strong>or</strong> a social profile (YouTube, TikTok, Instagram…)? Pick your platform, add our unique verification link to it, and once it's live we link to you — proof first, then the backlink.</p></div>
     <form id="dir-form" style="display:grid;gap:16px;">
       <div class="field">
-        <label for="site_name">Site name</label>
-        <input type="text" id="site_name" required placeholder="e.g. My Affiliate Blog">
+        <label for="site_name">Name</label>
+        <input type="text" id="site_name" required placeholder="e.g. My Affiliate Blog, My YouTube Channel">
       </div>
       <div class="field">
-        <label for="site_url">Site URL</label>
+        <label for="site_platform">Platform</label>
+        <select id="site_platform">
+          <option value="website">Website / blog</option>
+          <option value="youtube">YouTube channel</option>
+          <option value="tiktok">TikTok profile</option>
+          <option value="instagram">Instagram profile</option>
+          <option value="x">X (Twitter) profile</option>
+          <option value="facebook">Facebook page</option>
+          <option value="pinterest">Pinterest profile</option>
+          <option value="linkedin">LinkedIn page</option>
+          <option value="reddit">Reddit profile</option>
+          <option value="twitch">Twitch channel</option>
+          <option value="other">Other social profile</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="site_url" id="site_url_label">Website URL</label>
         <input type="url" id="site_url" required placeholder="https://example.com">
       </div>
       <div class="field">
@@ -152,6 +168,22 @@
         <input type="url" id="site_tiktok" placeholder="https://tiktok.com/@yourhandle">
       </div>
       <div class="field">
+        <label for="site_instagram">Instagram profile URL (optional)</label>
+        <input type="url" id="site_instagram" placeholder="https://instagram.com/@yourhandle">
+      </div>
+      <div class="field">
+        <label for="site_x">X (Twitter) profile URL (optional)</label>
+        <input type="url" id="site_x" placeholder="https://x.com/yourhandle">
+      </div>
+      <div class="field">
+        <label for="site_facebook">Facebook page URL (optional)</label>
+        <input type="url" id="site_facebook" placeholder="https://facebook.com/yourpage">
+      </div>
+      <div class="field">
+        <label for="site_pinterest">Pinterest profile URL (optional)</label>
+        <input type="url" id="site_pinterest" placeholder="https://pinterest.com/yourhandle">
+      </div>
+      <div class="field">
         <label for="site_email">Your email (never shown publicly)</label>
         <input type="email" id="site_email" placeholder="you@example.com">
       </div>
@@ -160,13 +192,13 @@
     </form>
 
     <div id="verify-step" style="display:none;margin-top:22px;background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-sm);">
-      <h3 style="margin:0 0 6px;">Step 2 — Prove your site is real</h3>
-      <p style="color:var(--ink-soft);font-size:0.92rem;margin:0 0 14px;">Copy this snippet and paste it into the HTML of your site's homepage (or any page you listed). It contains a link back to AmzLoss plus your unique verification code.</p>
+      <h3 style="margin:0 0 6px;">Step 2 — Prove your listing is real</h3>
+      <p style="color:var(--ink-soft);font-size:0.92rem;margin:0 0 14px;" id="verify-intro">Copy this snippet and paste it into the HTML of your site's homepage (or any page you listed). It contains a link back to AmzLoss plus your unique verification code.</p>
       <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;">
         <textarea id="verify-snippet" readonly rows="4" style="flex:1;min-width:280px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:0.85rem;font-family:ui-monospace,Consolas,monospace;color:var(--ink);background:var(--bg-soft);"></textarea>
         <button type="button" class="btn btn-ghost" id="copy-snippet">Copy</button>
       </div>
-      <p style="color:var(--muted);font-size:0.85rem;margin:10px 0 14px;">Paste it, save the file, and deploy. Then click <strong>Verify my site</strong> — we'll fetch your page and check the code is really there before listing you.</p>
+      <p style="color:var(--muted);font-size:0.85rem;margin:10px 0 14px;" id="verify-help">Paste it, save the file, and deploy. Then click <strong>Verify my site</strong> — we'll fetch your page and check the code is really there before listing you.</p>
 <button type="button" class="btn btn-primary btn-lg" id="verify-btn" style="width:100%;">Verify my site</button>
       <p id="verify-msg" style="text-align:center;font-weight:600;min-height:1.4em;margin-top:12px;"></p>
     </div>
@@ -206,9 +238,27 @@
 
 <section class="section" id="tutorial">
   <div class="container page-narrow">
-    <div class="section-head"><span class="kicker">Tutorial</span><h2>Where do I paste the code?</h2><p>You need to add the snippet to the <strong>HTML of the exact URL you submitted</strong> (usually your homepage). Pick your platform below.</p></div>
+    <div class="section-head"><span class="kicker">Tutorial</span><h2>Where do I put the verification link?</h2><p>For a website you paste the code into HTML. For a social profile you paste a unique link into the profile's <strong>website / links / bio</strong> field. Pick your platform below.</p></div>
 
     <div class="faq">
+      <details open>
+        <summary>YouTube channel, TikTok, Instagram &amp; other social profiles — no website needed</summary>
+        <div style="margin-top:12px;color:var(--ink-soft);">
+          <p style="margin:0 0 8px;">You don't need a website. After submitting the form you'll get a <strong>unique verification link</strong> like <code>https://amzloss.com/directory.html?ref=AZL-XXXX</code>. Add it to your profile's website / links field:</p>
+          <ol style="margin:0;padding-left:20px;display:grid;gap:8px;">
+            <li><strong>YouTube:</strong> YouTube Studio → Customization → Basic info → <em>Links</em> → Add link → paste → Save.</li>
+            <li><strong>TikTok:</strong> Edit profile → <em>Website</em> → paste → Save. It becomes the link in your bio.</li>
+            <li><strong>Instagram:</strong> Edit profile → <em>Website</em> → paste → Save.</li>
+            <li><strong>X (Twitter):</strong> Edit profile → <em>Website</em> → paste → Save.</li>
+            <li><strong>Facebook:</strong> Page settings → Edit Page Info → <em>Website</em> → paste → Save.</li>
+            <li><strong>Pinterest:</strong> Edit profile → <em>Website</em> → paste → Save.</li>
+            <li><strong>LinkedIn:</strong> Edit Page → <em>Website</em> → paste → Save.</li>
+            <li><strong>Reddit:</strong> Profile → Edit → add the link to the <em>links</em> section.</li>
+            <li><strong>Twitch:</strong> Settings → Channel and Videos → <em>Links</em> → paste → Save.</li>
+          </ol>
+          <p style="margin:12px 0 0;">Then click <strong>Verify my profile</strong> on the form — we fetch your profile page and confirm the link is live before listing you. If your platform blocks automatic checks, email us at <a href="mailto:admin@amzloss.com">admin@amzloss.com</a> with the profile link and we'll verify manually.</p>
+        </div>
+      </details>
       <details>
         <summary>WordPress — easiest (no code needed)</summary>
         <div style="margin-top:12px;color:var(--ink-soft);">
@@ -308,8 +358,8 @@
   <div class="container page-narrow">
     <div class="section-head"><span class="kicker">Guidelines</span><h2>What gets approved</h2></div>
 <div class="grid grid-3">
-      <div class="card"><div class="icon">✅</div><h3>Real sites</h3><p>A working site with actual content — at least a few useful pages or posts.</p></div>
-      <div class="card"><div class="icon">🔗</div><h3>Link back first</h3><p>You add our snippet (with a link to AmzLoss) to your site, we verify it's live, then you get your backlink.</p></div>
+      <div class="card"><div class="icon">✅</div><h3>Real sites &amp; profiles</h3><p>A working website, YouTube channel, or social profile with actual content — at least a few posts or videos.</p></div>
+      <div class="card"><div class="icon">🔗</div><h3>Link back first</h3><p>You add our unique link (to AmzLoss) to your site or profile, we verify it's live, then you get your backlink.</p></div>
       <div class="card"><div class="icon">📝</div><h3>Relevant</h3><p>Affiliate, blogging, SEO, reviews, deals, finance or lifestyle niches fit best.</p></div>
     </div>
   </div>
@@ -319,10 +369,11 @@
   <div class="container page-narrow">
     <div class="section-head"><span class="kicker">FAQ</span><h2>Directory questions</h2></div>
     <div class="faq">
+      <details><summary>I don't have a website — can I still get a backlink?</summary><p>Yes. If you have a YouTube, TikTok, Instagram, X, Facebook, Pinterest, LinkedIn, Reddit or Twitch profile, choose it as your platform and add our unique verification link to your profile's website/links field instead of pasting HTML. Once we detect the link, you're listed with a backlink to your profile.</p></details>
       <details><summary>Is the backlink free?</summary><p>Yes. Listing is free and there's no paid placement. We keep it free to keep the directory genuinely useful — the same ethos as our audit tool.</p></details>
-<details><summary>How long does approval take?</summary><p>There's no manual wait. Add the verification snippet to your site, click <strong>Verify my site</strong>, and once we detect it you're listed immediately — with a backlink.</p></details>
-      <details><summary>Do I need to link back to AmzLoss?</summary><p>Yes — that's the deal. The verification snippet you paste contains a link back to our directory, plus your unique code. We check the code is really on your site before we list you, so nobody gets a backlink without actually linking back.</p></details>
-      <details><summary>What if the snippet isn't detected?</summary><p>Make sure it's pasted into the HTML of the exact URL you submitted, saved and deployed — then click verify again. Some sites block automatic checks; in that case contact us at <a href="mailto:admin@amzloss.com">admin@amzloss.com</a> and we'll verify manually.</p></details>
+<details><summary>How long does approval take?</summary><p>There's no manual wait. Add the verification snippet or link to your site/profile, click <strong>Verify</strong>, and once we detect it you're listed immediately — with a backlink.</p></details>
+      <details><summary>Do I need to link back to AmzLoss?</summary><p>Yes — that's the deal. The verification snippet or link you add points back to our directory, plus your unique code. We check the code is really on your site or profile before we list you, so nobody gets a backlink without actually linking back.</p></details>
+      <details><summary>What if the verification isn't detected?</summary><p>Make sure it's on the exact URL you submitted, saved and public — then click verify again. Some social platforms block automatic checks; in that case contact us at <a href="mailto:admin@amzloss.com">admin@amzloss.com</a> and we'll verify manually.</p></details>
       <details><summary>Does listing guarantee my site ranks higher?</summary><p>No — no single directory link guarantees rankings. A relevant link like this is one small, natural signal among many. Focus on good content first.</p></details>
     </div>
   </div>
@@ -384,6 +435,22 @@
       catSel.appendChild(o);
     });
 
+    const platformSel = document.getElementById('site_platform');
+    const urlLabel = document.getElementById('site_url_label');
+    const urlInput = document.getElementById('site_url');
+    const socialFieldRows = [
+      'site_youtube', 'site_tiktok', 'site_instagram', 'site_x', 'site_facebook', 'site_pinterest'
+    ].map(id => document.getElementById(id).closest('.field'));
+    function updatePlatformUI() {
+      const p = platformSel.value;
+      const isWeb = p === 'website';
+      urlLabel.textContent = isWeb ? 'Website URL' : (p === 'other' ? 'Profile URL' : 'Profile URL (' + platformSel.options[platformSel.selectedIndex].text + ')');
+      urlInput.placeholder = isWeb ? 'https://example.com' : 'https://';
+      socialFieldRows.forEach(row => { row.style.display = isWeb ? 'grid' : 'none'; });
+    }
+    platformSel.addEventListener('change', updatePlatformUI);
+    updatePlatformUI();
+
     function loadSubs() {
       try { return JSON.parse(localStorage.getItem('amzloss_dir_subs') || '[]'); } catch (err) { return []; }
     }
@@ -415,6 +482,10 @@
         let socials = '';
         if (item.youtube) socials += '<a class="btn-social btn-youtube" href="' + item.youtube + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">▶ YouTube</a>';
         if (item.tiktok) socials += '<a class="btn-social btn-tiktok" href="' + item.tiktok + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">♫ TikTok</a>';
+        if (item.instagram) socials += '<a class="btn-social btn-instagram" href="' + item.instagram + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">📸 Instagram</a>';
+        if (item.x) socials += '<a class="btn-social btn-x" href="' + item.x + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">𝕏 X</a>';
+        if (item.facebook) socials += '<a class="btn-social btn-facebook" href="' + item.facebook + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">👤 Facebook</a>';
+        if (item.pinterest) socials += '<a class="btn-social btn-pinterest" href="' + item.pinterest + '" target="_blank" rel="noopener nofollow" onclick="event.stopPropagation()">📌 Pinterest</a>';
         a.innerHTML =
           '<h3 style="margin:0 0 6px;">' + (item.name || item.site) + '</h3>' +
           '<span class="tag">' + (item.category || item.cat) + '</span>' +
@@ -449,11 +520,27 @@
       return 'AZL-' + Math.random().toString(36).slice(2, 10).toUpperCase() + '-' + Date.now().toString(36).slice(-4).toUpperCase();
     }
 
-    function buildSnippet(siteName, token) {
-      return '<!-- AmzLoss directory listing: ' + token + ' -->\n' +
-        '<a href="https://amzloss.com/directory.html" rel="nofollow sponsored">' +
-        siteName + ' is listed in the AmzLoss backlink directory</a>';
+    function buildSnippet(siteName, token, platform) {
+      if (platform === 'website') {
+        return '<!-- AmzLoss directory listing: ' + token + ' -->\n' +
+          '<a href="https://amzloss.com/directory.html" rel="nofollow sponsored">' +
+          siteName + ' is listed in the AmzLoss backlink directory</a>';
+      }
+      return 'https://amzloss.com/directory.html?ref=' + token;
     }
+
+    const SOCIAL_HINTS = {
+      youtube: { intro: 'Add this unique link to your channel — YouTube → Customization → Basic info → Links → Add link. Paste the whole URL, save, and the link becomes visible on your channel page.', btn: 'Verify my channel' },
+      tiktok: { intro: 'Add this unique link to your TikTok bio — Edit profile → Website → paste the whole URL and save. It becomes a clickable link on your profile.', btn: 'Verify my profile' },
+      instagram: { intro: 'Add this unique link to your Instagram bio — Edit profile → Website → paste the whole URL and save. It becomes the link visitors tap on your profile.', btn: 'Verify my profile' },
+      x: { intro: 'Add this unique link to your X (Twitter) profile — Edit profile → Website → paste the whole URL and save.', btn: 'Verify my profile' },
+      facebook: { intro: 'Add this unique link to your Facebook page — Page settings → Edit Page Info → Website → paste the whole URL and save.', btn: 'Verify my page' },
+      pinterest: { intro: 'Add this unique link to your Pinterest profile — Edit profile → Website → paste the whole URL and save.', btn: 'Verify my profile' },
+      linkedin: { intro: 'Add this unique link to your LinkedIn page — Edit Page → Website → paste the whole URL and save.', btn: 'Verify my page' },
+      reddit: { intro: 'Add this unique link to your Reddit profile — Profile → Edit → add the URL to the links section.', btn: 'Verify my profile' },
+      twitch: { intro: 'Add this unique link to your Twitch channel — Settings → Channel and Videos → Links → paste the whole URL.', btn: 'Verify my channel' },
+      other: { intro: 'Add this unique link to the website/links field of your profile. If your platform has no link field, put it in your bio or pinned post.', btn: 'Verify my profile' }
+    };
 
     function postForm(payload) {
       if (!FORM_ENDPOINT || FORM_ENDPOINT.indexOf('YOUR_SCRIPT_WEB_APP_ID') !== -1) return;
@@ -479,22 +566,35 @@
       e.preventDefault();
       const name = document.getElementById('site_name').value.trim();
       const url = document.getElementById('site_url').value.trim();
+      const platform = document.getElementById('site_platform').value;
       const cat = document.getElementById('site_cat').value;
       const desc = document.getElementById('site_desc').value.trim();
       const youtube = document.getElementById('site_youtube').value.trim();
       const tiktok = document.getElementById('site_tiktok').value.trim();
+      const instagram = document.getElementById('site_instagram').value.trim();
+      const x = document.getElementById('site_x').value.trim();
+      const facebook = document.getElementById('site_facebook').value.trim();
+      const pinterest = document.getElementById('site_pinterest').value.trim();
       const email = document.getElementById('site_email').value.trim();
 
       pendingToken = makeToken();
 
       const subs = loadSubs();
-      subs.push({ name, url, cat, desc, youtube, tiktok, email, token: pendingToken, verified: false, at: new Date().toISOString() });
+      subs.push({ name, url, platform, cat, desc, youtube, tiktok, instagram, x, facebook, pinterest, email, token: pendingToken, verified: false, at: new Date().toISOString() });
       saveSubs(subs);
 
-      postForm({ site_name: name, site_url: url, category: cat, description: desc, youtube: youtube, tiktok: tiktok, email: email, token: pendingToken, stage: 'submitted' });
+      postForm({ site_name: name, site_url: url, platform: platform, category: cat, description: desc, youtube: youtube, tiktok: tiktok, instagram: instagram, x: x, facebook: facebook, pinterest: pinterest, email: email, token: pendingToken, stage: 'submitted' });
 
-      snippetBox.value = buildSnippet(name, pendingToken);
-      msg.textContent = 'Step 1 done, ' + name + '. Now add the snippet below to your site.';
+      snippetBox.value = buildSnippet(name, pendingToken, platform);
+      const hint = SOCIAL_HINTS[platform] || SOCIAL_HINTS.other;
+      document.getElementById('verify-intro').textContent = platform === 'website'
+        ? 'Copy this snippet and paste it into the HTML of your site\'s homepage (or any page you listed). It contains a link back to AmzLoss plus your unique verification code.'
+        : hint.intro;
+      document.getElementById('verify-help').innerHTML = platform === 'website'
+        ? 'Paste it, save the file, and deploy. Then click <strong>Verify my site</strong> — we\'ll fetch your page and check the code is really there before listing you.'
+        : 'Paste the whole link into the field described above and save. Then click <strong>' + hint.btn + '</strong> — we\'ll fetch your profile and check the link is really there before listing you.';
+      verifyBtn.textContent = platform === 'website' ? 'Verify my site' : hint.btn;
+      msg.textContent = 'Step 1 done, ' + name + '. Now add the link below to your ' + (platform === 'website' ? 'site' : 'profile') + '.';
       msg.style.color = 'var(--accent)';
       verifyStep.style.display = 'block';
       verifyMsg.textContent = '';
@@ -520,13 +620,15 @@
       verifyMsg.textContent = '';
 
       const url = sub.url.replace(/\/$/, '');
-      const haystack = 'AmzLoss directory listing: ' + sub.token;
+      const haystack = sub.platform === 'website'
+        ? 'AmzLoss directory listing: ' + sub.token
+        : 'directory.html?ref=' + sub.token;
 
       window.AZLBacklinkCheck(url, haystack, (res) => {
         verifyBtn.disabled = false;
-        verifyBtn.textContent = 'Verify my site';
+        verifyBtn.textContent = sub.platform === 'website' ? 'Verify my site' : (SOCIAL_HINTS[sub.platform] || SOCIAL_HINTS.other).btn;
         if (!res.ok) {
-          verifyMsg.textContent = 'Could not fetch your site. It may block external checks or the page needs a moment to deploy. Try again shortly.';
+          verifyMsg.textContent = 'Could not fetch your page. Some social platforms block automatic checks — if your link is saved and visible, contact us at admin@amzloss.com and we\'ll verify manually.';
           verifyMsg.style.color = 'var(--warn)';
           return;
         }
@@ -534,11 +636,11 @@
           sub.verified = true;
           saveSubs(subs);
           renderGrid();
-          postForm({ site_name: sub.name, site_url: sub.url, category: sub.cat, description: sub.desc, youtube: sub.youtube, tiktok: sub.tiktok, email: sub.email, token: sub.token, stage: 'verified' });
-          verifyMsg.textContent = 'Verified! Your site is now listed in the directory with a backlink.';
+          postForm({ site_name: sub.name, site_url: sub.url, platform: sub.platform, category: sub.cat, description: sub.desc, youtube: sub.youtube, tiktok: sub.tiktok, instagram: sub.instagram, x: sub.x, facebook: sub.facebook, pinterest: sub.pinterest, email: sub.email, token: sub.token, stage: 'verified' });
+          verifyMsg.textContent = 'Verified! Your ' + (sub.platform === 'website' ? 'site' : 'profile') + ' is now listed in the directory with a backlink.';
           verifyMsg.style.color = 'var(--accent)';
         } else {
-          verifyMsg.textContent = 'Snippet not found on ' + sub.url + '. Make sure it is live, then try again.';
+          verifyMsg.textContent = 'Link not found on ' + sub.url + '. Make sure it is saved and public, then try again.';
           verifyMsg.style.color = 'var(--danger)';
         }
       });

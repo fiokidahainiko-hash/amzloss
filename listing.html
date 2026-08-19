@@ -107,6 +107,7 @@
         <iframe id="site-frame" style="width:100%;height:520px;border:0;display:block;" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
         <p id="frame-fallback" style="display:none;margin:0;padding:16px;text-align:center;color:var(--muted);font-size:0.9rem;">This site blocks embedded previews — open it directly instead.</p>
       </div>
+      <div id="listing-socials" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;"></div>
       <a class="btn btn-primary btn-lg" id="site-link" href="#" target="_blank" rel="noopener nofollow sponsored" style="width:100%;">Visit this site</a>
     </div>
     <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:18px;">Listed in the <a href="directory.html">AmzLoss backlink directory</a>. Want your site listed too? <a href="directory.html#dir-form">Submit it free</a>.</p>
@@ -175,6 +176,9 @@
       document.getElementById('site-cat').textContent = item.category || item.cat || 'General';
       document.getElementById('site-desc').textContent = item.description || item.desc || '';
       document.getElementById('site-link').href = url;
+      document.getElementById('site-link').textContent = (item.platform && item.platform !== 'website')
+        ? 'Visit ' + name
+        : 'Visit this site';
       const canon = document.querySelector('link[rel="canonical"]');
       const canonical = 'https://amzloss.com/listing.html?site=' + encodeURIComponent(name);
       if (canon) canon.href = canonical;
@@ -184,6 +188,18 @@
       const frame = document.getElementById('site-frame');
       const fallback = document.getElementById('frame-fallback');
       const urlLabel = document.getElementById('site-url-label');
+      const socialsBox = document.getElementById('listing-socials');
+      if (socialsBox) {
+        let s = '';
+        const btn = (label, cls, href) => '<a class="btn-social ' + cls + '" href="' + href + '" target="_blank" rel="noopener nofollow">' + label + '</a>';
+        if (item.youtube) s += btn('▶ YouTube', 'btn-youtube', item.youtube);
+        if (item.tiktok) s += btn('♫ TikTok', 'btn-tiktok', item.tiktok);
+        if (item.instagram) s += btn('📸 Instagram', 'btn-instagram', item.instagram);
+        if (item.x) s += btn('𝕏 X', 'btn-x', item.x);
+        if (item.facebook) s += btn('👤 Facebook', 'btn-facebook', item.facebook);
+        if (item.pinterest) s += btn('📌 Pinterest', 'btn-pinterest', item.pinterest);
+        if (s) socialsBox.innerHTML = s; else socialsBox.style.display = 'none';
+      }
       if (previewWrap && frame && url) {
         const isUrl = /^https?:\/\//i.test(url);
         const src = isUrl ? url : 'https://' + url;

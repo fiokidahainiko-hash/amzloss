@@ -655,6 +655,10 @@ code { background: var(--brand-soft); border: 1px solid rgba(75, 40, 109, 0.18);
 .btn-youtube { background: #cc0000; }
 .btn-tiktok { background: #010101; }
 .btn-tiktok { background: linear-gradient(90deg, #25f4ee 0%, #010101 35%, #fe2c55 100%); }
+.btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.btn-x { background: #0f1419; }
+.btn-facebook { background: #1877f2; }
+.btn-pinterest { background: #bd081c; }
 
 /* Tool bar shown above blog articles linking to the relevant free tool */
 .tools-bar {
