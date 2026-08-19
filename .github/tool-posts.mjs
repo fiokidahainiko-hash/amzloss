@@ -19,57 +19,65 @@ const RESULTS = [];
 const TOOLS = [
   {
     id: "directory", name: "Backlink Directory", emoji: "🔗", page: "directory.html",
-    hook: "Want a free backlink from a REAL directory?",
-    explain: "List your site — or even your YouTube, TikTok or Instagram profile — add a quick verification link, and get a human-reviewed backlink. No payment, no sign-up.",
-    cta: "Get your free backlink",
-    tags: ["Backlinks", "LinkBuilding", "SEO", "AmazonAffiliate", "AmzLoss", "Blogging", "WebmasterTools"]
+    hook: "Every affiliate site needs backlinks. Most can't get a single one for free.",
+    explain: "AmzLoss gives you a free, human-reviewed backlink — and you don't even need a website. List your YouTube, TikTok or Instagram profile, add a quick verification link, and you're in. No payment, no sign-up, ever.",
+    proof: "Backlinks are how small sites beat big ones. One relevant link beats a hundred spam ones.",
+    cta: "Claim your free backlink",
+    tags: ["Backlinks", "LinkBuilding", "SEO", "AmazonAffiliate", "AmzLoss", "Blogging", "WebmasterTools", "FreeTools"]
   },
   {
     id: "submit", name: "URL Submitter", emoji: "🚀", page: "submit.html",
-    hook: "Published something? Get it INDEXED in hours, not weeks.",
-    explain: "One click pings Bing, Yandex, Seznam, Naver and Baidu via IndexNow, plus the classic Ping-O-Matic. Then blast your URL to 31+ more platforms — each one a free backlink too.",
+    hook: "You published. Nobody saw it. Google still hasn't indexed it.",
+    explain: "AmzLoss fires your URL to Bing, Yandex, Seznam, Naver and Baidu in ONE click via IndexNow, pings the classics, then walks you through 31+ more platforms. Every single submission is also a free backlink pointing back at you.",
+    proof: "Indexing is a race. One ping gets you crawled in hours — waiting gets you nothing in weeks.",
     cta: "Submit your URL free",
     tags: ["URLSubmitter", "IndexNow", "SEO", "GetIndexed", "Bing", "AmazonAffiliate", "AmzLoss", "WebmasterTools"]
   },
   {
     id: "links", name: "Link Tools", emoji: "🔗", page: "link-tools.html",
-    hook: "A broken affiliate link is silently losing you commissions.",
-    explain: "Build clean Amazon links with your tag in one click, verify your links still work, and check any domain's backlinks. All free, all in your browser.",
+    hook: "A broken link is a silent commission thief. Most affiliates never catch it.",
+    explain: "AmzLoss Link Tools builds clean Amazon links with your tag in one click, verifies your links still work, and counts any domain's backlinks. Your affiliate income quietly depends on links that actually resolve.",
+    proof: "One dead link = every future click on it is lost money. Check once, earn forever.",
     cta: "Build & check your links",
     tags: ["AffiliateMarketing", "LinkBuilder", "AmazonAffiliate", "Backlinks", "SEO", "AmzLoss"]
   },
   {
     id: "audit", name: "Earnings Audit", emoji: "🔍", page: "audit.html",
-    hook: "Amazon may be underpaying you right now.",
-    explain: "Upload your earnings CSV and we check every order against the rate that applied that day. Flagged underpayments become a ready-to-send claim export. Your file never leaves your browser.",
+    hook: "Amazon may be underpaying you right now and you'd never know.",
+    explain: "Upload your Amazon earnings CSV into the AmzLoss audit and we compare every single order against the rate that applied that day — not today's rate. Underpayments become a ready-to-send claim export. Your file never leaves your browser.",
+    proof: "Affiliates have found hundreds in missing commission with one upload. Your numbers might be wrong too.",
     cta: "Audit your report free",
     tags: ["AmazonAssociates", "EarningsAudit", "AmazonAffiliate", "Underpaid", "AmzLoss", "AffiliateMarketing"]
   },
   {
     id: "calculator", name: "Commission Calculator", emoji: "🧮", page: "calculator.html",
-    hook: "Know what a sale REALLY earns before you write the post.",
-    explain: "Pick your market, category and price to see your commission at the current 2026 rate vs the pre-cut rate. See exactly what each rate change costs you per month.",
+    hook: "Know exactly what a sale earns BEFORE you write the post.",
+    explain: "The AmzLoss Commission Calculator shows your payout at the current 2026 rate versus the pre-cut rate, by market and category. One number tells you if a product is worth your time or a waste of it.",
+    proof: "After the 2026 cuts, guessing your rate is how affiliates underprice their work.",
     cta: "Calculate a commission",
     tags: ["AmazonAssociates", "CommissionCalculator", "AmazonAffiliate", "AffiliateMarketing", "AmzLoss"]
   },
   {
     id: "rates", name: "Current Rate Table", emoji: "📊", page: "rates.html",
-    hook: "Amazon cut rates up to 50% — with no reliable change log.",
-    explain: "One table shows every category and market: current rate vs pre-cut rate side by side. Always know what you SHOULD be earning today.",
+    hook: "Amazon cut affiliate rates up to 50% — and never published a change log.",
+    explain: "AmzLoss keeps the 2026 rates for every category and market in one table: current vs pre-cut, side by side. Stop trusting stale screenshots and check what you should actually be paid today.",
+    proof: "Rates change silently. The table that catches it is the one that pays you back.",
     cta: "Check today's rates",
     tags: ["AmazonAssociates", "CommissionRates", "AmazonAffiliate", "AffiliateMarketing", "AmzLoss"]
   },
   {
     id: "breakeven", name: "Break-Even Calculator", emoji: "⚖️", page: "breakeven.html",
-    hook: "That 'great deal' might be cutting your commission.",
-    explain: "Enter the original price, the discounted price and your real rate — see the per-sale hit and how many extra sales you'd need to break even. Sometimes the answer is: skip the deal.",
+    hook: "That 'great deal' you're about to promote? It might be losing you money.",
+    explain: "Promote a discounted product at your real commission rate and the AmzLoss Break-Even Calculator shows the per-sale hit — and how many extra sales you'd need to break even. Sometimes the answer is to skip the deal entirely.",
+    proof: "A price drop can quietly cut your commission. Do the math before you publish, not after.",
     cta: "Check the math",
     tags: ["AmazonAffiliate", "BreakEven", "CommissionCalc", "AffiliateMarketing", "AmzLoss", "Pricing"]
   },
   {
     id: "networks", name: "Network Calculator", emoji: "🌐", page: "networks.html",
-    hook: "Amazon isn't your only option — compare the networks.",
-    explain: "See typical commissions across ShareASale, CJ, Impact, Awin, Rakuten and more for your niche. Diversify income so one rate cut never halves it again.",
+    hook: "Amazon isn't your only income source. Betting on one network is a trap.",
+    explain: "The AmzLoss Network Calculator compares commissions across ShareASale, CJ, Impact, Awin, Rakuten and more for your niche — so you can see who actually pays best before you sign up.",
+    proof: "Diversify your affiliate income and one rate cut can never halve your earnings again.",
     cta: "Compare networks",
     tags: ["AffiliateMarketing", "ShareASale", "CJAffiliate", "Awin", "AmazonAffiliate", "AmzLoss"]
   }
@@ -93,9 +101,9 @@ function buildPost(tool, compact) {
     const lines = [
       `${tool.emoji} ${tool.hook}`,
       "",
-      truncate(tool.explain, 112),
+      truncate(tool.explain, 85),
       "",
-      `${BASE}/${tool.page}`,
+      `${BASE}/${tool.page} — 100% free`,
       "",
       tool.tags.slice(0, 4).map((t) => "#" + t).join(" ")
     ];
@@ -106,7 +114,11 @@ function buildPost(tool, compact) {
     "",
     tool.explain,
     "",
+    `💡 ${tool.proof}`,
+    "",
     `👉 ${tool.cta}: ${BASE}/${tool.page}`,
+    "",
+    `Every tool on AmzLoss is 100% free, runs in your browser and needs no sign-up. Try this one now → ${BASE}`,
     "",
     tool.tags.map((t) => "#" + t).join(" ")
   ];
