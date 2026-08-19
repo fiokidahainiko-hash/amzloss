@@ -34,6 +34,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+<script>
+    try { var t = localStorage.getItem('amzloss_theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AmzLoss">
@@ -103,6 +106,7 @@
     <div class="nav-cta">
       <a class="btn btn-primary" href="audit.html">Audit my report</a>
     </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
     <button class="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -197,7 +201,8 @@
           <input type="url" id="url_input" placeholder="https://yoursite.com/page-or-home">
         </div>
         <button class="btn btn-primary btn-lg" id="blast_btn" style="width:100%;">🚀 Generate submission links</button>
-        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Works for any website or page. One click per platform opens its submission page with your URL ready to paste — or pre-filled where the platform supports it. Progress is saved in your browser.</p>
+        <button class="btn btn-accent btn-lg" id="open_all_btn" style="width:100%;margin-top:10px;">📂 Open all platforms at once</button>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Works for any website or page. One click per platform opens its submission page with your URL ready to paste — or pre-filled where the platform supports it. Progress is saved in your browser. <strong>Open all</strong> fires every platform in a new tab (one per click) so you can submit them one by one.</p>
       </div>
 
       <div class="result-panel" id="submit_panel" style="min-height:100%;">

@@ -53,6 +53,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    try { var t = localStorage.getItem('amzloss_theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -135,6 +138,7 @@
     <div class="nav-cta">
       <a class="btn btn-primary" href="audit.html">Audit my report</a>
     </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
     <button class="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -252,8 +256,8 @@
       <a class="card" href="link-tools.html" style="color:inherit;text-decoration:none;">
         <div class="icon">🧰</div>
         <h3>Link Tools</h3>
-        <p>Build clean Amazon affiliate links with your tracking ID in one step — it strips old tracking parameters, appends your tag and marks links <code>rel="nofollow sponsored"</code> for compliance. The built-in backlink checker then verifies whether a site still carries your link. Clean links convert better and keep you compliant.</p>
-        <p style="color:var(--accent);font-weight:700;margin-top:12px;">Build &amp; check links →</p>
+        <p>Build clean Amazon affiliate links with your tracking ID in one step — it strips old tracking parameters, appends your tag and marks links <code>rel="nofollow sponsored"</code> for compliance. The built-in backlink tools then count any domain's backlinks at large and verify whether a site still carries your link. Clean links convert better and keep you compliant.</p>
+        <p style="color:var(--accent);font-weight:700;margin-top:12px;">Build, count &amp; check links →</p>
       </a>
       <a class="card" href="submit.html" style="color:inherit;text-decoration:none;">
         <div class="icon">🚀</div>

@@ -47,29 +47,41 @@
     return n.toLocaleString("en-US");
   }
 
-  function countBacklinks(domain, apiKey, cb) {
+  function normalizeDomain(raw) {
+    return String(raw || "").trim()
+      .replace(/^https?:\/\//i, "")
+      .replace(/^www\./i, "")
+      .replace(/\/.*$/, "")
+      .toLowerCase();
+  }
+
+  function countBacklinks(domains, apiKey, cb) {
     var headers = { "Content-Type": "application/json" };
     if (apiKey) headers["Authorization"] = "Bearer " + apiKey;
     fetch(OPR_API, {
       method: "POST",
       headers: headers,
-      body: JSON.stringify({ domains: [domain] })
+      body: JSON.stringify({ domains: domains })
     })
       .then(function (r) {
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
       })
       .then(function (data) {
-        var res = data && data.response && data.response[0];
-        if (!res) throw new Error("empty");
-        cb({
-          ok: true,
-          domain: res.domain || domain,
-          opr: typeof res.opr === "number" ? res.opr : null,
-          rank: typeof res.rank === "number" ? res.rank : null,
-          referringDomains: res.referring_domains != null ? res.referring_domains : null,
-          backlinks: res.backlinks != null ? res.backlinks : null
+        var list = data && data.response ? data.response : [];
+        if (!list.length) throw new Error("empty");
+        var result = domains.map(function (d) {
+          var res = list.find(function (x) { return (x.domain || "").toLowerCase() === d; });
+          if (!res) return { domain: d, opr: null, rank: null, referringDomains: null, backlinks: null };
+          return {
+            domain: res.domain || d,
+            opr: typeof res.opr === "number" ? res.opr : null,
+            rank: typeof res.rank === "number" ? res.rank : null,
+            referringDomains: res.referring_domains != null ? res.referring_domains : null,
+            backlinks: res.backlinks != null ? res.backlinks : null
+          };
         });
+        cb({ ok: true, results: result });
       })
       .catch(function (e) { cb({ ok: false, error: (e && e.message) || "failed" }); });
   }
@@ -83,6 +95,8 @@
       var statusEl = document.getElementById("bl_status");
       var detailEl = document.getElementById("bl_detail");
       var metricsEl = document.getElementById("bl_metrics");
+      var tableEl = document.getElementById("bl_table");
+      var tableBodyEl = document.getElementById("bl_table_body");
       var rdEl = document.getElementById("bl_rd");
       var rankEl = document.getElementById("bl_rank");
       var scoreEl = document.getElementById("bl_score");
@@ -105,21 +119,28 @@
         statusEl.textContent = msg;
       }
 
+      function isMissing(r) {
+        return r.backlinks == null && r.referringDomains == null && r.rank == null && r.opr == null;
+      }
+
       countBtn.addEventListener("click", function () {
-        var domain = (domEl.value || "").trim().replace(/^https?:\/\//i, "").replace(/\/.*$/, "").toLowerCase();
-        if (!domain) {
-          setStatus("neutral", "Enter a domain to count its backlinks.");
+        var domains = (domEl.value || "").split(/\n|,/).map(normalizeDomain).filter(Boolean);
+        if (!domains.length) {
+          setStatus("neutral", "Enter one or more domains to count their backlinks.");
           detailEl.textContent = "";
           metricsEl.style.display = "none";
+          tableEl.style.display = "none";
           return;
         }
+        domains = domains.slice(0, 20);
         var apiKey = localStorage.getItem("opr_key") || null;
-        setStatus("neutral", "Counting backlinks for " + domain + " …");
+        setStatus("neutral", "Counting backlinks for " + domains.length + " domain" + (domains.length === 1 ? "" : "s") + " …");
         detailEl.textContent = "";
         metricsEl.style.display = "none";
+        tableEl.style.display = "none";
         countBtn.disabled = true;
 
-        countBacklinks(domain, apiKey, function (res) {
+        countBacklinks(domains, apiKey, function (res) {
           countBtn.disabled = false;
           if (!res.ok) {
             setStatus("bad", "Could not fetch backlink data");
@@ -128,25 +149,45 @@
               : "The Open PageRank service could not be reached (HTTP/network error). Try again in a minute, or add a free API key below for a more reliable connection.";
             return;
           }
-          setStatus("good", "✓ Backlink data loaded");
-          if (res.backlinks != null) {
-            rdEl.textContent = formatCount(res.backlinks);
-          } else if (res.referringDomains != null) {
-            rdEl.textContent = formatCount(res.referringDomains);
-          } else {
-            rdEl.textContent = "—";
+
+          var single = res.results.length === 1;
+          if (single) {
+            setStatus("good", "✓ Backlink data loaded");
+            var r = res.results[0];
+            if (r.backlinks != null) rdEl.textContent = formatCount(r.backlinks);
+            else if (r.referringDomains != null) rdEl.textContent = formatCount(r.referringDomains);
+            else rdEl.textContent = "—";
+            rankEl.textContent = r.rank != null ? formatCount(r.rank) : "—";
+            scoreEl.textContent = r.opr != null ? r.opr : "—";
+            metricsEl.style.display = "grid";
+            if (isMissing(r)) {
+              detailEl.textContent = r.domain + " is not (yet) in the Open PageRank index — it has zero or very few backlinks.";
+            } else {
+              var parts = [];
+              if (r.backlinks != null) parts.push(r.backlinks.toLocaleString() + " total backlinks");
+              if (r.referringDomains != null) parts.push(r.referringDomains.toLocaleString() + " referring domains");
+              detailEl.textContent = r.domain + " has " + parts.join(" and ") + " pointing at it according to the Open PageRank index.";
+            }
+            return;
           }
-          rankEl.textContent = res.rank != null ? formatCount(res.rank) : "—";
-          scoreEl.textContent = res.opr != null ? res.opr : "—";
-          metricsEl.style.display = "grid";
-          var parts = [];
-          if (res.backlinks != null) parts.push(res.backlinks.toLocaleString() + " total backlinks");
-          if (res.referringDomains != null) parts.push(res.referringDomains.toLocaleString() + " referring domains");
-          if (parts.length) {
-            detailEl.textContent = domain + " has " + parts.join(" and ") + " pointing at it according to the Open PageRank index.";
-          } else {
-            detailEl.textContent = "This domain is not (yet) in the Open PageRank index — it has zero or very few backlinks.";
-          }
+
+          var ranked = res.results.slice().sort(function (a, b) {
+            var ab = a.backlinks != null ? a.backlinks : -1;
+            var bb = b.backlinks != null ? b.backlinks : -1;
+            return bb - ab;
+          });
+          var rows = ranked.map(function (r) {
+            var cnt = r.backlinks != null ? r.backlinks : (r.referringDomains != null ? r.referringDomains : null);
+            var count = cnt != null ? cnt.toLocaleString() : "—";
+            var rank = r.rank != null ? r.rank.toLocaleString() : "—";
+            var opr = r.opr != null ? r.opr : "—";
+            return "<tr><td style=\"text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);\">" + r.domain + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + count + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + rank + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + opr + "</td></tr>";
+          }).join("");
+          tableBodyEl.innerHTML = rows;
+          setStatus("good", "✓ Backlink data loaded for " + res.results.length + " domains");
+          tableEl.style.display = "block";
+          metricsEl.style.display = "none";
+          detailEl.textContent = "Sorted by backlinks, most to fewest. A \"—\" means the domain isn't in the Open PageRank index yet.";
         });
       });
     }

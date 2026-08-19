@@ -212,6 +212,28 @@
   }
 
   blastBtn.addEventListener("click", blast);
+  var openAllBtn = $("#open_all_btn");
+  if (openAllBtn) {
+    openAllBtn.addEventListener("click", function () {
+      var u = normalizeUrl(urlInput.value);
+      if (!u) {
+        urlInput.focus();
+        urlInput.style.borderColor = "var(--danger)";
+        setTimeout(function () { urlInput.style.borderColor = ""; }, 1400);
+        return;
+      }
+      state.url = u;
+      urlInput.value = u;
+      save();
+      render();
+      var platforms = PLATFORMS.slice();
+      for (var i = 0; i < platforms.length; i++) {
+        if (state.done[platforms[i].id]) continue;
+        window.open(buildLink(platforms[i], u), "_blank", "noopener");
+      }
+      updateProgress();
+    });
+  }
   urlInput.addEventListener("keydown", function (e) { if (e.key === "Enter") blast(); });
   $("#reset_btn").addEventListener("click", function () {
     if (!state.url) return;

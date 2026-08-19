@@ -33,6 +33,15 @@ jobs:
           git commit -m "Daily blog post: $(date -u +'%Y-%m-%d')"
           git push
 
+      - name: Ping IndexNow (Bing, Yandex, Seznam, Naver)
+        if: env.CHANGED == '1'
+        run: |
+          KEY="cfa51088e98e4d29b9d374a48ec20d85"
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"amzloss.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://amzloss.com/$KEY.txt\",\"urlList\":[\"$INDEXNOW_URL\"]}" \
+            -w "\nIndexNow status: %{http_code}\n"
+
       - name: Share on social media
         if: env.CHANGED == '1'
         env:

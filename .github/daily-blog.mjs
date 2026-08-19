@@ -728,6 +728,9 @@ function buildPage(post) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <script>
+    try { var t = localStorage.getItem('amzloss_theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -790,6 +793,7 @@ function buildPage(post) {
   <a href="../faq.html">FAQ</a>
   <a href="../about.html">About</a></nav>
   <div class="nav-cta"><a class="btn btn-primary" href="../audit.html">Audit my report</a></div>
+  <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
 </div></header>
 
 <section class="section"><div class="container page-narrow">
@@ -936,6 +940,7 @@ function main() {
   writeState(nextState);
 
   console.log("Published daily post: blogs/" + slug + ".html (mode=" + mode + ", tool=" + tool + ")");
+  console.log("INDEXNOW_URL=https://amzloss.com/blogs/" + slug + ".html");
   console.log("CHANGED=1");
 }
 

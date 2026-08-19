@@ -54,4 +54,18 @@ document.addEventListener('DOMContentLoaded', function () {
       nav.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
     }
   });
+
+  // Theme toggle (dark/light) — persisted, applied early to avoid flash
+  var themeBtn = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('amzloss_theme', theme);
+    if (themeBtn) themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+  function toggleTheme() {
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+  if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+  var savedTheme = localStorage.getItem('amzloss_theme') || 'light';
+  applyTheme(savedTheme);
 });

@@ -7,7 +7,7 @@ export const TOOLS = {
   rates: { href: "../rates.html", label: "Current Rate Table", icon: "📊", blurb: "see the live 2026 rates by category and market" },
   audit: { href: "../audit.html", label: "Earnings Audit", icon: "🔍", blurb: "check your Amazon earnings report for underpayment" },
   networks: { href: "../networks.html", label: "Network Calculator", icon: "🌐", blurb: "compare Amazon vs ShareASale, CJ, Impact & Awin" },
-  links: { href: "../link-tools.html", label: "Link Tools", icon: "🔗", blurb: "build clean affiliate links and check backlinks" },
+  links: { href: "../link-tools.html", label: "Link Tools", icon: "🔗", blurb: "build clean links, count backlinks and check them live" },
   submit: { href: "../submit.html", label: "URL Submitter", icon: "📤", blurb: "ping search engines and IndexNow for free" },
   directory: { href: "../directory.html", label: "Backlink Directory", icon: "📚", blurb: "get a free, relevant backlink" }
 };
