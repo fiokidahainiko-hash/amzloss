@@ -891,18 +891,17 @@ function main() {
   if (watchChanged.length) {
     const updateTool = detectUpdateTopic(watchChanged) || "audit";
     tool = updateTool;
-    tip = TIPS[tool][0];
     mode = "update";
   } else {
     const idx = state.nextToolIndex || 0;
     tool = TOOL_ORDER[idx % TOOL_ORDER.length];
-    const variant = state.variantIndex && state.variantIndex[tool] ? state.variantIndex[tool] : 0;
-    const bank = TIPS[tool];
-    tip = bank[variant % bank.length];
-    mode = "tip";
-    nextState.variantIndex = { ...(state.variantIndex || {}), [tool]: variant + 1 };
     nextState.nextToolIndex = idx + 1;
+    mode = "tip";
   }
+  const variant = state.variantIndex && state.variantIndex[tool] ? state.variantIndex[tool] : 0;
+  const bank = TIPS[tool];
+  tip = bank[variant % bank.length];
+  nextState.variantIndex = { ...(state.variantIndex || {}), [tool]: variant + 1 };
 
   const toolName = tool.charAt(0).toUpperCase() + tool.slice(1);
   const slug = "amzloss-daily-" + slugify(toolName) + "-" + dateISO;
