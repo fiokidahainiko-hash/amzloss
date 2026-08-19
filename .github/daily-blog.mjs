@@ -875,7 +875,7 @@ function main() {
   const dateISO = todayStr();
   const state = readState();
   if (state.lastDate === dateISO) {
-    console.log("Already posted today; skipping.");
+    console.error("Already posted today; skipping.");
     console.log("CHANGED=0");
     return;
   }
@@ -938,7 +938,7 @@ function main() {
 
   writeState(nextState);
 
-  console.log("Published daily post: blogs/" + slug + ".html (mode=" + mode + ", tool=" + tool + ")");
+  console.error("Published daily post: blogs/" + slug + ".html (mode=" + mode + ", tool=" + tool + ")");
   console.log("INDEXNOW_URL=https://amzloss.com/blogs/" + slug + ".html");
   console.log("CHANGED=1");
 }
