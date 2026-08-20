@@ -237,6 +237,29 @@ async function sendInstagram(post, img) {
   return { name: "Instagram", status: p.ok ? "posted" : `failed publish (${p.status} ${JSON.stringify(p.data).slice(0, 200)})` };
 }
 
+async function sendFacebook(post, img) {
+  const token = process.env.FACEBOOK_ACCESS_TOKEN;
+  const pageId = process.env.FACEBOOK_PAGE_ID;
+  if (!token || !pageId) return { name: "Facebook", status: "skipped (no FACEBOOK_ACCESS_TOKEN/FACEBOOK_PAGE_ID)" };
+  let live = false;
+  for (let i = 0; i < 18; i++) {
+    try {
+      const r = await fetch(img.url, { method: "HEAD" });
+      if (r.status === 200) { live = true; break; }
+    } catch { /* retry */ }
+    await sleep(10000);
+  }
+  if (!live) return { name: "Facebook", status: "skipped (image not live yet after 3 min)" };
+  const body = new FormData();
+  body.append("url", img.url);
+  body.append("message", truncate(`${post.title}\n\n${post.full}`, 2200));
+  body.append("access_token", token);
+  const r = await jsonFetch(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
+    method: "POST", body
+  });
+  return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status} ${JSON.stringify(r.data).slice(0, 200)})` };
+}
+
 /* ---------- commit generated image so it is hosted ---------- */
 
 function commitImage(file, rel, post) {
@@ -260,7 +283,7 @@ async function main() {
   RESULTS.push(`POST_URL=${post.full}`);
   const slug = post.url.replace(/\.html$/, "").split("/").pop();
 
-  const needImage = process.env.PINTEREST_ACCESS_TOKEN || (process.env.INSTAGRAM_ACCESS_TOKEN && process.env.INSTAGRAM_USER_ID);
+  const needImage = process.env.PINTEREST_ACCESS_TOKEN || (process.env.INSTAGRAM_ACCESS_TOKEN && process.env.INSTAGRAM_USER_ID) || (process.env.FACEBOOK_ACCESS_TOKEN && process.env.FACEBOOK_PAGE_ID);
   let img = null;
   if (needImage) {
     try {
@@ -277,7 +300,7 @@ async function main() {
   }
 
   const tasks = [sendTelegram(post), sendTwitter(post), sendMastodon(post), sendTumblr(post, img)];
-  if (img) tasks.push(sendPinterest(post, img), sendInstagram(post, img));
+  if (img) tasks.push(sendPinterest(post, img), sendInstagram(post, img), sendFacebook(post, img));
 
   const results = await Promise.all(tasks);
   for (const r of results) RESULTS.push(`SOCIAL_${r.name.toUpperCase()}=${r.status}`);

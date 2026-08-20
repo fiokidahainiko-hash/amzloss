@@ -228,3 +228,26 @@ export async function sendInstagram({ text, imgUrl }) {
   });
   return { name: "Instagram", status: p.ok ? "posted" : `failed publish (${p.status})` };
 }
+
+export async function sendFacebook({ text, imgUrl }) {
+  const token = process.env.FACEBOOK_ACCESS_TOKEN;
+  const pageId = process.env.FACEBOOK_PAGE_ID;
+  if (!token || !pageId) return { name: "Facebook", status: "skipped" };
+  let live = false;
+  for (let i = 0; i < 18; i++) {
+    try {
+      const r = await fetch(imgUrl, { method: "HEAD" });
+      if (r.status === 200) { live = true; break; }
+    } catch { /* retry */ }
+    await sleep(10000);
+  }
+  if (!live) return { name: "Facebook", status: "skipped (image not live)" };
+  const body = new FormData();
+  body.append("url", imgUrl);
+  body.append("message", truncate(`${text}\n\n${BASE}/`, 2200));
+  body.append("access_token", token);
+  const r = await jsonFetch(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
+    method: "POST", body
+  });
+  return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status})` };
+}

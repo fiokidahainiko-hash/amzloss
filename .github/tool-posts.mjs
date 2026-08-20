@@ -9,7 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, generateImage } from "./lib-social.mjs";
+import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, sendFacebook, generateImage } from "./lib-social.mjs";
 
 const STATE_FILE = path.join(ROOT, ".github", "tool-state.json");
 const RESULTS = [];
@@ -213,7 +213,7 @@ async function main() {
     sendMastodon({ text, imgFile: img && (img.rel.endsWith(".png") || img.rel.endsWith(".jpg")) ? img.file : null }),
     sendTumblr({ text, imgUrl: img ? img.url : null })
   ];
-  if (img) tasks.push(sendPinterest({ text, imgFile: img.file }), sendInstagram({ text, imgUrl: img.url }));
+  if (img) tasks.push(sendPinterest({ text, imgFile: img.file }), sendInstagram({ text, imgUrl: img.url }), sendFacebook({ text, imgUrl: img.url }));
 
   const results = await Promise.all(tasks);
   for (const r of results) RESULTS.push(`SOCIAL_${r.name.toUpperCase()}=${r.status}`);
