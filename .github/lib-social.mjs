@@ -24,6 +24,18 @@ export async function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+export async function waitImageLive(imgUrl) {
+  if (!imgUrl) return false;
+  for (let i = 0; i < 30; i++) {
+    try {
+      const r = await fetch(imgUrl, { method: "HEAD" });
+      if (r.status === 200) return true;
+    } catch { /* retry */ }
+    await sleep(10000);
+  }
+  return false;
+}
+
 export async function jsonFetch(url, opts) {
   const res = await fetch(url, opts);
   const text = await res.text();
@@ -90,6 +102,7 @@ export async function sendTelegram({ text, imgUrl }) {
   const chat = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chat) return { name: "Telegram", status: "skipped" };
   if (imgUrl) {
+    if (!(await waitImageLive(imgUrl))) return { name: "Telegram", status: "skipped (image not live)" };
     const r = await jsonFetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: chat, photo: imgUrl, caption: truncate(text, 1024) })
@@ -205,15 +218,7 @@ export async function sendInstagram({ text, imgUrl }) {
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
   const igId = process.env.INSTAGRAM_USER_ID;
   if (!token || !igId) return { name: "Instagram", status: "skipped" };
-  let live = false;
-  for (let i = 0; i < 18; i++) {
-    try {
-      const r = await fetch(imgUrl, { method: "HEAD" });
-      if (r.status === 200) { live = true; break; }
-    } catch { /* retry */ }
-    await sleep(10000);
-  }
-  if (!live) return { name: "Instagram", status: "skipped (image not live)" };
+  if (!(await waitImageLive(imgUrl))) return { name: "Instagram", status: "skipped (image not live)" };
   const caption = truncate(`${text}\n\n${BASE}/`, 2200);
   const c = await jsonFetch(`https://graph.instagram.com/${igId}/media`, {
     method: "POST",
@@ -233,21 +238,25 @@ export async function sendFacebook({ text, imgUrl }) {
   const token = process.env.FACEBOOK_ACCESS_TOKEN;
   const pageId = process.env.FACEBOOK_PAGE_ID;
   if (!token || !pageId) return { name: "Facebook", status: "skipped" };
-  let live = false;
-  for (let i = 0; i < 18; i++) {
-    try {
-      const r = await fetch(imgUrl, { method: "HEAD" });
-      if (r.status === 200) { live = true; break; }
-    } catch { /* retry */ }
-    await sleep(10000);
-  }
-  if (!live) return { name: "Facebook", status: "skipped (image not live)" };
+  if (!(await waitImageLive(imgUrl))) return { name: "Facebook", status: "skipped (image not live)" };
   const body = new FormData();
   body.append("url", imgUrl);
   body.append("message", truncate(`${text}\n\n${BASE}/`, 2200));
   body.append("access_token", token);
   const r = await jsonFetch(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
     method: "POST", body
+  });
+  return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status})` };
+}
+
+export async function sendFacebookIFTTT({ text, imgUrl }) {
+  const key = process.env.IFTTT_KEY;
+  const event = process.env.IFTTT_EVENT;
+  if (!key || !event) return { name: "Facebook", status: "skipped" };
+  const r = await jsonFetch(`https://maker.ifttt.com/trigger/${event}/with/key/${key}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ value1: text, value2: imgUrl })
   });
   return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status})` };
 }

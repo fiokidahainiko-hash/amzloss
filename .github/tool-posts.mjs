@@ -9,7 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, sendFacebook, generateImage } from "./lib-social.mjs";
+import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, sendFacebook, sendFacebookIFTTT, generateImage } from "./lib-social.mjs";
 
 const STATE_FILE = path.join(ROOT, ".github", "tool-state.json");
 const RESULTS = [];
@@ -133,9 +133,18 @@ async function takeScreenshot(tool) {
   try {
     const { chromium } = await import("playwright");
     const browser = await chromium.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] });
-    const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
+    const page = await browser.newPage({ viewport: { width: 1200, height: 900 }, deviceScaleFactor: 1 });
     await page.goto(BASE + "/" + tool.page, { waitUntil: "load", timeout: 45000 });
     await page.waitForTimeout(2500);
+    // Scroll past the shared header/hero so each tool's unique content shows.
+    const header = page.locator("header");
+    const main = page.locator("main, .container, .tool-card, .card, section").first();
+    let target = main;
+    try {
+      if (await header.count() && await header.first().isVisible()) target = header.first();
+    } catch { /* ignore */ }
+    await target.evaluate((el) => el.scrollIntoView({ block: "start" }));
+    await page.waitForTimeout(800);
     await page.screenshot({ path: file, type: "png" });
     await browser.close();
     return { file, rel: "blogs/img/tool-" + tool.id + ".png", url: `${BASE}/blogs/img/tool-${tool.id}.png` };
@@ -213,10 +222,21 @@ async function main() {
     sendMastodon({ text, imgFile: img && (img.rel.endsWith(".png") || img.rel.endsWith(".jpg")) ? img.file : null }),
     sendTumblr({ text, imgUrl: img ? img.url : null })
   ];
-  if (img) tasks.push(sendPinterest({ text, imgFile: img.file }), sendInstagram({ text, imgUrl: img.url }), sendFacebook({ text, imgUrl: img.url }));
+  if (img) {
+    tasks.push(sendPinterest({ text, imgFile: img.file }), sendInstagram({ text, imgUrl: img.url }));
+    tasks.push(process.env.IFTTT_KEY && process.env.IFTTT_EVENT
+      ? sendFacebookIFTTT({ text, imgUrl: img.url })
+      : sendFacebook({ text, imgUrl: img.url }));
+  }
 
   const results = await Promise.all(tasks);
-  for (const r of results) RESULTS.push(`SOCIAL_${r.name.toUpperCase()}=${r.status}`);
+  const statuses = {};
+  for (const r of results) {
+    statuses[r.name] = r.status;
+    RESULTS.push(`SOCIAL_${r.name.toUpperCase()}=${r.status}`);
+  }
+
+  await sendTelegram({ text: `📡 Tool post report — ${tool.name}\n\n` + results.map((r) => `• ${r.name}: ${r.status}`).join("\n") });
 
   for (const line of RESULTS) console.log(line);
   console.log("SOCIAL_DONE=1");

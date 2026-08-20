@@ -260,6 +260,18 @@ async function sendFacebook(post, img) {
   return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status} ${JSON.stringify(r.data).slice(0, 200)})` };
 }
 
+async function sendFacebookIFTTT(post, img) {
+  const key = process.env.IFTTT_KEY;
+  const event = process.env.IFTTT_EVENT;
+  if (!key || !event) return { name: "Facebook", status: "skipped (no IFTTT_KEY/IFTTT_EVENT)" };
+  const r = await jsonFetch(`https://maker.ifttt.com/trigger/${event}/with/key/${key}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ value1: `${post.title}\n\n${post.full}`, value2: img.url })
+  });
+  return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status} ${JSON.stringify(r.data).slice(0, 200)})` };
+}
+
 /* ---------- commit generated image so it is hosted ---------- */
 
 function commitImage(file, rel, post) {
@@ -300,7 +312,12 @@ async function main() {
   }
 
   const tasks = [sendTelegram(post), sendTwitter(post), sendMastodon(post), sendTumblr(post, img)];
-  if (img) tasks.push(sendPinterest(post, img), sendInstagram(post, img), sendFacebook(post, img));
+  if (img) {
+    tasks.push(sendPinterest(post, img), sendInstagram(post, img));
+    tasks.push(process.env.IFTTT_KEY && process.env.IFTTT_EVENT
+      ? sendFacebookIFTTT(post, img)
+      : sendFacebook(post, img));
+  }
 
   const results = await Promise.all(tasks);
   for (const r of results) RESULTS.push(`SOCIAL_${r.name.toUpperCase()}=${r.status}`);
