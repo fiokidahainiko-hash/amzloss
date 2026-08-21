@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: tool-posts
@@ -57,16 +58,14 @@ jobs:
         run: |
           node .github/tool-posts.mjs
 
-      - name: Email run report to admin@amzloss.com
-        if: ${{ secrets.SMTP_PASSWORD != '' }}
-        continue-on-error: true
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: ${{ secrets.SMTP_PORT }}
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: "AmzLoss tool post report"
-          to: admin@amzloss.com
-          from: AmzLoss Bot <${{ secrets.SMTP_USERNAME }}>
-          body: file://report.txt
+      - name: File report as GitHub issue (emailed to owner via notifications)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url=$(gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Tool post report — $(date -u +'%Y-%m-%d %H:%M UTC')" \
+            --label "tool-post-report" \
+            --body-file report.txt)
+          num=${url##*/}
+          gh issue close "$num" -c "Auto-closed after emailing the report to the repo owner."

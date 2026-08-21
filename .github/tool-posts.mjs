@@ -239,7 +239,7 @@ async function main() {
   const reportText = `📡 Tool post report — ${tool.name}\n\n` + results.map((r) => `• ${r.name}: ${r.status}`).join("\n");
   RESULTS.push("REPORT_TEXT=" + reportText.replace(/\n/g, " | "));
   fs.writeFileSync(path.join(ROOT, "report.txt"), reportText, "utf8");
-  RESULTS.push("REPORT_WRITTEN=report.txt (emailed to admin@amzloss.com via SMTP action)");
+  RESULTS.push("REPORT_WRITTEN=report.txt (filed as GitHub issue → emailed to owner via notifications)");
   if (process.env.REPORT_TELEGRAM_CHAT_ID) {
     const priv = await sendTelegram({ text: reportText, chatId: process.env.REPORT_TELEGRAM_CHAT_ID });
     RESULTS.push(`REPORT_TELEGRAM_PRIVATE=${priv.status}`);
