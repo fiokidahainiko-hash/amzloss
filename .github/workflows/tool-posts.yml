@@ -52,8 +52,21 @@ jobs:
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           IFTTT_KEY: ${{ secrets.IFTTT_KEY }}
           IFTTT_EVENT: ${{ secrets.IFTTT_EVENT }}
-          IFTTT_REPORT_EVENT: ${{ secrets.IFTTT_REPORT_EVENT }}
           REPORT_TELEGRAM_CHAT_ID: ${{ secrets.REPORT_TELEGRAM_CHAT_ID }}
           GH_TOKEN: ${{ github.token }}
         run: |
           node .github/tool-posts.mjs
+
+      - name: Email run report to admin@amzloss.com
+        if: ${{ secrets.SMTP_PASSWORD != '' }}
+        continue-on-error: true
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "AmzLoss tool post report"
+          to: admin@amzloss.com
+          from: AmzLoss Bot <${{ secrets.SMTP_USERNAME }}>
+          body: file://report.txt

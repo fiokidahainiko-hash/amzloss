@@ -272,15 +272,3 @@ export async function sendFacebookIFTTT({ text, imgUrl }) {
   });
   return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status})` };
 }
-
-export async function sendEmail({ subject, text }) {
-  const key = process.env.IFTTT_KEY;
-  const event = process.env.IFTTT_REPORT_EVENT;
-  if (!key || !event) return { name: "Email", status: "skipped" };
-  const r = await jsonFetch(`https://maker.ifttt.com/trigger/${event}/with/key/${key}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ value1: subject, value2: text })
-  });
-  return { name: "Email", status: r.ok ? "sent" : `failed (${r.status})` };
-}
