@@ -9,7 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, sendFacebook, sendFacebookIFTTT, generateImage } from "./lib-social.mjs";
+import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, sendFacebook, sendFacebookIFTTT, sendEmail, generateImage } from "./lib-social.mjs";
 
 const STATE_FILE = path.join(ROOT, ".github", "tool-state.json");
 const RESULTS = [];
@@ -236,7 +236,18 @@ async function main() {
     RESULTS.push(`SOCIAL_${r.name.toUpperCase()}=${r.status}`);
   }
 
-  await sendTelegram({ text: `📡 Tool post report — ${tool.name}\n\n` + results.map((r) => `• ${r.name}: ${r.status}`).join("\n") });
+  const reportText = `📡 Tool post report — ${tool.name}\n\n` + results.map((r) => `• ${r.name}: ${r.status}`).join("\n");
+  RESULTS.push("REPORT_TEXT=" + reportText.replace(/\n/g, " | "));
+  const email = await sendEmail({ subject: `AmzLoss tool post report — ${tool.name}`, text: reportText });
+  RESULTS.push(`REPORT_EMAIL=${email.status}`);
+  if (email.status === "sent") {
+    RESULTS.push("REPORT_SENT=email");
+  } else if (process.env.REPORT_TELEGRAM_CHAT_ID) {
+    const priv = await sendTelegram({ text: reportText, chatId: process.env.REPORT_TELEGRAM_CHAT_ID });
+    RESULTS.push(`REPORT_SENT=telegram-private (${priv.status})`);
+  } else {
+    RESULTS.push("REPORT_SENT=none (email not configured — add IFTTT_REPORT_EVENT or REPORT_TELEGRAM_CHAT_ID)");
+  }
 
   for (const line of RESULTS) console.log(line);
   console.log("SOCIAL_DONE=1");

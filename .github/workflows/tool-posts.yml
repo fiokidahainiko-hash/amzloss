@@ -52,6 +52,8 @@ jobs:
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           IFTTT_KEY: ${{ secrets.IFTTT_KEY }}
           IFTTT_EVENT: ${{ secrets.IFTTT_EVENT }}
+          IFTTT_REPORT_EVENT: ${{ secrets.IFTTT_REPORT_EVENT }}
+          REPORT_TELEGRAM_CHAT_ID: ${{ secrets.REPORT_TELEGRAM_CHAT_ID }}
           GH_TOKEN: ${{ github.token }}
         run: |
           node .github/tool-posts.mjs

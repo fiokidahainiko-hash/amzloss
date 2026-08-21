@@ -97,9 +97,9 @@ export function signOAuth1(method, url, params, consumerSecret, tokenSecret) {
 
 /* ---------- raw platform senders ---------- */
 
-export async function sendTelegram({ text, imgUrl, imgFile }) {
+export async function sendTelegram({ text, imgUrl, imgFile, chatId }) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chat = process.env.TELEGRAM_CHAT_ID;
+  const chat = chatId || process.env.TELEGRAM_CHAT_ID;
   if (!token || !chat) return { name: "Telegram", status: "skipped" };
   if (imgFile && fs.existsSync(imgFile)) {
     try {
@@ -271,4 +271,16 @@ export async function sendFacebookIFTTT({ text, imgUrl }) {
     body: JSON.stringify({ value1: text, value2: imgUrl })
   });
   return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status})` };
+}
+
+export async function sendEmail({ subject, text }) {
+  const key = process.env.IFTTT_KEY;
+  const event = process.env.IFTTT_REPORT_EVENT;
+  if (!key || !event) return { name: "Email", status: "skipped" };
+  const r = await jsonFetch(`https://maker.ifttt.com/trigger/${event}/with/key/${key}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ value1: subject, value2: text })
+  });
+  return { name: "Email", status: r.ok ? "sent" : `failed (${r.status})` };
 }
