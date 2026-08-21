@@ -217,10 +217,10 @@ async function main() {
   RESULTS.push("IMAGE_COMMITTED=" + (committed ? "yes" : "no"));
 
   const tasks = [
-    sendTelegram({ text, imgUrl: img ? img.url : null }),
+    sendTelegram({ text, imgFile: img ? img.file : null }),
     sendX({ text: textX }),
     sendMastodon({ text, imgFile: img && (img.rel.endsWith(".png") || img.rel.endsWith(".jpg")) ? img.file : null }),
-    sendTumblr({ text, imgUrl: img ? img.url : null })
+    sendTumblr({ text, imgFile: img ? img.file : null })
   ];
   if (img) {
     tasks.push(sendPinterest({ text, imgFile: img.file }), sendInstagram({ text, imgUrl: img.url }));

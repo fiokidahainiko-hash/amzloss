@@ -97,10 +97,22 @@ export function signOAuth1(method, url, params, consumerSecret, tokenSecret) {
 
 /* ---------- raw platform senders ---------- */
 
-export async function sendTelegram({ text, imgUrl }) {
+export async function sendTelegram({ text, imgUrl, imgFile }) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chat = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chat) return { name: "Telegram", status: "skipped" };
+  if (imgFile && fs.existsSync(imgFile)) {
+    try {
+      const f = new FormData();
+      f.append("chat_id", chat);
+      f.append("photo", new Blob([fs.readFileSync(imgFile)], { type: "image/png" }), "amzloss.png");
+      f.append("caption", truncate(text, 1024));
+      const r = await jsonFetch(`https://api.telegram.org/bot${token}/sendPhoto`, { method: "POST", body: f });
+      return { name: "Telegram", status: r.ok ? "posted" : `failed (${r.status})` };
+    } catch (e) {
+      return { name: "Telegram", status: `failed (${e.message || e})` };
+    }
+  }
   if (imgUrl) {
     if (!(await waitImageLive(imgUrl))) return { name: "Telegram", status: "skipped (image not live)" };
     const r = await jsonFetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
@@ -163,13 +175,13 @@ export async function sendMastodon({ text, imgFile }) {
   return { name: "Mastodon", status: r.ok ? "posted" : `failed (${r.status})` };
 }
 
-export async function sendTumblr({ text, imgUrl }) {
+export async function sendTumblr({ text, imgUrl, imgFile }) {
   const need = ["TUMBLR_CONSUMER_KEY", "TUMBLR_CONSUMER_SECRET", "TUMBLR_TOKEN", "TUMBLR_TOKEN_SECRET", "TUMBLR_BLOG_IDENTIFIER"];
   if (need.some((k) => !process.env[k])) return { name: "Tumblr", status: "skipped" };
   const blog = process.env.TUMBLR_BLOG_IDENTIFIER;
   const url = `https://api.tumblr.com/v2/blog/${blog}/post`;
-  const params = imgUrl
-    ? { type: "photo", source: imgUrl, caption: truncate(text, 4000) }
+  const params = (imgFile && fs.existsSync(imgFile))
+    ? { type: "photo", data64: fs.readFileSync(imgFile).toString("base64"), caption: truncate(text, 4000) }
     : { type: "text", title: truncate(text.split("\n")[0].replace(/^[^ ]+ /, "").slice(0, 90), 90), body: text };
   const oauth = {
     oauth_consumer_key: process.env.TUMBLR_CONSUMER_KEY,

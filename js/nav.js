@@ -68,4 +68,40 @@ document.addEventListener('DOMContentLoaded', function () {
   if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
   var savedTheme = localStorage.getItem('amzloss_theme') || 'light';
   applyTheme(savedTheme);
+
+  // Inject the "Follow us" column into every page footer (one source of truth).
+  var SOCIAL = {
+    facebook: 'https://web.facebook.com/profile.php?id=61593299064372',
+    x: '',
+    tumblr: '',
+    instagram: ''
+  };
+  var SOCIAL_LABELS = {
+    facebook: 'Facebook',
+    x: 'X',
+    tumblr: 'Tumblr',
+    instagram: 'Instagram'
+  };
+  function injectFollowColumn() {
+    var grid = document.querySelector('.site-footer .footer-grid');
+    if (!grid || grid.querySelector('#follow-col')) return;
+    var col = document.createElement('div');
+    col.className = 'footer-col';
+    col.id = 'follow-col';
+    var h = document.createElement('h4');
+    h.textContent = 'Follow us';
+    col.appendChild(h);
+    Object.keys(SOCIAL).forEach(function (key) {
+      var url = SOCIAL[key];
+      if (!url) return;
+      var a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = SOCIAL_LABELS[key];
+      col.appendChild(a);
+    });
+    grid.appendChild(col);
+  }
+  injectFollowColumn();
 });
