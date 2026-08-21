@@ -1,7 +1,8 @@
 {
-  "lastDate": "2026-08-20",
+  "lastDate": "2026-08-21",
   "nextToolIndex": 0,
   "variantIndex": {
-    "audit": 3
+    "audit": 3,
+    "calculator": 1
   }
 }
