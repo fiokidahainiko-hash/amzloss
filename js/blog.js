@@ -3,6 +3,7 @@
   "use strict";
 
   var POSTS = [
+    { cat: "Tools", icon: "🔍", title: "The difference between 'underpaid' and 'possible…", date: "Aug 22, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-22.html", desc: "Why the audit uses careful language, and why that honesty helps you." },
     { cat: "Tools", icon: "🧮", title: "Why your Amazon commission is lower than the price…", date: "Aug 21, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-21.html", desc: "Amazon pays on the order amount after discounts, not the list price. Here is the math and how the calculator makes it instant." },
     { cat: "Tools", icon: "🔍", title: "What to do when the audit finds a possible…", date: "Aug 20, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-20.html", desc: "A flagged line is not proof of error. Here is how to verify it, then claim it with Amazon support." },
     { cat: "Tools", icon: "🔍", title: "Every column in the Amazon earnings report, decoded", date: "Aug 19, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-19.html", desc: "Order ID, category, rate, fees, commission — know what each column means before you audit." },
