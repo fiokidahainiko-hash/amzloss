@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
     col.className = 'footer-col';
     col.id = 'follow-col';
     var h = document.createElement('h4');
-    h.setAttribute('data-i18n', 'follow.title');
     h.textContent = 'Follow us';
     col.appendChild(h);
     Object.keys(SOCIAL).forEach(function (key) {
