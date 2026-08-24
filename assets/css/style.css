@@ -755,3 +755,75 @@ code { background: var(--brand-soft); border: 1px solid rgba(75, 40, 109, 0.18);
     50%      { box-shadow: 0 0 0 7px rgba(43, 128, 0, 0); }
   }
 }
+
+/* ---------- Ambient shape + logo motion layer (js/bg-fx.js) ---------- */
+.amz-fx {
+  position: fixed; inset: 0; z-index: 3;
+  pointer-events: none; overflow: hidden;
+}
+.afx {
+  position: absolute; display: block; opacity: 0.13;
+  will-change: transform;
+  animation-name: afx-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes afx-drift {
+  from { transform: translate3d(0, -20px, 0) rotate(-9deg); }
+  to   { transform: translate3d(18px, 26px, 0) rotate(11deg); }
+}
+
+/* shapes */
+.amz-fx .dot {
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, rgba(108,63,168,0.85), rgba(108,63,168,0.15));
+}
+.amz-fx .ring {
+  border-radius: 50%;
+  border: 3px solid rgba(75,40,109,0.55);
+  background: transparent;
+}
+.amz-fx .tri {
+  background: linear-gradient(135deg, rgba(43,128,0,0.55), rgba(43,128,0,0.15));
+  clip-path: polygon(50% 4%, 96% 94%, 4% 94%);
+}
+.amz-fx .sq {
+  border-radius: 8px;
+  border: 3px solid rgba(108,63,168,0.45);
+  transform-origin: center;
+}
+.amz-fx .plus {
+  background:
+    linear-gradient(rgba(43,128,0,0.5), rgba(43,128,0,0.5)) center/100% 28% no-repeat,
+    linear-gradient(rgba(43,128,0,0.5), rgba(43,128,0,0.5)) center/28% 100% no-repeat;
+  border-radius: 6px;
+}
+.amz-fx .blob {
+  opacity: 0.10; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(108,63,168,0.55), rgba(108,63,168,0.06) 65%, transparent);
+}
+
+/* giant slow-spinning logo watermarks */
+.amz-fx .amz-mark {
+  opacity: 0.055;
+  width: min(52vmin, 560px); height: auto;
+  right: -7vmin; bottom: -9vmin; left: auto;
+  animation-name: afx-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.amz-fx .amz-mark.two {
+  width: min(36vmin, 400px);
+  left: -10vmin; top: -12vmin; right: auto; bottom: auto;
+  opacity: 0.04;
+}
+@keyframes afx-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .amz-fx .afx:nth-child(2n) { display: none; } /* thin out on phones */
+  .amz-fx .amz-mark { width: 70vmin; }
+}

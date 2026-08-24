@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -79,7 +79,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "What is the best Amazon affiliate link format?", "acceptedAnswer": { "@type": "Answer", "text": "A clean tag-based URL built directly from the product's Amazon page — for example /dp/ASIN with ?tag=your-account-20 (US) or your-21 (UK). No cloaking, no redirect service: Amazon reads the tag on the standard URL and credits the referral. Test the link before publishing to confirm the tag survived copy-paste." } },
+      { "@type": "Question", "name": "What is the best Amazon affiliate link format?", "acceptedAnswer": { "@type": "Answer", "text": "A clean tag-based URL built directly from the product's Amazon page â€” for example /dp/ASIN with ?tag=your-account-20 (US) or your-21 (UK). No cloaking, no redirect service: Amazon reads the tag on the standard URL and credits the referral. Test the link before publishing to confirm the tag survived copy-paste." } },
       { "@type": "Question", "name": "Do I need to cloak Amazon links?", "acceptedAnswer": { "@type": "Answer", "text": "No. Amazon's operating agreement explicitly prohibits cloaking and link-shortening services like Bitly for Associates links. You must use direct tag-based links or the official SiteStripe format. If you want a prettier link, build a product page on your own site and link that page with your tag, not a redirect." } },
       { "@type": "Question", "name": "How do I add a tracking ID to an Amazon link?", "acceptedAnswer": { "@type": "Answer", "text": "Take the product URL, replace the 'ref=' parameters with '?tag=YOURTRACKINGID-20' (US) or '-21' (UK), and drop everything before '/dp/ASIN'. The tag must be your exact Associates tracking ID. The AmzLoss Link Tools generate this correctly per marketplace so you never mistype it." } }
     ]
@@ -87,11 +87,11 @@
   </script>
   </head>
 <body>
-<div class="launch-bar">🎉 The full tool is <strong>free forever</strong> — rate table, calculators, full audit and export. Paid plans are optional extras (ad-free, priority help). <a href="../pricing.html">Learn more</a></div>
+<div class="launch-bar">ðŸŽ‰ The full tool is <strong>free forever</strong> â€” rate table, calculators, full audit and export. Paid plans are optional extras (ad-free, priority help). <a href="../pricing.html">Learn more</a></div>
 <header class="site-header"><div class="container nav">
   <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
   <nav class="nav-links" aria-label="Main navigation">      <div class="nav-item">
-    <button class="nav-toggle" aria-haspopup="true">Amazon Tools<span class="chev">▾</span></button>
+    <button class="nav-toggle" aria-haspopup="true">Amazon Tools<span class="chev">â–¾</span></button>
     <div class="dropdown">
       <a href="../calculator.html">Commission Calculator</a>
       <a href="../breakeven.html">Break-Even Calculator</a>
@@ -100,7 +100,7 @@
     </div>
   </div>
   <div class="nav-item">
-    <button class="nav-toggle" aria-haspopup="true">More Tools<span class="chev">▾</span></button>
+    <button class="nav-toggle" aria-haspopup="true">More Tools<span class="chev">â–¾</span></button>
     <div class="dropdown">
       <a href="../networks.html">Network Calculator</a>
       <a href="../link-tools.html">Link Tools</a>
@@ -113,49 +113,49 @@
   <a href="../faq.html">FAQ</a>
   <a href="../about.html">About</a></nav>
   <div class="nav-cta"><a class="btn btn-primary" href="../audit.html">Audit my report</a></div>
-    <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+    <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">ðŸŒ™</button>
 </div></header>
 
 <section class="section"><div class="container page-narrow">
-  <p style="color:var(--muted);font-size:0.9rem;">Aug 17, 2026 · 7 min read</p>
+  <p style="color:var(--muted);font-size:0.9rem;">Aug 17, 2026 Â· 7 min read</p>
   <h1>Amazon Affiliate Link Tools: Format, Track, Test</h1>
 
-  <div class="tools-bar"><span class="tools-bar-icon">🔗</span><span class="tools-bar-label">Free tool:</span><a href="../link-tools.html">Link Tools</a> — build clean affiliate links and check backlinks.</div>
+  <div class="tools-bar"><span class="tools-bar-icon">ðŸ”—</span><span class="tools-bar-label">Free tool:</span><a href="../link-tools.html">Link Tools</a> â€” build clean affiliate links and check backlinks.</div>
 
-  <p>Most lost Amazon affiliate commission doesn't disappear in the payout — it's lost at the link. A copied URL that keeps Amazon's internal <code>ref=</code> parameters instead of your <code>tag=</code>, a shortened link that violates the operating agreement, or a tag typed wrong once in a CMS and pasted a hundred times. Every one of those links earns Amazon the sale and you nothing. This guide covers the correct format, how to test a link before publishing, and the free tools that build and check your links for you.</p>
+  <p>Most lost Amazon affiliate commission doesn't disappear in the payout â€” it's lost at the link. A copied URL that keeps Amazon's internal <code>ref=</code> parameters instead of your <code>tag=</code>, a shortened link that violates the operating agreement, or a tag typed wrong once in a CMS and pasted a hundred times. Every one of those links earns Amazon the sale and you nothing. This guide covers the correct format, how to test a link before publishing, and the free tools that build and check your links for you.</p>
 
   <h2>The format that actually works</h2>
   <p>A working Associates link has three parts: the domain, the product path, and your tracking ID. The cleanest version looks like this:</p>
   <p><code>https://www.amazon.com/dp/B0EXAMPLE123?tag=yourstore-20</code></p>
-  <p>Two things matter here. First, keep <code>/dp/ASIN</code> — the stable product path — and drop everything after it except your tag. Amazon appends <code>ref=</code> junk to every URL it shows you; if you paste the URL straight from the address bar, your tag will be buried behind those parameters and often won't register. Second, the tag suffix is marketplace-specific: <code>-20</code> for the US, <code>-21</code> for the UK, and different suffixes for other stores. Reuse a US tag on a UK link and Amazon has no idea who referred the sale. The <a href="../link-tools.html">Link Tools</a> build this correctly per marketplace so you never have to remember the suffix.</p>
+  <p>Two things matter here. First, keep <code>/dp/ASIN</code> â€” the stable product path â€” and drop everything after it except your tag. Amazon appends <code>ref=</code> junk to every URL it shows you; if you paste the URL straight from the address bar, your tag will be buried behind those parameters and often won't register. Second, the tag suffix is marketplace-specific: <code>-20</code> for the US, <code>-21</code> for the UK, and different suffixes for other stores. Reuse a US tag on a UK link and Amazon has no idea who referred the sale. The <a href="../link-tools.html">Link Tools</a> build this correctly per marketplace so you never have to remember the suffix.</p>
 
   <h2>Spot the bad links before they cost you</h2>
   <p>Run a quick audit of your existing posts before you write another one. Look for these failure patterns:</p>
   <ul>
-    <li><strong>No tag at all</strong> — the most common and the most expensive; every such link is a free referral to Amazon.</li>
-    <li><strong>Extra <code>ref=</code> parameters</strong> — they usually mean the tag was pasted mid-URL where it gets ignored.</li>
-    <li><strong>Tag present but wrong</strong> — a typo, or a different account's tag that credits someone else (or nobody).</li>
-    <li><strong>Bitly or other shortened links</strong> — banned by the operating agreement; Amazon may claw back earnings or close the account.</li>
-    <li><strong>Links to a redirect or offer page</strong> instead of the <code>/dp/ASIN</code> product page — these often slip through.</li>
+    <li><strong>No tag at all</strong> â€” the most common and the most expensive; every such link is a free referral to Amazon.</li>
+    <li><strong>Extra <code>ref=</code> parameters</strong> â€” they usually mean the tag was pasted mid-URL where it gets ignored.</li>
+    <li><strong>Tag present but wrong</strong> â€” a typo, or a different account's tag that credits someone else (or nobody).</li>
+    <li><strong>Bitly or other shortened links</strong> â€” banned by the operating agreement; Amazon may claw back earnings or close the account.</li>
+    <li><strong>Links to a redirect or offer page</strong> instead of the <code>/dp/ASIN</code> product page â€” these often slip through.</li>
   </ul>
   <p>The <a href="../link-tools.html">Link Tools</a> validate the tag against your account and flag each of these patterns, so you can fix a hundred links in a few minutes instead of clicking through them one by one.</p>
 
   <h2>Testing a link before you publish</h2>
-  <p>A link can look perfect and still fail. The reliable test is to open it in a private window and check for your tag in the final URL bar before Amazon's redirects settle — if your tag survives, the link is sound. For an extra check, click the link and then visit Associates Central: a qualifying click from a tagged link appears in your traffic report within a couple of hours. If the click doesn't show up, the link was broken before it ever went live. Make that one-click check a habit before hitting publish, and it will catch the vast majority of silent failures.</p>
+  <p>A link can look perfect and still fail. The reliable test is to open it in a private window and check for your tag in the final URL bar before Amazon's redirects settle â€” if your tag survives, the link is sound. For an extra check, click the link and then visit Associates Central: a qualifying click from a tagged link appears in your traffic report within a couple of hours. If the click doesn't show up, the link was broken before it ever went live. Make that one-click check a habit before hitting publish, and it will catch the vast majority of silent failures.</p>
 
   <h2>Clean links and SEO: the nofollow question</h2>
-  <p>While you're fixing links, decide once what your link attributes look like. Amazon affiliate links are outbound to a third party, so most sites mark them <code>rel="nofollow"</code> (or <code>rel="sponsored"</code>) to stay safe — this is covered in full detail in our <a href="../blogs/amazon-links-nofollow-guide.html">nofollow and sponsored guide</a>. Whatever you choose, apply it consistently, and keep the <code>target="_blank"</code> and <code>rel</code> attributes straight in your CMS so you're not editing hundreds of posts later.</p>
+  <p>While you're fixing links, decide once what your link attributes look like. Amazon affiliate links are outbound to a third party, so most sites mark them <code>rel="nofollow"</code> (or <code>rel="sponsored"</code>) to stay safe â€” this is covered in full detail in our <a href="../blogs/amazon-links-nofollow-guide.html">nofollow and sponsored guide</a>. Whatever you choose, apply it consistently, and keep the <code>target="_blank"</code> and <code>rel</code> attributes straight in your CMS so you're not editing hundreds of posts later.</p>
 
   <h2>Frequently asked questions</h2>
   <div class="faq" style="max-width:none;">
-    <details><summary>What is the best Amazon affiliate link format?</summary><p>A clean tag-based URL built directly from the product's Amazon page — for example /dp/ASIN with ?tag=your-account-20 (US) or your-21 (UK). No cloaking, no redirect service: Amazon reads the tag on the standard URL and credits the referral. Test the link before publishing to confirm the tag survived copy-paste.</p></details>
+    <details><summary>What is the best Amazon affiliate link format?</summary><p>A clean tag-based URL built directly from the product's Amazon page â€” for example /dp/ASIN with ?tag=your-account-20 (US) or your-21 (UK). No cloaking, no redirect service: Amazon reads the tag on the standard URL and credits the referral. Test the link before publishing to confirm the tag survived copy-paste.</p></details>
     <details><summary>Do I need to cloak Amazon links?</summary><p>No. Amazon's operating agreement explicitly prohibits cloaking and link-shortening services like Bitly for Associates links. You must use direct tag-based links or the official SiteStripe format. If you want a prettier link, build a product page on your own site and link that page with your tag, not a redirect.</p></details>
     <details><summary>How do I add a tracking ID to an Amazon link?</summary><p>Take the product URL, replace the 'ref=' parameters with '?tag=YOURTRACKINGID-20' (US) or '-21' (UK), and drop everything before '/dp/ASIN'. The tag must be your exact Associates tracking ID. The AmzLoss Link Tools generate this correctly per marketplace so you never mistype it.</p></details>
   </div>
 
   <div class="cta-band" style="padding:30px;"><h2 style="font-size:1.4rem;">Build and check your links in seconds</h2><a class="btn btn-primary" href="../link-tools.html" style="background:#fff;color:var(--brand);background-image:none;">Open the Link Tools</a></div>
 </div></section>
-<div class="cta-band" style="padding:20px;margin-top:24px;"><p style="margin:0;font-size:0.95rem;">Helped you understand your numbers? <a href="https://www.trustpilot.com/review/amzloss.com" target="_blank" rel="noopener">Leave a review on Trustpilot</a> — it helps other affiliates find an honest check on their payouts.</p></div>
+<div class="cta-band" style="padding:20px;margin-top:24px;"><p style="margin:0;font-size:0.95rem;">Helped you understand your numbers? <a href="https://www.trustpilot.com/review/amzloss.com" target="_blank" rel="noopener">Leave a review on Trustpilot</a> â€” it helps other affiliates find an honest check on their payouts.</p></div>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -189,7 +189,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 AmzLoss. All rights reserved.</span>
+      <span>Â© 2026 AmzLoss. All rights reserved.</span>
       <span>Contact: <a href="mailto:admin@amzloss.com">admin@amzloss.com</a></span>
       <span>Independent of Amazon or Amazon Associates.</span>
       <span>Listed on <a href="https://www.findgreatsites.com/" target="_blank" rel="noopener">FindGreatSites</a></span>
@@ -197,6 +197,7 @@
     <span><a href="../status.html">Status</a></span></div>
   </div>
 </footer>
-<script src="../js/nav.js"></script><script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
+<script src="../js/nav.js"></script>
+<script src="../js/bg-fx.js"></script><script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}</script>
 </body>
 </html>
