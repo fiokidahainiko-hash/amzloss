@@ -6,10 +6,9 @@
   "use strict";
 
   var PROXIES = [
-    "https://api.allorigins.win/raw?url=",
-    "https://corsproxy.io/?url=",
-    "https://api.codetabs.com/v1/proxy?quest=",
-    "https://thingproxy.freeboard.io/fetch/"
+    { prefix: "https://r.jina.ai/", encode: false },
+    { prefix: "https://api.allorigins.win/raw?url=", encode: true },
+    { prefix: "https://api.codetabs.com/v1/proxy?quest=", encode: true }
   ];
 
   function checkPage(pageUrl, keyword, cb) {
@@ -20,7 +19,7 @@
         return;
       }
       var proxy = PROXIES[i++];
-      fetch(proxy + encodeURIComponent(pageUrl))
+      fetch(proxy.prefix + (proxy.encode ? encodeURIComponent(pageUrl) : pageUrl))
         .then(function (r) {
           if (!r.ok) throw new Error("HTTP " + r.status);
           return r.text();
@@ -56,29 +55,31 @@
   }
 
   function countBacklinks(domains, apiKey, cb) {
-    var headers = { "Content-Type": "application/json" };
-    if (apiKey) headers["Authorization"] = "Bearer " + apiKey;
+    if (!apiKey) {
+      cb({ ok: false, error: "no_key" });
+      return;
+    }
+    var headers = { "Content-Type": "application/json", "Authorization": "Bearer " + apiKey };
     fetch(OPR_API, {
       method: "POST",
       headers: headers,
-      body: JSON.stringify({ domains: domains })
+      body: JSON.stringify({ domains: domains, include_history: false })
     })
       .then(function (r) {
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
       })
       .then(function (data) {
-        var list = data && data.response ? data.response : [];
+        var list = data && data.results ? data.results : [];
         if (!list.length) throw new Error("empty");
         var result = domains.map(function (d) {
           var res = list.find(function (x) { return (x.domain || "").toLowerCase() === d; });
-          if (!res) return { domain: d, opr: null, rank: null, referringDomains: null, backlinks: null };
+          if (!res) return { domain: d, opr: null, rank: null, referringDomains: null };
           return {
             domain: res.domain || d,
-            opr: typeof res.opr === "number" ? res.opr : null,
+            opr: typeof res.open_page_rank === "number" ? res.open_page_rank : null,
             rank: typeof res.rank === "number" ? res.rank : null,
-            referringDomains: res.referring_domains != null ? res.referring_domains : null,
-            backlinks: res.backlinks != null ? res.backlinks : null
+            referringDomains: res.referring_domains != null ? res.referring_domains : null
           };
         });
         cb({ ok: true, results: result });
@@ -120,7 +121,7 @@
       }
 
       function isMissing(r) {
-        return r.backlinks == null && r.referringDomains == null && r.rank == null && r.opr == null;
+        return r.referringDomains == null && r.rank == null && r.opr == null;
       }
 
       countBtn.addEventListener("click", function () {
@@ -134,6 +135,13 @@
         }
         domains = domains.slice(0, 20);
         var apiKey = localStorage.getItem("opr_key") || null;
+        if (!apiKey) {
+          setStatus("bad", "A free API key is required");
+          detailEl.textContent = "OpenPageRank now requires a free key for every lookup. Get one in seconds at openpagerank.keywordseverywhere.com (Dashboard → API key — free tier is 30,000 lookups/month), paste it below and hit Save, then count again.";
+          metricsEl.style.display = "none";
+          tableEl.style.display = "none";
+          return;
+        }
         setStatus("neutral", "Counting backlinks for " + domains.length + " domain" + (domains.length === 1 ? "" : "s") + " …");
         detailEl.textContent = "";
         metricsEl.style.display = "none";
@@ -145,8 +153,10 @@
           if (!res.ok) {
             setStatus("bad", "Could not fetch backlink data");
             detailEl.textContent = res.error === "HTTP 401" || res.error === "HTTP 403"
-              ? "A free API key is required to look up backlink counts — the shared demo key is no longer accepted. Get a free key at domcop.com/openpagerank (30,000 lookups/month) and save it in the field below, then try again."
-              : "The Open PageRank service could not be reached (HTTP/network error). Try again in a minute, or add a free API key below for a more reliable connection.";
+              ? "Your API key was rejected. Double-check it in the field below (it should start with opr_live_) or create a fresh free key at openpagerank.keywordseverywhere.com."
+              : res.error === "HTTP 429"
+              ? "Rate or monthly limit reached on your OpenPageRank key. Wait a minute or check your usage on their dashboard."
+              : "The Open PageRank service could not be reached (network error). Try again in a minute.";
             return;
           }
 
@@ -154,9 +164,7 @@
           if (single) {
             setStatus("good", "✓ Backlink data loaded");
             var r = res.results[0];
-            if (r.backlinks != null) rdEl.textContent = formatCount(r.backlinks);
-            else if (r.referringDomains != null) rdEl.textContent = formatCount(r.referringDomains);
-            else rdEl.textContent = "—";
+            rdEl.textContent = r.referringDomains != null ? formatCount(r.referringDomains) : "—";
             rankEl.textContent = r.rank != null ? formatCount(r.rank) : "—";
             scoreEl.textContent = r.opr != null ? r.opr : "—";
             metricsEl.style.display = "grid";
@@ -164,30 +172,29 @@
               detailEl.textContent = r.domain + " is not (yet) in the Open PageRank index — it has zero or very few backlinks.";
             } else {
               var parts = [];
-              if (r.backlinks != null) parts.push(r.backlinks.toLocaleString() + " total backlinks");
               if (r.referringDomains != null) parts.push(r.referringDomains.toLocaleString() + " referring domains");
-              detailEl.textContent = r.domain + " has " + parts.join(" and ") + " pointing at it according to the Open PageRank index.";
+              if (r.rank != null) parts.push("global rank #" + r.rank.toLocaleString());
+              detailEl.textContent = r.domain + " has " + parts.join(" and ") + " according to the Open PageRank index.";
             }
             return;
           }
 
           var ranked = res.results.slice().sort(function (a, b) {
-            var ab = a.backlinks != null ? a.backlinks : -1;
-            var bb = b.backlinks != null ? b.backlinks : -1;
+            var ab = a.referringDomains != null ? a.referringDomains : -1;
+            var bb = b.referringDomains != null ? b.referringDomains : -1;
             return bb - ab;
           });
           var rows = ranked.map(function (r) {
-            var cnt = r.backlinks != null ? r.backlinks : (r.referringDomains != null ? r.referringDomains : null);
-            var count = cnt != null ? cnt.toLocaleString() : "—";
+            var cnt = r.referringDomains != null ? r.referringDomains.toLocaleString() : "—";
             var rank = r.rank != null ? r.rank.toLocaleString() : "—";
             var opr = r.opr != null ? r.opr : "—";
-            return "<tr><td style=\"text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);\">" + r.domain + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + count + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + rank + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + opr + "</td></tr>";
+            return "<tr><td style=\"text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);\">" + r.domain + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + cnt + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + rank + "</td><td style=\"text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);\">" + opr + "</td></tr>";
           }).join("");
           tableBodyEl.innerHTML = rows;
           setStatus("good", "✓ Backlink data loaded for " + res.results.length + " domains");
           tableEl.style.display = "block";
           metricsEl.style.display = "none";
-          detailEl.textContent = "Sorted by backlinks, most to fewest. A \"—\" means the domain isn't in the Open PageRank index yet.";
+          detailEl.textContent = "Sorted by referring domains, most to fewest. A \"—\" means the domain isn't in the Open PageRank index yet.";
         });
       });
     }

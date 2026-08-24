@@ -188,7 +188,7 @@
           <textarea id="bl_domain" rows="4" placeholder="example.com&#10;amzloss.com&#10;competitor.com" spellcheck="false"></textarea>
         </div>
         <button class="btn btn-primary btn-lg" id="bl_check" style="width:100%;">🌐 Count backlinks</button>
-        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Data comes from the Open PageRank index, built from the open Common Crawl web graph — the same style of index used by paid SEO tools. Free tier: thousands of lookups per month. Your API key (optional) is stored only in your browser.</p>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px;">Data comes from the Open PageRank index, built from the open Common Crawl web graph — the same style of index used by paid SEO tools. Free tier: 30,000 lookups/month with a free API key (add yours below). Your key is stored only in your browser.</p>
       </div>
 
       <div class="result-panel">
@@ -196,7 +196,7 @@
         <div id="bl_status" class="verdict-banner neutral">Enter one or more domains to count their backlinks.</div>
         <div id="bl_metrics" style="display:none;margin-top:16px;">
           <div class="stat-grid cols-3">
-            <div class="stat-tile"><div class="label">Backlinks</div><div class="value" id="bl_rd">—</div><div class="sub">links pointing at the domain</div></div>
+            <div class="stat-tile"><div class="label">Linking domains</div><div class="value" id="bl_rd">—</div><div class="sub">domains pointing at the site</div></div>
             <div class="stat-tile"><div class="label">Global rank</div><div class="value" id="bl_rank">—</div><div class="sub">lower is better (1 = most linked)</div></div>
             <div class="stat-tile"><div class="label">Authority score</div><div class="value" id="bl_score">—</div><div class="sub">Open PageRank 0–10</div></div>
           </div>
@@ -216,12 +216,12 @@
         </div>
         <div id="bl_detail" style="color:var(--ink-soft);font-size:0.92rem;margin-top:14px;word-break:break-word;"></div>
         <details style="margin-top:16px;font-size:0.85rem;">
-          <summary style="cursor:pointer;color:var(--brand);font-weight:600;">Optional: add a free API key for higher limits</summary>
+          <summary style="cursor:pointer;color:var(--brand);font-weight:600;">Required: add your free Open PageRank API key</summary>
           <div class="in-key-row" style="margin-top:10px;">
             <input type="text" id="bl_key" placeholder="opr_live_xxxx" spellcheck="false" aria-label="OpenPageRank API key">
             <button class="btn btn-ghost btn-sm" id="bl_key_save" type="button">Save</button>
           </div>
-          <p style="color:var(--muted);font-size:0.8rem;margin:8px 0 0;">Get a free key at <a href="https://www.domcop.com/openpagerank/" target="_blank" rel="noopener">domcop.com/openpagerank</a> (30,000 domain lookups/month free). Without a key the tool uses the public demo key, which has low limits.</p>
+          <p style="color:var(--muted);font-size:0.8rem;margin:8px 0 0;">Create a free key at <a href="https://openpagerank.keywordseverywhere.com" target="_blank" rel="noopener">openpagerank.keywordseverywhere.com</a> (sign in → Dashboard → copy key; free tier is 30,000 domain lookups/month). The key is stored only in your browser and sent only to the Open PageRank API.</p>
         </details>
       </div>
     </div>
