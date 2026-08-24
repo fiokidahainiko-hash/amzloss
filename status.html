@@ -90,7 +90,16 @@
  <div style="flex:1;"><strong>Website</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">Checking</div></div>
  </div>
  </div>
- <p style="color:var(--muted);font-size:0.85rem;margin-top:22px;text-align:center;">Last full check: <span id="lastCheck">—</span>  Auto-refreshes every 60 seconds.</p>
+ <p style="color:var(--muted);font-size:0.85rem;margin-top:22px;text-align:center;">Last check: <span id="lastCheck">—</span>  Auto-refreshes every 60 seconds.</p>
+<div id="overallBanner" class="verdict-banner neutral" style="margin-top:18px;text-align:center;font-weight:700;">Checking systems…</div>
+
+<h2 style="font-size:1.15rem;margin:34px 0 6px;">Automation pipelines</h2>
+<p style="color:var(--muted);font-size:0.85rem;margin-bottom:14px;">Live from GitHub Actions — the bots that publish the daily blog, rotate social posts, audit backlinks and deploy the site.</p>
+<div id="pipeList" style="display:flex;flex-direction:column;gap:14px;">
+<div class="card" style="padding:18px 22px;display:flex;align-items:center;gap:14px;"><span class="dot" style="width:12px;height:12px;border-radius:50%;background:#9ca3af;flex:0 0 auto;"></span>
+<div style="flex:1;"><strong>Loading pipelines…</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">Fetching from GitHub</div></div>
+</div>
+</div>
  </div>
 </section>
 
@@ -133,55 +142,144 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
  var services = [
- { name: 'Website', url: 'https://amzloss.com/' },
- { name: 'Earnings Audit', url: 'https://amzloss.com/audit.html' },
- { name: 'Commission Calculator', url: 'https://amzloss.com/calculator.html' },
- { name: 'Current Rate Table', url: 'https://amzloss.com/rates.html' },
- { name: 'Blog', url: 'https://amzloss.com/blogs.html' }
+  { name: 'Website', url: 'https://amzloss.com/' },
+  { name: 'Earnings Audit', url: 'https://amzloss.com/audit.html' },
+  { name: 'Commission Calculator', url: 'https://amzloss.com/calculator.html' },
+  { name: 'Break-Even Calculator', url: 'https://amzloss.com/breakeven.html' },
+  { name: 'Current Rate Table', url: 'https://amzloss.com/rates.html' },
+  { name: 'URL Submitter', url: 'https://amzloss.com/submit.html' },
+  { name: 'Blog', url: 'https://amzloss.com/blogs.html' }
  ];
  var list = document.getElementById('statusList');
  var lastCheck = document.getElementById('lastCheck');
+ var banner = document.getElementById('overallBanner');
 
- function cardFor(name) {
- var card = document.createElement('div');
- card.className = 'card';
- card.style.cssText = 'padding:18px 22px;display:flex;align-items:center;gap:14px;';
- card.innerHTML = '<span class="dot" style="width:12px;height:12px;border-radius:50%;background:#9ca3af;flex:0 0 auto;"></span>' +
- '<div style="flex:1;"><strong></strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">Checking</div></div>';
- card.querySelector('strong').textContent = name;
- return card;
+ function cardHTML(name) {
+  return '<span class="dot" style="width:12px;height:12px;border-radius:50%;background:#9ca3af;flex:0 0 auto;"></span>' +
+   '<div style="flex:1;"><strong>' + name + '</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">Checking</div></div>';
  }
 
+ function setDot(el, color) { el.style.background = color; }
+ function ago(t) {
+  var s = Math.max(1, Math.round((Date.now() - t) / 1000));
+  if (s < 90) return s + 's ago';
+  var m = Math.round(s / 60); if (m < 90) return m + ' min ago';
+  var h = Math.round(m / 60); if (h < 36) return h + ' hr ago';
+  return Math.round(h / 24) + ' days ago';
+ }
+ function watTime(t) {
+  try {
+   return new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Lagos', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(t)) + ' WAT';
+  } catch (e) { return new Date(t).toLocaleString(); }
+ }
+
+ /* ---------- tool checks (same-origin on the live site) ---------- */
  services.forEach(function (s) {
- var card = cardFor(s.name);
- list.appendChild(card);
+  var card = document.createElement('div');
+  card.className = 'card';
+  card.style.cssText = 'padding:18px 22px;display:flex;align-items:center;gap:14px;';
+  card.innerHTML = cardHTML(s.name);
+  list.appendChild(card);
  });
 
- async function check() {
- var cards = list.querySelectorAll('.card');
- await Promise.all(services.map(async function (s, i) {
- var card = cards[i];
- var dot = card.querySelector('.dot');
- var meta = card.querySelector('.meta');
- try {
- var res = await fetch(s.url, { method: 'GET', cache: 'no-store' });
- if (res.ok) {
- dot.style.background = '#22c55e';
- meta.textContent = 'Operational  HTTP ' + res.status;
- } else {
- dot.style.background = '#ef4444';
- meta.textContent = 'Issues  HTTP ' + res.status;
- }
- } catch (e) {
- dot.style.background = '#f59e0b';
- meta.textContent = 'Unreachable from your browser';
- }
- }));
- lastCheck.textContent = new Date().toLocaleString();
+ async function checkTools() {
+  var cards = list.querySelectorAll('.card');
+  await Promise.all(services.map(async function (s, i) {
+   var card = cards[i];
+   var dot = card.querySelector('.dot');
+   var meta = card.querySelector('.meta');
+   var t0 = performance.now();
+   try {
+    var res = await fetch(s.url, { cache: 'no-store' });
+    var ms = Math.max(1, Math.round(performance.now() - t0));
+    if (res.ok) {
+     setDot(dot, '#22c55e');
+     meta.textContent = 'Operational  ·  HTTP ' + res.status + '  ·  ' + ms + ' ms';
+    } else {
+     setDot(dot, '#ef4444');
+     meta.textContent = 'Issues  ·  HTTP ' + res.status;
+    }
+   } catch (e) {
+    setDot(dot, '#f59e0b');
+    meta.textContent = 'Unreachable from your browser';
+   }
+  }));
  }
 
- check();
- setInterval(check, 60000);
+ /* ---------- automation pipelines via public GitHub API ---------- */
+ var REPO_API = 'https://api.github.com/repos/fiokidahainiko-hash/amzloss/actions/runs?per_page=60';
+ var PIPES = [
+  { key: 'Daily blog',      match: 'daily-blog.yml',      desc: 'Publishes the daily article' },
+  { key: 'Social posts',    match: 'tool-posts.yml',      desc: 'Rotates tool posts to Telegram/X/Mastodon' },
+  { key: 'Site check',      match: 'site-check.yml',      desc: 'Nightly health & link check' },
+  { key: 'Backlink audit',  match: 'backlink-audit.yml',  desc: 'Weekly backlink verification' },
+  { key: 'Deploy (Pages)',  match: 'pages.yml',           desc: 'Builds and publishes the site' }
+ ];
+
+ async function checkPipes() {
+  var wrap = document.getElementById('pipeList');
+  try {
+   var res = await fetch(REPO_API, { headers: { 'Accept': 'application/vnd.github+json' }, cache: 'no-store' });
+   if (!res.ok) throw new Error('HTTP ' + res.status);
+   var data = await res.json();
+   var runs = data.workflow_runs || [];
+   var html = '';
+   var allGood = true;
+   PIPES.forEach(function (p) {
+    var run = null;
+    for (var i = 0; i < runs.length; i++) {
+     if ((runs[i].path || '').indexOf(p.match) !== -1 && runs[i].status === 'completed') { run = runs[i]; break; }
+    }
+    var active = null;
+    for (var j = 0; j < runs.length; j++) {
+     if ((runs[j].path || '').indexOf(p.match) !== -1 && runs[j].status !== 'completed') { active = runs[j]; break; }
+    }
+    var dot, state, meta;
+    if (active) {
+     dot = '#3b82f6'; state = 'Running…';
+     meta = 'started ' + ago(new Date(active.run_started_at).getTime());
+    } else if (!run) {
+     dot = '#f59e0b'; state = 'No runs yet'; meta = p.desc;
+    } else if (run.conclusion === 'success') {
+     dot = '#22c55e'; state = 'Operational';
+     meta = p.desc + '  ·  last run ' + watTime(new Date(run.run_started_at).getTime()) + ' (' + ago(new Date(run.run_started_at).getTime()) + ')';
+    } else {
+     dot = '#ef4444'; state = run.conclusion === 'failure' ? 'Failed' : run.conclusion;
+     allGood = false;
+     meta = 'last run ' + watTime(new Date(run.run_started_at).getTime()) + ' (' + ago(new Date(run.run_started_at).getTime()) + ')';
+    }
+    html += '<div class="card" style="padding:18px 22px;display:flex;align-items:center;gap:14px;">' +
+     '<span class="dot" style="width:12px;height:12px;border-radius:50%;background:' + dot + ';flex:0 0 auto;"></span>' +
+     '<div style="flex:1;"><strong>' + p.key + '</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">' + state + ' — ' + meta + '</div></div>' +
+     '<a href="https://github.com/fiokidahainiko-hash/amzloss/actions/workflows/' + p.match + '" target="_blank" rel="noopener" style="white-space:nowrap;font-size:0.8rem;">History</a>' +
+     '</div>';
+   });
+   wrap.innerHTML = html;
+   var toolsOk = true;
+   var dots = list.querySelectorAll('.dot');
+   dots.forEach(function (d) { if (d.style.background === 'rgb(239, 68, 68)') toolsOk = false; });
+   if (allGood && toolsOk) {
+    banner.className = 'verdict-banner good';
+    banner.textContent = 'All systems operational';
+   } else {
+    banner.className = 'verdict-banner bad';
+    banner.textContent = toolsOk ? 'Automation issue detected — see pipelines below' : 'Service issue detected — see checks above';
+   }
+  } catch (e) {
+   wrap.innerHTML = '<div class="card" style="padding:18px 22px;display:flex;align-items:center;gap:14px;">' +
+    '<span class="dot" style="width:12px;height:12px;border-radius:50%;background:#f59e0b;flex:0 0 auto;"></span>' +
+    '<div style="flex:1;"><strong>Pipeline status unavailable</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">GitHub API rate-limited or unreachable. <a href="https://github.com/fiokidahainiko-hash/amzloss/actions" target="_blank" rel="noopener">View runs on GitHub</a></div></div></div>';
+  }
+ }
+
+ async function refresh() {
+  await checkTools();
+  lastCheck.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Lagos', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date()) + ' WAT';
+  await checkPipes();
+ }
+
+ refresh();
+ setInterval(refresh, 60000);
 });
 </script>
 <script src="js/nav.js"></script>
