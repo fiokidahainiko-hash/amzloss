@@ -630,7 +630,8 @@ const TIPS = {
 };
 
 function todayStr() {
-  return new Date().toISOString().slice(0, 10);
+  // Use site-owner timezone (WAT) so late-night UTC runs still count as the same day.
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Lagos" }).format(new Date());
 }
 
 function readState() {
