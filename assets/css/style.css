@@ -680,3 +680,78 @@ code { background: var(--brand-soft); border: 1px solid rgba(75, 40, 109, 0.18);
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- Motion backgrounds (beautification) ----------
+   All effects animate only transform / opacity / background-position,
+   are wrapped in prefers-reduced-motion: no-preference, and are purely
+   decorative (pointer-events: none, no layout shift). */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* 1) Hero: floating aurora orb behind the content */
+  .hero::after {
+    content: ""; position: absolute; pointer-events: none;
+    width: 62%; height: 130%; right: -18%; top: -40%;
+    background:
+      radial-gradient(closest-side at 32% 42%, rgba(108, 63, 168, 0.16), transparent),
+      radial-gradient(closest-side at 72% 62%, rgba(43, 128, 0, 0.10), transparent);
+    animation: amz-float 18s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes amz-float {
+    from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+    to   { transform: translate3d(-9%, 12%, 0) rotate(7deg) scale(1.09); }
+  }
+
+  /* 1b) Hero: slow diagonal pan of the existing grid pattern */
+  .hero::before {
+    animation: amz-grid-pan 46s linear infinite;
+  }
+  @keyframes amz-grid-pan {
+    to { background-position: 52px 52px, 52px 52px; }
+  }
+
+  /* 2) Launch bar: periodic light sheen sweeping across */
+  .launch-bar { overflow: hidden; }
+  .launch-bar::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.16) 47%, rgba(255,255,255,0.30) 51%, transparent 68%);
+    transform: translateX(-110%);
+    animation: amz-sheen 8s ease-in-out infinite;
+    will-change: transform;
+  }
+  @keyframes amz-sheen {
+    0%       { transform: translateX(-110%); }
+    55%,100% { transform: translateX(170%); }
+  }
+
+  /* 3) CTA band: slow breathing gradient */
+  .cta-band {
+    background-size: 220% 220%;
+    animation: amz-breathe 14s ease-in-out infinite alternate;
+  }
+  @keyframes amz-breathe {
+    from { background-position: 0% 0%; }
+    to   { background-position: 100% 100%; }
+  }
+
+  /* 4) Soft sections: whisper-quiet dot field drifting down-right.
+        Neutral tint works on both light and dark themes. */
+  .section.soft {
+    background-image: radial-gradient(rgba(130, 120, 145, 0.10) 1px, transparent 1.4px);
+    background-size: 26px 26px;
+    animation: amz-dots 70s linear infinite;
+  }
+  @keyframes amz-dots {
+    to { background-position: 52px 52px; }
+  }
+
+  /* 5) Buttons: soft glow pulse on primary CTAs (very low alpha) */
+  .btn-primary {
+    animation: amz-pulse 5.5s ease-in-out infinite;
+  }
+  @keyframes amz-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(43, 128, 0, 0.28); }
+    50%      { box-shadow: 0 0 0 7px rgba(43, 128, 0, 0); }
+  }
+}
