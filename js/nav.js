@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('amzloss_theme', theme);
-    if (themeBtn) themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (themeBtn) themeBtn.textContent = theme === 'dark' ? '☀' : '🌙';
   }
   function toggleTheme() {
     applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');

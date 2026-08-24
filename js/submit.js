@@ -4,50 +4,50 @@
 
   var PLATFORMS = [
     /* ---- Search Engines & Indexing ---- */
-    { id: "google", cat: "Search Engines", icon: "🔍", name: "Google Search Console", url: "https://search.google.com/search-console", type: "page", desc: "Add your site as a property and submit your sitemap — the #1 fastest way to get indexed by Google." },
-    { id: "bing", cat: "Search Engines", icon: "🔷", name: "Bing Webmaster Tools", url: "https://www.bing.com/webmasters", type: "page", desc: "Add and submit your site to Bing. It also powers ChatGPT search results." },
-    { id: "yandex", cat: "Search Engines", icon: "🇷🇺", name: "Yandex Webmaster", url: "https://webmaster.yandex.com/", type: "page", desc: "Submit to Yandex — one of the largest search engines outside Google." },
-    { id: "indexnow", cat: "Search Engines", icon: "⚡", name: "IndexNow", url: "https://www.indexnow.org/", type: "page", desc: "A one-protocol ping used by Bing, Yandex, Seznam, Naver and others for near-instant indexing." },
-    { id: "duckduckgo", cat: "Search Engines", icon: "🦆", name: "DuckDuckGo", url: "https://duckduckgo.com/webmaster", type: "page", desc: "Submit via the DuckDuckGo webmaster program for inclusion in its index." },
-    { id: "brave", cat: "Search Engines", icon: "🦁", name: "Brave Search", url: "https://search.brave.com/submit-url", type: "page", desc: "Paste your homepage URL — Brave typically crawls within 1–3 days. No account needed." },
+    { id: "google", cat: "Search Engines", icon: "", name: "Google Search Console", url: "https://search.google.com/search-console", type: "page", desc: "Add your site as a property and submit your sitemap — the #1 fastest way to get indexed by Google." },
+    { id: "bing", cat: "Search Engines", icon: "", name: "Bing Webmaster Tools", url: "https://www.bing.com/webmasters", type: "page", desc: "Add and submit your site to Bing. It also powers ChatGPT search results." },
+    { id: "yandex", cat: "Search Engines", icon: "", name: "Yandex Webmaster", url: "https://webmaster.yandex.com/", type: "page", desc: "Submit to Yandex — one of the largest search engines outside Google." },
+    { id: "indexnow", cat: "Search Engines", icon: "", name: "IndexNow", url: "https://www.indexnow.org/", type: "page", desc: "A one-protocol ping used by Bing, Yandex, Seznam, Naver and others for near-instant indexing." },
+    { id: "duckduckgo", cat: "Search Engines", icon: "", name: "DuckDuckGo", url: "https://duckduckgo.com/webmaster", type: "page", desc: "Submit via the DuckDuckGo webmaster program for inclusion in its index." },
+    { id: "brave", cat: "Search Engines", icon: "", name: "Brave Search", url: "https://search.brave.com/submit-url", type: "page", desc: "Paste your homepage URL — Brave typically crawls within 1–3 days. No account needed." },
 
     /* ---- Web Directories ---- */
-    { id: "chamber", cat: "Web Directories", icon: "🏛️", name: "Chamber of Commerce", url: "https://www.chamberofcommerce.com/", type: "page", desc: "Claim your business listing on one of the web's most trusted business directories." },
-    { id: "manta", cat: "Web Directories", icon: "📇", name: "Manta", url: "https://www.manta.com/", type: "page", desc: "One of the oldest free small-business directories — claim your listing from the homepage." },
-    { id: "cylex", cat: "Web Directories", icon: "🗂️", name: "Cylex", url: "https://www.cylex.de/", type: "page", desc: "International free business directory — strong in European markets." },
-    { id: "hotfrog", cat: "Web Directories", icon: "🐸", name: "Hotfrog", url: "https://www.hotfrog.com/", type: "page", desc: "Free directory with strong local search visibility." },
-    { id: "merchantcircle", cat: "Web Directories", icon: "⭕", name: "MerchantCircle", url: "https://www.merchantcircle.com/", type: "page", desc: "Free listing that often ranks for local queries." },
-    { id: "yelp", cat: "Web Directories", icon: "💛", name: "Yelp", url: "https://biz.yelp.com/", type: "page", desc: "Claim your business on Yelp — even service sites benefit from the citation." },
-    { id: "bingplaces", cat: "Web Directories", icon: "📌", name: "Bing Places", url: "https://www.bingplaces.com/", type: "page", desc: "Free Bing business listing that feeds into Microsoft's index." },
-    { id: "foursquare", cat: "Web Directories", icon: "📍", name: "Foursquare", url: "https://business.foursquare.com/", type: "page", desc: "Add a free business profile used by many map apps and data aggregators." },
+    { id: "chamber", cat: "Web Directories", icon: "", name: "Chamber of Commerce", url: "https://www.chamberofcommerce.com/", type: "page", desc: "Claim your business listing on one of the web's most trusted business directories." },
+    { id: "manta", cat: "Web Directories", icon: "", name: "Manta", url: "https://www.manta.com/", type: "page", desc: "One of the oldest free small-business directories — claim your listing from the homepage." },
+    { id: "cylex", cat: "Web Directories", icon: "", name: "Cylex", url: "https://www.cylex.de/", type: "page", desc: "International free business directory — strong in European markets." },
+    { id: "hotfrog", cat: "Web Directories", icon: "", name: "Hotfrog", url: "https://www.hotfrog.com/", type: "page", desc: "Free directory with strong local search visibility." },
+    { id: "merchantcircle", cat: "Web Directories", icon: "", name: "MerchantCircle", url: "https://www.merchantcircle.com/", type: "page", desc: "Free listing that often ranks for local queries." },
+    { id: "yelp", cat: "Web Directories", icon: "", name: "Yelp", url: "https://biz.yelp.com/", type: "page", desc: "Claim your business on Yelp — even service sites benefit from the citation." },
+    { id: "bingplaces", cat: "Web Directories", icon: "", name: "Bing Places", url: "https://www.bingplaces.com/", type: "page", desc: "Free Bing business listing that feeds into Microsoft's index." },
+    { id: "foursquare", cat: "Web Directories", icon: "", name: "Foursquare", url: "https://business.foursquare.com/", type: "page", desc: "Add a free business profile used by many map apps and data aggregators." },
 
     /* ---- Social Bookmarking & Sharing ---- */
-    { id: "reddit", cat: "Social & Bookmarking", icon: "🤖", name: "Reddit", url: "https://www.reddit.com/submit?url={url}", type: "direct", desc: "Pre-filled Reddit post — bookmarking is free backlinks and real traffic." },
-    { id: "pocket", cat: "Social & Bookmarking", icon: "🔖", name: "Pocket", url: "https://getpocket.com/save?url={url}", type: "direct", desc: "Save the page to Pocket — a save is a lightweight engagement signal." },
-    { id: "digg", cat: "Social & Bookmarking", icon: "⛏️", name: "Digg", url: "https://digg.com/submit?url={url}", type: "direct", desc: "Submit to Digg with your URL pre-filled." },
-    { id: "mix", cat: "Social & Bookmarking", icon: "🎨", name: "Mix", url: "https://mix.com/add?url={url}", type: "direct", desc: "The successor to StumbleUpon — a vote here sends real referrals." },
-    { id: "pinterest", cat: "Social & Bookmarking", icon: "📌", name: "Pinterest", url: "https://www.pinterest.com/pin/create/button/?url={url}", type: "direct", desc: "Create a pin from your page — perfect for visual content." },
-    { id: "facebook", cat: "Social & Bookmarking", icon: "📘", name: "Facebook", url: "https://www.facebook.com/sharer/sharer.php?u={url}", type: "direct", desc: "Share the page to Facebook with your URL pre-filled." },
+    { id: "reddit", cat: "Social & Bookmarking", icon: "", name: "Reddit", url: "https://www.reddit.com/submit?url={url}", type: "direct", desc: "Pre-filled Reddit post — bookmarking is free backlinks and real traffic." },
+    { id: "pocket", cat: "Social & Bookmarking", icon: "", name: "Pocket", url: "https://getpocket.com/save?url={url}", type: "direct", desc: "Save the page to Pocket — a save is a lightweight engagement signal." },
+    { id: "digg", cat: "Social & Bookmarking", icon: "", name: "Digg", url: "https://digg.com/submit?url={url}", type: "direct", desc: "Submit to Digg with your URL pre-filled." },
+    { id: "mix", cat: "Social & Bookmarking", icon: "", name: "Mix", url: "https://mix.com/add?url={url}", type: "direct", desc: "The successor to StumbleUpon — a vote here sends real referrals." },
+    { id: "pinterest", cat: "Social & Bookmarking", icon: "", name: "Pinterest", url: "https://www.pinterest.com/pin/create/button/?url={url}", type: "direct", desc: "Create a pin from your page — perfect for visual content." },
+    { id: "facebook", cat: "Social & Bookmarking", icon: "", name: "Facebook", url: "https://www.facebook.com/sharer/sharer.php?u={url}", type: "direct", desc: "Share the page to Facebook with your URL pre-filled." },
     { id: "x", cat: "Social & Bookmarking", icon: "𝕏", name: "X (Twitter)", url: "https://twitter.com/intent/tweet?url={url}", type: "direct", desc: "Post a tweet with your link — social signals + referral traffic." },
-    { id: "linkedin", cat: "Social & Bookmarking", icon: "💼", name: "LinkedIn", url: "https://www.linkedin.com/shareArticle?mini=true&url={url}", type: "direct", desc: "Share on LinkedIn — especially effective for B2B and portfolio pages." },
-    { id: "whatsapp", cat: "Social & Bookmarking", icon: "💬", name: "WhatsApp", url: "https://api.whatsapp.com/send?text={url}", type: "direct", desc: "Send your page to WhatsApp contacts and groups." },
-    { id: "telegram", cat: "Social & Bookmarking", icon: "✈️", name: "Telegram", url: "https://t.me/share/url?url={url}", type: "direct", desc: "Share instantly to Telegram channels and chats." },
-    { id: "tumblr", cat: "Social & Bookmarking", icon: "🟦", name: "Tumblr", url: "https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}", type: "direct", desc: "Reblog your page on Tumblr with the URL pre-filled." },
-    { id: "buffer", cat: "Social & Bookmarking", icon: "🎛️", name: "Buffer", url: "https://buffer.com/add?url={url}", type: "direct", desc: "Queue the link into your social posting schedule." },
+    { id: "linkedin", cat: "Social & Bookmarking", icon: "", name: "LinkedIn", url: "https://www.linkedin.com/shareArticle?mini=true&url={url}", type: "direct", desc: "Share on LinkedIn — especially effective for B2B and portfolio pages." },
+    { id: "whatsapp", cat: "Social & Bookmarking", icon: "", name: "WhatsApp", url: "https://api.whatsapp.com/send?text={url}", type: "direct", desc: "Send your page to WhatsApp contacts and groups." },
+    { id: "telegram", cat: "Social & Bookmarking", icon: "", name: "Telegram", url: "https://t.me/share/url?url={url}", type: "direct", desc: "Share instantly to Telegram channels and chats." },
+    { id: "tumblr", cat: "Social & Bookmarking", icon: "", name: "Tumblr", url: "https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}", type: "direct", desc: "Reblog your page on Tumblr with the URL pre-filled." },
+    { id: "buffer", cat: "Social & Bookmarking", icon: "", name: "Buffer", url: "https://buffer.com/add?url={url}", type: "direct", desc: "Queue the link into your social posting schedule." },
 
     /* ---- Ping Services ---- */
-    { id: "pingomatic", cat: "Ping Services", icon: "📡", name: "Ping-O-Matic", url: "https://pingomatic.com/", type: "page", desc: "The classic free pinger — tells dozens of aggregators your page changed." },
-    { id: "pingler", cat: "Ping Services", icon: "🛰️", name: "Pingler", url: "https://pingler.com/", type: "page", desc: "Free ping service that notifies search engines and directories." },
-    { id: "indexnow2", cat: "Ping Services", icon: "⚡", name: "IndexMyURL", url: "https://indexmyurl.com/", type: "page", desc: "Free backlink indexer that pushes crawl signals to Google, Bing and AI search." },
-    { id: "myping", cat: "Ping Services", icon: "📣", name: "MyPing", url: "https://mypingboard.com/", type: "page", desc: "Free bulk pinger covering major engines and feed readers." },
-    { id: "pingmyurl", cat: "Ping Services", icon: "🔔", name: "PingMyURL", url: "https://www.pingmyurl.com/", type: "page", desc: "Submit and ping your URL to multiple crawlers in one go." }
+    { id: "pingomatic", cat: "Ping Services", icon: "", name: "Ping-O-Matic", url: "https://pingomatic.com/", type: "page", desc: "The classic free pinger — tells dozens of aggregators your page changed." },
+    { id: "pingler", cat: "Ping Services", icon: "", name: "Pingler", url: "https://pingler.com/", type: "page", desc: "Free ping service that notifies search engines and directories." },
+    { id: "indexnow2", cat: "Ping Services", icon: "", name: "IndexMyURL", url: "https://indexmyurl.com/", type: "page", desc: "Free backlink indexer that pushes crawl signals to Google, Bing and AI search." },
+    { id: "myping", cat: "Ping Services", icon: "", name: "MyPing", url: "https://mypingboard.com/", type: "page", desc: "Free bulk pinger covering major engines and feed readers." },
+    { id: "pingmyurl", cat: "Ping Services", icon: "", name: "PingMyURL", url: "https://www.pingmyurl.com/", type: "page", desc: "Submit and ping your URL to multiple crawlers in one go." }
   ];
 
   var CATS = [
-    { id: "Search Engines", icon: "🔍", tag: "Get indexed" },
-    { id: "Web Directories", icon: "📇", tag: "Backlinks" },
-    { id: "Social & Bookmarking", icon: "📌", tag: "Traffic + links" },
-    { id: "Ping Services", icon: "📡", tag: "Speed up discovery" }
+    { id: "Search Engines", icon: "", tag: "Get indexed" },
+    { id: "Web Directories", icon: "", tag: "Backlinks" },
+    { id: "Social & Bookmarking", icon: "", tag: "Traffic + links" },
+    { id: "Ping Services", icon: "", tag: "Speed up discovery" }
   ];
 
   var $ = function (s) { return document.querySelector(s); };
@@ -103,7 +103,7 @@
     radialEl.style.setProperty("--pct", pct);
     fillEl.style.width = pct + "%";
     if (pct === 100) {
-      tipEl.textContent = "✅ All " + total + " platforms submitted! Check back in a few days — your site should start appearing in searches and picking up backlinks.";
+      tipEl.textContent = " All " + total + " platforms submitted! Check back in a few days — your site should start appearing in searches and picking up backlinks.";
       tipEl.style.color = "var(--accent)";
     } else if (done > 0) {
       tipEl.textContent = "Nice — " + done + " of " + total + " done. Every extra platform is another indexing signal and another backlink. Keep going!";
@@ -276,8 +276,8 @@
   var autoNote = $("#auto_note");
 
   var AUTO_TARGETS = [
-    { id: "pingomatic", label: "Ping-O-Matic", icon: "📡" },
-    { id: "indexnow", label: "IndexNow (Bing/Yandex/Seznam/Naver/Baidu)", icon: "🚀" }
+    { id: "pingomatic", label: "Ping-O-Matic", icon: "" },
+    { id: "indexnow", label: "IndexNow (Bing/Yandex/Seznam/Naver/Baidu)", icon: "" }
   ];
 
   var INDEXNOW_KEY_LS = "amzloss_indexnow_key";
@@ -337,7 +337,7 @@
       '<span class="auto-ico">' + icon + "</span>" +
       "<span class=\"auto-label\">" + label + "</span>" +
       '<span class="auto-status">' +
-      (status.skipped ? "skipped" : (status.ok ? "✓ pinged" : (status.error ? "✗ " + status.error : "✗ failed"))) +
+      (status.skipped ? "skipped" : (status.ok ? "✓ pinged" : (status.error ? " " + status.error : " failed"))) +
       (status.code ? " (HTTP " + status.code + ")" : "") +
       "</span>";
     return row;
@@ -356,13 +356,13 @@
     try { host = new URL(url).hostname; } catch (e) { return; }
     var path = "https://" + host + "/" + key + ".txt";
     verifyEl.style.display = "";
-    verifyEl.innerHTML = '<span class="in-verify-txt">Checking <code>' + path + "</code>…</span>";
+    verifyEl.innerHTML = '<span class="in-verify-txt">Checking <code>' + path + "</code></span>";
     fetch(path, { mode: "no-cors" })
       .then(function () {
         verifyEl.innerHTML = '<span class="in-verify-txt">✓ Key file looks reachable. Auto-submit will ping IndexNow.</span>';
       })
       .catch(function () {
-        verifyEl.innerHTML = '<span class="in-verify-txt">⚠ Could not verify the key file from the browser (CORS). The server will still check it. If IndexNow shows an error, make sure <code>' + path + "</code> returns your key as plain text.</span>";
+        verifyEl.innerHTML = '<span class="in-verify-txt"> Could not verify the key file from the browser (CORS). The server will still check it. If IndexNow shows an error, make sure <code>' + path + "</code> returns your key as plain text.</span>";
       });
   }
 
@@ -383,7 +383,7 @@
     if (!state.url) { state.url = url; urlInput.value = url; save(); }
 
     autoBtn.disabled = true;
-    autoBtn.textContent = "Pinging…";
+    autoBtn.textContent = "Pinging";
     autoResults.style.display = "";
     autoNote.style.display = "";
     autoResults.innerHTML = "";
@@ -393,7 +393,7 @@
       pending.id = "auto_" + t.id;
       pending.innerHTML = '<span class="auto-ico">' + t.icon + "</span>" +
         '<span class="auto-label">' + t.label + "</span>" +
-        '<span class="auto-status">…</span>';
+        '<span class="auto-status"></span>';
       autoResults.appendChild(pending);
     });
 
@@ -406,7 +406,7 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         autoBtn.disabled = false;
-        autoBtn.textContent = "⚡ Auto-submit URL";
+        autoBtn.textContent = " Auto-submit URL";
         if (!res || !res.ok) throw new Error((res && res.error) || "Server error");
         var anyOk = false;
         AUTO_TARGETS.forEach(function (t) {
@@ -426,11 +426,11 @@
       })
       .catch(function (err) {
         autoBtn.disabled = false;
-        autoBtn.textContent = "⚡ Auto-submit URL";
+        autoBtn.textContent = " Auto-submit URL";
         autoResults.innerHTML = "";
         var row = document.createElement("div");
         row.className = "auto-row fail";
-        row.innerHTML = '<span class="auto-ico">⚠️</span><span class="auto-label">Could not reach the ping service</span><span class="auto-status">' + err.message + "</span>";
+        row.innerHTML = '<span class="auto-ico"></span><span class="auto-label">Could not reach the ping service</span><span class="auto-status">' + err.message + "</span>";
         autoResults.appendChild(row);
       });
   }

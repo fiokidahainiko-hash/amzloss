@@ -142,7 +142,7 @@
           tableEl.style.display = "none";
           return;
         }
-        setStatus("neutral", "Counting backlinks for " + domains.length + " domain" + (domains.length === 1 ? "" : "s") + " …");
+        setStatus("neutral", "Counting backlinks for " + domains.length + " domain" + (domains.length === 1 ? "" : "s") + " ");
         detailEl.textContent = "";
         metricsEl.style.display = "none";
         tableEl.style.display = "none";
@@ -221,7 +221,7 @@
       }
       if (!/^https?:\/\//i.test(url)) url = "https://" + url;
 
-      setCheckStatus("neutral", "Checking " + url + " …");
+      setCheckStatus("neutral", "Checking " + url + " ");
       checkDetailEl.textContent = "";
       btn.disabled = true;
 
