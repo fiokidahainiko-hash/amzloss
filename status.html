@@ -208,12 +208,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
  /* ---------- automation pipelines via public GitHub API ---------- */
  var REPO_API = 'https://api.github.com/repos/fiokidahainiko-hash/amzloss/actions/runs?per_page=60';
+ var DETAIL = /[?&]detail=1/.test(location.search); // owner-only full view
  var PIPES = [
-  { key: 'Daily blog',      match: 'daily-blog.yml',      desc: 'Publishes the daily article' },
-  { key: 'Social posts',    match: 'tool-posts.yml',      desc: 'Rotates tool posts to Telegram/X/Mastodon' },
-  { key: 'Site check',      match: 'site-check.yml',      desc: 'Nightly health & link check' },
-  { key: 'Backlink audit',  match: 'backlink-audit.yml',  desc: 'Weekly backlink verification' },
-  { key: 'Deploy (Pages)',  match: 'pages.yml',           desc: 'Builds and publishes the site' }
+  { key: 'Daily article publishing', match: 'daily-blog.yml',     desc: 'New articles appear every morning' },
+  { key: 'Social media posting',     match: 'tool-posts.yml',     desc: 'Tool updates across social channels' },
+  { key: 'Nightly health checks',    match: 'site-check.yml',     desc: 'Automated overnight site verification' },
+  { key: 'Backlink monitoring',      match: 'backlink-audit.yml', desc: 'Weekly link verification' },
+  { key: 'Site deployment',          match: 'pages.yml',          desc: 'Latest version of the site' }
  ];
 
  async function checkPipes() {
@@ -226,49 +227,47 @@ document.addEventListener('DOMContentLoaded', function () {
    var html = '';
    var allGood = true;
    PIPES.forEach(function (p) {
-    var run = null;
+    var run = null, active = null;
     for (var i = 0; i < runs.length; i++) {
-     if ((runs[i].path || '').indexOf(p.match) !== -1 && runs[i].status === 'completed') { run = runs[i]; break; }
-    }
-    var active = null;
-    for (var j = 0; j < runs.length; j++) {
-     if ((runs[j].path || '').indexOf(p.match) !== -1 && runs[j].status !== 'completed') { active = runs[j]; break; }
+     var samePipe = (runs[i].path || '').indexOf(p.match) !== -1;
+     if (!samePipe) continue;
+     if (!active && runs[i].status !== 'completed') active = runs[i];
+     if (!run && runs[i].status === 'completed') { run = runs[i]; break; }
     }
     var dot, state, meta;
     if (active) {
-     dot = '#3b82f6'; state = 'Running…';
-     meta = 'started ' + ago(new Date(active.run_started_at).getTime());
+     dot = '#3b82f6'; state = 'Updating…';
+     meta = 'in progress';
     } else if (!run) {
-     dot = '#f59e0b'; state = 'No runs yet'; meta = p.desc;
+     dot = '#22c55e'; state = 'Operational'; meta = p.desc;
     } else if (run.conclusion === 'success') {
      dot = '#22c55e'; state = 'Operational';
-     meta = p.desc + '  ·  last run ' + watTime(new Date(run.run_started_at).getTime()) + ' (' + ago(new Date(run.run_started_at).getTime()) + ')';
+     meta = p.desc + '  ·  updated ' + ago(new Date(run.run_started_at).getTime());
     } else {
-     dot = '#ef4444'; state = run.conclusion === 'failure' ? 'Failed' : run.conclusion;
+     dot = DETAIL ? '#ef4444' : '#f59e0b';
+     state = DETAIL ? 'Failed' : 'Delayed';
      allGood = false;
-     meta = 'last run ' + watTime(new Date(run.run_started_at).getTime()) + ' (' + ago(new Date(run.run_started_at).getTime()) + ')';
+     meta = p.desc + '  ·  last completed ' + watTime(new Date(run.run_started_at).getTime()) + ' (' + ago(new Date(run.run_started_at).getTime()) + ')';
     }
     html += '<div class="card" style="padding:18px 22px;display:flex;align-items:center;gap:14px;">' +
      '<span class="dot" style="width:12px;height:12px;border-radius:50%;background:' + dot + ';flex:0 0 auto;"></span>' +
      '<div style="flex:1;"><strong>' + p.key + '</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">' + state + ' — ' + meta + '</div></div>' +
-     '<a href="https://github.com/fiokidahainiko-hash/amzloss/actions/workflows/' + p.match + '" target="_blank" rel="noopener" style="white-space:nowrap;font-size:0.8rem;">History</a>' +
+     (DETAIL ? '<a href="https://github.com/fiokidahainiko-hash/amzloss/actions/workflows/' + p.match + '" target="_blank" rel="noopener" style="white-space:nowrap;font-size:0.8rem;">History</a>' : '') +
      '</div>';
    });
    wrap.innerHTML = html;
    var toolsOk = true;
    var dots = list.querySelectorAll('.dot');
    dots.forEach(function (d) { if (d.style.background === 'rgb(239, 68, 68)') toolsOk = false; });
-   if (allGood && toolsOk) {
-    banner.className = 'verdict-banner good';
-    banner.textContent = 'All systems operational';
-   } else {
-    banner.className = 'verdict-banner bad';
-    banner.textContent = toolsOk ? 'Automation issue detected — see pipelines below' : 'Service issue detected — see checks above';
-   }
+   var ok = allGood && toolsOk;
+   banner.className = 'verdict-banner ' + (ok ? 'good' : 'bad');
+   banner.textContent = ok ? 'All systems operational'
+    : toolsOk ? 'Some background updates are running behind schedule — tools remain fully available'
+    : 'Service issue detected — see checks above';
   } catch (e) {
    wrap.innerHTML = '<div class="card" style="padding:18px 22px;display:flex;align-items:center;gap:14px;">' +
     '<span class="dot" style="width:12px;height:12px;border-radius:50%;background:#f59e0b;flex:0 0 auto;"></span>' +
-    '<div style="flex:1;"><strong>Pipeline status unavailable</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">GitHub API rate-limited or unreachable. <a href="https://github.com/fiokidahainiko-hash/amzloss/actions" target="_blank" rel="noopener">View runs on GitHub</a></div></div></div>';
+    '<div style="flex:1;"><strong>Status feed unavailable</strong><div class="meta" style="font-size:0.85rem;color:var(--muted);">Could not refresh right now — tools remain available.</div></div></div>';
   }
  }
 
