@@ -3,6 +3,7 @@
   "use strict";
 
   var POSTS = [
+    { cat: "Tools", icon: "🧮", title: "Calculating 2026 Amazon commission in three steps…", date: "Aug 24, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-24.html", desc: "Rate, eligible amount, multiply — the full 2026 commission formula, with the calculator doing the work." },
     { cat: "Tools", icon: "🧮", title: "The 4% trap: when a high-ticket item pays less…", date: "Aug 23, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-23.html", desc: "A big price doesn't always mean a big commission. Compare real earnings per sale with the free calculator." },
     { cat: "Tools", icon: "🔍", title: "The difference between 'underpaid' and 'possible…", date: "Aug 22, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-22.html", desc: "Why the audit uses careful language, and why that honesty helps you." },
     { cat: "Tools", icon: "🧮", title: "Why your Amazon commission is lower than the price…", date: "Aug 21, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-21.html", desc: "Amazon pays on the order amount after discounts, not the list price. Here is the math and how the calculator makes it instant." },
