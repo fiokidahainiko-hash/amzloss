@@ -22,6 +22,10 @@ jobs:
         run: |
           node .github/daily-blog.mjs | tee -a "$GITHUB_ENV"
 
+      - name: Rebuild RSS feed
+        if: env.CHANGED == '1'
+        run: node scripts/generate-rss.mjs
+
       - name: Commit and push
         if: env.CHANGED == '1'
         env:
@@ -29,7 +33,7 @@ jobs:
         run: |
           git config user.name "amzloss-bot"
           git config user.email "admin@amzloss.com"
-          git add blogs js/blog.js sitemap.xml .github/blog-state.json
+          git add blogs js/blog.js sitemap.xml rss.xml .github/blog-state.json
           git commit -m "Daily blog post: $(date -u +'%Y-%m-%d')"
           git push
 
@@ -39,7 +43,7 @@ jobs:
           KEY="cfa51088e98e4d29b9d374a48ec20d85"
           curl -s -X POST "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json; charset=utf-8" \
-            -d "{\"host\":\"amzloss.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://amzloss.com/$KEY.txt\",\"urlList\":[\"$INDEXNOW_URL\"]}" \
+            -d "{\"host\":\"amzloss.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://amzloss.com/$KEY.txt\",\"urlList\":[\"$INDEXNOW_URL\",\"https://amzloss.com/blogs.html\",\"https://amzloss.com/rss.xml\",\"https://amzloss.com/\"]}" \
             -w "\nIndexNow status: %{http_code}\n"
 
       - name: Share on social media
