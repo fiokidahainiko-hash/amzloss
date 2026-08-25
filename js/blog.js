@@ -3,6 +3,7 @@
   "use strict";
 
   var POSTS = [
+    { cat: "Tools", icon: "🔍", title: "How returns and refunds hide real underpayments…", date: "Aug 25, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-25.html", desc: "Refunds muddy the numbers. Here is how the audit isolates them so they can't confuse the verdict." },
     { cat: "Tools", icon: "", title: "Calculating 2026 Amazon commission in three steps", date: "Aug 24, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-24.html", desc: "Rate, eligible amount, multiply — the full 2026 commission formula, with the calculator doing the work." },
     { cat: "Tools", icon: "", title: "The 4% trap: when a high-ticket item pays less", date: "Aug 23, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-23.html", desc: "A big price doesn't always mean a big commission. Compare real earnings per sale with the free calculator." },
     { cat: "Tools", icon: "", title: "The difference between 'underpaid' and 'possible", date: "Aug 22, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-22.html", desc: "Why the audit uses careful language, and why that honesty helps you." },
