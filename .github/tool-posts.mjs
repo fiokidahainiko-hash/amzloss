@@ -213,6 +213,17 @@ async function main() {
   state.nextIndex = nextIndex;
   fs.writeFileSync(STATE_FILE, JSON.stringify({ nextIndex }, null, 2) + "\n", "utf8");
 
+  /* Export context for downstream steps (e.g. TikTok poster). */
+  if (process.env.GITHUB_ENV) {
+    const envHint = [
+      "TIKTOK_TITLE=" + truncate(tool.hook || tool.name, 80),
+      "TIKTOK_DESC=" + truncate(tool.explain, 120),
+      "TIKTOK_LINK=" + BASE + "/" + tool.page,
+      "TIKTOK_IMAGE_URL=" + (img ? img.url : BASE + "/blogs/img/tool-" + tool.id + ".png"),
+    ].join("\n");
+    fs.appendFileSync(process.env.GITHUB_ENV, envHint + "\n", "utf8");
+  }
+
   const committed = commitAll(img ? img.rel : null, state);
   RESULTS.push("IMAGE_COMMITTED=" + (committed ? "yes" : "no"));
 
