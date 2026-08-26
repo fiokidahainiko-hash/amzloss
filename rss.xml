@@ -5,8 +5,22 @@
 <link>https://amzloss.com/</link>
 <description>Audit your Amazon affiliate earnings, calculate commissions and grow traffic - new guides daily.</description>
 <language>en</language>
-<lastBuildDate>Tue, 25 Aug 2026 14:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 26 Aug 2026 06:50:42 GMT</lastBuildDate>
 <atom:link href="https://amzloss.com/rss.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Auditing every order date, not just the latest…</title>
+<link>https://amzloss.com/blogs/amzloss-daily-audit-2026-08-26.html</link>
+<guid isPermaLink="true">https://amzloss.com/blogs/amzloss-daily-audit-2026-08-26.html</guid>
+<pubDate>Wed, 26 Aug 2026 06:00:00 GMT</pubDate>
+<description>Rates change by order date. The audit checks each line against the rate that applied on that day.</description>
+</item>
+<item>
+<title>How returns and refunds hide real underpayments…</title>
+<link>https://amzloss.com/blogs/amzloss-daily-audit-2026-08-25.html</link>
+<guid isPermaLink="true">https://amzloss.com/blogs/amzloss-daily-audit-2026-08-25.html</guid>
+<pubDate>Tue, 25 Aug 2026 06:00:00 GMT</pubDate>
+<description>Refunds muddy the numbers. Here is how the audit isolates them so they can't confuse the verdict.</description>
+</item>
 <item>
 <title>Calculating 2026 Amazon commission in three steps</title>
 <link>https://amzloss.com/blogs/amzloss-daily-calculator-2026-08-24.html</link>
@@ -202,20 +216,6 @@
 <guid isPermaLink="true">https://amzloss.com/blogs/amazon-associates-claim-report-guide.html</guid>
 <pubDate>Sat, 11 Jul 2026 06:00:00 GMT</pubDate>
 <description>When and how to file an underpayment claim with Amazon Associates — evidence, wording, and what to expect.</description>
-</item>
-<item>
-<title>Amazon Earnings Report Columns, Decoded</title>
-<link>https://amzloss.com/blogs/amazon-earnings-report-columns-guide.html</link>
-<guid isPermaLink="true">https://amzloss.com/blogs/amazon-earnings-report-columns-guide.html</guid>
-<pubDate>Fri, 10 Jul 2026 06:00:00 GMT</pubDate>
-<description>Every column in the Product Earnings Report CSV — order ID, category, rate, fees, commission — and how to spot anomalies.</description>
-</item>
-<item>
-<title>Amazon Affiliate Commission Calculator Guide 2026</title>
-<link>https://amzloss.com/blogs/amazon-affiliate-commission-calculator-guide.html</link>
-<guid isPermaLink="true">https://amzloss.com/blogs/amazon-affiliate-commission-calculator-guide.html</guid>
-<pubDate>Thu, 09 Jul 2026 06:00:00 GMT</pubDate>
-<description>How to calculate what an Amazon Associates sale earns in 2026 — category rates, the commission-cut math, and the free calculator.</description>
 </item>
 </channel>
 </rss>
