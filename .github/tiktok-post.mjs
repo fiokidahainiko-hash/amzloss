@@ -55,14 +55,29 @@ async function api(pathname, payload) {
 
 async function publish() {
   const title = (TITLE + (DESC ? " - " + DESC : "")).slice(0, 90);
-  const init = await api("/post/publish/content/init/", {
+  const VIDEO_URL = process.env.TIKTOK_VIDEO_URL || "";
+
+  /* Preferred: direct-post VIDEO (only mode unaudited/sandbox apps may use).
+     Fallback: photo carousel (production apps after audit). */
+  const attempts = [];
+  if (VIDEO_URL) {
+    attempts.push({
+      label: "video",
+      post_info: {
+        title,
+        description: LINK,
+        privacy_level: PRIVACY,
+        post_mode: "DIRECT_POST",
+        media_type: "VIDEO",
+      },
+      source_info: { source: "PULL_FROM_URL", video_url: VIDEO_URL },
+    });
+  }
+  attempts.push({
+    label: "photo",
     post_info: {
       title,
       description: LINK,
-      disable_comment: false,
-      disable_duet: false,
-      disable_stitch: false,
-      video_cover_timestamp_ms: 0, // n/a for photo but tolerated
       privacy_level: PRIVACY,
       auto_add_music: false,
       post_mode: "DIRECT_POST",
@@ -73,21 +88,24 @@ async function publish() {
     source_info: { source: "PULL_FROM_URL" },
   });
 
-  const d = init.json?.data || {};
-  if (!d.publish_id) {
-    const err = JSON.stringify(init.json?.error || init.json).slice(0, 300);
-    throw new Error("init " + init.status + ": " + err);
+  let lastErr = "";
+  for (const attempt of attempts) {
+    const init = await api("/post/publish/content/init/", attempt);
+    const d = init.json?.data || {};
+    if (!d.publish_id) {
+      lastErr = attempt.label + ": " + JSON.stringify(init.json?.error || init.json).slice(0, 220);
+      continue;
+    }
+    for (let i = 0; i < 15; i++) {
+      await new Promise((r) => setTimeout(r, 5000));
+      const st = await api("/post/publish/status/fetch/", { publish_id: d.publish_id });
+      const s = st.json?.data?.status || "";
+      if (s === "PUBLISH_COMPLETE") return "published (" + attempt.label + ")";
+      if (s === "FAILED") { lastErr = attempt.label + ": status FAILED"; break; }
+    }
+    return "queued (" + attempt.label + ")";
   }
-
-  // poll up to ~60s
-  for (let i = 0; i < 12; i++) {
-    await new Promise((r) => setTimeout(r, 5000));
-    const st = await api("/post/publish/status/fetch/", { publish_id: d.publish_id });
-    const s = st.json?.data?.status || "";
-    if (s === "PUBLISH_COMPLETE") return "published";
-    if (s === "FAILED" || st.json?.error?.code === "ok_error") throw new Error("status " + s);
-  }
-  return "queued";
+  throw new Error(lastErr || "all attempts failed");
 }
 
 try {

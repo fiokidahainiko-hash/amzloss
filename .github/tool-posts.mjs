@@ -156,12 +156,13 @@ async function takeScreenshot(tool) {
 
 /* ---------- commit generated image + state so they are hosted ---------- */
 
-function commitAll(imgRel, state) {
+function commitAll(imgRel, state, videoRel) {
   try {
     execSync(`git config user.name "amzloss-bot"`, { cwd: ROOT, stdio: "ignore" });
     execSync(`git config user.email "admin@amzloss.com"`, { cwd: ROOT, stdio: "ignore" });
     let cmd = "git add .github/tool-state.json";
     if (imgRel) cmd += " " + imgRel;
+    if (videoRel) cmd += " " + videoRel;
     execSync(cmd, { cwd: ROOT, stdio: "ignore" });
     execSync(`git commit -m "Tool post #${state.nextIndex - 1} image + rotation"`, { cwd: ROOT, stdio: "ignore" });
     execSync(`git push`, { cwd: ROOT, stdio: "ignore" });
@@ -210,6 +211,21 @@ async function main() {
     RESULTS.push("IMAGE_MODE=screenshot");
   }
 
+  /* Sandbox-safe TikTok asset: short MP4 slideshow from the tool image
+     (unaudited apps may only direct-post VIDEO, not PHOTO). */
+  let vid = null;
+  if (img) {
+    try {
+      const vfile = img.file.replace(/\.(png|jpg|jpeg|webp)$/i, ".mp4");
+      execSync(`ffmpeg -y -loop 1 -i "${img.file}" -t 4 -r 2 -pix_fmt yuv420p -vf "scale='min(1080,iw)':-2" -movflags +faststart "${vfile}"`, { stdio: "ignore", timeout: 120000 });
+      const rel2 = path.relative(ROOT, vfile).split(path.sep).join("/");
+      vid = { file: vfile, rel: rel2, url: BASE + "/" + rel2 };
+      RESULTS.push("VIDEO_MODE=slideshow-mp4");
+    } catch (e) {
+      RESULTS.push("VIDEO_ERROR=" + (e.message || e));
+    }
+  }
+
   state.nextIndex = nextIndex;
   fs.writeFileSync(STATE_FILE, JSON.stringify({ nextIndex }, null, 2) + "\n", "utf8");
 
@@ -220,11 +236,12 @@ async function main() {
       "TIKTOK_DESC=" + truncate(tool.explain, 120),
       "TIKTOK_LINK=" + BASE + "/" + tool.page,
       "TIKTOK_IMAGE_URL=" + (img ? img.url : BASE + "/blogs/img/tool-" + tool.id + ".png"),
+      "TIKTOK_VIDEO_URL=" + (vid ? vid.url : ""),
     ].join("\n");
     fs.appendFileSync(process.env.GITHUB_ENV, envHint + "\n", "utf8");
   }
 
-  const committed = commitAll(img ? img.rel : null, state);
+  const committed = commitAll(img ? img.rel : null, state, vid ? vid.rel : null);
   RESULTS.push("IMAGE_COMMITTED=" + (committed ? "yes" : "no"));
 
   const tasks = [
