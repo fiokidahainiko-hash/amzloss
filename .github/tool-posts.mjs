@@ -217,7 +217,7 @@ async function main() {
   if (img) {
     try {
       const vfile = img.file.replace(/\.(png|jpg|jpeg|webp)$/i, ".mp4");
-      execSync(`ffmpeg -y -loop 1 -i "${img.file}" -t 4 -r 2 -pix_fmt yuv420p -vf "scale='min(1080,iw)':-2" -movflags +faststart "${vfile}"`, { stdio: "ignore", timeout: 120000 });
+      execSync(`ffmpeg -y -loop 1 -i "${img.file}" -t 4 -r 2 -pix_fmt yuv420p -vf scale=1080:-2 -movflags +faststart "${vfile}"`, { timeout: 120000 });
       const rel2 = path.relative(ROOT, vfile).split(path.sep).join("/");
       vid = { file: vfile, rel: rel2, url: BASE + "/" + rel2 };
       RESULTS.push("VIDEO_MODE=slideshow-mp4");

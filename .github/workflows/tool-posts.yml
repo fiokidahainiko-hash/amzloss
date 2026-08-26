@@ -70,6 +70,7 @@ jobs:
             echo "TIKTOK_RESULT=skipped (no credentials)"
             exit 0
           fi
+          command -v ffmpeg >/dev/null 2>&1 || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; }
           node .github/tiktok-post.mjs
 
       - name: File report as GitHub issue (emailed to owner via notifications)
