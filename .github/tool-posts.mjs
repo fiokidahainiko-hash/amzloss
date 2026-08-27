@@ -176,6 +176,17 @@ function commitAll(imgRel, state, videoRel) {
 
 async function main() {
   const state = readState();
+
+  /* Anti-spam guard: refuse to post again within 6 hours unless forced.
+     Scheduled cadence (3x/day) is unaffected; manual re-runs can't spam. */
+  const lastAt = Number(state.lastPostedAt || 0);
+  if (!process.env.FORCE_POST && lastAt && Date.now() - lastAt < 6 * 60 * 60 * 1000) {
+    const hrs = ((Date.now() - lastAt) / 3600000).toFixed(1);
+    console.log("RESULT=skipped (last post " + hrs + "h ago; set FORCE_POST=1 to override)");
+    console.log("SOCIAL_TELEGRAM=skipped-duplicate-guard");
+    return;
+  }
+
   const { tool, nextIndex } = nextTool(state);
   const text = buildPost(tool);
   const textX = buildPost(tool, true);
@@ -222,7 +233,8 @@ async function main() {
       vid = { file: vfile, rel: rel2, url: BASE + "/" + rel2 };
       RESULTS.push("VIDEO_MODE=slideshow-mp4");
     } catch (e) {
-      RESULTS.push("VIDEO_ERROR=" + (e.message || e));
+      const detail = e && e.stderr ? String(e.stderr).split("\n").filter(Boolean).slice(-2).join(" | ") : String(e.message || e);
+      RESULTS.push("VIDEO_ERROR=" + detail.replace(/\s+/g, " ").slice(0, 300));
     }
   }
 
