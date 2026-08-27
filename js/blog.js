@@ -3,6 +3,7 @@
   "use strict";
 
   var POSTS = [
+    { cat: "Tools", icon: "🧮", title: "Gift-wrap and delivery fees: the money you never…", date: "Aug 27, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-27.html", desc: "Amazon excludes gift-wrap and delivery from the commission base. Know exactly what counts." },
     { cat: "Tools", icon: "🔍", title: "Auditing every order date, not just the latest…", date: "Aug 26, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-26.html", desc: "Rates change by order date. The audit checks each line against the rate that applied on that day." },
     { cat: "Tools", icon: "🔍", title: "How returns and refunds hide real underpayments…", date: "Aug 25, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-25.html", desc: "Refunds muddy the numbers. Here is how the audit isolates them so they can't confuse the verdict." },
     { cat: "Tools", icon: "", title: "Calculating 2026 Amazon commission in three steps", date: "Aug 24, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-24.html", desc: "Rate, eligible amount, multiply — the full 2026 commission formula, with the calculator doing the work." },
