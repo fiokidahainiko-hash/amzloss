@@ -70,7 +70,7 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg curl >/dev/null 2>&1
           pip3 install --quiet edge-tts "numpy<2" librosa==0.10.2.post1 opencv-python-headless tqdm numba==0.59.1
           pip3 install --quiet torch --index-url https://download.pytorch.org/whl/cpu
-          python3 .github/talkvid/gen.py | tee talkvid.log
+          python3 .github/talkvid/gen_pro.py | tee talkvid.log
           MP4=$(grep -oP 'TALKVID_MP4=\K.*' talkvid.log || true)
           if [ -n "$MP4" ] && [ -s "$MP4" ]; then
             git config user.name "amzloss-bot"
