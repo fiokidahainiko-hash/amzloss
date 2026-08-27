@@ -64,6 +64,7 @@ jobs:
       - name: Talking-person video (Wav2Lip, best-effort)
         env:
           TALKVID_TEXT: ${{ env.TIKTOK_TITLE }}
+          TALKVID_VOICE: en-US-ChristopherNeural
         run: |
           set +e
           python3 --version
