@@ -89,11 +89,13 @@ async function publish() {
   });
 
   let lastErr = "";
+  const errs = [];
   for (const attempt of attempts) {
     const init = await api("/post/publish/content/init/", attempt);
     const d = init.json?.data || {};
     if (!d.publish_id) {
       lastErr = attempt.label + ": " + JSON.stringify(init.json?.error || init.json).slice(0, 220);
+      errs.push(lastErr);
       continue;
     }
     for (let i = 0; i < 15; i++) {
@@ -101,11 +103,11 @@ async function publish() {
       const st = await api("/post/publish/status/fetch/", { publish_id: d.publish_id });
       const s = st.json?.data?.status || "";
       if (s === "PUBLISH_COMPLETE") return "published (" + attempt.label + ")";
-      if (s === "FAILED") { lastErr = attempt.label + ": status FAILED"; break; }
+      if (s === "FAILED") { lastErr = attempt.label + ": status FAILED"; errs.push(lastErr); break; }
     }
     return "queued (" + attempt.label + ")";
   }
-  throw new Error(lastErr || "all attempts failed");
+  throw new Error(errs.join(" || ") || "all attempts failed");
 }
 
 try {
