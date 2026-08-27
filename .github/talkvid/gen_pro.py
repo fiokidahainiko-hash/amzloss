@@ -26,16 +26,31 @@ def ensure_tts(script):
     return wav
 
 def take_screenshots(tool_page, count=3):
-    # Use Playwright to grab screenshots of the tool page
-    shots = []
-    for i in range(count):
-        out = WORK / f"shot_{i}.png"
-        # Simple curl -> placeholder. Replace with Playwright in production
-        sh("curl","-s","https://amzloss.com/"+tool_page,"-o",WORK/f"page.html")
-        # For now create a colored placeholder
-        sh("ffmpeg","-y","-f","lavfi","-i","color=c=0x0A1A2A:s=1280x720:d=1","-vf","drawtext=text='AMZLOSS '+tool_page+': '+str(i):fontsize=48:fontcolor=white:x=(w-text_w)/2:y=h/2",out)
-        shots.append(out)
-    return shots
+    # Use Playwright if available, else fallback to placeholder
+    try:
+        from playwright.sync_api import sync_playwright
+        shots = []
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page(viewport={"width":1280,"height":720})
+            url = f"https://amzloss.com/{tool_page}"
+            page.goto(url, timeout=30000, wait_until="networkidle")
+            for i in range(count):
+                # scroll a bit for variation
+                page.evaluate(f"window.scrollBy(0, {i*200})")
+                out = WORK / f"shot_{i}.png"
+                page.screenshot(path=str(out))
+                shots.append(out)
+            browser.close()
+        return shots
+    except Exception as e:
+        print("Playwright screenshot failed, using placeholder:", e, flush=True)
+        shots = []
+        for i in range(count):
+            out = WORK / f"shot_{i}.png"
+            sh("ffmpeg","-y","-f","lavfi","-i","color=c=0x0A1A2A:s=1280x720:d=1","-vf",f"drawtext=text='AMZLOSS {tool_page}':fontsize=48:fontcolor=white:x=(w-text_w)/2:y=h/2",out)
+            shots.append(out)
+        return shots
 
 def main():
     # Load today's script
