@@ -54,17 +54,26 @@ async def main():
     sh("ffmpeg","-y","-loop","1","-i",PERSON,"-t","12","-r","25",
        "-vf","scale=960:-2,pad=960:960:(ow-iw)/2:(oh-ih)/2","-pix_fmt","yuv420p",raw)
     lip = WORK / "lip.mp4"
-    sh("python",WAV2LIP/"inference.py","--checkpoint_path",CKPT,"--face",raw,"--audio",wav,
-       "--outfile",lip,"--pads","0","10","0","0","--nosmooth")
+    try:
+        sh("python",WAV2LIP/"inference.py","--checkpoint_path",CKPT,"--face",raw,"--audio",wav,
+           "--outfile",lip,"--pads","0","10","0","0","--nosmooth")
+        video_src = lip
+    except Exception as e:
+        print("Wav2Lip failed, fallback to static image", flush=True)
+        video_src = raw
     # Add motion and end slate
     # Create background with subtle zoom
     zoomed = WORK / "zoom.mp4"
-    sh("ffmpeg","-y","-i",lip,"-vf","zoompan=z='min(zoom+0.0015,1.2)':d=1:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",zoomed)
+    sh("ffmpeg","-y","-i",video_src,"-vf","zoompan=z='min(zoom+0.0015,1.2)':d=1:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",zoomed)
     # Add captions and end slate via drawtext
-    sh("ffmpeg","-y","-i",zoomed,"-i",wav,
-       "-filter_complex",
-       "[0:v]scale=1080:-2[fg];color=c=black:s=1080x1920:d=999[bg];[bg][fg]overlay=(W-w)/2:(H-h)/2:shortest=1[v]",
-       "-map","[v]","-map","1:a","-c:v","libx264","-preset","fast","-crf","20","-pix_fmt","yuv420p","-c:a","aac","-movflags","+faststart",OUT)
+    # Add 1 sec disclosure slate at end
+    slate = WORK / "slate.mp4"
+    sh("ffmpeg","-y","-f","lavfi","-i","color=c=black:s=1080x1920:d=1","-vf","drawtext=text='Paid promotion: AMZLOSS.COM':fontsize=48:fontcolor=white:x=(w-text_w)/2:y=h-200,drawtext=text='Get link in bio or search AMZLOSS.COM':fontsize=36:fontcolor=white:x=(w-text_w)/2:y=h-120,drawtext=text='Follow for more terrible GUIDELINES':fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60",slate)
+    # Concatenate video + slate
+    final = WORK / "final.mp4"
+    concat = WORK / "concat.txt"
+    concat.write_text(f"file '{zoomed}\nfile '{slate}'")
+    sh("ffmpeg","-y","-f","concat","-safe","0","-i",concat,"-i",wav,"-c:v","libx264","-preset","fast","-crf","20","-pix_fmt","yuv420p","-c:a","aac","-movflags","+faststart",OUT)
     print(f"TALKVID_MP4={OUT}", flush=True)
 
 if __name__ == "__main__":

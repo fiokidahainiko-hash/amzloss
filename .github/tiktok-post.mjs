@@ -69,6 +69,8 @@ async function publish() {
         privacy_level: PRIVACY,
         post_mode: "DIRECT_POST",
         media_type: "VIDEO",
+        brand_content: true,
+        brand_verified_status: "verified",
       },
       source_info: { source: "PULL_FROM_URL", video_url: VIDEO_URL },
     });
