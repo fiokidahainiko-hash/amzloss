@@ -61,28 +61,27 @@ jobs:
         run: |
           node .github/tool-posts.mjs
 
-      - name: Talking-person video (Wav2Lip, best-effort)
+      - name: Premium AMZLOSS TikTok ad (auto-render + voice)
         env:
           TALKVID_TEXT: ${{ env.TIKTOK_TITLE }}
           TALKVID_VOICE: en-US-ChristopherNeural
         run: |
-          set +e
+          set -e
           python3 --version
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg curl >/dev/null 2>&1
-          pip3 install --quiet edge-tts "numpy<2" librosa==0.10.2.post1 opencv-python-headless tqdm numba==0.59.1
-          pip3 install --quiet torch --index-url https://download.pytorch.org/whl/cpu
-          python3 .github/talkvid/gen_pro.py | tee talkvid.log
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1
+          pip3 install --quiet edge-tts pillow imageio imageio-ffmpeg
+          python3 .github/talkvid/premium_ad.py | tee talkvid.log
           MP4=$(grep -oP 'TALKVID_MP4=\K.*' talkvid.log || true)
           if [ -n "$MP4" ] && [ -s "$MP4" ]; then
             git config user.name "amzloss-bot"
             git config user.email "admin@amzloss.com"
             git add blogs/img/talkvid.mp4
-            git commit -m "Talking-person video (talkvid)" || true
+            git commit -m "Premium TikTok ad (auto)" || true
             git push || true
             echo "TIKTOK_VIDEO_URL=https://amzloss.com/blogs/img/talkvid.mp4" >> "$GITHUB_ENV"
             echo "TALKVID=ready"
           else
-            echo "TALKVID=fallback (person.jpg missing or render failed)"
+            echo "TALKVID=fallback (render failed)"
           fi
           exit 0
 
