@@ -309,6 +309,18 @@ def mux(video, voice):
     sh(*cmd)
     return final
 
+def make_compat(final):
+    out60 = ROOT / "blogs" / "img" / "talkvid-60.mp4"
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        import imageio_ffmpeg
+        ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+    # 60fps compatibility copy (most players/platforms prefer this)
+    sh(ffmpeg, "-y", "-i", str(final), "-c:v", "libx264", "-r", "60", "-crf", "20",
+       "-preset", "fast", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+       "-movflags", "+faststart", str(out60))
+    return out60
+
 def main():
     capture_site_assets()
     imgs = load_images()
@@ -316,7 +328,9 @@ def main():
     video = render_video(imgs)
     final = mux(video, voice)
     shutil.copy2(final, OUT)
+    compat = make_compat(final)
     print(f"TALKVID_MP4={OUT}", flush=True)
+    print(f"TALKVID_60={compat}", flush=True)
 
 if __name__ == "__main__":
     main()
