@@ -14,10 +14,14 @@ OUT  = ROOT / "blogs" / "img" / "tiktok_integration_demo.mp4"
 CLIP = WORK / "tiktok_auth_clip.mp4"
 
 SCENES = [
-    {"label": "Scene 1: AMZLOSS.COM homepage", "img": "scene1_homepage.png", "duration": 8},
-    {"label": "Scene 2: Commission Calculator tool", "img": "scene2_calculator.png", "duration": 8},
-    {"label": "Scene 3: Earnings Audit tool", "img": "scene3_audit.png", "duration": 8},
-    {"label": "Scene 4: GitHub Actions workflow (auto-posting)", "img": "scene4_workflow.png", "duration": 8},
+    {"label": "Scene 1: AMZLOSS.COM homepage", "img": "scene1_homepage.png", "duration": 8,
+     "url": "https://amzloss.com/"},
+    {"label": "Scene 2: Commission Calculator tool", "img": "scene2_calculator.png", "duration": 8,
+     "url": "https://amzloss.com/calculator.html"},
+    {"label": "Scene 3: Earnings Audit tool", "img": "scene3_audit.png", "duration": 8,
+     "url": "https://amzloss.com/audit.html"},
+    {"label": "Scene 4: GitHub Actions workflow (auto-posting)", "img": "scene4_workflow.png", "duration": 8,
+     "url": "https://github.com/fiokidahainiko-hash/amzloss/actions"},
 ]
 
 def sh(*cmd):
@@ -32,54 +36,67 @@ def get_ffmpeg():
         return shutil.which("ffmpeg")
 
 def build_scene_card(scene, idx, total_scenes):
-    """Create a 1080x1920 frame with the screenshot centered and a label bar."""
+    """Create a 1080x1920 frame with a browser window + real address bar + screenshot."""
     from PIL import Image, ImageDraw, ImageFont
 
     W, H = 1080, 1920
-    canvas = Image.new("RGB", (W, H), (10, 26, 42))
+    canvas = Image.new("RGB", (W, H), (24, 26, 34))
     draw = ImageDraw.Draw(canvas)
 
-    # Load screenshot
-    img_path = WORK / scene["img"]
-    if img_path.exists():
-        screenshot = Image.open(img_path).convert("RGB")
-        # Scale to fit width with margin
-        margin = 60
-        target_w = W - margin * 2
-        scale = target_w / screenshot.width
-        new_h = int(screenshot.height * scale)
-        screenshot = screenshot.resize((target_w, new_h), Image.Resampling.LANCZOS)
-        # Place centered vertically, slightly below top label
-        y_offset = 300
-        canvas.paste(screenshot, (margin, y_offset))
-
-        # Draw border around screenshot
-        draw.rectangle(
-            (margin - 2, y_offset - 2, margin + target_w + 2, y_offset + new_h + 2),
-            outline=(139, 92, 246), width=2
-        )
-
-    # Top label bar
+    # ---- fonts ----
     try:
-        font_label = ImageFont.truetype("C:/Windows/Fonts/arialbd.ttf", 32)
-        font_small = ImageFont.truetype("C:/Windows/Fonts/arial.ttf", 24)
+        font_label = ImageFont.truetype("C:/Windows/Fonts/arialbd.ttf", 34)
+        font_small = ImageFont.truetype("C:/Windows/Fonts/arial.ttf", 26)
+        font_url = ImageFont.truetype("C:/Windows/Fonts/arial.ttf", 22)
     except Exception:
         font_label = ImageFont.load_default()
         font_small = ImageFont.load_default()
+        font_url = ImageFont.load_default()
 
-    # Scene number badge
+    # ---- top label ----
     badge = f"Scene {idx+1}/{total_scenes}"
-    draw.rounded_rectangle((30, 40, 250, 90), radius=10, fill=(139, 92, 246))
-    draw.text((140, 65), badge, font=font_label, fill=(255, 255, 255), anchor="mm")
+    draw.rounded_rectangle((30, 30, 320, 84), radius=12, fill=(139, 92, 246))
+    draw.text((175, 57), badge, font=font_label, fill=(255, 255, 255), anchor="mm")
+    draw.text((W // 2, 150), scene["label"], font=font_label, fill=(255, 255, 255), anchor="mm")
 
-    # Scene description
-    draw.text((W // 2, 140), scene["label"], font=font_label, fill=(255, 255, 255), anchor="mm")
+    # ---- browser window ----
+    win_x, win_y, win_w = 40, 210, W - 80
+    chrome_h = 118
+    # window background
+    draw.rounded_rectangle((win_x, win_y, win_x + win_w, H - 90),
+                           radius=16, fill=(23, 29, 41), outline=(70, 80, 105), width=3)
+    # title bar
+    draw.rounded_rectangle((win_x, win_y, win_x + win_w, win_y + chrome_h),
+                           radius=16, fill=(31, 38, 54))
+    # traffic-light buttons
+    for cx, col in ((win_x + 40, (255, 95, 86)), (win_x + 78, (255, 189, 46)), (win_x + 116, (39, 201, 63))):
+        draw.ellipse((cx, win_y + 34, cx + 20, win_y + 54), fill=col)
+    # address bar
+    bar_x, bar_y, bar_w, bar_h = win_x + 150, win_y + 34, win_w - 190, 46
+    draw.rounded_rectangle((bar_x, bar_y, bar_x + bar_w, bar_y + bar_h),
+                           radius=23, fill=(16, 21, 33), outline=(60, 70, 95))
+    url = scene.get("url", "amzloss.com")
+    draw.text((bar_x + 28, bar_y + 4), url, font=font_url, fill=(190, 195, 210), anchor="lm")
+    # refresh icon (simple circle + arrow)
+    draw.arc((bar_x + bar_w - 44, bar_y + 12, bar_x + bar_w - 16, bar_y + 34), 20, 320, fill=(120, 128, 150), width=3)
+    # green padlock hint
+    draw.ellipse((bar_x + 18, bar_y + 15, bar_x + 30, bar_y + 27), fill=(80, 200, 120))
 
-    # Domain watermark
-    draw.text((W // 2, 200), "amzloss.com", font=font_small, fill=(139, 92, 246), anchor="mm")
+    # ---- paste screenshot inside browser window (below chrome) ----
+    img_path = WORK / scene["img"]
+    if img_path.exists():
+        screenshot = Image.open(img_path).convert("RGB")
+        page_x = win_x + 12
+        page_w = win_w - 24
+        scale = page_w / screenshot.width
+        new_h = int(screenshot.height * scale)
+        page_y = win_y + chrome_h + 12
+        screenshot = screenshot.resize((page_w, new_h), Image.Resampling.LANCZOS)
+        canvas.paste(screenshot, (page_x, page_y))
 
-    # Bottom note
-    draw.text((W // 2, H - 80), "TikTok Content Posting API integration demo", font=font_small, fill=(150, 150, 170), anchor="mm")
+    # ---- bottom note ----
+    draw.text((W // 2, H - 52), "TikTok Content Posting API integration demo", font=font_small,
+              fill=(150, 150, 170), anchor="mm")
 
     out_path = WORK / f"card_{idx}.png"
     canvas.save(out_path)
