@@ -702,7 +702,7 @@ function buildPage(post) {
   <title>${metaEsc(title)} | AmzLoss</title>
   <meta name="description" content="${metaEsc(desc)}">
   <meta name="keywords" content="${metaEsc(keywords)}">
-  <meta name="robots" content="index, follow">
+   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="${url}">
   <meta property="og:site_name" content="AmzLoss">
   <meta property="og:type" content="article">
@@ -711,7 +711,11 @@ function buildPage(post) {
   <meta property="og:url" content="${url}">
   <meta property="og:image" content="https://amzloss.com/assets/img/og-cover.png">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:height" content="675">
+  <meta property="article:published_time" content="${dateISO}">
+  <meta property="article:modified_time" content="${dateISO}">
+  <meta property="article:author" content="AmzLoss">
+  <meta property="article:section" content="${metaEsc(category || 'Affiliate Marketing')}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${metaEsc(title)}">
   <meta name="twitter:description" content="${metaEsc(desc)}">
@@ -916,6 +920,7 @@ function main() {
     faq: tip.faq,
     faqAns: tip.faqAns,
     tool,
+    category: CAT_BY_TOOL[tool] || "Affiliate Marketing",
     dateISO,
     dateDisplay,
     bodyHtml: makeBody(tool, tip, mode, dateDisplay)
