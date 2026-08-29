@@ -3,6 +3,7 @@
   "use strict";
 
   var POSTS = [
+    { cat: "Tools", icon: "🧮", title: "What 'eligible order amount' actually means…", date: "Aug 29, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-29.html", desc: "The term appears everywhere in Amazon's rules. Here is the plain-language definition." },
     { cat: "Tools", icon: "🧮", title: "How discounts quietly shrink your commission…", date: "Aug 28, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-28.html", desc: "A price drop changes your earnings — even when the rate stays the same. See the real impact." },
     { cat: "Tools", icon: "🧮", title: "Gift-wrap and delivery fees: the money you never…", date: "Aug 27, 2026", read: "6 min", url: "blogs/amzloss-daily-calculator-2026-08-27.html", desc: "Amazon excludes gift-wrap and delivery from the commission base. Know exactly what counts." },
     { cat: "Tools", icon: "🔍", title: "Auditing every order date, not just the latest…", date: "Aug 26, 2026", read: "6 min", url: "blogs/amzloss-daily-audit-2026-08-26.html", desc: "Rates change by order date. The audit checks each line against the rate that applied on that day." },
