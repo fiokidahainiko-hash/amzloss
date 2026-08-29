@@ -19,7 +19,7 @@ VOICE_SCRIPT = (
     "Run the free earnings audit to flag possible underpayments in your actual report — no sign-up, fully browser-only, nothing leaves your device. "
     "amzloss.com. Your old commission rate isn't coming back, but at least now you can see exactly what it took with it."
 )
-W, H, FPS = 1080, 1920, 30
+W, H, FPS = 1080, 1920, 120
 BRAND = (75, 40, 130)
 ORANGE = (255, 90, 40)
 
@@ -90,14 +90,18 @@ def capture_site_assets():
         crop.save(result_dst)
 
 def load_images():
-    from PIL import Image
+    from PIL import Image, ImageEnhance, ImageFilter
     imgs = {}
     for name in ["home","calc_full","calc_panel","calc_result","audit","rates"]:
         p = WORK / f"{name}.png"
         if p.exists():
-            imgs[name] = Image.open(p).convert("RGBA")
+            img = Image.open(p).convert("RGBA")
+            # Sharpen + micro-contrast for a crisp, punchy look
+            img = ImageEnhance.Sharpness(img).enhance(1.7)
+            img = ImageEnhance.Contrast(img).enhance(1.08)
+            img = ImageEnhance.Color(img).enhance(1.06)
+            imgs[name] = img
     # blur backgrounds
-    from PIL import ImageFilter
     imgs["home_blur"] = imgs["home"].filter(ImageFilter.GaussianBlur(18))
     imgs["calc_blur"] = imgs["calc_full"].filter(ImageFilter.GaussianBlur(18))
     imgs["audit_blur"] = imgs["audit"].filter(ImageFilter.GaussianBlur(18))
@@ -281,14 +285,17 @@ def render_frame(idx, imgs, fonts):
 def render_video(imgs):
     import imageio.v2 as imageio
     import numpy as np
+    from PIL import ImageFilter
     fonts = lambda s: get_font(s, bold=True)
     tmp = WORK / "video_silent.mp4"
     frames = int(math.ceil(30*FPS))
-    with imageio.get_writer(str(tmp), fps=FPS, codec='libx264', quality=8, macro_block_size=1, pixelformat='yuv420p') as writer:
+    with imageio.get_writer(str(tmp), fps=FPS, codec='libx264', quality=10, macro_block_size=1, pixelformat='yuv420p') as writer:
         for i in range(frames):
             frame = render_frame(i, imgs, fonts)
+            # Final sharpening pass for a crisp 120fps look
+            frame = frame.filter(ImageFilter.UnsharpMask(radius=2, percent=150, threshold=3))
             writer.append_data(np.asarray(frame))
-            if i % 90 == 0:
+            if i % 360 == 0:
                 print(f"Rendered {i}/{frames}", flush=True)
     return tmp
 
