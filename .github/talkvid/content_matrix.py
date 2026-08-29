@@ -19,6 +19,24 @@ TOOLS = [
     {"id":"networks","name":"Network Calculator","page":"networks.html","keywords":["diversify","ShareASale"]},
 ]
 
+# Dynamic tool discovery: if the crawler found more/updated tools, use them.
+LIB = ROOT / ".github" / "tool_content_library.json"
+if LIB.exists():
+    try:
+        discovered = json.loads(LIB.read_text(encoding="utf-8")).get("tools", [])
+        if discovered:
+            TOOLS = [
+                {
+                    "id": t["id"],
+                    "name": t["name"],
+                    "page": t["page"],
+                    "keywords": [t["id"].replace("-", " "), t.get("name", t["id"])],
+                }
+                for t in discovered
+            ]
+    except Exception as e:
+        print("tool library failed to load, using fallback.", e)
+
 HOOK_TEMPLATES = [
     "Most affiliates lose money on {keyword} and never notice.",
     "Stop guessing your {keyword}. Here’s the real number.",

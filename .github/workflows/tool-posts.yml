@@ -32,6 +32,11 @@ jobs:
           npm install playwright --no-save >/dev/null 2>&1 || true
           npx playwright install chromium --with-deps >/dev/null 2>&1 || true
 
+      - name: Discover AMZLOSS tools (auto content library)
+        run: |
+          python3 scripts/discover_tools.py
+          python3 .github/talkvid/content_matrix.py
+
       - name: Post today's tool explainer
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

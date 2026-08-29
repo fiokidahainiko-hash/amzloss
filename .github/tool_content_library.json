@@ -1,0 +1,278 @@
+{
+  "generated": "2026-08-29",
+  "count": 8,
+  "tools": [
+    {
+      "id": "audit",
+      "name": "Earnings Audit",
+      "page": "audit.html",
+      "title": "Amazon Affiliate Underpayment Checker | AmzLoss",
+      "description": "Audit your Amazon Associates CSV free in your browser. Compare what you were paid against 2026 rates and flag underpaid or missing commissions. No uploads.",
+      "problem": "Affiliates need clarity about audit",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "Earnings Audit explained in 30 seconds",
+          "Problem: Affiliates need clarity about audit",
+          "Stop wasting time — Earnings Audit does it instantly"
+        ],
+        "youtube_short": [
+          "Earnings Audit tutorial (beginner)",
+          "Real examples with Earnings Audit"
+        ],
+        "x": [
+          "Checking Earnings Audit before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use Earnings Audit."
+        ],
+        "pinterest": [
+          "Quick guide: Earnings Audit for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to earnings audit",
+          "Why earnings audit matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/audit.html"
+      }
+    },
+    {
+      "id": "breakeven",
+      "name": "Break-Even Calculator",
+      "page": "breakeven.html",
+      "title": "Break-Even & Price-Drop Calculator | AmzLoss",
+      "description": "Enter a product's original price, the new sale price, and your commission rate to see if a price drop still earns enough — with the exact sales volume you'd need to break even.",
+      "problem": "Affiliates need clarity about breakeven",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "Break-Even Calculator explained in 30 seconds",
+          "Problem: Affiliates need clarity about breakeven",
+          "Stop wasting time — Break-Even Calculator does it instantly"
+        ],
+        "youtube_short": [
+          "Break-Even Calculator tutorial (beginner)",
+          "Real examples with Break-Even Calculator"
+        ],
+        "x": [
+          "Checking Break-Even Calculator before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use Break-Even Calculator."
+        ],
+        "pinterest": [
+          "Quick guide: Break-Even Calculator for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to break-even calculator",
+          "Why break-even calculator matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/breakeven.html"
+      }
+    },
+    {
+      "id": "calculator",
+      "name": "Commission Calculator",
+      "page": "calculator.html",
+      "title": "Amazon Affiliate Commission Calculator | AmzLoss",
+      "description": "Calculate what you earn from Amazon affiliates under 2026 rates. Pick a category and sales volume to see monthly commission and how much the cuts cost you.",
+      "problem": "Affiliates need clarity about calculator",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "Commission Calculator explained in 30 seconds",
+          "Problem: Affiliates need clarity about calculator",
+          "Stop wasting time — Commission Calculator does it instantly"
+        ],
+        "youtube_short": [
+          "Commission Calculator tutorial (beginner)",
+          "Real examples with Commission Calculator"
+        ],
+        "x": [
+          "Checking Commission Calculator before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use Commission Calculator."
+        ],
+        "pinterest": [
+          "Quick guide: Commission Calculator for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to commission calculator",
+          "Why commission calculator matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/calculator.html"
+      }
+    },
+    {
+      "id": "directory",
+      "name": "Backlink Directory",
+      "page": "directory.html",
+      "title": "Affiliate & Blogger Directory | AmzLoss",
+      "description": "Free backlink directory for affiliate sites, bloggers, SEO tools and niche publishers. Submit your site, get listed, and pick up a relevant do-follow backlink.",
+      "problem": "Affiliates need clarity about directory",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "Backlink Directory explained in 30 seconds",
+          "Problem: Affiliates need clarity about directory",
+          "Stop wasting time — Backlink Directory does it instantly"
+        ],
+        "youtube_short": [
+          "Backlink Directory tutorial (beginner)",
+          "Real examples with Backlink Directory"
+        ],
+        "x": [
+          "Checking Backlink Directory before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use Backlink Directory."
+        ],
+        "pinterest": [
+          "Quick guide: Backlink Directory for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to backlink directory",
+          "Why backlink directory matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/directory.html"
+      }
+    },
+    {
+      "id": "link-tools",
+      "name": "Link Tools",
+      "page": "link-tools.html",
+      "title": "Link Tools: Affiliate Builder, Backlink Tools | AmzLoss",
+      "description": "Build clean Amazon affiliate links, check if a site still has your backlink, and count a domain's backlinks across the web. Free browser-only tools.",
+      "problem": "Affiliates need clarity about link tools",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "Link Tools explained in 30 seconds",
+          "Problem: Affiliates need clarity about link tools",
+          "Stop wasting time — Link Tools does it instantly"
+        ],
+        "youtube_short": [
+          "Link Tools tutorial (beginner)",
+          "Real examples with Link Tools"
+        ],
+        "x": [
+          "Checking Link Tools before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use Link Tools."
+        ],
+        "pinterest": [
+          "Quick guide: Link Tools for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to link tools",
+          "Why link tools matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/link-tools.html"
+      }
+    },
+    {
+      "id": "networks",
+      "name": "Network Calculator",
+      "page": "networks.html",
+      "title": "Affiliate Network Commission Calculator | AmzLoss",
+      "description": "Compare commission rates across affiliate networks — ShareASale, CJ, Impact, Awin, Rakuten, eBay, AliExpress, Temu and more. Estimate earnings per month and per sale.",
+      "problem": "Affiliates need clarity about networks",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "Network Calculator explained in 30 seconds",
+          "Problem: Affiliates need clarity about networks",
+          "Stop wasting time — Network Calculator does it instantly"
+        ],
+        "youtube_short": [
+          "Network Calculator tutorial (beginner)",
+          "Real examples with Network Calculator"
+        ],
+        "x": [
+          "Checking Network Calculator before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use Network Calculator."
+        ],
+        "pinterest": [
+          "Quick guide: Network Calculator for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to network calculator",
+          "Why network calculator matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/networks.html"
+      }
+    },
+    {
+      "id": "rates",
+      "name": "Current Rate Table",
+      "page": "rates.html",
+      "title": "Amazon Affiliate Commission Rates 2026 | AmzLoss",
+      "description": "2026 Amazon Associates commission rates by category, with pre-cut rates for comparison. See which were cut and how much, then audit your own report free.",
+      "problem": "Affiliates need clarity about rates",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "Current Rate Table explained in 30 seconds",
+          "Problem: Affiliates need clarity about rates",
+          "Stop wasting time — Current Rate Table does it instantly"
+        ],
+        "youtube_short": [
+          "Current Rate Table tutorial (beginner)",
+          "Real examples with Current Rate Table"
+        ],
+        "x": [
+          "Checking Current Rate Table before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use Current Rate Table."
+        ],
+        "pinterest": [
+          "Quick guide: Current Rate Table for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to current rate table",
+          "Why current rate table matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/rates.html"
+      }
+    },
+    {
+      "id": "submit",
+      "name": "URL Submitter",
+      "page": "submit.html",
+      "title": "URL Submitter — Submit to 31+ Platforms | AmzLoss",
+      "description": "Submit your URL to search engines, directories, bookmarking sites and ping services in minutes — and get indexed and backlinked faster. Free URL submitter from AmzLoss.",
+      "problem": "Affiliates need clarity about submit",
+      "audience": "Amazon affiliates, affiliate marketers, SEO builders",
+      "content": {
+        "tiktok": [
+          "URL Submitter explained in 30 seconds",
+          "Problem: Affiliates need clarity about submit",
+          "Stop wasting time — URL Submitter does it instantly"
+        ],
+        "youtube_short": [
+          "URL Submitter tutorial (beginner)",
+          "Real examples with URL Submitter"
+        ],
+        "x": [
+          "Checking URL Submitter before you publish? Worth it."
+        ],
+        "linkedin": [
+          "Save hours weekly: Amazon affiliates, affiliate marketers, SEO builders now use URL Submitter."
+        ],
+        "pinterest": [
+          "Quick guide: URL Submitter for affiliates"
+        ],
+        "seo_articles": [
+          "Ultimate guide to url submitter",
+          "Why url submitter matters for affiliate marketers"
+        ],
+        "cta": "Try it free: https://amzloss.com/submit.html"
+      }
+    }
+  ]
+}
