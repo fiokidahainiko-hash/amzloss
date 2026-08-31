@@ -14,5 +14,30 @@
 <li>Paste it back into your chat with your assistant</li>
 </ol>
 <p style="color:#777;font-size:.85rem">This page does nothing else — the code in the URL is the secure key we'll exchange.</p>
-</main></body>
+</main>
+<script>
+(function() {
+  function loadGtm() {
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-LRXMHQECWQ";
+    document.head.appendChild(s);
+  }
+  function loadAdSense() {
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009";
+    s.crossOrigin = "anonymous";
+    document.head.appendChild(s);
+  }
+  function loadAll() { loadGtm(); loadAdSense(); }
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(loadAll, { timeout: 3000 });
+  } else {
+    setTimeout(loadAll, 500);
+  }
+})();
+</script>
+
+</body>
 </html>

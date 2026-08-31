@@ -5,16 +5,12 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="msvalidate.01" content="007E92F701F1F5163F3EE66C2650600A" />
  <meta name="yandex-verification" content="ec735af32a102bbe" />
- <!-- Google tag (gtag.js) -->
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRXMHQECWQ"></script>
  <script>
  window.dataLayer = window.dataLayer || [];
  function gtag(){dataLayer.push(arguments);}
  gtag('js', new Date());
  gtag('config', 'G-LRXMHQECWQ');
  </script>
- <!-- Google AdSense -->
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009" crossorigin="anonymous"></script>
 <title>Amazon Affiliate Commission Loss Calculator — Calculate Revenue Impact | AMZLOSS</title>
   <meta name="description" content="Calculate how Amazon commission-rate changes can affect your affiliate earnings. Compare old and current rates and estimate monthly and annual revenue differences.">
   <meta name="keywords" content="Amazon affiliate commission loss calculator, Amazon commission loss calculator, Amazon affiliate earnings loss calculator, Amazon commission cut calculator, Amazon affiliate commission cut calculator, Amazon affiliate revenue loss calculator, Amazon affiliate income loss calculator, Amazon commission reduction calculator, Amazon affiliate commission reduction calculator, Amazon affiliate earnings reduction calculator">
@@ -32,7 +28,10 @@
  <meta name="theme-color" content="#4b286d">
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+ <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+ <link rel="preload" as="style" href="assets/css/style.css">
  <link rel="stylesheet" href="assets/css/style.css">
 <script>
  try { var t = localStorage.getItem('amzloss_theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -286,6 +285,31 @@
  calc.addEventListener('click', calculate);
  [rateOld, rateNew, revenue].forEach(function(el){ el.addEventListener('input', calculate); });
  calculate();
+})();
+</script>
+
+
+<script>
+(function() {
+  function loadGtm() {
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-LRXMHQECWQ";
+    document.head.appendChild(s);
+  }
+  function loadAdSense() {
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009";
+    s.crossOrigin = "anonymous";
+    document.head.appendChild(s);
+  }
+  function loadAll() { loadGtm(); loadAdSense(); }
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(loadAll, { timeout: 3000 });
+  } else {
+    setTimeout(loadAll, 500);
+  }
 })();
 </script>
 

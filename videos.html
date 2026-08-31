@@ -40,5 +40,30 @@
   <p>Every scheduled run auto-renders this video and commits it. You can watch it live at <a class="dl" href="https://amzloss.com/blogs/img/talkvid.mp4">amzloss.com/blogs/img/talkvid.mp4</a> or in the repo <code>blogs/img/</code>.</p>
  </div>
 </div>
+
+<script>
+(function() {
+  function loadGtm() {
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-LRXMHQECWQ";
+    document.head.appendChild(s);
+  }
+  function loadAdSense() {
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294523315450009";
+    s.crossOrigin = "anonymous";
+    document.head.appendChild(s);
+  }
+  function loadAll() { loadGtm(); loadAdSense(); }
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(loadAll, { timeout: 3000 });
+  } else {
+    setTimeout(loadAll, 500);
+  }
+})();
+</script>
+
 </body>
 </html>
