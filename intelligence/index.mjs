@@ -29,6 +29,17 @@ import { runVideoProductionPipeline } from "./video/pipelines/video_production_p
 
 import { getBlogContext, getTikTokContext, getLinkingContext, getDesignContext, getVideoContext, SITE_PAGES } from "./memory/retriever.mjs";
 
+// v2.1.0: Authority-Aware Internal Link Architecture
+import {
+  scorePage, classifyImportance, computeImportanceScore,
+  buildLinkGraph, persistGraph, getGraph, adjacencyList as linkAdjacencyList,
+  computeCrawlDepths, crawlDepthReport, flagDeepPages,
+  generateAnchorVariations, evaluateAnchorQuality,
+  evaluateClusterCompleteness, buildAuthorityFlowReport,
+  findLinkToThisPage, findLinkFromThisPage,
+  runNewArticleWorkflow, runAuthorityLinkingPipeline
+} from "./link_architecture/index.mjs";
+
 export {
   runSeoResearchAgent, runTopicClusterAgent, runBlogWriterAgent, runInternalLinkingAgent, runBlogSeoAuditor,
   runTikTokStrategist, runTikTokScriptWriter, runVideoDirector, runVideoQualityJudge,
@@ -37,5 +48,14 @@ export {
   runUxStrategistAgent, runCreativeWebAgent, runMotionDesignAgent, runDesignCriticAgent, runWebsiteDesignPipeline,
   runVideoCreativeDirector, runStoryboardAgent, runSoundDesignAgent, runUpgradedVideoQualityJudge, runVideoProductionPipeline,
 
-  getBlogContext, getTikTokContext, getLinkingContext, getDesignContext, getVideoContext, SITE_PAGES
+  getBlogContext, getTikTokContext, getLinkingContext, getDesignContext, getVideoContext, SITE_PAGES,
+
+  // v2.1.0: Authority-Aware Internal Link Architecture
+  scorePage, classifyImportance, computeImportanceScore,
+  buildLinkGraph, persistGraph, getGraph, linkAdjacencyList,
+  computeCrawlDepths, crawlDepthReport, flagDeepPages,
+  generateAnchorVariations, evaluateAnchorQuality,
+  evaluateClusterCompleteness, buildAuthorityFlowReport,
+  findLinkToThisPage, findLinkFromThisPage,
+  runNewArticleWorkflow, runAuthorityLinkingPipeline
 };
