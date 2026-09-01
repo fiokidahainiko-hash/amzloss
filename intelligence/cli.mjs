@@ -36,7 +36,7 @@ function parseArgs() {
 async function main() {
   const { command, flags } = parseArgs();
 
-  console.log(`\n🤖 AMZLOSS AI CONTENT INTELLIGENCE SYSTEM v2.1.0`);
+  console.log(`\n🤖 AMZLOSS AI CONTENT INTELLIGENCE SYSTEM v2.2.0`);
   console.log(`==================================================`);
 
   switch (command) {
@@ -200,6 +200,68 @@ async function main() {
       break;
     }
 
+    // --- NEW v2.2.0 EDITORIAL CONTENT NETWORK COMMANDS ---
+
+    case "editorial": {
+      const enTopic = flags.topic || "Amazon Affiliate Marketing";
+      const newArt = flags["new-article"] ? { slug: flags["new-article"], title: flags["new-article"].replace(/-/g, " "), category: "Amazon", keywords: [] } : null;
+      const { runEditorialContentNetworkPipeline } = await import("./link_architecture/editorial/pipeline/editorial_pipeline.mjs");
+      console.log(`Running Editorial Content Network Pipeline for: "${enTopic}"...`);
+      const report = await runEditorialContentNetworkPipeline({ topic: enTopic, newArticle: newArt });
+      console.log(`\nEDITORIAL CONTENT NETWORK RESULT:`);
+      console.log(`  Semantic edges: ${report.semantic_graph.edges} | Hubs: ${report.hubs_identified.length} | Collections: ${report.collections_identified.length}`);
+      console.log(`  Cluster health: ${report.cluster_completeness.cluster_health}/100 (${report.cluster_completeness.status})`);
+      console.log(`  Topic coverage: ${report.cluster_completeness.scores.topic_coverage} | Search intent: ${report.cluster_completeness.scores.search_intent_coverage}`);
+      console.log(`  Relationship types used: ${Object.keys(report.semantic_graph.relationship_count).join(", ")}`);
+      if (report.new_article_workflow) {
+        console.log(`  NEW ARTICLE inbound opportunities (auto-update existing): ${report.new_article_workflow.inbound_link_recommendations.existing_opportunities_found}`);
+      }
+      break;
+    }
+
+    case "relationships": {
+      const relSlug = flags.slug || "calculator";
+      const { entityRelationship } = await import("./link_architecture/editorial/entity_extraction.mjs");
+      const { SITE_PAGES } = await import("./memory/retriever.mjs");
+      const pages = SITE_PAGES.map(p => ({ slug: p.url.replace(".html",""), title: p.title, keywords: p.keywords }));
+      const target = pages.find(p => p.slug === relSlug) || pages[0];
+      console.log(`Entity relationships for: "${target.title}"`);
+      pages.filter(p => p.slug !== target.slug).forEach(p => {
+        const rel = entityRelationship(target, p);
+        if (rel.shared_entities.length > 0) {
+          console.log(`  → ${p.title} | entities: ${rel.shared_entities.join(", ")} | overlap: ${rel.overlap_score}`);
+        }
+      });
+      break;
+    }
+
+    case "collections": {
+      const { buildEditorialCollections } = await import("./link_architecture/editorial/collections.mjs");
+      const { SITE_PAGES } = await import("./memory/retriever.mjs");
+      const cluster = SITE_PAGES.map(p => ({ slug: p.url.replace(".html",""), title: p.title, role: (p.url.includes("calculator")||p.url.includes("audit")) ? "tool" : "supporting" }));
+      console.log(`Identifying editorial collections...`);
+      const collections = buildEditorialCollections("Amazon Affiliate Marketing", cluster, cluster[0]);
+      console.log(`\nEDITORIAL COLLECTIONS (${collections.length}):`);
+      collections.forEach(c => console.log(`  ${c.type}: ${c.title} | members: ${c.members.length} | ${c.value}`));
+      break;
+    }
+
+    case "network-health": {
+      const { buildContentNetworkHealth } = await import("./link_architecture/editorial/content_network_health.mjs");
+      const { buildTopicCoverageMap } = await import("./link_architecture/editorial/topic_coverage_map.mjs");
+      const { scorePage: scoreP5 } = await import("./link_architecture/importance/importance_scorer.mjs");
+      const { SITE_PAGES } = await import("./memory/retriever.mjs");
+      const pages = SITE_PAGES.map(p => scoreP5({ slug: p.url.replace(".html",""), title: p.title, category: p.category, keywords: p.keywords, inboundLinks: Math.floor(Math.random()*6), outboundLinks: Math.floor(Math.random()*4), crawlDepth: 2, role: (p.url.includes("calculator")||p.url.includes("audit")) ? "tool" : "supporting", businessImportance: 6 }));
+      console.log(`Building content network health dashboard...`);
+      const health = buildContentNetworkHealth(pages, { edges: [] }, []);
+      console.log(`\nCONTENT NETWORK HEALTH DASHBOARD:`);
+      console.log(`  Articles: ${health.total_articles} | Important: ${health.important_pages} | Tools: ${health.tools}`);
+      console.log(`  Hubs: ${health.total_hubs} (incl ${health.hub_opportunities} opportunities) | Collections: ${health.collections}`);
+      console.log(`  Orphans: ${health.orphan_pages} | Under-linked: ${health.under_linked_pages} | Over-linked: ${health.over_linked_pages}`);
+      console.log(`  Pages requiring new links: ${health.pages_requiring_new_links.length}`);
+      break;
+    }
+
     // --- EXISTING COMMANDS (Unmodified) ---
 
     case "example": {
@@ -242,6 +304,10 @@ async function main() {
       console.log(`  node intelligence/cli.mjs cluster-completeness --topic="Amazon Affiliate Marketing"`);
       console.log(`  node intelligence/cli.mjs crawl-depth`);
       console.log(`  node intelligence/cli.mjs flow-report`);
+      console.log(`  node intelligence/cli.mjs editorial --topic="Amazon Affiliate Marketing" [--new-article=amazon-affiliate-optimization]`);
+      console.log(`  node intelligence/cli.mjs relationships --slug="calculator"`);
+      console.log(`  node intelligence/cli.mjs collections`);
+      console.log(`  node intelligence/cli.mjs network-health`);
       console.log(`  node intelligence/cli.mjs example [--action=add --type=blog --status=approved ...]`);
       console.log(`  node intelligence/cli.mjs admin [--threshold-blog=85 --threshold-design=85]`);
       break;

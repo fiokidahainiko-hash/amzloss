@@ -1,4 +1,4 @@
-/* AmzLoss AI Content Intelligence System (v2.0.0) — Main Programmatic Exports */
+/* AmzLoss AI Content Intelligence System (v2.2.0) — Main Programmatic Exports */
 
 import { runSeoResearchAgent } from "./agents/seo_research_agent.mjs";
 import { runTopicClusterAgent } from "./agents/topic_cluster_agent.mjs";
@@ -37,7 +37,20 @@ import {
   generateAnchorVariations, evaluateAnchorQuality,
   evaluateClusterCompleteness, buildAuthorityFlowReport,
   findLinkToThisPage, findLinkFromThisPage,
-  runNewArticleWorkflow, runAuthorityLinkingPipeline
+  runNewArticleWorkflow, runAuthorityLinkingPipeline,
+  // v2.2.0: Editorial Content Network
+  RELATIONSHIP_TYPES, RELATIONSHIP_MEANING, inferRelationshipType, relationshipBetween,
+  buildContentRelationshipGraph, createRelationshipEdge, semanticNeighbors, HUB_TYPES, CONTENT_ROLES,
+  extractEntities, entityOverlap, entityRelationship,
+  identifyHubs, detectHubForCluster,
+  readerNextStepCandidates, readerPreviousStepCandidates, decideBidirectionality,
+  scoreLinkRecommendation, rankRecommendations, isStrongOpportunity,
+  buildTopicCoverageMap,
+  evaluateEditorialClusterCompleteness,
+  buildContentNetworkHealth,
+  whyThisArticleExists, scanExistingArticlesForInboundLinks,
+  buildEditorialCollections, buildRelatedContentModules,
+  runEditorialContentNetworkPipeline
 } from "./link_architecture/index.mjs";
 
 export {
@@ -57,5 +70,19 @@ export {
   generateAnchorVariations, evaluateAnchorQuality,
   evaluateClusterCompleteness, buildAuthorityFlowReport,
   findLinkToThisPage, findLinkFromThisPage,
-  runNewArticleWorkflow, runAuthorityLinkingPipeline
+  runNewArticleWorkflow, runAuthorityLinkingPipeline,
+
+  // v2.2.0: Editorial Content Network
+  RELATIONSHIP_TYPES, RELATIONSHIP_MEANING, inferRelationshipType, relationshipBetween,
+  buildContentRelationshipGraph, createRelationshipEdge, semanticNeighbors, HUB_TYPES, CONTENT_ROLES,
+  extractEntities, entityOverlap, entityRelationship,
+  identifyHubs, detectHubForCluster,
+  readerNextStepCandidates, readerPreviousStepCandidates, decideBidirectionality,
+  scoreLinkRecommendation, rankRecommendations, isStrongOpportunity,
+  buildTopicCoverageMap,
+  evaluateEditorialClusterCompleteness,
+  buildContentNetworkHealth,
+  whyThisArticleExists, scanExistingArticlesForInboundLinks,
+  buildEditorialCollections, buildRelatedContentModules,
+  runEditorialContentNetworkPipeline
 };
