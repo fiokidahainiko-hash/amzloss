@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ex-blog-001",
+    "content_type": "blog",
+    "status": "approved",
+    "topic": "Amazon Associates Commission Cuts 2026",
+    "title": "Calculating 2026 Amazon Commission in Three Steps",
+    "score": 92,
+    "reasoning": "Excellent mathematical clarity, clear TL;DR takeaway, no intro fluff, natural internal links to commission calculator.",
+    "key_features": [
+      "Explicit math: (Order Amount - Excluded Fees) x Category Rate",
+      "Direct comparison table for 2026 vs 2025 rates",
+      "Valid Schema.org Article and FAQ structured data"
+    ]
+  },
+  {
+    "id": "ex-blog-002",
+    "content_type": "blog",
+    "status": "rejected",
+    "topic": "Affiliate Marketing Overview",
+    "title": "How to Make Money with Amazon",
+    "score": 58,
+    "reasoning": "Generic AI fluff intro ('In today's digital landscape...'), missing real category rates, zero internal links to tools, overclaims rank guarantees.",
+    "key_features": [
+      "Banned intro phrases present",
+      "No concrete numbers or formulas",
+      "Missing FTC link disclosure requirement"
+    ]
+  },
+  {
+    "id": "ex-tiktok-001",
+    "content_type": "tiktok",
+    "status": "approved",
+    "topic": "Commission Rate Discrepancy",
+    "title": "The 4% Amazon Commission Trap",
+    "score": 94,
+    "reasoning": "Strong hook within 2 seconds, clear tension, high retention visual callouts, concise voiceover cadence.",
+    "script_preview": "Hook: If you referred a $100 sale on Amazon, you probably assumed you earned $4. Stop guessing — here's why your payout was actually $1.60."
+  },
+  {
+    "id": "ex-tiktok-002",
+    "content_type": "tiktok",
+    "status": "rejected",
+    "topic": "General Affiliate Tip",
+    "title": "Affiliate Tips 101",
+    "score": 62,
+    "reasoning": "Weak intro ('Hey guys, welcome back'), slow pacing, no visual pattern interrupts, no clear call to action.",
+    "script_preview": "Hook: Hey everyone, today we're going to talk about Amazon affiliate links..."
+  }
+]

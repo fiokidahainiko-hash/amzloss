@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "2.0.0",
+  "last_updated": "2026-09-01",
+  "sound_effects": {
+    "whoosh_fast": "Swish transition sound for rapid card slides and text entrances.",
+    "synth_thump": "Low sub-bass impact for hook reveals and alert cards.",
+    "riser_tension": "Pitch-ascending riser building tension during problem state.",
+    "chime_success": "Crisp high-frequency chime for product reveal and solution state.",
+    "ui_click_soft": "Soft tactile click for button presses and counter reveals.",
+    "notification_alert": "Subtle bell alert for rate cut warnings."
+  },
+  "mixing_rules": {
+    "voiceover_ducking": "Background music ducked -12dB under voiceover narration.",
+    "sfx_peak_level": "Sound effects mixed at -6dB peak relative to voiceover.",
+    "master_loudness": "Target -14 LUFS integrated for short-form video platforms."
+  }
+}

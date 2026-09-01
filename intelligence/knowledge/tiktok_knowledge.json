@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "last_updated": "2026-09-01",
+  "tiktok_standards": {
+    "hook_formulas": [
+      {
+        "name": "The Hidden Loss",
+        "pattern": "If you're an Amazon affiliate, you're probably losing [X]% of your commission without realizing it.",
+        "type": "Tension & Curiosity"
+      },
+      {
+        "name": "The Math Shock",
+        "pattern": "A $100 product sold on Amazon doesn't pay $4. Here's why your payout was actually $1.60.",
+        "type": "Data Discrepancy"
+      },
+      {
+        "name": "The Rate Cut Trap",
+        "pattern": "Amazon secretly changed category commission rates in 2026. Here's the 10-second test to check your site.",
+        "type": "Urgency & Problem"
+      },
+      {
+        "name": "The Clean Link Fix",
+        "pattern": "Stop publishing Amazon URLs with tracking parameters that get stripped. Do this instead.",
+        "type": "Direct Value / Fix"
+      }
+    ],
+    "banned_intros": [
+      "Hey guys, today we are going to talk about...",
+      "Welcome back to my channel...",
+      "So I was thinking about Amazon affiliate marketing..."
+    ],
+    "storytelling_structure": {
+      "0-3s": "Hook (Curiosity / Tension / Visual Discrepancy)",
+      "3-8s": "Problem Statement / Real-world Math Reveal",
+      "8-15s": "Solution Demonstration / Tool Walkthrough (Screen Recording / Dynamic Motion)",
+      "15-20s": "Key Takeaway / Actionable Insight",
+      "20-22s": "Call to Action + Open Loop Ending"
+    },
+    "retention_techniques": {
+      "pattern_interrupt_interval_sec": 2.5,
+      "text_overlay_rule": "Large, high-contrast bold captions on screen matching voiceover keywords.",
+      "audio_pacing": "150-175 words per minute, crisp cadence, royalty-free dynamic background beat.",
+      "visual_motion": "Zoom pans, green-screen overlays, highlighted table cells, side-by-side math cards."
+    },
+    "tiktok_seo": {
+      "title_max_len": 90,
+      "description_structure": "Primary keyword + 2-line summary + 4 relevant hashtags (#AffiliateMarketing #AmazonAssociates #SEO #WebmasterTools)",
+      "hashtag_limit": 5
+    },
+    "video_formats": ["educational", "mystery_reveal", "before_after", "data_reveal"],
+    "quality_metrics": [
+      "Hook strength (0-3s impact)",
+      "Curiosity & tension",
+      "Retention potential",
+      "Story structure",
+      "Pacing & cadence",
+      "Visual direction clarity",
+      "Information value",
+      "CTA strength",
+      "TikTok SEO compliance"
+    ]
+  }
+}

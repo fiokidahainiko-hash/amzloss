@@ -12,6 +12,7 @@ import path from "node:path";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { TOOLS } from "./blog-tools.mjs";
+import { runBlogPipeline } from "../intelligence/index.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");

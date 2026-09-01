@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "last_updated": "2026-09-01",
+  "blog_standards": {
+    "brand_voice": {
+      "tone": "Independent, authoritative, analytical, direct, helpful, webmaster-focused.",
+      "perspective": "First-person plural ('we at AmzLoss') or objective expert analysis.",
+      "banned_phrases": [
+        "In today's fast-paced digital landscape",
+        "It is important to remember that",
+        "Whether you are a beginner or an expert",
+        "In conclusion, it is clear that",
+        "Game changer",
+        "Delve into",
+        "Unlock the secrets",
+        "Navigate the world of"
+      ],
+      "preferred_terms": [
+        "eligible order amount",
+        "commission drop",
+        "underpayment audit",
+        "browser-only privacy",
+        "direct earnings",
+        "category rate table"
+      ]
+    },
+    "writing_style": {
+      "paragraph_length": "Maximum 3-4 sentences per paragraph.",
+      "sentence_length": "Varied, averaging 14-18 words.",
+      "formatting": "Use bold text for key metrics, bullet lists for multi-item breakdowns, and callout boxes for warnings/tips.",
+      "reading_level": "Grade 8-10 (clear, crisp, accessible to bloggers and developers)."
+    },
+    "article_structure": {
+      "elements": [
+        {"name": "Header & Hero", "description": "Title, category kicker, reading time, last updated date."},
+        {"name": "TL;DR Summary", "description": "Key takeaways box at top highlighting the core formula or finding."},
+        {"name": "Core Analysis", "description": "Detailed explanation of the topic, rate math, or audit step."},
+        {"name": "Practical Step-by-Step", "description": "Numbered instructions showing how to calculate, audit, or optimize."},
+        {"name": "Real Example / Case Study", "description": "Concrete dollar figures showing price drop vs commission earned."},
+        {"name": "FAQ Section", "description": "3-5 structured questions and short answers for FAQ schema."},
+        {"name": "Related Tools CTA", "description": "Contextual links to AmzLoss calculators or audit tools."}
+      ]
+    },
+    "introduction_patterns": {
+      "good": "Amazon reduced baseline commissions across several popular categories in 2026. If your earnings dropped despite steady traffic, here is the exact math to check if you were underpaid—and how to calculate your true break-even price.",
+      "bad": "In today's world of e-commerce, affiliate marketing is a popular way to make money online. Many creators use Amazon Associates to monetize their traffic..."
+    },
+    "faq_rules": {
+      "count": "3 to 5 questions",
+      "format": "Clear, concise answers (2-3 sentences max per answer). Must match FAQPage JSON-LD schema."
+    },
+    "quality_benchmark": {
+      "good_example": {
+        "title": "Calculating 2026 Amazon Commission in Three Steps",
+        "strengths": ["Clear formula: Eligible Amount x Category Rate", "Considers post-discount price", "Includes FTC link disclosure guide", "Direct call-to-action to free calculator"]
+      },
+      "poor_example": {
+        "title": "How to Make Money with Amazon",
+        "weaknesses": ["Generic advice", "No mathematical calculations", "Missing rate table data", "Fluffy intro", "No internal links to tools"]
+      }
+    },
+    "fact_checking": {
+      "rules": [
+        "Amazon 2026 rate table percentages must match official rates (e.g., Luxury Beauty 10%, Apparel 4%, Electronics 4%, Home 3%, Video Games 1%).",
+        "Never claim Amazon steals money or guarantees refunds; frame audits as identifying discrepancies or rate misclassifications.",
+        "Ensure all tool links lead to valid site pages (calculator.html, audit.html, rates.html, breakeven.html, networks.html, link-builder.html, backlink-checker.html, url-submitter.html, directory.html, earnings-analyzer.html)."
+      ]
+    }
+  }
+}

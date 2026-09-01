@@ -1,0 +1,121 @@
+{
+  "system_version": "1.0.0",
+  "last_modified": "2026-09-01",
+  "quality_thresholds": {
+    "blog": {
+      "approved_min": 85,
+      "revision_min": 70,
+      "max_revisions": 2
+    },
+    "tiktok": {
+      "approved_min": 85,
+      "revision_min": 70,
+      "max_revisions": 2
+    }
+  },
+  "brand_voice": {
+    "company_name": "AmzLoss",
+    "mission": "Independent, transparent tools and verification for Amazon Associates and affiliate webmasters.",
+    "tone": "Authoritative, mathematical, direct, privacy-first, webmaster-friendly."
+  },
+  "seo_defaults": {
+    "target_search_engines": [
+      "Google",
+      "Bing",
+      "Yandex",
+      "IndexNow"
+    ],
+    "canonical_base_url": "https://amzloss.com",
+    "default_author": "AmzLoss SEO Intelligence"
+  },
+  "quality_thresholds": {
+    "blog": {
+      "approved_min": 85,
+      "revision_min": 70,
+      "max_revisions": 2
+    },
+    "tiktok": {
+      "approved_min": 85,
+      "revision_min": 70,
+      "max_revisions": 2
+    },
+    "design": {
+      "approved_min": 85,
+      "revision_min": 70,
+      "max_revisions": 2
+    },
+    "video_production": {
+      "approved_min": 85,
+      "revision_min": 70,
+      "max_revisions": 2
+    }
+  },
+  "brand_voice": {
+    "company_name": "AmzLoss",
+    "mission": "Independent, transparent tools and verification for Amazon Associates and affiliate webmasters.",
+    "tone": "Authoritative, mathematical, direct, privacy-first, webmaster-friendly."
+  },
+  "seo_defaults": {
+    "target_search_engines": [
+      "Google",
+      "Bing",
+      "Yandex",
+      "IndexNow"
+    ],
+    "canonical_base_url": "https://amzloss.com",
+    "default_author": "AmzLoss SEO Intelligence"
+  },
+  "agent_settings": {
+    "seo_research": {
+      "enabled": true
+    },
+    "topic_cluster": {
+      "enabled": true
+    },
+    "blog_writer": {
+      "enabled": true
+    },
+    "internal_linking": {
+      "enabled": true
+    },
+    "blog_seo_auditor": {
+      "enabled": true
+    },
+    "tiktok_strategist": {
+      "enabled": true
+    },
+    "tiktok_script_writer": {
+      "enabled": true
+    },
+    "video_director": {
+      "enabled": true
+    },
+    "video_quality_judge": {
+      "enabled": true
+    },
+    "ux_strategist": {
+      "enabled": true
+    },
+    "creative_web_designer": {
+      "enabled": true
+    },
+    "motion_designer": {
+      "enabled": true
+    },
+    "design_critic": {
+      "enabled": true
+    },
+    "video_creative_director": {
+      "enabled": true
+    },
+    "storyboard_designer": {
+      "enabled": true
+    },
+    "sound_designer": {
+      "enabled": true
+    },
+    "upgraded_video_quality_judge": {
+      "enabled": true
+    }
+  }
+}

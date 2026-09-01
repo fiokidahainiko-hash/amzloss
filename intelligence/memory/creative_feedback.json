@@ -1,0 +1,36 @@
+{
+  "approved_creative_references": [
+    {
+      "id": "creative-ref-001",
+      "type": "website_design",
+      "title": "AmzLoss Pricing & Calculator Hub",
+      "score": 93,
+      "approved_features": [
+        "Interactive two-panel calculator wrap with ambient shadow",
+        "Sticky glassmorphism header with 16px blur backdrop filter",
+        "Clear 8px grid layout spacing"
+      ]
+    },
+    {
+      "id": "creative-ref-002",
+      "type": "video_production",
+      "title": "The Evaporating Commission (Concept A)",
+      "score": 95,
+      "approved_features": [
+        "Dynamic 3D $100 crumble animation instead of static screenshot",
+        "Kinetic typography word reveals synchronized with voiceover",
+        "Sub-bass impact SFX on red alert card entrance"
+      ]
+    }
+  ],
+  "rejected_creative_feedback": [
+    {
+      "id": "rejection-001",
+      "type": "video_production",
+      "title": "Static Screenshot Slide",
+      "score": 64,
+      "reason": "Used static website screenshots as primary visual concept without kinetic motion or storytelling.",
+      "required_fix": "Replace static screenshot slides with motion graphics, animated numbers, or visual metaphors."
+    }
+  ]
+}

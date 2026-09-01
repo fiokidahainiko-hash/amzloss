@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "2.0.0",
+  "last_updated": "2026-09-01",
+  "styles": {
+    "dark_premium_saas": {
+      "bg_color": "Deep Slate (#0D0E12)",
+      "accent_color": "Electric Purple (#7A4BB8) & Neon Green (#2B8000)",
+      "lighting": "Ambient radial glow",
+      "pacing": "Sleek, authoritative, fast",
+      "typography": "Heavy sans-serif kinetic text with subtle drop shadows"
+    },
+    "cinematic_data": {
+      "bg_color": "Dark Blue Charcoal (#0A1026)",
+      "accent_color": "Vibrant Cyan (#46D2FF) & Yellow (#FFC83C)",
+      "lighting": "Spotlight depth",
+      "pacing": "Deliberate tension -> rapid resolution",
+      "typography": "Bold monospaced numbers + clean sans-serif titles"
+    },
+    "high_energy_tiktok": {
+      "bg_color": "Dark Purple (#240C28)",
+      "accent_color": "Bright Coral (#FF505A) & Gold (#FFD23C)",
+      "lighting": "High contrast color flashes",
+      "pacing": "Rapid 2.0s pattern interrupts",
+      "typography": "Massive centered kinetic typography"
+    }
+  }
+}

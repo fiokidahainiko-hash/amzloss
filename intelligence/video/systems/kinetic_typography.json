@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "2.0.0",
+  "last_updated": "2026-09-01",
+  "typography_effects": {
+    "scale_pop": {
+      "description": "Text scales up quickly from 0.8x to 1.1x with a subtle spring bounce to grab immediate attention.",
+      "duration_sec": 0.25,
+      "best_for": "Hook words, numbers, impact statements"
+    },
+    "word_reveal_slide": {
+      "description": "Words slide up from a hidden clip-path container one by one in sync with voiceover cadence.",
+      "duration_sec": 0.35,
+      "best_for": "Subtitle captions, key math equations"
+    },
+    "counter_count_up": {
+      "description": "Numbers rapidly increment from 0 or baseline value to target figure (e.g. $4.00 ➔ $1.60).",
+      "duration_sec": 0.8,
+      "best_for": "Commission loss figures, rate percentages"
+    },
+    "text_transform_highlight": {
+      "description": "Keyword text background highlights in vibrant green or yellow as voiceover pronounces it.",
+      "duration_sec": 0.2,
+      "best_for": "Important terms like 'Eligible Order Amount', 'Nofollow Sponsored'"
+    }
+  }
+}

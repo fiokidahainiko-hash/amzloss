@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "last_updated": "2026-09-01",
+  "seo_rules": {
+    "search_intent": {
+      "informational": {
+        "description": "User wants to learn, understand, or troubleshoot.",
+        "content_type": "Guides, calculators, explainer blogs, FAQ sections.",
+        "formatting": "Clear headings, TL;DR summaries, visual callouts, step-by-step breakdowns.",
+        "cta_type": "Try our free tool / Read related guides"
+      },
+      "commercial_investigation": {
+        "description": "User is comparing affiliate networks, tools, or rates before committing.",
+        "content_type": "Comparison tables, pros/cons lists, ROI calculators, rate benchmarks.",
+        "formatting": "Side-by-side comparison tables, rating cards, key differences callout.",
+        "cta_type": "Calculate your exact loss / Compare network payouts"
+      },
+      "transactional": {
+        "description": "User is ready to audit report, build links, or calculate specific figures.",
+        "content_type": "Interactive calculator pages, URL submitter, directory listing forms.",
+        "formatting": "Above-the-fold tool interface, minimal fluff, immediate input fields.",
+        "cta_type": "Run audit now / Submit link"
+      }
+    },
+    "keyword_research": {
+      "primary_target_rule": "Every page must target exactly 1 primary keyword phrase.",
+      "secondary_keywords_rule": "Include 3-5 LSI / long-tail variations naturally within subheadings and body text.",
+      "density_limit": "Never exceed 1.5% keyword density; focus on semantic entity presence.",
+      "title_tag_rule": "Primary keyword must appear within the first 60 characters of the page <title>."
+    },
+    "topic_clustering": {
+      "pillar_page_structure": "Pillar articles provide high-level overview of a major topic (e.g. Amazon Affiliate Marketing) and link to 6-10 supporting cluster articles.",
+      "cluster_supporting_rule": "Supporting articles cover hyper-specific long-tail questions (e.g. Amazon Halo commission changes) and always link back to the pillar page with descriptive anchors.",
+      "cannibalization_prevention": "Never target the same primary keyword across multiple pages. Check existing sitemap before creating new topics."
+    },
+    "semantic_seo": {
+      "entity_coverage": ["Amazon Associates", "Commission Rates", "Eligible Order Amount", "Earnings Report CSV", "FTC Disclosure", "Nofollow Sponsored", "Open PageRank", "IndexNow", "CORS Proxy", "Payout Audit"],
+      "structured_data_required": ["Article", "FAQPage", "BreadcrumbList", "WebApplication"],
+      "lsi_integration": "Incorporate related terms naturally into H2/H3 headers and paragraph text."
+    },
+    "internal_linking": {
+      "min_links_per_article": 3,
+      "max_links_per_article": 8,
+      "anchor_text_rule": "Use descriptive, natural anchor text (e.g. 'check Amazon commission rates') instead of generic phrases like 'click here' or repetitive exact-match keywords.",
+      "pillar_link_required": true,
+      "orphan_prevention": "Every new article must be linked from at least 1 existing index/category/blog page."
+    },
+    "eeat_and_affiliate_guidelines": {
+      "experience": "Reference real Amazon Associates report CSV structures, exact column names (Eligible Ships, Direct Earnings), and actual rate tables.",
+      "expertise": "Provide precise mathematical formulas for break-even, commission loss, and net margin.",
+      "authoritativeness": "Cite official Amazon Associates Operating Agreement rules, FTC guidance on affiliate links, and Open PageRank indices.",
+      "trustworthiness": "Always include transparent affiliate disclosures, emphasize privacy (browser-only processing), and state independence from Amazon.",
+      "ftc_compliance": "All external affiliate links must include rel=\"nofollow sponsored\" attribute."
+    }
+  }
+}

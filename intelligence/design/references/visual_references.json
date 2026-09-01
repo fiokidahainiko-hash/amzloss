@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ref-hero-001",
+    "category": "Hero Section",
+    "style": "Dark Premium SaaS",
+    "key_features": [
+      "Glowing purple/green radial ambient light background",
+      "Pill badge: 'Independent Amazon Associates Check'",
+      "H1 headline with high-contrast white text and gradient accent on action verbs",
+      "Interactive 2-column hero: live calculator inputs on left, real-time result card on right"
+    ],
+    "why_effective": "Provides immediate utility above the fold before user even scrolls."
+  },
+  {
+    "id": "ref-pricing-001",
+    "category": "Pricing Section",
+    "style": "Modern Minimal",
+    "key_features": [
+      "Clear distinction: Free Forever ($0) vs Optional Extras",
+      "Featured Pro tier highlighted with glowing gradient border",
+      "Checkmark list with green indicators",
+      "No credit card required messaging"
+    ],
+    "why_effective": "Eliminates paywall fear while clearly positioning premium value."
+  },
+  {
+    "id": "ref-motion-001",
+    "category": "Micro-interactions",
+    "style": "Subtle & Purposeful",
+    "key_features": [
+      "Card hover elevates translateY(-4px) with border color transition to brand purple",
+      "Numbers count up smoothly when scrolled into view",
+      "Copy button provides instant checkmark feedback animation"
+    ],
+    "why_effective": "Gives physical tactile feedback without distracting from content readability."
+  }
+]

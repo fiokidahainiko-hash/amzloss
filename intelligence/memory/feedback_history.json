@@ -1,0 +1,1629 @@
+{
+  "generation_logs": [
+    {
+      "timestamp": "2026-09-01T00:04:51.029Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.039Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.046Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.049Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 27
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.063Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.071Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.078Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.084Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:04:51.087Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 34
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.394Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.408Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.416Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.426Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.430Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 148
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.441Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.449Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.459Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.462Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 29
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.469Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.480Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.490Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.495Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 29
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.504Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.513Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.522Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.529Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:05:21.533Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 34
+    },
+    {
+      "timestamp": "2026-09-01T00:06:09.555Z",
+      "agent": "TopicClusterAgent",
+      "role": "reasoning",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:09.569Z",
+      "agent": "TopicClusterAgent",
+      "role": "reasoning",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:09.582Z",
+      "agent": "TopicClusterAgent",
+      "role": "reasoning",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:09.591Z",
+      "agent": "TopicClusterAgent",
+      "role": "reasoning",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:09.595Z",
+      "agent": "TopicClusterAgent",
+      "role": "reasoning",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 182
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.117Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.129Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.141Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.152Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.157Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 194
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.169Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.178Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.188Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.196Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.199Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 38
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.214Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.226Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.233Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.243Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.247Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 43
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.255Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.263Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.274Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.283Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.289Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 36
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.299Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.308Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.315Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.322Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:06:40.327Z",
+      "agent": "InternalLinkingAgent",
+      "role": "reasoning",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 31
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.237Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.253Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.262Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.269Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.274Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 1303
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.283Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.291Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.297Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.302Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.305Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 26
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.316Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.325Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.333Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.337Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 26
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.351Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.362Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.370Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.379Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:26.383Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 39
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.392Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.408Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.420Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.430Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.435Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 164
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.445Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.454Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.465Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.469Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 30
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.477Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.489Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.499Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.503Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 31
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.509Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.517Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.524Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.532Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:11:43.536Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 29
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.130Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.145Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.156Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.164Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.170Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 158
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.179Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.189Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.196Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.206Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.209Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 34
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.220Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.229Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.236Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.241Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 28
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.248Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.256Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.261Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.268Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:12:27.273Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 28
+    },
+    {
+      "timestamp": "2026-09-01T00:13:17.378Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:17.393Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:17.409Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.729Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.754Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.766Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.777Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.781Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 205
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.790Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.801Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.813Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.817Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 33
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.827Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.835Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.845Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.852Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 29
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.860Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.867Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.875Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.883Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:13:55.887Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 31
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.927Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.941Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.948Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.959Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.963Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 173
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.973Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.980Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.987Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.992Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 26
+    },
+    {
+      "timestamp": "2026-09-01T00:14:49.999Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.009Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.017Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.023Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 26
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.035Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.042Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.048Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.055Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:14:50.059Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 32
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.299Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.312Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.321Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.329Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.333Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 178
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.344Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.356Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.367Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.374Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.377Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 39
+    },
+    {
+      "timestamp": "2026-09-01T00:15:37.385Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.005Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.017Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.025Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.032Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.036Z",
+      "agent": "UxStrategistAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 159
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.046Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.056Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.064Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.072Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.076Z",
+      "agent": "CreativeWebAgent",
+      "role": "design",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 35
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.086Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.095Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.103Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.107Z",
+      "agent": "MotionDesignAgent",
+      "role": "motion",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 27
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.114Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.121Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.127Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.133Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:15:57.136Z",
+      "agent": "DesignCriticAgent",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 25
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.401Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.412Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.421Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "gpt-4o",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.428Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.432Z",
+      "agent": "VideoCreativeDirector",
+      "role": "creative",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 135
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.442Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.451Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.462Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.468Z",
+      "agent": "StoryboardAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 31
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.477Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.488Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.496Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.500Z",
+      "agent": "SoundDesignAgent",
+      "role": "video",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 28
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.507Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto/best-coding",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.514Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "auto",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.522Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "claude-3-5-sonnet",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.529Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "deepseek-r1",
+      "status": "fallback_triggered",
+      "error": "fetch failed"
+    },
+    {
+      "timestamp": "2026-09-01T00:16:40.533Z",
+      "agent": "UpgradedVideoQualityJudge",
+      "role": "visual_evaluation",
+      "model": "local-fallback",
+      "status": "success_fallback",
+      "elapsed_ms": 29
+    }
+  ],
+  "performance_metrics": {
+    "blogs": [
+      {
+        "slug": "amazon-2026-commission-cuts",
+        "organic_traffic": 1420,
+        "rankings": {
+          "amazon commission cuts": 3,
+          "2026 amazon associate rates": 2
+        },
+        "ctr_percent": 6.8,
+        "conversions": 185
+      }
+    ],
+    "tiktoks": [
+      {
+        "video_id": "tt-calculator-001",
+        "views": 48200,
+        "watch_time_avg_sec": 16.4,
+        "retention_rate": 74.2,
+        "likes": 3410,
+        "shares": 890,
+        "saves": 1240
+      }
+    ]
+  }
+}

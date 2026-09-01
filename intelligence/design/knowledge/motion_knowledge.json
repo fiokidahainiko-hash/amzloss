@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "2.0.0",
+  "last_updated": "2026-09-01",
+  "motion_principles": {
+    "core_rule": "Purposeful motion > excessive motion. Motion should improve understanding, hierarchy, attention, and perceived responsiveness without causing visual clutter or slow load times.",
+    "duration_scale_ms": {
+      "micro_fast": 150,
+      "component_standard": 250,
+      "entrance_reveal": 400,
+      "page_transition": 500
+    },
+    "easing_curves": {
+      "standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "entrance": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+      "exit": "cubic-bezier(0.4, 0.0, 1, 1)",
+      "bounce_subtle": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    }
+  },
+  "interaction_types": {
+    "scroll_reveal": {
+      "effect": "Opacity fade 0 to 1 + translateY(24px to 0px)",
+      "duration_ms": 400,
+      "stagger_delay_ms": 80,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)"
+    },
+    "hover_card": {
+      "effect": "translateY(-4px) + box-shadow elevation + border color shift",
+      "duration_ms": 200,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)"
+    },
+    "button_click": {
+      "effect": "scale(0.97) transform on active state",
+      "duration_ms": 100
+    },
+    "animated_counter": {
+      "effect": "Numeric count up from 0 to target value over 1.2 seconds using requestAnimationFrame with easeOutExpo.",
+      "duration_ms": 1200
+    },
+    "kinetic_typography": {
+      "effect": "Words slide in sequentially with staggered clip-path reveal.",
+      "duration_ms": 350
+    }
+  },
+  "accessibility_reduced_motion": {
+    "rule": "Every animated component must support prefers-reduced-motion: reduce CSS media query.",
+    "fallback_css": "@media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }"
+  }
+}

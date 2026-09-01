@@ -1,0 +1,49 @@
+{
+  "omniroute": {
+    "base_url": "https://api.omniroute.ai/v1",
+    "timeout_ms": 30000,
+    "max_retries_per_model": 2
+  },
+  "roles": {
+    "fast": {
+      "description": "Simple formatting, metadata, tag generation, classification",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["oc/deepseek-v4-flash-free", "gpt-4o-mini", "local-fallback"]
+    },
+    "reasoning": {
+      "description": "Search intent, topic clustering, content strategy, SEO audits, quality judging",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["auto", "claude-3-5-sonnet", "deepseek-r1", "local-fallback"]
+    },
+    "writing": {
+      "description": "Full blog articles, TikTok scripts, creative content",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["auto", "gpt-4o", "claude-3-5-sonnet", "local-fallback"]
+    },
+    "design": {
+      "description": "UI/UX design, visual layout, responsive blueprint, SaaS structure",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["auto", "claude-3-5-sonnet", "gpt-4o", "local-fallback"]
+    },
+    "motion": {
+      "description": "Motion design, animation curves, micro-interactions, CSS motion logic",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["auto", "claude-3-5-sonnet", "local-fallback"]
+    },
+    "creative": {
+      "description": "Video creative direction, concept generation, storytelling themes",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["auto", "gpt-4o", "claude-3-5-sonnet", "local-fallback"]
+    },
+    "video": {
+      "description": "Scene-by-scene production specs, kinetic typography, editing plans, sound cue sheets",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["auto", "claude-3-5-sonnet", "local-fallback"]
+    },
+    "visual_evaluation": {
+      "description": "Design Critic & Upgraded Video Quality Judge",
+      "primary_model": "auto/best-coding",
+      "fallbacks": ["auto", "claude-3-5-sonnet", "deepseek-r1", "local-fallback"]
+    }
+  }
+}
