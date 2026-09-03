@@ -201,8 +201,14 @@ export function publishArticleToSite(article) {
  <meta name="description" content="${article.meta_description}">
  <meta name="keywords" content="${(article.keywords || []).join(", ")}">
  <meta name="robots" content="index, follow">
- <link rel="canonical" href="https://amzloss.com/blogs/${fileName}">
- <link rel="preload" as="style" href="../assets/css/style.css">
+<link rel="canonical" href="https://amzloss.com/blogs/${fileName}">
+  <meta property="og:site_name" content="AmzLoss">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="${article.title} | AMZLOSS">
+  <meta property="og:description" content="${article.meta_description}">
+  <meta property="og:url" content="https://amzloss.com/blogs/${fileName}">
+  <meta property="og:image" content="https://amzloss.com/assets/img/og-cover.png">
+  <link rel="preload" as="style" href="../assets/css/style.css">
  <link rel="stylesheet" href="../assets/css/style.css">
  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
