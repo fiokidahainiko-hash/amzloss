@@ -661,6 +661,59 @@ async function main() {
       if (!result.next_actions?.length) console.log("  No next actions generated yet — add GSC feed for data");
       break;
     }
+    case "seo-three-kings": {
+      const { threeKingsAudit, threeKingsSummary, storeThreeKingsAudit } = await import("./seo/orchestrator/three_kings_audit.mjs");
+      const { lowHangingFruitReport } = await import("./seo/orchestrator/low_hanging_fruit.mjs");
+      const limit = parseInt(flags.limit || flags.n || "10", 10);
+      const singleUrl = flags.url || flags.page;
+
+      console.log(`\n👑 THREE KINGS ON-PAGE OPTIMIZATION AUDIT`);
+      if (singleUrl) {
+        const { auditPage } = await import("./seo/orchestrator/three_kings_audit.mjs");
+        const audit = await auditPage({ keyword: flags.keyword || flags.kw || flags.q || "amazon commission", url: singleUrl });
+        console.log(`\n  URL: ${singleUrl}`);
+        console.log(`  Title:   [${audit.three_kings_status?.title}] ${audit.title?.current || "N/A"}`);
+        console.log(`           ${audit.title?.recommendation || ""}`);
+        console.log(`  H1:      [${audit.three_kings_status?.h1}] ${audit.h1?.current || "N/A"}`);
+        console.log(`           ${audit.h1?.recommendation || ""}`);
+        console.log(`  Opening: [${audit.three_kings_status?.opening}] ${audit.opening?.first_sentence || "N/A"}`);
+        console.log(`           ${audit.opening?.recommendation || ""}`);
+        console.log(`\n  OVERALL: ${audit.overall_status}`);
+        break;
+      }
+
+      const lhf = lowHangingFruitReport({ maxPosition: parseInt(flags.maxpos || "20", 10), minImpressions: parseInt(flags.minimp || "5", 10) });
+      const opps = (lhf.prioritized_opportunities || []).slice(0, limit);
+      if (opps.length === 0) {
+        console.log(`  No LHF opportunities found within range (${flags.maxpos || "20"}). ${lhf.status === "DATA_UNAVAILABLE" ? lhf.message : ""}`);
+        break;
+      }
+
+      const audits = await threeKingsAudit({ opportunities: opps });
+      const summary = threeKingsSummary(audits);
+      const report = storeThreeKingsAudit(audits);
+
+      console.log(`  Merged ${opps.length} LHF opportunities. Auditing each page...`);
+      console.log(`\n  SUMMARY: ${summary.three_kings_status}`);
+      console.log(`  Pass: ${summary.pass} | Needs optimization: ${summary.needs_optimization} | Rate: ${summary.pass_rate_pct}%`);
+      console.log(`  Title:  pass ${summary.by_king.title.pass} / fail ${summary.by_king.title.fail}`);
+      console.log(`  H1:     pass ${summary.by_king.h1.pass} / fail ${summary.by_king.h1.fail}`);
+      console.log(`  Opening: pass ${summary.by_king.opening.pass} / fail ${summary.by_king.opening.fail}`);
+
+      audits.forEach((a, i) => {
+        console.log(`\n  ${i + 1}. ${a.query} (pos ${a.average_position}, score ${a.opportunity_score})`);
+        console.log(`     URL: ${a.url}`);
+        console.log(`     Title:   [${a.three_kings_status?.title}] ${a.title_check?.current?.slice(0, 70) || "N/A"}`);
+        if (a.title_check?.recommendation) console.log(`              → ${a.title_check.recommendation}`);
+        console.log(`     H1:      [${a.three_kings_status?.h1}] ${a.h1_check?.current?.slice(0, 70) || "N/A"}`);
+        if (a.h1_check?.recommendation) console.log(`              → ${a.h1_check.recommendation}`);
+        console.log(`     Opening: [${a.three_kings_status?.opening}] ${(a.opening_check?.first_sentence || "N/A").slice(0, 70)}`);
+        if (a.opening_check?.recommendation) console.log(`              → ${a.opening_check.recommendation}`);
+        console.log(`     OVERALL: ${a.overall_status}`);
+      });
+      console.log(`\n  Stored: ${report && "seo/data/three_kings_audit.json" || "not stored"}`);
+      break;
+    }
     case "seo-low-hanging-fruit": {
       const { lowHangingFruitReport } = await import("./seo/orchestrator/low_hanging_fruit.mjs");
       const { PROVENANCE } = await import("./seo/orchestrator/provenance.mjs");
@@ -716,6 +769,26 @@ async function main() {
       }
       console.log(`\n  → Full report: node intelligence/cli.mjs seo-low-hanging-fruit [--maxpos=20] [--minimp=5]`);
       console.log(`  → Import GSC: node intelligence/cli.mjs seo-import-gsc --path=<export.json> --property=https://yoursite.com`);
+      if (flags.audit === true || flags.audit === "true" || flags["three-kings"] === true) {
+        const { threeKingsAudit, threeKingsSummary, storeThreeKingsAudit } = await import("./seo/orchestrator/three_kings_audit.mjs");
+        const opps = (report.prioritized_opportunities || []).slice(0, parseInt(flags.limit || flags.n || "10", 10));
+        if (opps.length > 0) {
+          console.log(`\n👑 Running THREE KINGS audit on ${opps.length} top opportunities...`);
+          const audits = await threeKingsAudit({ opportunities: opps });
+          const summary = threeKingsSummary(audits);
+          storeThreeKingsAudit(audits);
+          console.log(`  Pass: ${summary.pass} | Needs optimization: ${summary.needs_optimization} | Rate: ${summary.pass_rate_pct}%`);
+          audits.forEach((a, i) => {
+            console.log(`  ${i + 1}. [${a.overall_status}] ${a.query} (pos ${a.average_position})`);
+            console.log(`     Title: [${a.three_kings_status?.title}] ${a.title_check?.current?.slice(0, 60) || "N/A"}${a.title_check?.recommendation ? ' → ' + a.title_check.recommendation : ""}`);
+            console.log(`     H1:    [${a.three_kings_status?.h1}] ${a.h1_check?.current?.slice(0, 60) || "N/A"}${a.h1_check?.recommendation ? ' → ' + a.h1_check.recommendation : ""}`);
+            console.log(`     Open:  [${a.three_kings_status?.opening}] ${(a.opening_check?.first_sentence || "N/A").slice(0, 60)}${a.opening_check?.recommendation ? ' → ' + a.opening_check.recommendation : ""}`);
+          });
+          console.log(`  Stored to intelligence/seo/data/three_kings_audit.json`);
+        } else {
+          console.log(`\n  No LHF opportunities to audit.`);
+        }
+      }
       break;
     }
 
