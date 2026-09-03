@@ -2,10 +2,14 @@
    Connects SEO to business outcomes. Never fabricates data. */
 
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { ev, evN, DATA_UNAVAILABLE } from "./seo_evidence.mjs";
 import { registerLocalFeedAdapter } from "./data_sources.mjs";
 
-const ANALYTICS_FEED_PATH = "C:/Users/DELL/amzloss/intelligence/seo/data/analytics_feed.json";
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
+const ANALYTICS_FEED_PATH = path.join(DATA_DIR, "analytics_feed.json");
 
 registerLocalFeedAdapter("analytics", ANALYTICS_FEED_PATH);
 

@@ -11,10 +11,14 @@
    The original raw export can be kept separately for audit purposes. */
 
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { setFeedMetadata, getFeedMetadata, saveFeedRegistry, PROVENANCE, getProvenance, loadFeedRegistry } from "./provenance.mjs";
 
-const GSC_FEED_PATH = "C:/Users/DELL/amzloss/intelligence/seo/data/gsc_feed.json";
-const GSC_RAW_PATH = "C:/Users/DELL/amzloss/intelligence/seo/data/gsc_raw.json";
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
+const GSC_FEED_PATH = path.join(DATA_DIR, "gsc_feed.json");
+const GSC_RAW_PATH = path.join(DATA_DIR, "gsc_raw.json");
 
 /* ---------- GSC JSON Schema Validation ---------- */
 const REQUIRED_QUERY_FIELDS = ["query", "clicks", "impressions", "ctr", "position"];

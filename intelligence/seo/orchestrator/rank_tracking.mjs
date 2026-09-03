@@ -3,10 +3,14 @@
    Never fabricates ranking data. Requires real feed or API. */
 
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { ev, DATA_UNAVAILABLE, position } from "./seo_evidence.mjs";
 import { registerLocalFeedAdapter } from "./data_sources.mjs";
 
-const RANK_FEED_PATH = "C:/Users/DELL/amzloss/intelligence/seo/data/rank_tracking.json";
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
+const RANK_FEED_PATH = path.join(DATA_DIR, "rank_tracking.json");
 
 registerLocalFeedAdapter("rank_tracking", RANK_FEED_PATH);
 

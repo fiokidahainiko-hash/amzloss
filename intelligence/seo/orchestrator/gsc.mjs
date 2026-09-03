@@ -10,11 +10,15 @@
    TEST data is clearly labeled and never promoted to LIVE/IMPORTED. */
 
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { ev, evN, DATA_UNAVAILABLE, impressions, clicks, ctr, position } from "./seo_evidence.mjs";
 import { registerLocalFeedAdapter } from "./data_sources.mjs";
 import { PROVENANCE, getProvenance } from "./provenance.mjs";
 
-const GSC_FEED_PATH = "C:/Users/DELL/amzloss/intelligence/seo/data/gsc_feed.json";
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
+const GSC_FEED_PATH = path.join(DATA_DIR, "gsc_feed.json");
 
 registerLocalFeedAdapter("gsc", GSC_FEED_PATH);
 

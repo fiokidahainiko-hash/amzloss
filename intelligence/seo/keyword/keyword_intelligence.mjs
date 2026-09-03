@@ -143,9 +143,11 @@ export function matchKeywordToArticle(site, query) {
     }
     if (score > bestScore) { bestScore = score; best = a; }
   }
+  const seo_quality = bestScore === 0 ? 0 : Math.min(95, 30 + bestScore * 15);
   return {
     covered: bestScore >= 1,
     score: bestScore,
-    article: best ? { slug: best.slug, title: best.title } : null
+    seo_quality,
+    article: best ? { slug: best.slug, title: best.title, seo_quality } : null
   };
 }

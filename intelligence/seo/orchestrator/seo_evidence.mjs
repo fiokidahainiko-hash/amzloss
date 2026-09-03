@@ -31,7 +31,7 @@ export async function querySources({ metric, params = {}, sources = null } = {})
       const loader = SOURCE_REGISTRY[name];
       const data = typeof loader === "function" ? await loader({ metric, ...params }) : null;
       if (data !== null && data !== undefined) results.push({ source: name, data });
-    } catch (e) { /* source unavailable — not fatal */ }
+    } catch (e) { console.warn(`seo_evidence.querySources: source "${name}" failed — ${e.message}`); }
   }
   return results;
 }

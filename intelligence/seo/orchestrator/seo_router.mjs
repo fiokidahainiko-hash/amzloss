@@ -7,6 +7,11 @@ import { loadSiteData } from "../site_data.mjs";
 import { EvidenceRecord, ev } from "./seo_evidence.mjs";
 import { keywordOpportunityScore } from "./keyword_scoring.mjs";
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
 
 export class SEORouter {
   constructor() {
@@ -65,7 +70,7 @@ export class SEORouter {
   }
 
   routeCannibalization(args) {
-    const p = "C:/Users/DELL/amzloss/intelligence/seo/data/cannibalization_feed.json";
+    const p = path.join(DATA_DIR, "cannibalization_feed.json");
     const hasFeed = fs.existsSync(p);
     if (!hasFeed) return { status: "OK", module: "cannibalization", data: { available: false, cases: [], message: "DATA_UNAVAILABLE — no cannibalization_feed.json" }, confidence: "LOW" };
     const data = JSON.parse(fs.readFileSync(p, "utf-8"));
@@ -73,7 +78,7 @@ export class SEORouter {
   }
 
   routeCompetitors(args) {
-    const p = "C:/Users/DELL/amzloss/intelligence/seo/data/competitor_feed.json";
+    const p = path.join(DATA_DIR, "competitor_feed.json");
     const hasFeed = fs.existsSync(p);
     if (!hasFeed) return { status: "OK", module: "competitors", data: { available: false, competitors: [], message: "DATA_UNAVAILABLE — no competitor_feed.json" }, confidence: "LOW" };
     const data = JSON.parse(fs.readFileSync(p, "utf-8"));
@@ -81,7 +86,7 @@ export class SEORouter {
   }
 
   routeBacklinks(args) {
-    const p = "C:/Users/DELL/amzloss/intelligence/seo/data/backlink_feed.json";
+    const p = path.join(DATA_DIR, "backlink_feed.json");
     const hasFeed = fs.existsSync(p);
     if (!hasFeed) return { status: "OK", module: "backlinks", data: { available: false, links: [], domains: [], message: "DATA_UNAVAILABLE — no backlink_feed.json" }, confidence: "LOW" };
     const data = JSON.parse(fs.readFileSync(p, "utf-8"));
@@ -93,7 +98,7 @@ export class SEORouter {
   }
 
   routeDecay(args) {
-    const p = "C:/Users/DELL/amzloss/intelligence/seo/data/content_decay_history.json";
+    const p = path.join(DATA_DIR, "content_decay_history.json");
     const hasFeed = fs.existsSync(p);
     if (!hasFeed) return { status: "OK", module: "decay", data: { available: false, decaying: [], message: "DATA_UNAVAILABLE — no decay history. Export GSC to data/content_decay_history.json" }, confidence: "LOW" };
     const data = JSON.parse(fs.readFileSync(p, "utf-8"));
@@ -117,7 +122,7 @@ export class SEORouter {
   }
 
   routeMemory(args) {
-    const p = "C:/Users/DELL/amzloss/intelligence/seo/data/seo_memory.json";
+    const p = path.join(DATA_DIR, "seo_memory.json");
     const hasFeed = fs.existsSync(p);
     if (!hasFeed) return { status: "OK", module: "memory", data: { available: false, entries: [], message: "No SEO memory found" }, confidence: "LOW" };
     const data = JSON.parse(fs.readFileSync(p, "utf-8"));

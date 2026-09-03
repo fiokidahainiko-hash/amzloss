@@ -17,6 +17,11 @@
    5. Sample/test feeds must be clearly labeled as TEST in all outputs */
 
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
 
 export const PROVENANCE = {
   TEST: "TEST",
@@ -60,7 +65,7 @@ export function isUnavailable(provenance) {
 /* Tracks metadata for every feed file: path, status, import time, date range */
 const FEED_REGISTRY = {};
 
-export const FEED_METADATA_FILE = "C:/Users/DELL/amzloss/intelligence/seo/data/feed_registry.json";
+export const FEED_METADATA_FILE = path.join(DATA_DIR, "feed_registry.json");
 
 export function registerFeed({ key, path, provenance, description }) {
   FEED_REGISTRY[key] = {
@@ -95,16 +100,15 @@ export function loadFeedRegistry() {
       const data = JSON.parse(fs.readFileSync(FEED_METADATA_FILE, "utf-8"));
       for (const [key, val] of Object.entries(data)) FEED_REGISTRY[key] = val;
     }
-  } catch (e) {}
+  } catch (e) { console.error("loadFeedRegistry: failed to read", FEED_METADATA_FILE, e.message); }
   return FEED_REGISTRY;
 }
 
 export function saveFeedRegistry() {
   try {
-    const dir = FEED_METADATA_FILE.replace(/[/\\][^/\\]+$/, "");
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
     fs.writeFileSync(FEED_METADATA_FILE, JSON.stringify(FEED_REGISTRY, null, 2), "utf-8");
-  } catch (e) {}
+  } catch (e) { console.error("saveFeedRegistry: failed to write", FEED_METADATA_FILE, e.message); }
 }
 
 export function getAllFeeds() {
@@ -113,7 +117,7 @@ export function getAllFeeds() {
 }
 
 /* ---------- GSC Feed Status (self-contained, no circular deps) ---------- */
-const GSC_FEED_PATH = "C:/Users/DELL/amzloss/intelligence/seo/data/gsc_feed.json";
+const GSC_FEED_PATH = path.join(DATA_DIR, "gsc_feed.json");
 
 export function getGSCFeedStatus() {
   loadFeedRegistry();

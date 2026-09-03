@@ -13,6 +13,9 @@ import { analyticsSummary } from "./analytics.mjs";
 import { generateContentRoadmap } from "./content_roadmap.mjs";
 import { computeAuthorityFlow } from "./authority_flow.mjs";
 import { detectDecay, decayActionPlan } from "./content_decay.mjs";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
 import { analyzeSerpIntent } from "./serp_intent.mjs";
 import { keywordOpportunityScore } from "./keyword_scoring.mjs";
 import { competitorKeywordGap } from "../competition/keyword_gap.mjs";
@@ -137,7 +140,7 @@ gsc: gscSummary(),
   }
 
   backlinkReport() {
-    const p = "C:/Users/DELL/amzloss/intelligence/seo/data/backlink_feed.json";
+    const p = path.join(DATA_DIR, "backlink_feed.json");
     if (!fs.existsSync(p)) return { available: false, message: "DATA_UNAVAILABLE — no backlink feed. Add backlink_feed.json to data/" };
     const data = JSON.parse(fs.readFileSync(p, "utf-8"));
     return { available: true, total_links: data.links?.length || 0, total_domains: data.domains?.length || 0, new_this_week: data.new_this_week || 0 };

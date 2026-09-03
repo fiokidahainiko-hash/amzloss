@@ -3,10 +3,15 @@
    Requires historical data from GSC or rank tracking feed. */
 
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { ev, DATA_UNAVAILABLE } from "./seo_evidence.mjs";
 
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
+
 export function detectDecay({ historyWeeks = 8, minDecline = 0.1 } = {}) {
-  const p = "C:/Users/DELL/amzloss/intelligence/seo/data/content_decay_history.json";
+  const p = path.join(DATA_DIR, "content_decay_history.json");
   if (!fs.existsSync(p)) return { available: false, decaying: [], message: "DATA_UNAVAILABLE — no historical data. Export GSC data to data/content_decay_history.json" };
 
   const data = JSON.parse(fs.readFileSync(p, "utf-8"));

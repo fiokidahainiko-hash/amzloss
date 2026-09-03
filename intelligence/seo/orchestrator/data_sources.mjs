@@ -22,7 +22,7 @@ export async function queryAdapters(category, params = {}) {
     try {
       const data = await loader(params);
       if (data !== null && data !== undefined) results.push({ adapter: name, data, timestamp: new Date().toISOString() });
-    } catch (e) { /* unavailable */ }
+    } catch (e) { console.warn(`data_sources.queryAdapters: adapter "${name}" failed — ${e.message}`); }
   }
   return results;
 }

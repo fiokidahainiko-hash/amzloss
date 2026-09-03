@@ -8,13 +8,17 @@
    - Provenance clearly labeled (TEST/LIVE/IMPORTED/UNAVAILABLE)
    - Never fabricates missing values */
 
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { PROVENANCE, isRealData, getProvenance, extractProvenance, getGSCFeedStatus } from "./provenance.mjs";
 import { loadSiteData } from "../site_data.mjs";
 import { classifyIntent } from "../keyword/search_intent.mjs";
 import { matchKeywordToArticle } from "../keyword/keyword_intelligence.mjs";
-import fs from "node:fs";
 
-const GSC_FEED_PATH = "C:/Users/DELL/amzloss/intelligence/seo/data/gsc_feed.json";
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const DATA_DIR = path.join(__dirname, "../data/");
+const GSC_FEED_PATH = path.join(DATA_DIR, "gsc_feed.json");
 
 const INTENT_WEIGHTS = {
   transactional: 0.25, commercial: 0.22, informational: 0.18,
