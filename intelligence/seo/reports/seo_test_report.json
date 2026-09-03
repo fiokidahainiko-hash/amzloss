@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-09-03T15:18:49.001Z",
+  "site": {
+    "articles": 46,
+    "clusters": 11
+  },
+  "passed": 202,
+  "failed": 0,
+  "total": 202,
+  "all_pass": true
+}

@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-09-03T11:31:17.444Z",
+  "suite": "seo_edge_case_tests",
+  "site": {
+    "articles": 46,
+    "clusters": 11
+  },
+  "passed": 72,
+  "failed": 0,
+  "total": 72,
+  "all_pass": true,
+  "groups": [
+    "missing_data",
+    "partial_data",
+    "conflicting_data",
+    "url_switching",
+    "cannibalization",
+    "content_decay",
+    "competitor_gap",
+    "content_gap_expansion",
+    "blog_pipeline_bridge",
+    "data_source_failure",
+    "empty_feed"
+  ]
+}

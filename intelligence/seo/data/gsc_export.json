@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "source": "google_search_console",
+    "provenance": "IMPORTED",
+    "property_url": "https://amzloss.com",
+    "date_range": {
+      "start": "2026-08-10",
+      "end": "2026-08-31"
+    },
+    "total_queries": 31,
+    "total_pages": null,
+    "total_clicks": 0,
+    "total_impressions": 110,
+    "avg_ctr": 0.0
+  },
+  "queries": [
+    {
+      "query": "cj affiliate vs shareasale",
+      "clicks": 0,
+      "impressions": 26,
+      "ctr": 0.0,
+      "position": 47.08
+    },
+    {
+      "query": "directory listing seo",
+      "clicks": 0,
+      "impressions": 25,
+      "ctr": 0.0,
+      "position": 29.56
+    },
+    {
+      "query": "shareasale vs cj affiliate",
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0.0,
+      "position": 49.25
+    },
+    {
+      "query": "url submitting",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0.0,
+      "position": 60.83
+    },
+    {
+      "query": "how much do amazon affiliates make",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0.0,
+      "position": 48.33
+    },
+    {
+      "query": "urls submitted",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0.0,
+      "position": 75.67
+    },
+    {
+      "query": "amazon associates commission rates by category 2026",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0.0,
+      "position": 85.33
+    },
+    {
+      "query": "amazon affiliate clicks not showing",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 29.0
+    },
+    {
+      "query": "how much do amazon affiliates make?",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 47.0
+    },
+    {
+      "query": "how much do amazon affiliates make per sale",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 50.5
+    },
+    {
+      "query": "submitting url",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 57.0
+    },
+    {
+      "query": "how much does amazon affiliate pay",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 57.5
+    },
+    {
+      "query": "amazon commission rates 2026",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 62.5
+    },
+    {
+      "query": "submission of url",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 85.5
+    },
+    {
+      "query": "submitting urls",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0.0,
+      "position": 86.0
+    },
+    {
+      "query": "amazon affiliate clicks but no earnings",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 18.0
+    },
+    {
+      "query": "amazon affiliate orders but no earnings",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 26.0
+    },
+    {
+      "query": "how much money do amazon affiliates make",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 44.0
+    },
+    {
+      "query": "amazon affiliate average income",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 45.0
+    },
+    {
+      "query": "how much do amazon associates make",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 54.0
+    },
+    {
+      "query": "how much does amazon pay affiliates",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 54.0
+    },
+    {
+      "query": "how much does amazon affiliate make",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 56.0
+    },
+    {
+      "query": "how much do affiliate links pay amazon",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 57.0
+    },
+    {
+      "query": "how much does an amazon affiliate make",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 58.0
+    },
+    {
+      "query": "average amazon affiliate commission",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 59.0
+    },
+    {
+      "query": "amazon affiliate commission rates 2026",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 65.0
+    },
+    {
+      "query": "amazon affiliate revenue",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 67.0
+    },
+    {
+      "query": "sumit url",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 73.0
+    },
+    {
+      "query": "backlink affiliate program",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 85.0
+    },
+    {
+      "query": "inurl:submit",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 89.0
+    },
+    {
+      "query": "backlinkdirectory.site",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0.0,
+      "position": 95.0
+    }
+  ],
+  "pages": [],
+  "countries": [],
+  "devices": []
+}

@@ -272,3 +272,85 @@ export async function sendFacebookIFTTT({ text, imgUrl }) {
   });
   return { name: "Facebook", status: r.ok ? "posted" : `failed (${r.status})` };
 }
+
+/* ---------- video senders (Mastodon / Tumblr / Telegram) ----------
+   Each skips cleanly if the video file is missing or the platform isn't
+   configured. Used on top of the image posts so every platform can also
+   carry a motion video. */
+
+export async function sendTelegramVideo({ text, videoFile }) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chat = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chat) return { name: "TelegramVideo", status: "skipped" };
+  if (!videoFile || !fs.existsSync(videoFile)) return { name: "TelegramVideo", status: "skipped (no video)" };
+  try {
+    const f = new FormData();
+    f.append("chat_id", chat);
+    f.append("video", new Blob([fs.readFileSync(videoFile)], { type: "video/mp4" }), "amzloss.mp4");
+    f.append("caption", truncate(text, 1024));
+    f.append("supports_streaming", "true");
+    const r = await jsonFetch(`https://api.telegram.org/bot${token}/sendVideo`, { method: "POST", body: f });
+    return { name: "TelegramVideo", status: r.ok ? "posted" : `failed (${r.status})` };
+  } catch (e) {
+    return { name: "TelegramVideo", status: `failed (${e.message || e})` };
+  }
+}
+
+export async function sendMastodonVideo({ text, videoFile }) {
+  const need = ["MASTODON_TOKEN", "MASTODON_INSTANCE"];
+  if (need.some((k) => !process.env[k])) return { name: "MastodonVideo", status: "skipped" };
+  if (!videoFile || !fs.existsSync(videoFile)) return { name: "MastodonVideo", status: "skipped (no video)" };
+  try {
+    const inst = process.env.MASTODON_INSTANCE;
+    const f = new FormData();
+    f.append("file", new Blob([fs.readFileSync(videoFile)], { type: "video/mp4" }));
+    f.append("description", truncate(text, 1500));
+    const m = await jsonFetch(`https://${inst}/api/v2/media`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${process.env.MASTODON_TOKEN}` },
+      body: f
+    });
+    if (!m.ok || !(m.data && m.data.id)) return { name: "MastodonVideo", status: `failed upload (${m.status})` };
+    // wait a moment for media processing
+    await sleep(4000);
+    const r = await jsonFetch(`https://${inst}/api/v1/statuses`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${process.env.MASTODON_TOKEN}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ status: truncate(text, 500), media_ids: [m.data.id] })
+    });
+    return { name: "MastodonVideo", status: r.ok ? "posted" : `failed (${r.status})` };
+  } catch (e) {
+    return { name: "MastodonVideo", status: `failed (${e.message || e})` };
+  }
+}
+
+export async function sendTumblrVideo({ text, videoUrl }) {
+  const need = ["TUMBLR_CONSUMER_KEY", "TUMBLR_CONSUMER_SECRET", "TUMBLR_TOKEN", "TUMBLR_TOKEN_SECRET", "TUMBLR_BLOG_IDENTIFIER"];
+  if (need.some((k) => !process.env[k])) return { name: "TumblrVideo", status: "skipped" };
+  if (!videoUrl) return { name: "TumblrVideo", status: "skipped (no video URL)" };
+  try {
+    const blog = process.env.TUMBLR_BLOG_IDENTIFIER;
+    const url = `https://api.tumblr.com/v2/blog/${blog}/post`;
+    const params = { type: "video", embed: videoUrl, caption: truncate(text, 4000) };
+    const oauth = {
+      oauth_consumer_key: process.env.TUMBLR_CONSUMER_KEY,
+      oauth_nonce: crypto.randomBytes(16).toString("hex"),
+      oauth_signature_method: "HMAC-SHA1",
+      oauth_timestamp: Math.floor(Date.now() / 1000).toString(),
+      oauth_token: process.env.TUMBLR_TOKEN,
+      oauth_version: "1.0"
+    };
+    const sig = signOAuth1("POST", url, { ...oauth, ...params }, process.env.TUMBLR_CONSUMER_SECRET, process.env.TUMBLR_TOKEN_SECRET);
+    const header = "OAuth " + Object.keys(oauth).map((k) => `${k}="${pct(oauth[k])}"`).join(", ") + `, oauth_signature="${pct(sig)}"`;
+    const form = new URLSearchParams();
+    for (const k of Object.keys(params)) form.append(k, params[k]);
+    const r = await jsonFetch(url, {
+      method: "POST",
+      headers: { Authorization: header, "Content-Type": "application/x-www-form-urlencoded" },
+      body: form.toString()
+    });
+    return { name: "TumblrVideo", status: r.ok ? "posted" : `failed (${r.status})` };
+  } catch (e) {
+    return { name: "TumblrVideo", status: `failed (${e.message || e})` };
+  }
+}

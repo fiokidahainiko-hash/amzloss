@@ -1,0 +1,21 @@
+{
+  "total_results": 10,
+  "source": "Rank tracker — example export for AmzLoss (amazon affiliate marketing)",
+  "rankings": [
+    { "keyword": "amazon affiliate commission rates 2026", "url": "amazon-associates-commission-rates-2026", "position": 4, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": ["featured_snippet"] },
+    { "keyword": "amazon commission cut", "url": "amazon-2026-commission-cuts", "position": 3, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": ["people_also_ask"] },
+    { "keyword": "affiliate calculator", "url": "amazon-affiliate-commission-calculator-guide", "position": 5, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": [] },
+    { "keyword": "how much do amazon affiliates make", "url": "amazon-affiliate-profit-per-sale-guide", "position": 8, "source": "rank_tracker", "geo": "US", "device": "mobile", "date": "2026-09-01", "serp_features": ["video"] },
+    { "keyword": "best affiliate networks for beginners", "url": "affiliate-network-comparison", "position": 2, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": ["featured_snippet"] },
+    { "keyword": "affiliate marketing strategy", "url": "how-to-audit-amazon-earnings", "position": 11, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": [] },
+    { "keyword": "amazon earnings report csv", "url": "amazon-product-earnings-report-csv-explained", "position": 6, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": [] },
+    { "keyword": "how to build backlinks for affiliate sites", "url": "how-to-build-backlinks-for-affiliate-site", "position": 7, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": ["people_also_ask"] },
+    { "keyword": "amazon associates underpayment", "url": "amazon-2026-commission-cuts", "position": 4, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": [] },
+    { "keyword": "affiliate network comparison", "url": "affiliate-network-comparison", "position": 3, "source": "rank_tracker", "geo": "US", "device": "desktop", "date": "2026-09-01", "serp_features": ["comparison_table"] }
+  ],
+  "history": [
+    { "keyword": "amazon commission cut", "url": "amazon-2026-commission-cuts", "position": 6, "date": "2026-08-01", "change": 0 },
+    { "keyword": "amazon commission cut", "url": "amazon-2026-commission-cuts", "position": 3, "date": "2026-09-01", "change": 3 },
+    { "keyword": "affiliate calculator", "url": "amazon-affiliate-commission-calculator-guide", "position": 5, "date": "2026-09-01", "change": 0 }
+  ]
+}

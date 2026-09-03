@@ -64,6 +64,7 @@ jobs:
           REPORT_TELEGRAM_CHAT_ID: ${{ secrets.REPORT_TELEGRAM_CHAT_ID }}
           GH_TOKEN: ${{ github.token }}
         run: |
+          pip3 install --quiet edge-tts pillow imageio imageio-ffmpeg >/dev/null 2>&1 || true
           node .github/tool-posts.mjs
 
       - name: Premium AMZLOSS TikTok ad (auto-render + voice)

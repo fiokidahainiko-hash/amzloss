@@ -11,6 +11,7 @@ import { runTopicClusterAgent } from "../agents/topic_cluster_agent.mjs";
 import { runBlogWriterAgent } from "../agents/blog_writer_agent.mjs";
 import { runInternalLinkingAgent } from "../agents/internal_linking_agent.mjs";
 import { runBlogSeoAuditor } from "../agents/blog_seo_auditor.mjs";
+import { seoPreCheck, enhanceBriefFromSERPs, validateGeneratedContent, blogPipelineSEOAdvice } from "./blog_seo_bridge.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..");
@@ -40,6 +41,17 @@ export async function runBlogPipeline({ keyword, category = "Tools", autoPublish
   console.log(`[Blog Pipeline] Starting run for: "${keyword}"`);
   console.log(`==================================================\n`);
 
+  // SEO Engine Pre-Check: validate keyword opportunity before pipeline runs
+  console.log(`[SEO Pre-Check] Analyzing keyword opportunity...`);
+  const seoPreChecks = await seoPreCheck({ keyword, category });
+  console.log(`  Opportunity: ${seoPreChecks.scores.opportunity ?? "N/A"}/100`);
+  if (seoPreChecks.warnings.length) seoPreChecks.warnings.forEach(w => console.log(`  Warning: ${w}`));
+  if (!seoPreChecks.passed) {
+    console.warn(`[SEO Blockers] Pipeline blocked: ${seoPreChecks.blockers.join("; ")}`);
+    return { article: null, seo_pre_check: seoPreChecks, published: false, blocked: true };
+  }
+  pipelineLog.steps.push({ step: "SEO Pre-Check", data: seoPreChecks });
+
   // Step 1 & 2 & 3: SEO Research, Search Intent, SERP Analysis
   console.log(`[Step 1-3] Running SEO Research Agent...`);
   const seoResearch = await runSeoResearchAgent({ keyword, category });
@@ -50,13 +62,17 @@ export async function runBlogPipeline({ keyword, category = "Tools", autoPublish
   const clusterData = await runTopicClusterAgent({ topic: keyword });
   pipelineLog.steps.push({ step: "Topic Cluster", data: clusterData });
 
-  // Step 7: Content Brief Construction
-  const brief = {
+  // Step 7: Content Brief Construction (enhanced with SERP data from SEO engine)
+  let brief = {
     title: seoResearch.recommended_title || `${keyword.charAt(0).toUpperCase() + keyword.slice(1)}: 2026 Strategy Guide`,
     slug: keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
     category: seoResearch.target_category || category,
     lsi_keywords: seoResearch.lsi_keywords || []
   };
+  brief = enhanceBriefFromSERPs({ brief, keyword, serp_analysis: seoPreChecks.serp_analysis, opportunity: seoPreChecks.opportunity_score });
+  if (brief.requires_faq) console.log(`  [SERP] FAQ section recommended by SEO engine`);
+  if (brief.requires_tool) console.log(`  [SERP] Tool/calculator format expected in SERP`);
+  if (brief.required_entities?.length) console.log(`  [SERP] Required entities: ${brief.required_entities.slice(0, 3).join(", ")}`);
   pipelineLog.steps.push({ step: "Content Brief", data: brief });
 
   // Step 8: Article Generation
@@ -125,8 +141,26 @@ export async function runBlogPipeline({ keyword, category = "Tools", autoPublish
     cluster_data: clusterData,
     linking_data: linkingData,
     evaluation,
+    seo_pre_check: seoPreChecks,
+    seo_brief: brief,
+    seo_advice: [],
+    seo_validation: null,
     published: false
   };
+
+  // Post-generation SEO validation
+  finalResult.seo_validation = validateGeneratedContent({ keyword, generatedSlug: articleData.slug, html: articleData.content_html, serp_analysis: seoPreChecks.serp_analysis });
+  if (finalResult.seo_validation.issues.length > 0) {
+    console.log(`[SEO Validation] ${finalResult.seo_validation.issues.length} issues found:`);
+    finalResult.seo_validation.issues.forEach(i => console.log(`  [${i.severity}] ${i.message}`));
+  }
+
+  // Generate SEO pipeline advice
+  finalResult.seo_advice = blogPipelineSEOAdvice({ keyword, checks: seoPreChecks });
+  if (finalResult.seo_advice.length > 0) {
+    console.log(`[SEO Advice] ${finalResult.seo_advice.length} actions recommended:`);
+    finalResult.seo_advice.forEach(a => console.log(`  ${a.action}: ${a.reason}`));
+  }
 
   // Step 13: Publish (if requested)
   if (autoPublish || evaluation.overall_score >= thresholds.approved_min) {
@@ -267,7 +301,7 @@ export function publishArticleToSite(article) {
       const blogJsContent = fs.readFileSync(BLOG_JS, "utf-8");
       const newEntry = `  { slug: "${slug}", title: "${article.title.replace(/"/g, '\\"')}", date: "${nowStr}", category: "${article.category || "Tools"}", desc: "${article.meta_description.replace(/"/g, '\\"')}" },\n`;
       if (!blogJsContent.includes(`slug: "${slug}"`)) {
-        const updatedBlogJs = blogJsContent.replace("const BLOG_POSTS = [\n", "const BLOG_POSTS = [\n" + newEntry);
+        const updatedBlogJs = blogJsContent.replace("var POSTS = [\n", "var POSTS = [\n" + newEntry);
         fs.writeFileSync(BLOG_JS, updatedBlogJs, "utf-8");
       }
     }

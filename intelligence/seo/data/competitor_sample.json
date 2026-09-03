@@ -1,0 +1,33 @@
+{
+  "total_results": 2,
+  "source": "Ahrefs/Semrush — example competitor feed for AmzLoss (amazon affiliate marketing)",
+  "competitors": [
+    {
+      "domain": "affiliatepayouts.example",
+      "url": "https://affiliatepayouts.example/amazon-commission-rates",
+      "tracked_keywords": ["amazon affiliate commission rates 2026", "amazon commission cut", "affiliate calculator"],
+      "topics": [
+        "amazon commission cuts 2026",
+        "best affiliate programs for beginners",
+        "how to maximize amazon affiliate earnings",
+        "affiliate marketing strategy for beginners",
+        "amazon associates underpayment audit"
+      ],
+      "dr": 48,
+      "traffic": 120000
+    },
+    {
+      "domain": "affiliatesinsider.example",
+      "url": "https://affiliatesinsider.example/network-comparison",
+      "tracked_keywords": ["best affiliate networks", "affiliate network comparison", "affiliate payout schedule"],
+      "topics": [
+        "affiliate network comparison 2026",
+        "shareasale vs cj affiliate",
+        "amazon affiliate payout schedule changed",
+        "how to audit amazon earnings"
+      ],
+      "dr": 42,
+      "traffic": 88000
+    }
+  ]
+}

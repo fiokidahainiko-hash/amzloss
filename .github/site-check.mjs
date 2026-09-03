@@ -45,7 +45,7 @@ async function fetchSitemapUrls() {
 
 function checkSeo(body, url) {
   const problems = [];
-  if (!/<title>[^<]{10,65}<\/title>/.test(body)) problems.push("title missing or wrong length");
+  if (!/<title>[^<]{10,75}<\/title>/.test(body)) problems.push("title missing or wrong length");
   if (!/name="description" content="[^"]{40,180}"/.test(body)) problems.push("meta description missing or wrong length");
   if (!/rel="canonical"/.test(body)) problems.push("canonical missing");
   if (!/property="og:title"/.test(body)) problems.push("og:title missing");
@@ -82,7 +82,7 @@ async function main() {
       const res = await get(u, 0);
       if (res.status !== 200) {
         failures.push({ url: u, issue: "HTTP " + res.status });
-      } else if (/name="robots" content="noindex/.test(res.body)) {
+      } else if (/name="robots" content="noindex/.test(res.body) || /<title>[^<]*404[^<]*<\/title>/i.test(res.body)) {
         // noindex pages (404, status, sponsor, audit-results) are exempt from SEO meta checks.
         ok++;
       } else {

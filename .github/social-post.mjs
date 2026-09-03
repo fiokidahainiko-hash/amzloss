@@ -20,7 +20,7 @@ const RESULTS = [];
 
 /* ---------- post discovery ---------- */
 
-function readLatestPost() {
+function readLatestPost(targetSlug) {
   const src = fs.readFileSync(BLOG_JS, "utf8");
   const m = src.match(/var POSTS = \[([\s\S]*?)\n  \];/);
   if (!m) throw new Error("POSTS array not found in js/blog.js");
@@ -31,8 +31,10 @@ function readLatestPost() {
   while ((hit = re.exec(body))) {
     posts.push({ cat: hit[1], title: hit[2], url: hit[3], desc: hit[4] });
   }
-  const daily = posts.find((p) => p.url.includes("amzloss-daily-"));
-  const post = daily || posts[0];
+  const selected = targetSlug
+    ? posts.find((p) => p.url.includes(targetSlug))
+    : posts.find((p) => p.url.includes("amzloss-daily-"));
+  const post = selected || posts[0];
   if (!post) throw new Error("No blog posts found");
   return { ...post, full: BASE + "/" + post.url.replace(/^\/+/, "") };
 }
@@ -291,7 +293,10 @@ function commitImage(file, rel, post) {
 /* ---------- main ---------- */
 
 async function main() {
-  const post = readLatestPost();
+  const args = process.argv.slice(2);
+  const slugArg = args.find((a) => a.startsWith("--slug="));
+  const targetSlug = slugArg ? slugArg.split("=")[1] : null;
+  const post = readLatestPost(targetSlug);
   RESULTS.push(`POST_URL=${post.full}`);
   const slug = post.url.replace(/\.html$/, "").split("/").pop();
 

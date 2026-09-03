@@ -1,0 +1,3462 @@
+{
+  "generated_at": "2026-09-02T23:38:45.734Z",
+  "report_version": "1.0.0",
+  "headline": {
+    "clusters": 11,
+    "articles": 46,
+    "avg_authority": 79,
+    "leading_clusters": 4,
+    "genuine_gaps": 1,
+    "decayed_pages": 7,
+    "unresolved_cannibalization": 0,
+    "page_tech_red": 0,
+    "unmeasured_pages": 46,
+    "feed_keywords": 0,
+    "competitors_tracked": 0,
+    "serp_queries_tracked": 0,
+    "assets_premium": 41,
+    "backlinks_provided": 0,
+    "top_gap": "none Core explainer"
+  },
+  "next_action": {
+    "rank": 1,
+    "type": "REFRESH_EXISTING_CONTENT",
+    "one_liner": "Refresh \"amazon-affiliate-break-even-commission-calculator-comparison\" (7 pages decayed) before creating new pages.",
+    "page": "amazon-affiliate-break-even-commission-calculator-comparison",
+    "action_definition": "Update content, fix inbound links, add revision date.",
+    "effort": "MEDIUM",
+    "impact": "HIGH",
+    "approval_required": false,
+    "reason": "orphaned (0 inbound internal links); no published/modified date evidence in HTML",
+    "priority": 65,
+    "data_confidence": "HIGH (on-page signals)"
+  },
+  "sections": {
+    "keyword_intelligence": {
+      "total_keywords": 78,
+      "internal_keywords": 78,
+      "researched_keywords": 0,
+      "search_volume_available": 0,
+      "search_volume_unavailable": 78,
+      "note": "No external keyword feed provided. Search volume/difficulty marked unavailable; all scoring uses site-derived signals only.",
+      "intent_coverage": {
+        "commercial": 7,
+        "informational": 19,
+        "problem": 8,
+        "transactional": 6,
+        "how-to": 38
+      },
+      "by_cluster": {
+        "Affiliate Networks": [
+          "amazon associates vs shareasale vs cj affiliate: which pays best in 2026?",
+          "best amazon associates vs shareasale vs cj affiliate: which pays best in 2026?",
+          "affiliate networks 2026",
+          "affiliate network comparison 2026",
+          "amazon associates vs shareasale vs cj affiliate: 2026 strategy & calculation guide",
+          "how to get approved by affiliate networks",
+          "step by step how to get approved by affiliate networks",
+          "shareasale vs cj vs impact: which pays better?",
+          "best shareasale vs cj vs impact: which pays better?"
+        ],
+        "Commission Cuts": [
+          "2026 amazon commission cuts: what they mean",
+          "commission cuts 2026",
+          "amazon commission cuts 2026: impact on every category",
+          "amazon commission rate cuts 2026: 2026 strategy & calculation guide",
+          "amazon halo commission is gone (april 14)",
+          "how much do 2026 amazon commission cuts cost you? calculate it",
+          "how to offset amazon commission cuts with other income streams"
+        ],
+        "Calculator & Break-even": [
+          "break-even or commission calculator: which one do you need?",
+          "calculator & break-even 2026",
+          "find your amazon affiliate break-even point (free calculator)",
+          "amazon affiliate break-even calculator guide",
+          "step by step amazon affiliate break-even calculator guide",
+          "amazon affiliate commission calculator guide 2026",
+          "step by step amazon affiliate commission calculator guide 2026",
+          "break-even strategy for low-commission products",
+          "which price point pays? break-even analysis"
+        ],
+        "none": [
+          "amazon affiliate link building: complete 2026 guide",
+          "step by step amazon affiliate link building: complete 2026 guide",
+          "best link building tools for amazon affiliates: 2026 comparison",
+          "best best link building tools for amazon affiliates: 2026 comparison",
+          "missing amazon affiliate commission? how to check and recover it"
+        ],
+        "Link Building": [
+          "amazon affiliate link tools: format, track, test",
+          "step by step amazon affiliate link tools: format, track, test",
+          "link building 2026",
+          "deep linking: send buyers straight to the product",
+          "step by step deep linking: send buyers straight to the product",
+          "amazon links: nofollow, sponsored & the rules",
+          "step by step amazon links: nofollow, sponsored & the rules"
+        ],
+        "Earnings & Payout": [
+          "why your amazon affiliate profit is below break-even (and how to fix it)",
+          "earnings & payout 2026",
+          "amazon affiliate profit per sale: the real math",
+          "step by step amazon affiliate profit per sale: the real math",
+          "amazon commission payout verification: 2026 strategy & calculation guide",
+          "how much do amazon affiliates make? 2026 math",
+          "step by step how much do amazon affiliates make? 2026 math",
+          "how to audit your amazon earnings",
+          "step by step how to audit your amazon earnings",
+          "why amazon earnings dropped but clicks didnt"
+        ],
+        "Earnings Report": [
+          "amazon associates claim report: how to file",
+          "step by step amazon associates claim report: how to file",
+          "earnings report 2026",
+          "amazon earnings report analyzer: 2026 strategy & calculation guide",
+          "amazon earnings report columns, decoded",
+          "step by step amazon earnings report columns, decoded",
+          "amazon product earnings report csv explained"
+        ],
+        "Commission Rates": [
+          "amazon associates commission rates 2026",
+          "commission rates 2026",
+          "amazon commission rates by category (2026)",
+          "how to catch amazon rate changes fast",
+          "step by step how to catch amazon rate changes fast"
+        ],
+        "Earnings Audit": [
+          "amazon associates missing commission",
+          "earnings audit 2026",
+          "amazon associates non-ftc audit: 2026 strategy & calculation guide",
+          "how to check for amazon affiliate underpayment",
+          "step by step how to check for amazon affiliate underpayment",
+          "how to verify your amazon affiliate commission",
+          "step by step how to verify your amazon affiliate commission"
+        ],
+        "Directory & IndexNow": [
+          "directory listing seo: quality vs spam",
+          "step by step directory listing seo: quality vs spam",
+          "directory & indexnow 2026",
+          "how to submit a url to search engines (free)",
+          "step by step how to submit a url to search engines (free)",
+          "indexnow setup: get new pages indexed in hours",
+          "step by step indexnow setup: get new pages indexed in hours",
+          "url submission checklist: get indexed faster"
+        ],
+        "Backlink Building": [
+          "free backlink directories that still work (2026)",
+          "backlink building 2026",
+          "backlinks for an affiliate site: 30-day plan",
+          "step by step backlinks for an affiliate site: 30-day plan"
+        ]
+      },
+      "keywords": [
+        {
+          "query": "amazon associates vs shareasale vs cj affiliate: which pays best in 2026?",
+          "normalized_query": "amazon associates vs shareasale vs cj affiliate which pays best in 2026",
+          "intent": "commercial",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "best amazon associates vs shareasale vs cj affiliate: which pays best in 2026?",
+          "normalized_query": "best amazon associates vs shareasale vs cj affiliate which pays best in 2026",
+          "intent": "commercial",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "affiliate networks 2026",
+          "normalized_query": "affiliate networks 2026",
+          "intent": "commercial",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "affiliate network comparison 2026",
+          "normalized_query": "affiliate network comparison 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "affiliate-network-comparison",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "2026 amazon commission cuts: what they mean",
+          "normalized_query": "2026 amazon commission cuts what they mean",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Cuts",
+          "matched_slug": "amazon-2026-commission-cuts",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "commission cuts 2026",
+          "normalized_query": "commission cuts 2026",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Cuts",
+          "matched_slug": "amazon-2026-commission-cuts",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "break-even or commission calculator: which one do you need?",
+          "normalized_query": "break-even or commission calculator which one do you need",
+          "intent": "transactional",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "calculator & break-even 2026",
+          "normalized_query": "calculator  break-even 2026",
+          "intent": "transactional",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "find your amazon affiliate break-even point (free calculator)",
+          "normalized_query": "find your amazon affiliate break-even point free calculator",
+          "intent": "transactional",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-break-even-point-calculator",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon affiliate break-even calculator guide",
+          "normalized_query": "amazon affiliate break-even calculator guide",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-breakeven-calculator-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon affiliate break-even calculator guide",
+          "normalized_query": "step by step amazon affiliate break-even calculator guide",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-breakeven-calculator-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon affiliate commission calculator guide 2026",
+          "normalized_query": "amazon affiliate commission calculator guide 2026",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-commission-calculator-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon affiliate commission calculator guide 2026",
+          "normalized_query": "step by step amazon affiliate commission calculator guide 2026",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-commission-calculator-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon affiliate link building: complete 2026 guide",
+          "normalized_query": "amazon affiliate link building complete 2026 guide",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "none",
+          "matched_slug": "amazon-affiliate-link-building-guide-2026",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon affiliate link building: complete 2026 guide",
+          "normalized_query": "step by step amazon affiliate link building complete 2026 guide",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "none",
+          "matched_slug": "amazon-affiliate-link-building-guide-2026",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon affiliate link tools: format, track, test",
+          "normalized_query": "amazon affiliate link tools format track test",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Link Building",
+          "matched_slug": "amazon-affiliate-link-tools-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon affiliate link tools: format, track, test",
+          "normalized_query": "step by step amazon affiliate link tools format track test",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Link Building",
+          "matched_slug": "amazon-affiliate-link-tools-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "link building 2026",
+          "normalized_query": "link building 2026",
+          "intent": "transactional",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Link Building",
+          "matched_slug": "amazon-affiliate-link-tools-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "why your amazon affiliate profit is below break-even (and how to fix it)",
+          "normalized_query": "why your amazon affiliate profit is below break-even and how to fix it",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "amazon-affiliate-profit-below-break-even",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "earnings & payout 2026",
+          "normalized_query": "earnings  payout 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "amazon-affiliate-profit-below-break-even",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon affiliate profit per sale: the real math",
+          "normalized_query": "amazon affiliate profit per sale the real math",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "amazon-affiliate-profit-per-sale-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon affiliate profit per sale: the real math",
+          "normalized_query": "step by step amazon affiliate profit per sale the real math",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "amazon-affiliate-profit-per-sale-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "break-even strategy for low-commission products",
+          "normalized_query": "break-even strategy for low-commission products",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "amazon-affiliate-revenue-break-even-strategy",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon associates claim report: how to file",
+          "normalized_query": "amazon associates claim report how to file",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Report",
+          "matched_slug": "amazon-associates-claim-report-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon associates claim report: how to file",
+          "normalized_query": "step by step amazon associates claim report how to file",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Report",
+          "matched_slug": "amazon-associates-claim-report-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "earnings report 2026",
+          "normalized_query": "earnings report 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Report",
+          "matched_slug": "amazon-associates-claim-report-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon associates commission rates 2026",
+          "normalized_query": "amazon associates commission rates 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Rates",
+          "matched_slug": "amazon-associates-commission-rates-2026",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "commission rates 2026",
+          "normalized_query": "commission rates 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Rates",
+          "matched_slug": "amazon-associates-commission-rates-2026",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "deep linking: send buyers straight to the product",
+          "normalized_query": "deep linking send buyers straight to the product",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Link Building",
+          "matched_slug": "amazon-associates-deep-linking-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step deep linking: send buyers straight to the product",
+          "normalized_query": "step by step deep linking send buyers straight to the product",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Link Building",
+          "matched_slug": "amazon-associates-deep-linking-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon associates missing commission",
+          "normalized_query": "amazon associates missing commission",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Audit",
+          "matched_slug": "amazon-associates-missing-commission",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "earnings audit 2026",
+          "normalized_query": "earnings audit 2026",
+          "intent": "transactional",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Audit",
+          "matched_slug": "amazon-associates-missing-commission",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon associates non-ftc audit: 2026 strategy & calculation guide",
+          "normalized_query": "amazon associates non-ftc audit 2026 strategy  calculation guide",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Audit",
+          "matched_slug": "amazon-associates-non-ftc-audit",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon associates vs shareasale vs cj affiliate: 2026 strategy & calculation guide",
+          "normalized_query": "amazon associates vs shareasale vs cj affiliate 2026 strategy  calculation guide",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "amazon-associates-vs-shareasale-vs-cj-affiliate",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon commission cuts 2026: impact on every category",
+          "normalized_query": "amazon commission cuts 2026 impact on every category",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Cuts",
+          "matched_slug": "amazon-commission-cuts-2026-category-impact",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon commission payout verification: 2026 strategy & calculation guide",
+          "normalized_query": "amazon commission payout verification 2026 strategy  calculation guide",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "amazon-commission-payout-verification",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon commission rate cuts 2026: 2026 strategy & calculation guide",
+          "normalized_query": "amazon commission rate cuts 2026 2026 strategy  calculation guide",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Cuts",
+          "matched_slug": "amazon-commission-rate-cuts-2026",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon commission rates by category (2026)",
+          "normalized_query": "amazon commission rates by category 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Rates",
+          "matched_slug": "amazon-commission-rates-by-category",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon earnings report analyzer: 2026 strategy & calculation guide",
+          "normalized_query": "amazon earnings report analyzer 2026 strategy  calculation guide",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Report",
+          "matched_slug": "amazon-earnings-report-analyzer",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon earnings report columns, decoded",
+          "normalized_query": "amazon earnings report columns decoded",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Report",
+          "matched_slug": "amazon-earnings-report-columns-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon earnings report columns, decoded",
+          "normalized_query": "step by step amazon earnings report columns decoded",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Report",
+          "matched_slug": "amazon-earnings-report-columns-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon halo commission is gone (april 14)",
+          "normalized_query": "amazon halo commission is gone april 14",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Cuts",
+          "matched_slug": "amazon-halo-commission-gone",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon links: nofollow, sponsored & the rules",
+          "normalized_query": "amazon links nofollow sponsored  the rules",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Link Building",
+          "matched_slug": "amazon-links-nofollow-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step amazon links: nofollow, sponsored & the rules",
+          "normalized_query": "step by step amazon links nofollow sponsored  the rules",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Link Building",
+          "matched_slug": "amazon-links-nofollow-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "amazon product earnings report csv explained",
+          "normalized_query": "amazon product earnings report csv explained",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Report",
+          "matched_slug": "amazon-product-earnings-report-csv-explained",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how to catch amazon rate changes fast",
+          "normalized_query": "how to catch amazon rate changes fast",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Rates",
+          "matched_slug": "amazon-rate-change-alert-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step how to catch amazon rate changes fast",
+          "normalized_query": "step by step how to catch amazon rate changes fast",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Rates",
+          "matched_slug": "amazon-rate-change-alert-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "best link building tools for amazon affiliates: 2026 comparison",
+          "normalized_query": "best link building tools for amazon affiliates 2026 comparison",
+          "intent": "commercial",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "none",
+          "matched_slug": "best-link-building-tools-amazon-affiliates-2026",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "best best link building tools for amazon affiliates: 2026 comparison",
+          "normalized_query": "best best link building tools for amazon affiliates 2026 comparison",
+          "intent": "commercial",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "none",
+          "matched_slug": "best-link-building-tools-amazon-affiliates-2026",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how much do 2026 amazon commission cuts cost you? calculate it",
+          "normalized_query": "how much do 2026 amazon commission cuts cost you calculate it",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Cuts",
+          "matched_slug": "calculate-amazon-commission-cuts-cost",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "directory listing seo: quality vs spam",
+          "normalized_query": "directory listing seo quality vs spam",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "directory-listing-seo-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step directory listing seo: quality vs spam",
+          "normalized_query": "step by step directory listing seo quality vs spam",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "directory-listing-seo-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "directory & indexnow 2026",
+          "normalized_query": "directory  indexnow 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "directory-listing-seo-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "free backlink directories that still work (2026)",
+          "normalized_query": "free backlink directories that still work 2026",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Backlink Building",
+          "matched_slug": "free-backlink-directories-for-affiliates",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "backlink building 2026",
+          "normalized_query": "backlink building 2026",
+          "intent": "transactional",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Backlink Building",
+          "matched_slug": "free-backlink-directories-for-affiliates",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how much do amazon affiliates make? 2026 math",
+          "normalized_query": "how much do amazon affiliates make 2026 math",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "how-much-do-amazon-affiliates-make",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step how much do amazon affiliates make? 2026 math",
+          "normalized_query": "step by step how much do amazon affiliates make 2026 math",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "how-much-do-amazon-affiliates-make",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how to audit your amazon earnings",
+          "normalized_query": "how to audit your amazon earnings",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "how-to-audit-amazon-earnings",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step how to audit your amazon earnings",
+          "normalized_query": "step by step how to audit your amazon earnings",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "how-to-audit-amazon-earnings",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "backlinks for an affiliate site: 30-day plan",
+          "normalized_query": "backlinks for an affiliate site 30-day plan",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Backlink Building",
+          "matched_slug": "how-to-build-backlinks-for-affiliate-site",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step backlinks for an affiliate site: 30-day plan",
+          "normalized_query": "step by step backlinks for an affiliate site 30-day plan",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Backlink Building",
+          "matched_slug": "how-to-build-backlinks-for-affiliate-site",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how to check for amazon affiliate underpayment",
+          "normalized_query": "how to check for amazon affiliate underpayment",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Audit",
+          "matched_slug": "how-to-check-amazon-affiliate-underpayment",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step how to check for amazon affiliate underpayment",
+          "normalized_query": "step by step how to check for amazon affiliate underpayment",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Audit",
+          "matched_slug": "how-to-check-amazon-affiliate-underpayment",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how to get approved by affiliate networks",
+          "normalized_query": "how to get approved by affiliate networks",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "how-to-get-approved-affiliate-networks",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step how to get approved by affiliate networks",
+          "normalized_query": "step by step how to get approved by affiliate networks",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "how-to-get-approved-affiliate-networks",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how to submit a url to search engines (free)",
+          "normalized_query": "how to submit a url to search engines free",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "how-to-submit-url-to-search-engines",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step how to submit a url to search engines (free)",
+          "normalized_query": "step by step how to submit a url to search engines free",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "how-to-submit-url-to-search-engines",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how to verify your amazon affiliate commission",
+          "normalized_query": "how to verify your amazon affiliate commission",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Audit",
+          "matched_slug": "how-to-verify-amazon-affiliate-commission",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step how to verify your amazon affiliate commission",
+          "normalized_query": "step by step how to verify your amazon affiliate commission",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings Audit",
+          "matched_slug": "how-to-verify-amazon-affiliate-commission",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "indexnow setup: get new pages indexed in hours",
+          "normalized_query": "indexnow setup get new pages indexed in hours",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "indexnow-setup-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "step by step indexnow setup: get new pages indexed in hours",
+          "normalized_query": "step by step indexnow setup get new pages indexed in hours",
+          "intent": "how-to",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "indexnow-setup-guide",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "missing amazon affiliate commission? how to check and recover it",
+          "normalized_query": "missing amazon affiliate commission how to check and recover it",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "none",
+          "matched_slug": "missing-amazon-affiliate-commission-network",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "how to offset amazon commission cuts with other income streams",
+          "normalized_query": "how to offset amazon commission cuts with other income streams",
+          "intent": "problem",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Commission Cuts",
+          "matched_slug": "offset-amazon-commission-cuts-diversified-income",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "which price point pays? break-even analysis",
+          "normalized_query": "which price point pays break-even analysis",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Calculator & Break-even",
+          "matched_slug": "price-points-breakeven-analysis",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "shareasale vs cj vs impact: which pays better?",
+          "normalized_query": "shareasale vs cj vs impact which pays better",
+          "intent": "commercial",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "shareasale-vs-cj-vs-impact",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "best shareasale vs cj vs impact: which pays better?",
+          "normalized_query": "best shareasale vs cj vs impact which pays better",
+          "intent": "commercial",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Affiliate Networks",
+          "matched_slug": "shareasale-vs-cj-vs-impact",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "url submission checklist: get indexed faster",
+          "normalized_query": "url submission checklist get indexed faster",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Directory & IndexNow",
+          "matched_slug": "url-submission-checklist",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        },
+        {
+          "query": "why amazon earnings dropped but clicks didnt",
+          "normalized_query": "why amazon earnings dropped but clicks didnt",
+          "intent": "informational",
+          "intent_confidence": "provided",
+          "source": "internal",
+          "cluster": "Earnings & Payout",
+          "matched_slug": "why-earnings-dropped-but-clicks-didnt",
+          "metrics": {
+            "volume": {
+              "value": null,
+              "available": false
+            },
+            "difficulty": {
+              "value": null,
+              "available": false
+            },
+            "cpc": {
+              "value": null,
+              "available": false
+            }
+          }
+        }
+      ]
+    },
+    "topical_authority": {
+      "clusters": [
+        {
+          "cluster": "Commission Cuts",
+          "available": true,
+          "pillar": "amazon-2026-commission-cuts",
+          "strategic_importance": 95,
+          "members": 6,
+          "avg_words": 1017,
+          "avg_seo_quality": 90,
+          "avg_inbound_links": 2.3,
+          "entity_coverage_size": 20,
+          "cannibalization_cases": 0,
+          "orphans": 2,
+          "score": 89,
+          "tier": "LEADING",
+          "component_scores": {
+            "breadth": 94,
+            "quality": 90,
+            "link_support": 78,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 67
+          },
+          "top_articles": [
+            {
+              "slug": "amazon-halo-commission-gone",
+              "title": "Amazon Halo Commission Is Gone (April 14) | AmzLoss",
+              "seo_quality": 94,
+              "inbound": 6,
+              "authority_weight": 119
+            },
+            {
+              "slug": "amazon-2026-commission-cuts",
+              "title": "2026 Amazon Commission Cuts: What They Mean | AmzLoss",
+              "seo_quality": 94,
+              "inbound": 5,
+              "authority_weight": 107
+            },
+            {
+              "slug": "amazon-commission-cuts-2026-category-impact",
+              "title": "Amazon Commission Cuts 2026: Impact on Every Category | AMZLOSS",
+              "seo_quality": 94,
+              "inbound": 2,
+              "authority_weight": 71
+            }
+          ],
+          "verdict": {
+            "action": "CONSOLIDATE",
+            "reason": "Strong authority; consolidate intent focus and defend with internal linking rather than adding marginal pages."
+          }
+        },
+        {
+          "cluster": "Earnings & Payout",
+          "available": true,
+          "pillar": "amazon-affiliate-profit-per-sale-guide",
+          "strategic_importance": 85,
+          "members": 6,
+          "avg_words": 1084,
+          "avg_seo_quality": 87,
+          "avg_inbound_links": 1.5,
+          "entity_coverage_size": 20,
+          "cannibalization_cases": 0,
+          "orphans": 1,
+          "score": 84,
+          "tier": "LEADING",
+          "component_scores": {
+            "breadth": 96,
+            "quality": 87,
+            "link_support": 50,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 83
+          },
+          "top_articles": [
+            {
+              "slug": "how-to-audit-amazon-earnings",
+              "title": "How to Audit Your Amazon Earnings | AmzLoss",
+              "seo_quality": 88,
+              "inbound": 3,
+              "authority_weight": 80
+            },
+            {
+              "slug": "amazon-affiliate-profit-per-sale-guide",
+              "title": "Amazon Affiliate Profit per Sale: The Real Math",
+              "seo_quality": 88,
+              "inbound": 2,
+              "authority_weight": 68
+            },
+            {
+              "slug": "why-earnings-dropped-but-clicks-didnt",
+              "title": "Why Amazon Earnings Dropped But Clicks Didnt | AmzLoss",
+              "seo_quality": 81,
+              "inbound": 2,
+              "authority_weight": 64.5
+            }
+          ],
+          "verdict": {
+            "action": "CONSOLIDATE",
+            "reason": "Strong authority; consolidate intent focus and defend with internal linking rather than adding marginal pages."
+          }
+        },
+        {
+          "cluster": "Calculator & Break-even",
+          "available": true,
+          "pillar": "amazon-affiliate-commission-calculator-guide",
+          "strategic_importance": 70,
+          "members": 6,
+          "avg_words": 1118,
+          "avg_seo_quality": 91,
+          "avg_inbound_links": 1,
+          "entity_coverage_size": 19,
+          "cannibalization_cases": 0,
+          "orphans": 1,
+          "score": 82,
+          "tier": "LEADING",
+          "component_scores": {
+            "breadth": 97,
+            "quality": 91,
+            "link_support": 33,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 83
+          },
+          "top_articles": [
+            {
+              "slug": "amazon-affiliate-commission-calculator-guide",
+              "title": "Amazon Affiliate Commission Calculator Guide 2026 | AmzLoss",
+              "seo_quality": 88,
+              "inbound": 2,
+              "authority_weight": 68
+            },
+            {
+              "slug": "amazon-affiliate-breakeven-calculator-guide",
+              "title": "Amazon Affiliate Break-Even Calculator Guide | AmzLoss",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            },
+            {
+              "slug": "amazon-affiliate-revenue-break-even-strategy",
+              "title": "Break-Even Strategy for Low-Commission Products | AmzLoss",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            }
+          ],
+          "verdict": {
+            "action": "CONSOLIDATE",
+            "reason": "Strong authority; consolidate intent focus and defend with internal linking rather than adding marginal pages."
+          }
+        },
+        {
+          "cluster": "Directory & IndexNow",
+          "available": true,
+          "pillar": "directory-listing-seo-guide",
+          "strategic_importance": 55,
+          "members": 4,
+          "avg_words": 1296,
+          "avg_seo_quality": 83,
+          "avg_inbound_links": 1.8,
+          "entity_coverage_size": 17,
+          "cannibalization_cases": 0,
+          "orphans": 0,
+          "score": 82,
+          "tier": "LEADING",
+          "component_scores": {
+            "breadth": 80,
+            "quality": 83,
+            "link_support": 58,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 100
+          },
+          "top_articles": [
+            {
+              "slug": "directory-listing-seo-guide",
+              "title": "Directory Listing SEO: Quality vs Spam",
+              "seo_quality": 81,
+              "inbound": 4,
+              "authority_weight": 88.5
+            },
+            {
+              "slug": "how-to-submit-url-to-search-engines",
+              "title": "How to Submit a URL to Search Engines (Free) | AmzLoss",
+              "seo_quality": 88,
+              "inbound": 1,
+              "authority_weight": 56
+            },
+            {
+              "slug": "indexnow-setup-guide",
+              "title": "IndexNow Setup: Get New Pages Indexed in Hours | AmzLoss",
+              "seo_quality": 81,
+              "inbound": 1,
+              "authority_weight": 52.5
+            }
+          ],
+          "verdict": {
+            "action": "CONSOLIDATE",
+            "reason": "Strong authority; consolidate intent focus and defend with internal linking rather than adding marginal pages."
+          }
+        },
+        {
+          "cluster": "Affiliate Networks",
+          "available": true,
+          "pillar": "affiliate-network-comparison",
+          "strategic_importance": 75,
+          "members": 5,
+          "avg_words": 1220,
+          "avg_seo_quality": 87,
+          "avg_inbound_links": 1,
+          "entity_coverage_size": 21,
+          "cannibalization_cases": 0,
+          "orphans": 1,
+          "score": 79,
+          "tier": "GROWING",
+          "component_scores": {
+            "breadth": 90,
+            "quality": 87,
+            "link_support": 33,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 80
+          },
+          "top_articles": [
+            {
+              "slug": "affiliate-network-comparison",
+              "title": "Affiliate Network Comparison 2026 | AmzLoss",
+              "seo_quality": 88,
+              "inbound": 2,
+              "authority_weight": 68
+            },
+            {
+              "slug": "shareasale-vs-cj-vs-impact",
+              "title": "ShareASale vs CJ vs Impact: Which Pays Better? | AmzLoss",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            },
+            {
+              "slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+              "title": "Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS",
+              "seo_quality": 88,
+              "inbound": 1,
+              "authority_weight": 56
+            }
+          ],
+          "verdict": {
+            "action": "MAINTAIN",
+            "reason": "Healthy authority level; maintain through audits and decay handling."
+          }
+        },
+        {
+          "cluster": "Earnings Report",
+          "available": true,
+          "pillar": "amazon-product-earnings-report-csv-explained",
+          "strategic_importance": 80,
+          "members": 4,
+          "avg_words": 1157,
+          "avg_seo_quality": 89,
+          "avg_inbound_links": 1.5,
+          "entity_coverage_size": 19,
+          "cannibalization_cases": 0,
+          "orphans": 1,
+          "score": 79,
+          "tier": "GROWING",
+          "component_scores": {
+            "breadth": 79,
+            "quality": 89,
+            "link_support": 50,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 75
+          },
+          "top_articles": [
+            {
+              "slug": "amazon-product-earnings-report-csv-explained",
+              "title": "Amazon Product Earnings Report CSV Explained | AmzLoss",
+              "seo_quality": 94,
+              "inbound": 4,
+              "authority_weight": 95
+            },
+            {
+              "slug": "amazon-associates-claim-report-guide",
+              "title": "Amazon Associates Claim Report: How to File",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            },
+            {
+              "slug": "amazon-earnings-report-columns-guide",
+              "title": "Amazon Earnings Report Columns, Decoded",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            }
+          ],
+          "verdict": {
+            "action": "MAINTAIN",
+            "reason": "Healthy authority level; maintain through audits and decay handling."
+          }
+        },
+        {
+          "cluster": "Commission Rates",
+          "available": true,
+          "pillar": "amazon-associates-commission-rates-2026",
+          "strategic_importance": 90,
+          "members": 3,
+          "avg_words": 1209,
+          "avg_seo_quality": 92,
+          "avg_inbound_links": 1.3,
+          "entity_coverage_size": 15,
+          "cannibalization_cases": 0,
+          "orphans": 0,
+          "score": 79,
+          "tier": "GROWING",
+          "component_scores": {
+            "breadth": 70,
+            "quality": 92,
+            "link_support": 44,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 100
+          },
+          "top_articles": [
+            {
+              "slug": "amazon-associates-commission-rates-2026",
+              "title": "Amazon Associates Commission Rates 2026",
+              "seo_quality": 94,
+              "inbound": 2,
+              "authority_weight": 71
+            },
+            {
+              "slug": "amazon-commission-rates-by-category",
+              "title": "Amazon Commission Rates by Category (2026)",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            },
+            {
+              "slug": "amazon-rate-change-alert-guide",
+              "title": "How to Catch Amazon Rate Changes Fast",
+              "seo_quality": 88,
+              "inbound": 1,
+              "authority_weight": 56
+            }
+          ],
+          "verdict": {
+            "action": "MAINTAIN",
+            "reason": "Healthy authority level; maintain through audits and decay handling."
+          }
+        },
+        {
+          "cluster": "Earnings Audit",
+          "available": true,
+          "pillar": "how-to-audit-amazon-earnings",
+          "strategic_importance": 80,
+          "members": 4,
+          "avg_words": 1118,
+          "avg_seo_quality": 86,
+          "avg_inbound_links": 1.5,
+          "entity_coverage_size": 19,
+          "cannibalization_cases": 0,
+          "orphans": 1,
+          "score": 78,
+          "tier": "GROWING",
+          "component_scores": {
+            "breadth": 77,
+            "quality": 86,
+            "link_support": 50,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 75
+          },
+          "top_articles": [
+            {
+              "slug": "how-to-check-amazon-affiliate-underpayment",
+              "title": "How to Check for Amazon Affiliate Underpayment | AmzLoss",
+              "seo_quality": 88,
+              "inbound": 3,
+              "authority_weight": 80
+            },
+            {
+              "slug": "amazon-associates-missing-commission",
+              "title": "Amazon Associates Missing Commission | AmzLoss",
+              "seo_quality": 88,
+              "inbound": 2,
+              "authority_weight": 68
+            },
+            {
+              "slug": "how-to-verify-amazon-affiliate-commission",
+              "title": "How to Verify Your Amazon Affiliate Commission",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            }
+          ],
+          "verdict": {
+            "action": "MAINTAIN",
+            "reason": "Healthy authority level; maintain through audits and decay handling."
+          }
+        },
+        {
+          "cluster": "Link Building",
+          "available": true,
+          "pillar": "amazon-affiliate-link-tools-guide",
+          "strategic_importance": 70,
+          "members": 3,
+          "avg_words": 1295,
+          "avg_seo_quality": 83,
+          "avg_inbound_links": 1.3,
+          "entity_coverage_size": 18,
+          "cannibalization_cases": 0,
+          "orphans": 0,
+          "score": 76,
+          "tier": "GROWING",
+          "component_scores": {
+            "breadth": 70,
+            "quality": 83,
+            "link_support": 44,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 100
+          },
+          "top_articles": [
+            {
+              "slug": "amazon-affiliate-link-tools-guide",
+              "title": "Amazon Affiliate Link Tools: Format, Track, Test | AmzLoss",
+              "seo_quality": 81,
+              "inbound": 2,
+              "authority_weight": 64.5
+            },
+            {
+              "slug": "amazon-associates-deep-linking-guide",
+              "title": "Deep Linking: Send Buyers Straight to the Product | AmzLoss",
+              "seo_quality": 88,
+              "inbound": 1,
+              "authority_weight": 56
+            },
+            {
+              "slug": "amazon-links-nofollow-guide",
+              "title": "Amazon Links: Nofollow, Sponsored & the Rules | AmzLoss",
+              "seo_quality": 81,
+              "inbound": 1,
+              "authority_weight": 52.5
+            }
+          ],
+          "verdict": {
+            "action": "MAINTAIN",
+            "reason": "Healthy authority level; maintain through audits and decay handling."
+          }
+        },
+        {
+          "cluster": "none",
+          "available": true,
+          "pillar": null,
+          "strategic_importance": 50,
+          "members": 3,
+          "avg_words": 875,
+          "avg_seo_quality": 90,
+          "avg_inbound_links": 1,
+          "entity_coverage_size": 20,
+          "cannibalization_cases": 0,
+          "orphans": 0,
+          "score": 73,
+          "tier": "GROWING",
+          "component_scores": {
+            "breadth": 59,
+            "quality": 90,
+            "link_support": 33,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 100
+          },
+          "top_articles": [
+            {
+              "slug": "amazon-affiliate-link-building-guide-2026",
+              "title": "Amazon Affiliate Link Building: Complete 2026 Guide | AMZLOSS",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            },
+            {
+              "slug": "best-link-building-tools-amazon-affiliates-2026",
+              "title": "Best Link Building Tools for Amazon Affiliates: 2026 Comparison | AMZLOSS",
+              "seo_quality": 88,
+              "inbound": 1,
+              "authority_weight": 56
+            },
+            {
+              "slug": "missing-amazon-affiliate-commission-network",
+              "title": "Missing Amazon Affiliate Commission? How to Check and Recover It | AMZLOSS",
+              "seo_quality": 88,
+              "inbound": 1,
+              "authority_weight": 56
+            }
+          ],
+          "verdict": {
+            "action": "MAINTAIN",
+            "reason": "Healthy authority level; maintain through audits and decay handling."
+          }
+        },
+        {
+          "cluster": "Backlink Building",
+          "available": true,
+          "pillar": "how-to-build-backlinks-for-affiliate-site",
+          "strategic_importance": 85,
+          "members": 2,
+          "avg_words": 1265,
+          "avg_seo_quality": 85,
+          "avg_inbound_links": 1,
+          "entity_coverage_size": 16,
+          "cannibalization_cases": 0,
+          "orphans": 0,
+          "score": 72,
+          "tier": "GROWING",
+          "component_scores": {
+            "breadth": 60,
+            "quality": 85,
+            "link_support": 33,
+            "entity_coverage": 100,
+            "cannibalization_health": 100,
+            "orphan_health": 100
+          },
+          "top_articles": [
+            {
+              "slug": "how-to-build-backlinks-for-affiliate-site",
+              "title": "Backlinks for an Affiliate Site: 30-Day Plan",
+              "seo_quality": 94,
+              "inbound": 1,
+              "authority_weight": 59
+            },
+            {
+              "slug": "free-backlink-directories-for-affiliates",
+              "title": "Free Backlink Directories That Still Work (2026)",
+              "seo_quality": 75,
+              "inbound": 1,
+              "authority_weight": 49.5
+            }
+          ],
+          "verdict": {
+            "action": "MAINTAIN",
+            "reason": "Healthy authority level; maintain through audits and decay handling."
+          }
+        }
+      ],
+      "average_score": 79,
+      "leading": 4,
+      "growing": 7,
+      "emerging": 0,
+      "dormant": 0,
+      "highest_value_gap": null
+    },
+    "content_gaps": {
+      "gaps": [
+        {
+          "topic": "none Core explainer",
+          "intent": "informational",
+          "cluster": "none",
+          "genuine_gap": true,
+          "covered_by": null,
+          "intent_already_covered": false,
+          "cluster_authority": 73,
+          "verdict": "NEW_CONTENT_GAP",
+          "priority_score": 62,
+          "descriptor": "Gap: \"none Core explainer\" needs \"informational\" intent coverage in cluster \"none\".",
+          "components": [
+            {
+              "name": "cluster_value",
+              "score": 62,
+              "explanation": "Cluster \"none\" worth 50/100 strategic value, 73/100 authority"
+            }
+          ]
+        }
+      ],
+      "ignored": [
+        {
+          "topic": "Affiliate Networks Transactional tool need",
+          "intent": "transactional",
+          "cluster": "Affiliate Networks",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+            "title": "Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 79,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Affiliate Networks Transactional tool need\" is covered by \"Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Affiliate Networks Diagnostic / problem",
+          "intent": "problem",
+          "cluster": "Affiliate Networks",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+            "title": "Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 79,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Affiliate Networks Diagnostic / problem\" is covered by \"Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Calculator & Break-even Commercial comparison",
+          "intent": "commercial",
+          "cluster": "Calculator & Break-even",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+            "title": "Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 82,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Calculator & Break-even Commercial comparison\" is covered by \"Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Calculator & Break-even Diagnostic / problem",
+          "intent": "problem",
+          "cluster": "Calculator & Break-even",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+            "title": "Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 82,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Calculator & Break-even Diagnostic / problem\" is covered by \"Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "none Commercial comparison",
+          "intent": "commercial",
+          "cluster": "none",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+            "title": "Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS"
+          },
+          "intent_already_covered": true,
+          "cluster_authority": 73,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"none Commercial comparison\" is covered by \"Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "none Transactional tool need",
+          "intent": "transactional",
+          "cluster": "none",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+            "title": "Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 73,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"none Transactional tool need\" is covered by \"Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Link Building Core explainer",
+          "intent": "informational",
+          "cluster": "Link Building",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-link-building-guide-2026",
+            "title": "Amazon Affiliate Link Building: Complete 2026 Guide | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 76,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Link Building Core explainer\" is covered by \"Amazon Affiliate Link Building: Complete 2026 Guide | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Link Building Commercial comparison",
+          "intent": "commercial",
+          "cluster": "Link Building",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "best-link-building-tools-amazon-affiliates-2026",
+            "title": "Best Link Building Tools for Amazon Affiliates: 2026 Comparison | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 76,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Link Building Commercial comparison\" is covered by \"Best Link Building Tools for Amazon Affiliates: 2026 Comparison | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Link Building Diagnostic / problem",
+          "intent": "problem",
+          "cluster": "Link Building",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-link-building-guide-2026",
+            "title": "Amazon Affiliate Link Building: Complete 2026 Guide | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 76,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Link Building Diagnostic / problem\" is covered by \"Amazon Affiliate Link Building: Complete 2026 Guide | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings & Payout Commercial comparison",
+          "intent": "commercial",
+          "cluster": "Earnings & Payout",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-profit-below-break-even",
+            "title": "Why Your Amazon Affiliate Profit Is Below Break-Even (and How to Fix It) | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 84,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings & Payout Commercial comparison\" is covered by \"Why Your Amazon Affiliate Profit Is Below Break-Even (and How to Fix It) | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings & Payout Transactional tool need",
+          "intent": "transactional",
+          "cluster": "Earnings & Payout",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-profit-below-break-even",
+            "title": "Why Your Amazon Affiliate Profit Is Below Break-Even (and How to Fix It) | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 84,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings & Payout Transactional tool need\" is covered by \"Why Your Amazon Affiliate Profit Is Below Break-Even (and How to Fix It) | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings & Payout Diagnostic / problem",
+          "intent": "problem",
+          "cluster": "Earnings & Payout",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-profit-below-break-even",
+            "title": "Why Your Amazon Affiliate Profit Is Below Break-Even (and How to Fix It) | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 84,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings & Payout Diagnostic / problem\" is covered by \"Why Your Amazon Affiliate Profit Is Below Break-Even (and How to Fix It) | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings Report Commercial comparison",
+          "intent": "commercial",
+          "cluster": "Earnings Report",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-associates-claim-report-guide",
+            "title": "Amazon Associates Claim Report: How to File"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 79,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings Report Commercial comparison\" is covered by \"Amazon Associates Claim Report: How to File\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings Report Transactional tool need",
+          "intent": "transactional",
+          "cluster": "Earnings Report",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-associates-claim-report-guide",
+            "title": "Amazon Associates Claim Report: How to File"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 79,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings Report Transactional tool need\" is covered by \"Amazon Associates Claim Report: How to File\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings Report Diagnostic / problem",
+          "intent": "problem",
+          "cluster": "Earnings Report",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-associates-claim-report-guide",
+            "title": "Amazon Associates Claim Report: How to File"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 79,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings Report Diagnostic / problem\" is covered by \"Amazon Associates Claim Report: How to File\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Commission Rates Commercial comparison",
+          "intent": "commercial",
+          "cluster": "Commission Rates",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+            "title": "Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 79,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Commission Rates Commercial comparison\" is covered by \"Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Commission Rates Transactional tool need",
+          "intent": "transactional",
+          "cluster": "Commission Rates",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+            "title": "Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 79,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Commission Rates Transactional tool need\" is covered by \"Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings Audit Commercial comparison",
+          "intent": "commercial",
+          "cluster": "Earnings Audit",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-associates-missing-commission",
+            "title": "Amazon Associates Missing Commission | AmzLoss"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 78,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings Audit Commercial comparison\" is covered by \"Amazon Associates Missing Commission | AmzLoss\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Earnings Audit Transactional tool need",
+          "intent": "transactional",
+          "cluster": "Earnings Audit",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-associates-missing-commission",
+            "title": "Amazon Associates Missing Commission | AmzLoss"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 78,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Earnings Audit Transactional tool need\" is covered by \"Amazon Associates Missing Commission | AmzLoss\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Backlink Building Commercial comparison",
+          "intent": "commercial",
+          "cluster": "Backlink Building",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "best-link-building-tools-amazon-affiliates-2026",
+            "title": "Best Link Building Tools for Amazon Affiliates: 2026 Comparison | AMZLOSS"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 72,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Backlink Building Commercial comparison\" is covered by \"Best Link Building Tools for Amazon Affiliates: 2026 Comparison | AMZLOSS\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Backlink Building Transactional tool need",
+          "intent": "transactional",
+          "cluster": "Backlink Building",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "amazon-affiliate-link-tools-guide",
+            "title": "Amazon Affiliate Link Tools: Format, Track, Test | AmzLoss"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 72,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Backlink Building Transactional tool need\" is covered by \"Amazon Affiliate Link Tools: Format, Track, Test | AmzLoss\" — do not create a duplicate page.",
+          "components": []
+        },
+        {
+          "topic": "Backlink Building Diagnostic / problem",
+          "intent": "problem",
+          "cluster": "Backlink Building",
+          "genuine_gap": false,
+          "covered_by": {
+            "slug": "free-backlink-directories-for-affiliates",
+            "title": "Free Backlink Directories That Still Work (2026)"
+          },
+          "intent_already_covered": false,
+          "cluster_authority": 72,
+          "verdict": "ALREADY_COVERED",
+          "priority_score": 0,
+          "descriptor": "\"Backlink Building Diagnostic / problem\" is covered by \"Free Backlink Directories That Still Work (2026)\" — do not create a duplicate page.",
+          "components": []
+        }
+      ],
+      "total_gaps": 1,
+      "total_ignored": 22,
+      "top_gap": {
+        "topic": "none Core explainer",
+        "intent": "informational",
+        "cluster": "none",
+        "genuine_gap": true,
+        "covered_by": null,
+        "intent_already_covered": false,
+        "cluster_authority": 73,
+        "verdict": "NEW_CONTENT_GAP",
+        "priority_score": 62,
+        "descriptor": "Gap: \"none Core explainer\" needs \"informational\" intent coverage in cluster \"none\".",
+        "components": [
+          {
+            "name": "cluster_value",
+            "score": 62,
+            "explanation": "Cluster \"none\" worth 50/100 strategic value, 73/100 authority"
+          }
+        ]
+      },
+      "note": "Only genuine gaps reported: no page already satisfies the same intent for the same cluster."
+    },
+    "cannibalization": {
+      "total_cases": 1,
+      "unresolved": 0,
+      "merges": []
+    },
+    "decay": {
+      "total": 46,
+      "decayed_count": 7,
+      "healthy_count": 39,
+      "decayed_pages": [
+        {
+          "slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+          "available": true,
+          "word_count": 797,
+          "inbound": 0,
+          "has_date_evidence": false,
+          "decayed": true,
+          "risk_score": 35,
+          "reasons": [
+            "orphaned (0 inbound internal links)",
+            "no published/modified date evidence in HTML"
+          ],
+          "refresh_suggestion": "Refresh this page: update data, add revision date, repair inbound links."
+        },
+        {
+          "slug": "offset-amazon-commission-cuts-diversified-income",
+          "available": true,
+          "word_count": 817,
+          "inbound": 0,
+          "has_date_evidence": false,
+          "decayed": true,
+          "risk_score": 35,
+          "reasons": [
+            "orphaned (0 inbound internal links)",
+            "no published/modified date evidence in HTML"
+          ],
+          "refresh_suggestion": "Refresh this page: update data, add revision date, repair inbound links."
+        },
+        {
+          "slug": "amazon-associates-non-ftc-audit",
+          "available": true,
+          "word_count": 657,
+          "inbound": 0,
+          "has_date_evidence": true,
+          "decayed": true,
+          "risk_score": 25,
+          "reasons": [
+            "orphaned (0 inbound internal links)"
+          ],
+          "refresh_suggestion": "Refresh this page: update data, add revision date, repair inbound links."
+        },
+        {
+          "slug": "amazon-associates-vs-shareasale-vs-cj-affiliate",
+          "available": true,
+          "word_count": 685,
+          "inbound": 0,
+          "has_date_evidence": true,
+          "decayed": true,
+          "risk_score": 25,
+          "reasons": [
+            "orphaned (0 inbound internal links)"
+          ],
+          "refresh_suggestion": "Refresh this page: update data, add revision date, repair inbound links."
+        },
+        {
+          "slug": "amazon-commission-payout-verification",
+          "available": true,
+          "word_count": 657,
+          "inbound": 0,
+          "has_date_evidence": true,
+          "decayed": true,
+          "risk_score": 25,
+          "reasons": [
+            "orphaned (0 inbound internal links)"
+          ],
+          "refresh_suggestion": "Refresh this page: update data, add revision date, repair inbound links."
+        },
+        {
+          "slug": "amazon-commission-rate-cuts-2026",
+          "available": true,
+          "word_count": 673,
+          "inbound": 0,
+          "has_date_evidence": true,
+          "decayed": true,
+          "risk_score": 25,
+          "reasons": [
+            "orphaned (0 inbound internal links)"
+          ],
+          "refresh_suggestion": "Refresh this page: update data, add revision date, repair inbound links."
+        },
+        {
+          "slug": "amazon-earnings-report-analyzer",
+          "available": true,
+          "word_count": 657,
+          "inbound": 0,
+          "has_date_evidence": true,
+          "decayed": true,
+          "risk_score": 25,
+          "reasons": [
+            "orphaned (0 inbound internal links)"
+          ],
+          "refresh_suggestion": "Refresh this page: update data, add revision date, repair inbound links."
+        }
+      ],
+      "summary": "7 pages show decay signals (orphan/thin/stale). Refresh them before creating any new content."
+    },
+    "technical_seo": {
+      "average_score": 85,
+      "green": 20,
+      "yellow": 26,
+      "red": 0,
+      "priority_fixes": [
+        {
+          "check": "Semantic <main> landmark",
+          "count": 36,
+          "note": "Low effort accessibility"
+        },
+        {
+          "check": "No keyword stuffing (top term density <4%)",
+          "count": 24,
+          "note": "fix during content pass"
+        },
+        {
+          "check": "Title length (30-65ch)",
+          "count": 13,
+          "note": "Medium impact (truncation)"
+        },
+        {
+          "check": "Sufficient word count (>=800)",
+          "count": 8,
+          "note": "fix during content pass"
+        },
+        {
+          "check": "Meta description present & >=70ch",
+          "count": 2,
+          "note": "High impact (CTR + eligibility)"
+        }
+      ]
+    },
+    "performance": {
+      "snapshot": {
+        "feed_provided": false,
+        "note": "No traffic feed provided (traffic_feed.json, e.g. exported from GSC/GA4). All pages are UNMEASURED — nothing fabricated.",
+        "measured_pages": [],
+        "unmeasured_pages": [
+          {
+            "slug": "affiliate-network-comparison-amazon-associates-shareasale-cj",
+            "title": "Amazon Associates vs ShareASale vs CJ Affiliate: Which Pays Best in 2026? | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "affiliate-network-comparison",
+            "title": "Affiliate Network Comparison 2026 | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-2026-commission-cuts",
+            "title": "2026 Amazon Commission Cuts: What They Mean | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-break-even-commission-calculator-comparison",
+            "title": "Break-Even or Commission Calculator: Which One Do You Need? | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-break-even-point-calculator",
+            "title": "Find Your Amazon Affiliate Break-Even Point (Free Calculator) | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-breakeven-calculator-guide",
+            "title": "Amazon Affiliate Break-Even Calculator Guide | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-commission-calculator-guide",
+            "title": "Amazon Affiliate Commission Calculator Guide 2026 | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-link-building-guide-2026",
+            "title": "Amazon Affiliate Link Building: Complete 2026 Guide | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-link-tools-guide",
+            "title": "Amazon Affiliate Link Tools: Format, Track, Test | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-profit-below-break-even",
+            "title": "Why Your Amazon Affiliate Profit Is Below Break-Even (and How to Fix It) | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-profit-per-sale-guide",
+            "title": "Amazon Affiliate Profit per Sale: The Real Math",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-affiliate-revenue-break-even-strategy",
+            "title": "Break-Even Strategy for Low-Commission Products | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-associates-claim-report-guide",
+            "title": "Amazon Associates Claim Report: How to File",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-associates-commission-rates-2026",
+            "title": "Amazon Associates Commission Rates 2026",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-associates-deep-linking-guide",
+            "title": "Deep Linking: Send Buyers Straight to the Product | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-associates-missing-commission",
+            "title": "Amazon Associates Missing Commission | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-associates-non-ftc-audit",
+            "title": "Amazon Associates Non-FTC Audit: 2026 Strategy & Calculation Guide | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-associates-vs-shareasale-vs-cj-affiliate",
+            "title": "Amazon Associates vs ShareASale vs CJ Affiliate: 2026 Strategy & Calculation Guide | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-commission-cuts-2026-category-impact",
+            "title": "Amazon Commission Cuts 2026: Impact on Every Category | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-commission-payout-verification",
+            "title": "Amazon Commission Payout Verification: 2026 Strategy & Calculation Guide | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-commission-rate-cuts-2026",
+            "title": "Amazon Commission Rate Cuts 2026: 2026 Strategy & Calculation Guide | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-commission-rates-by-category",
+            "title": "Amazon Commission Rates by Category (2026)",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-earnings-report-analyzer",
+            "title": "Amazon Earnings Report Analyzer: 2026 Strategy & Calculation Guide | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-earnings-report-columns-guide",
+            "title": "Amazon Earnings Report Columns, Decoded",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-halo-commission-gone",
+            "title": "Amazon Halo Commission Is Gone (April 14) | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-links-nofollow-guide",
+            "title": "Amazon Links: Nofollow, Sponsored & the Rules | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-product-earnings-report-csv-explained",
+            "title": "Amazon Product Earnings Report CSV Explained | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "amazon-rate-change-alert-guide",
+            "title": "How to Catch Amazon Rate Changes Fast",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "best-link-building-tools-amazon-affiliates-2026",
+            "title": "Best Link Building Tools for Amazon Affiliates: 2026 Comparison | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "calculate-amazon-commission-cuts-cost",
+            "title": "How Much Do 2026 Amazon Commission Cuts Cost You? Calculate It | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "directory-listing-seo-guide",
+            "title": "Directory Listing SEO: Quality vs Spam",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "free-backlink-directories-for-affiliates",
+            "title": "Free Backlink Directories That Still Work (2026)",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "how-much-do-amazon-affiliates-make",
+            "title": "How Much Do Amazon Affiliates Make? 2026 Math",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "how-to-audit-amazon-earnings",
+            "title": "How to Audit Your Amazon Earnings | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "how-to-build-backlinks-for-affiliate-site",
+            "title": "Backlinks for an Affiliate Site: 30-Day Plan",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "how-to-check-amazon-affiliate-underpayment",
+            "title": "How to Check for Amazon Affiliate Underpayment | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "how-to-get-approved-affiliate-networks",
+            "title": "How to Get Approved by Affiliate Networks | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "how-to-submit-url-to-search-engines",
+            "title": "How to Submit a URL to Search Engines (Free) | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "how-to-verify-amazon-affiliate-commission",
+            "title": "How to Verify Your Amazon Affiliate Commission",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "indexnow-setup-guide",
+            "title": "IndexNow Setup: Get New Pages Indexed in Hours | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "missing-amazon-affiliate-commission-network",
+            "title": "Missing Amazon Affiliate Commission? How to Check and Recover It | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "offset-amazon-commission-cuts-diversified-income",
+            "title": "How to Offset Amazon Commission Cuts with Other Income Streams | AMZLOSS",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "price-points-breakeven-analysis",
+            "title": "Which Price Point Pays? Break-Even Analysis | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "shareasale-vs-cj-vs-impact",
+            "title": "ShareASale vs CJ vs Impact: Which Pays Better? | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "url-submission-checklist",
+            "title": "URL Submission Checklist: Get Indexed Faster | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          },
+          {
+            "slug": "why-earnings-dropped-but-clicks-didnt",
+            "title": "Why Amazon Earnings Dropped But Clicks Didnt | AmzLoss",
+            "status": "UNMEASURED",
+            "note": "No traffic-feed row for this page."
+          }
+        ],
+        "unmeasured_count": 46,
+        "measured_count": 0,
+        "total_articles": 46
+      },
+      "recorded_feedback_entries": 0,
+      "feedback_entries": [],
+      "summary": "No traffic feed provided (traffic_feed.json, e.g. exported from GSC/GA4). All pages are UNMEASURED — nothing fabricated.",
+      "recommended_next": "Primary action: export real traffic data into traffic_feed.json before trusting any performance verdict."
+    },
+    "memory": {
+      "total_recommendations": 3,
+      "pending_approval": 0,
+      "approved": 3,
+      "rejected": 0,
+      "executed": 0,
+      "backlinks": 0,
+      "new_content": 0,
+      "recent": [
+        {
+          "id": "rec-1788303683277-350",
+          "type": "MERGE",
+          "slug": null,
+          "pages": [
+            "page-a",
+            "page-b"
+          ],
+          "status": "APPROVED",
+          "reason": "high overlap"
+        },
+        {
+          "id": "rec-1788303785631-798",
+          "type": "MERGE",
+          "slug": null,
+          "pages": [
+            "page-a",
+            "page-b"
+          ],
+          "status": "APPROVED",
+          "reason": "high overlap"
+        },
+        {
+          "id": "rec-1788309337994-915",
+          "type": "MERGE",
+          "slug": null,
+          "pages": [
+            "page-a",
+            "page-b"
+          ],
+          "status": "APPROVED",
+          "reason": "high overlap"
+        }
+      ],
+      "experiments": 3,
+      "feedback_entries": 0
+    }
+  },
+  "recommendations": {
+    "top_opportunities": [
+      {
+        "topic": "none Core explainer",
+        "intent": "informational",
+        "cluster": "none",
+        "genuine_gap": true,
+        "covered_by": null,
+        "intent_already_covered": false,
+        "cluster_authority": 73,
+        "verdict": "NEW_CONTENT_GAP",
+        "priority_score": 62,
+        "descriptor": "Gap: \"none Core explainer\" needs \"informational\" intent coverage in cluster \"none\".",
+        "components": [
+          {
+            "name": "cluster_value",
+            "score": 62,
+            "explanation": "Cluster \"none\" worth 50/100 strategic value, 73/100 authority"
+          }
+        ]
+      }
+    ],
+    "top_technical": [
+      {
+        "slug": "amazon-associates-non-ftc-audit",
+        "score": 67,
+        "failed": [
+          "Title length (30-65ch)",
+          "Sufficient word count (>=800)",
+          "Semantic <main> landmark",
+          "No keyword stuffing (top term density <4%)"
+        ]
+      },
+      {
+        "slug": "amazon-associates-vs-shareasale-vs-cj-affiliate",
+        "score": 67,
+        "failed": [
+          "Title length (30-65ch)",
+          "Sufficient word count (>=800)",
+          "Semantic <main> landmark",
+          "No keyword stuffing (top term density <4%)"
+        ]
+      },
+      {
+        "slug": "amazon-commission-payout-verification",
+        "score": 67,
+        "failed": [
+          "Title length (30-65ch)",
+          "Sufficient word count (>=800)",
+          "Semantic <main> landmark",
+          "No keyword stuffing (top term density <4%)"
+        ]
+      }
+    ],
+    "top_assets": [
+      {
+        "slug": "amazon-halo-commission-gone",
+        "asset_score": 95,
+        "tier": "PREMIUM"
+      },
+      {
+        "slug": "amazon-2026-commission-cuts",
+        "asset_score": 93,
+        "tier": "PREMIUM"
+      },
+      {
+        "slug": "amazon-product-earnings-report-csv-explained",
+        "asset_score": 90,
+        "tier": "PREMIUM"
+      },
+      {
+        "slug": "directory-listing-seo-guide",
+        "asset_score": 86,
+        "tier": "PREMIUM"
+      },
+      {
+        "slug": "how-to-audit-amazon-earnings",
+        "asset_score": 84,
+        "tier": "PREMIUM"
+      }
+    ],
+    "top_backlinks": [],
+    "differentiation_watch": []
+  }
+}

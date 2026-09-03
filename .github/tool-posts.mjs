@@ -9,43 +9,20 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, sendFacebook, sendFacebookIFTTT, generateImage } from "./lib-social.mjs";
+import { BASE, ROOT, IMG_DIR, truncate, sendTelegram, sendX, sendMastodon, sendTumblr, sendPinterest, sendInstagram, sendFacebook, sendFacebookIFTTT, sendTelegramVideo, sendMastodonVideo, sendTumblrVideo, generateImage } from "./lib-social.mjs";
 
 const STATE_FILE = path.join(ROOT, ".github", "tool-state.json");
+const VIDEO_STATE_FILE = path.join(ROOT, ".github", "tool-video-state.json");
 const RESULTS = [];
 
 /* ---------- tool bank (NEW tools first, then the rest) ---------- */
 
 const TOOLS = [
   {
-    id: "directory", name: "Backlink Directory", emoji: "🔗", page: "directory.html",
-    hook: "Every affiliate site needs backlinks. Most can't get a single one for free.",
-    explain: "AmzLoss gives you a free, human-reviewed backlink — and you don't even need a website. List your YouTube, TikTok or Instagram profile, add a quick verification link, and you're in. No payment, no sign-up, ever.",
-    proof: "Backlinks are how small sites beat big ones. One relevant link beats a hundred spam ones.",
-    cta: "Claim your free backlink",
-    tags: ["Backlinks", "LinkBuilding", "SEO", "AmazonAffiliate", "AmzLoss", "Blogging", "WebmasterTools", "FreeTools"]
-  },
-  {
-    id: "submit", name: "URL Submitter", emoji: "🚀", page: "submit.html",
-    hook: "You published. Nobody saw it. Google still hasn't indexed it.",
-    explain: "AmzLoss fires your URL to Bing, Yandex, Seznam, Naver and Baidu in ONE click via IndexNow, pings the classics, then walks you through 31+ more platforms. Every single submission is also a free backlink pointing back at you.",
-    proof: "Indexing is a race. One ping gets you crawled in hours — waiting gets you nothing in weeks.",
-    cta: "Submit your URL free",
-    tags: ["URLSubmitter", "IndexNow", "SEO", "GetIndexed", "Bing", "AmazonAffiliate", "AmzLoss", "WebmasterTools"]
-  },
-  {
-    id: "links", name: "Link Tools", emoji: "🔗", page: "link-tools.html",
-    hook: "A broken link is a silent commission thief. Most affiliates never catch it.",
-    explain: "AmzLoss Link Tools builds clean Amazon links with your tag in one click, verifies your links still work, and counts any domain's backlinks. Your affiliate income quietly depends on links that actually resolve.",
-    proof: "One dead link = every future click on it is lost money. Check once, earn forever.",
-    cta: "Build & check your links",
-    tags: ["AffiliateMarketing", "LinkBuilder", "AmazonAffiliate", "Backlinks", "SEO", "AmzLoss"]
-  },
-  {
     id: "audit", name: "Earnings Audit", emoji: "🔍", page: "audit.html",
     hook: "Amazon may be underpaying you right now and you'd never know.",
-    explain: "Upload your Amazon earnings CSV into the AmzLoss audit and we compare every single order against the rate that applied that day — not today's rate. Underpayments become a ready-to-send claim export. Your file never leaves your browser.",
-    proof: "Affiliates have found hundreds in missing commission with one upload. Your numbers might be wrong too.",
+    explain: "Upload your Amazon earnings CSV into the AmzLoss audit and we compare every single order against the rate that applied that day — not today's rate. Possible underpayments become a ready-to-send claim export. Your file never leaves your browser.",
+    proof: "Affiliates have surfaced hundreds in possible missing commission with one upload. Your numbers might be wrong too.",
     cta: "Audit your report free",
     tags: ["AmazonAssociates", "EarningsAudit", "AmazonAffiliate", "Underpaid", "AmzLoss", "AffiliateMarketing"]
   },
@@ -66,20 +43,44 @@ const TOOLS = [
     tags: ["AmazonAssociates", "CommissionRates", "AmazonAffiliate", "AffiliateMarketing", "AmzLoss"]
   },
   {
-    id: "breakeven", name: "Break-Even Calculator", emoji: "⚖️", page: "breakeven.html",
-    hook: "That 'great deal' you're about to promote? It might be losing you money.",
-    explain: "Promote a discounted product at your real commission rate and the AmzLoss Break-Even Calculator shows the per-sale hit — and how many extra sales you'd need to break even. Sometimes the answer is to skip the deal entirely.",
-    proof: "A price drop can quietly cut your commission. Do the math before you publish, not after.",
-    cta: "Check the math",
-    tags: ["AmazonAffiliate", "BreakEven", "CommissionCalc", "AffiliateMarketing", "AmzLoss", "Pricing"]
-  },
-  {
     id: "networks", name: "Network Calculator", emoji: "🌐", page: "networks.html",
     hook: "Amazon isn't your only income source. Betting on one network is a trap.",
     explain: "The AmzLoss Network Calculator compares commissions across ShareASale, CJ, Impact, Awin, Rakuten and more for your niche — so you can see who actually pays best before you sign up.",
     proof: "Diversify your affiliate income and one rate cut can never halve your earnings again.",
     cta: "Compare networks",
     tags: ["AffiliateMarketing", "ShareASale", "CJAffiliate", "Awin", "AmazonAffiliate", "AmzLoss"]
+  },
+  {
+    id: "directory", name: "Backlink Directory", emoji: "🔗", page: "directory.html",
+    hook: "Every affiliate site needs backlinks. Most can't get a single one for free.",
+    explain: "AmzLoss helps you discover free, human-reviewed places to be listed — and you don't even need a website. List your YouTube, TikTok or Instagram profile, add a quick verification link, and you're in. No payment, no sign-up, ever.",
+    proof: "Backlinks are how small sites beat big ones. One relevant link beats a hundred spam ones.",
+    cta: "Claim your free backlink",
+    tags: ["Backlinks", "LinkBuilding", "SEO", "AmazonAffiliate", "AmzLoss", "Blogging", "WebmasterTools", "FreeTools"]
+  },
+  {
+    id: "submit", name: "URL Submitter", emoji: "🚀", page: "submit.html",
+    hook: "You published. Nobody saw it. Google still hasn't indexed it.",
+    explain: "AmzLoss fires your URL to Bing, Yandex, Seznam, Naver and Baidu in ONE click via IndexNow, pings the classics, then walks you through 31+ more platforms. Every single submission is also a free backlink pointing back at you.",
+    proof: "Indexing is a waiting game. One ping is a head start; waiting starts nothing.",
+    cta: "Submit your URL free",
+    tags: ["URLSubmitter", "IndexNow", "SEO", "GetIndexed", "Bing", "AmazonAffiliate", "AmzLoss", "WebmasterTools"]
+  },
+  {
+    id: "links", name: "Link Tools", emoji: "🔗", page: "link-tools.html",
+    hook: "A broken link is a silent commission thief. Most affiliates never catch it.",
+    explain: "AmzLoss Link Tools builds clean Amazon links with your tag in one click, verifies your links still work, and counts any domain's backlinks. Your affiliate income quietly depends on links that actually resolve.",
+    proof: "One dead link = every future click on it is lost money. Check once, earn forever.",
+    cta: "Build & check your links",
+    tags: ["AffiliateMarketing", "LinkBuilder", "AmazonAffiliate", "Backlinks", "SEO", "AmzLoss"]
+  },
+  {
+    id: "breakeven", name: "Break-Even Calculator", emoji: "⚖️", page: "breakeven.html",
+    hook: "That 'great deal' you're about to promote? It might be losing you money.",
+    explain: "Promote a discounted product at your real commission rate and the AmzLoss Break-Even Calculator shows the per-sale hit — and how many extra sales you'd need to break even. Sometimes the answer is to skip the deal entirely.",
+    proof: "A price drop can quietly cut your commission. Do the math before you publish, not after.",
+    cta: "Check the math",
+    tags: ["AmazonAffiliate", "BreakEven", "CommissionCalc", "AffiliateMarketing", "AmzLoss", "Pricing"]
   }
 ];
 
@@ -156,13 +157,12 @@ async function takeScreenshot(tool) {
 
 /* ---------- commit generated image + state so they are hosted ---------- */
 
-function commitAll(imgRel, state, videoRel) {
+function commitAll(state, rels) {
   try {
     execSync(`git config user.name "amzloss-bot"`, { cwd: ROOT, stdio: "ignore" });
     execSync(`git config user.email "admin@amzloss.com"`, { cwd: ROOT, stdio: "ignore" });
     let cmd = "git add .github/tool-state.json";
-    if (imgRel) cmd += " " + imgRel;
-    if (videoRel) cmd += " " + videoRel;
+    for (const r of [].concat(rels || [])) if (r) cmd += " " + r;
     execSync(cmd, { cwd: ROOT, stdio: "ignore" });
     execSync(`git commit -m "Tool post #${state.nextIndex - 1} image + rotation"`, { cwd: ROOT, stdio: "ignore" });
     execSync(`git push`, { cwd: ROOT, stdio: "ignore" });
@@ -222,8 +222,30 @@ async function main() {
     RESULTS.push("IMAGE_MODE=screenshot");
   }
 
-  /* Sandbox-safe TikTok asset: short MP4 slideshow from the tool image
-     (unaudited apps may only direct-post VIDEO, not PHOTO). */
+/* ---------- video state (dedup: each tool video posted at most once) ---------- */
+
+function readVideoState() {
+  try {
+    return JSON.parse(fs.readFileSync(VIDEO_STATE_FILE, "utf8"));
+  } catch {
+    return { postedVideos: {} };
+  }
+}
+function writeVideoState(vs) {
+  fs.writeFileSync(VIDEO_STATE_FILE, JSON.stringify(vs, null, 2) + "\n", "utf8");
+}
+function markVideoPosted(toolId, dateIso) {
+  const vs = readVideoState();
+  vs.postedVideos[`${toolId}-${dateIso}`] = Date.now();
+  writeVideoState(vs);
+}
+function wasVideoPosted(toolId, dateIso) {
+  const vs = readVideoState();
+  return !!vs.postedVideos[`${toolId}-${dateIso}`];
+}
+
+/* Sandbox-safe TikTok asset: short MP4 slideshow from the tool image
+   (unaudited apps may only direct-post VIDEO, not PHOTO). */
   let vid = null;
   if (img) {
     try {
@@ -236,6 +258,32 @@ async function main() {
       const detail = e && e.stderr ? String(e.stderr).split("\n").filter(Boolean).slice(-2).join(" | ") : String(e.message || e);
       RESULTS.push("VIDEO_ERROR=" + detail.replace(/\s+/g, " ").slice(0, 300));
     }
+  }
+
+  /* Premium per-tool video (rendered by Python pipeline; best-effort). */
+  let premiumVid = null;
+  const today = new Date().toISOString().slice(0, 10);
+  const premiumVidPath = path.join(ROOT, "blogs", "img", "tool-videos", `${tool.id}-${today}.mp4`);
+  if (!fs.existsSync(premiumVidPath)) {
+    try {
+      execSync(`python3 ${path.join(".github", "talkvid", "toolvid.py")}`, {
+        cwd: ROOT,
+        env: { ...process.env, TOOLVID_TOOL: tool.id },
+        timeout: 15 * 60 * 1000,
+        stdio: "ignore"
+      });
+    } catch {
+      /* best-effort: a failed render just means no premium video this run */
+    }
+  }
+  RESULTS.push("PREMIUM_VIDEO_RENDER=" + (fs.existsSync(premiumVidPath) ? "ok" : "missing"));
+  if (fs.existsSync(premiumVidPath) && !wasVideoPosted(tool.id, today)) {
+    premiumVid = { file: premiumVidPath, rel: path.relative(ROOT, premiumVidPath).split(path.sep).join("/"), url: BASE + "/" + path.relative(ROOT, premiumVidPath).split(path.sep).join("/") };
+    RESULTS.push("PREMIUM_VIDEO=found");
+  } else if (wasVideoPosted(tool.id, today)) {
+    RESULTS.push("PREMIUM_VIDEO=already-posted");
+  } else {
+    RESULTS.push("PREMIUM_VIDEO=not-rendered-yet");
   }
 
   state.nextIndex = nextIndex;
@@ -253,7 +301,11 @@ async function main() {
     fs.appendFileSync(process.env.GITHUB_ENV, envHint + "\n", "utf8");
   }
 
-  const committed = commitAll(img ? img.rel : null, state, vid ? vid.rel : null);
+  const commitRels = [];
+  if (img) commitRels.push(img.rel);
+  if (vid) commitRels.push(vid.rel);
+  if (premiumVid) commitRels.push(premiumVid.rel);
+  const committed = commitAll(state, commitRels);
   RESULTS.push("IMAGE_COMMITTED=" + (committed ? "yes" : "no"));
 
   const tasks = [
@@ -269,11 +321,25 @@ async function main() {
       : sendFacebook({ text, imgUrl: img.url }));
   }
 
+  /* ---- premium per-tool video posts (dedup via tool-video-state.json) ---- */
+  if (premiumVid) {
+    tasks.push(
+      sendTelegramVideo({ text, videoFile: premiumVid.file }),
+      sendMastodonVideo({ text, videoFile: premiumVid.file }),
+      sendTumblrVideo({ text, videoUrl: premiumVid.url })
+    );
+  }
+
   const results = await Promise.all(tasks);
   const statuses = {};
   for (const r of results) {
     statuses[r.name] = r.status;
     RESULTS.push(`SOCIAL_${r.name.toUpperCase()}=${r.status}`);
+  }
+
+  if (premiumVid && results.some(r => r.name.startsWith("TelegramVideo") || r.name.startsWith("MastodonVideo") || r.name.startsWith("TumblrVideo"))) {
+    const videoPosted = results.filter(r => (r.name.startsWith("TelegramVideo") || r.name.startsWith("MastodonVideo") || r.name.startsWith("TumblrVideo")) && r.status.startsWith("posted")).length > 0;
+    if (videoPosted) markVideoPosted(tool.id, today);
   }
 
   const reportText = `📡 Tool post report — ${tool.name}\n\n` + results.map((r) => `• ${r.name}: ${r.status}`).join("\n");

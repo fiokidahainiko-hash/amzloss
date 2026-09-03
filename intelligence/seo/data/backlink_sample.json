@@ -1,0 +1,38 @@
+{
+  "total_results": 15,
+  "source": "Ahrefs/Semrush — example backlink opportunity feed for AmzLoss",
+  "domains": [
+    "affiliatebuzz.example",
+    "makemoneyonline.example",
+    "passiveincomehq.example",
+    "siderssources.example",
+    "ecomratebench.example",
+    "toolhunt.example",
+    "bloggerbylist.example",
+    "growthstack.example",
+    "contentsynd.feed",
+    "nerdniche.example",
+    "commissionwatch.example",
+    "sidehustlelab.example",
+    "linkresource.example",
+    "payoutpulse.example",
+    "audittoolsdaily.example"
+  ],
+  "links": [
+    { "domain": "affiliatebuzz.example", "url": "https://affiliatebuzz.example/amazon-commission-cuts", "kind": "unlinked_mention", "anchor": "amazon commission rates", "relevance": "topic" },
+    { "domain": "makemoneyonline.example", "url": "https://makemoneyonline.example/resources/calculator", "kind": "resource_page", "anchor": "affiliate calculator", "relevance": "tool" },
+    { "domain": "passiveincomehq.example", "url": "https://passiveincomehq.example/how-much-do-bloggers-make", "kind": "unlinked_mention", "anchor": "amzloss estimate", "relevance": "brand" },
+    { "domain": "siderssources.example", "url": "https://siderssources.example/affiliate-programs", "kind": "resource_page", "anchor": "Amazon Associates", "relevance": "topic" },
+    { "domain": "ecomratebench.example", "url": "https://ecomratebench.example/affiliate-payouts", "kind": "unlinked_mention", "anchor": "commission cut", "relevance": "topic" },
+    { "domain": "toolhunt.example", "url": "https://toolhunt.example/calculator-roundup", "kind": "resource_page", "anchor": "break-even calculator", "relevance": "tool" },
+    { "domain": "bloggerbylist.example", "url": "https://bloggerbylist.example/amazon-affiliate-guides", "kind": "unlinked_mention", "anchor": "amzloss", "relevance": "brand" },
+    { "domain": "growthstack.example", "url": "https://growthstack.example/link-building-for-affiliates", "kind": "resource_page", "anchor": "backlink guide", "relevance": "topic" },
+    { "domain": "contentsynd.feed", "url": "https://contentsynd.feed/publishers/amazon", "kind": "unlinked_mention", "anchor": "audit earnings", "relevance": "brand" },
+    { "domain": "nerdniche.example", "url": "https://nerdniche.example/amazon-affiliate-tips", "kind": "unlinked_mention", "anchor": "commission rates", "relevance": "topic" },
+    { "domain": "commissionwatch.example", "url": "https://commissionwatch.example/amazon-cuts-2026", "kind": "unlinked_mention", "anchor": "amzloss cut guide", "relevance": "brand" },
+    { "domain": "sidehustlelab.example", "url": "https://sidehustlelab.example/best-affiliate-networks", "kind": "resource_page", "anchor": "network comparison", "relevance": "topic" },
+    { "domain": "linkresource.example", "url": "https://linkresource.example/directory/affiliate", "kind": "unlinked_mention", "anchor": "amzloss", "relevance": "brand" },
+    { "domain": "payoutpulse.example", "url": "https://payoutpulse.example/amazon-payouts", "kind": "unlinked_mention", "anchor": "earnings report", "relevance": "topic" },
+    { "domain": "audittoolsdaily.example", "url": "https://audittoolsdaily.example/seo-audit-for-affiliates", "kind": "resource_page", "anchor": "earnings audit tool", "relevance": "tool" }
+  ]
+}

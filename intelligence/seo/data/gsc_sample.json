@@ -1,0 +1,27 @@
+{
+  "total_results": 10,
+  "source": "Google Search Console — example export for AmzLoss (amazon affiliate marketing)",
+  "queries": [
+    { "query": "amazon affiliate commission rates 2026", "impressions": 18400, "clicks": 912, "ctr": 0.0496, "position": 6.2, "page": "amazon-associates-commission-rates-2026" },
+    { "query": "amazon commission cut", "impressions": 12100, "clicks": 743, "ctr": 0.0614, "position": 4.8, "page": "amazon-2026-commission-cuts" },
+    { "query": "affiliate calculator", "impressions": 9800, "clicks": 512, "ctr": 0.0522, "position": 5.1, "page": "amazon-affiliate-commission-calculator-guide" },
+    { "query": "how much do amazon affiliates make", "impressions": 7200, "clicks": 388, "ctr": 0.0539, "position": 7.4, "page": "amazon-affiliate-profit-per-sale-guide" },
+    { "query": "amazon affiliate payout schedule", "impressions": 6500, "clicks": 201, "ctr": 0.0309, "position": 11.3, "page": "amazon-affiliate-profit-per-sale-guide" },
+    { "query": "best affiliate networks for beginners", "impressions": 5400, "clicks": 467, "ctr": 0.0865, "position": 3.9, "page": "affiliate-network-comparison" },
+    { "query": "affiliate marketing strategy", "impressions": 8800, "clicks": 210, "ctr": 0.0239, "position": 9.7, "page": "how-to-audit-amazon-earnings" },
+    { "query": "amazon earnings report csv", "impressions": 3400, "clicks": 189, "ctr": 0.0556, "position": 5.6, "page": "amazon-product-earnings-report-csv-explained" },
+    { "query": "how to build backlinks for affiliate sites", "impressions": 4100, "clicks": 233, "ctr": 0.0568, "position": 6.9, "page": "how-to-build-backlinks-for-affiliate-site" },
+    { "query": "amazon associates underpayment", "impressions": 2900, "clicks": 171, "ctr": 0.0590, "position": 4.2, "page": "amazon-2026-commission-cuts" }
+  ],
+  "pages": [
+    { "page": "amazon-associates-commission-rates-2026", "query": "amazon affiliate commission rates 2026", "position": 6.2, "impressions": 18400 },
+    { "page": "amazon-2026-commission-cuts", "query": "amazon commission cut", "position": 4.8, "impressions": 12100 }
+  ],
+  "countries": ["US", "GB", "CA", "AU"],
+  "devices": ["desktop", "mobile"],
+  "dates": [
+    { "date": "2026-08-01", "impressions": 4200 },
+    { "date": "2026-08-08", "impressions": 4550 },
+    { "date": "2026-08-15", "impressions": 4800 }
+  ]
+}

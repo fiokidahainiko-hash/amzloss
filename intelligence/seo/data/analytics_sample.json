@@ -1,0 +1,21 @@
+{
+  "total_results": 5,
+  "source": "GA4 — example landing-page performance export for AmzLoss",
+  "landing_pages": [
+    { "url": "amazon-associates-commission-rates-2026", "sessions": 8200, "engaged_sessions": 5900, "avg_engagement_time": 174, "conversions": 214, "revenue": 1840.5 },
+    { "url": "amazon-2026-commission-cuts", "sessions": 6100, "engaged_sessions": 4700, "avg_engagement_time": 201, "conversions": 187, "revenue": 1660.25 },
+    { "url": "amazon-affiliate-commission-calculator-guide", "sessions": 5400, "engaged_sessions": 5100, "avg_engagement_time": 322, "conversions": 96, "revenue": 830.0 },
+    { "url": "amazon-affiliate-profit-per-sale-guide", "sessions": 3300, "engaged_sessions": 2600, "avg_engagement_time": 158, "conversions": 71, "revenue": 645.75 },
+    { "url": "affiliate-network-comparison", "sessions": 4700, "engaged_sessions": 3600, "avg_engagement_time": 188, "conversions": 122, "revenue": 1020.0 }
+  ],
+  "events": [
+    { "event_name": "tool_use", "tool": "commission_calculator", "count": 1845 },
+    { "event_name": "calculator_use", "tool": "break_even_calculator", "count": 932 },
+    { "event_name": "affiliate_click", "destination": "amazon", "count": 2088 },
+    { "event_name": "email_signup", "page": "amazon-associates-commission-rates-2026", "count": 311 },
+    { "event_name": "outbound_click", "destination": "shareasale", "count": 157 }
+  ],
+  "conversions": [
+    { "page": "amazon-2026-commission-cuts", "conversion_type": "affiliate_click", "count": 187 }
+  ]
+}
