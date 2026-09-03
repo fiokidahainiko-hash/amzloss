@@ -181,7 +181,154 @@ function scoreOpening(keyword, firstSentence, firstParagraph, searchIntent) {
   return result;
 }
 
+/* URL audit — never recommend changing an established URL for exact-match.push(only) */
+function scoreUrl({ keyword, url, base = BASE }) {
+  const result = {
+    current: url || "",
+    descriptive: false,
+    concise: false,
+    readable: false,
+    semantic_alignment: false,
+    stable: true,
+    keyword_represented: false,
+    status: "PASS",
+    recommendation: null,
+    risk_assessment: null
+  };
+  if (!url) {
+    result.status = "REVISE";
+    result.recommendation = "Page has no URL — assign a descriptive, keyword-focused slug.";
+    result.stable = false;
+    return result;
+  }
+
+  let slug = url;
+  try { slug = new URL(url).pathname; } catch { /* keep raw */ }
+  slug = slug.replace(/^\/+|\/+$/g, "").replace(/\.[^./]+$/, "");
+  if (!slug) {
+    result.status = "REVISE";
+    result.recommendation = "URL has no descriptive slug (looks like /index.html or empty path).";
+    return result;
+  }
+
+  const words = slug.split(/[-_/]+/).filter(Boolean);
+  const readableWords = words.filter(w => w.length >= 3);
+  result.keyword_represented = scoreKeywordPresence(keyword, slug).present;
+
+  // descriptive: slug has at least 1 meaning-bearing word (single-word URLs like "calculator" are fine)
+  result.descriptive = words.length >= 1 && readableWords.length >= 1;
+  // concise: slug not excessive (<= 6 segments/words, <= 60 chars)
+  result.concise = words.length <= 6 && slug.length <= 60;
+  // readable: mostly real-ish words (ratio of 3+ char words)
+  result.readable = readableWords.length >= Math.min(2, Math.ceil(words.length * 0.5));
+
+  const kwWords = keyword.toLowerCase().split(/\s+/).filter(w => w.length >= 4);
+  const slugLower = slug.toLowerCase();
+  const kwHits = kwWords.filter(w => slugLower.includes(w));
+  result.semantic_alignment = kwHits.length >= Math.max(1, Math.floor(kwWords.length * 0.5));
+
+  if (!result.descriptive || !result.concise || !result.readable || !result.semantic_alignment) {
+    result.status = "REVISE";
+    const issues = [];
+    if (!result.descriptive) issues.push("not descriptive");
+    if (!result.concise) issues.push("too long");
+    if (!result.readable) issues.push("hard to read");
+    if (!result.semantic_alignment) issues.push("does not align with target topic");
+    // Absolutely never recommend changing a stable/established URL for exact matches only
+    result.recommendation = `URL "${slug}" is ${issues.join(", ")}.`;
+    result.stability_note = "LEAVE URL UNCHANGED unless you are publishing fresh or the URL is broken — changing an indexed URL risks losing rankings, backlinks, internal links, canonicals, and GSC history without 301 redirects in place.";
+    // Since changing established URLs is high risk, default to LEAVE UNCHANGED
+    result.recommend_url_change = false;
+    result.recommendation += " For an established URL, LEAVE URL UNCHANGED. Only consider a slug change for a brand-new page, with a 301 redirect.";
+  } else {
+    result.status = "PASS";
+    result.recommend_url_change = false;
+    result.recommendation = `URL "${slug}" is descriptive, concise, and semantically aligned. LEAVE URL UNCHANGED.`;
+  }
+  return result;
+}
+
+/* Meta description audit — CTR optimization, not a ranking guarantee */
+function scoreMetaDescription(keyword, metaDescription, searchIntent) {
+  const result = {
+    current: metaDescription || "",
+    keyword_represented: false,
+    intent_reflected: false,
+    benefit_oriented: false,
+    length_ok: false,
+    status: "PASS",
+    recommendation: null,
+    improved_meta: null,
+    note: "Meta description is primarily a CTR lever. Google may rewrite snippets; it is not a guaranteed ranking factor."
+  };
+  if (!metaDescription) {
+    result.status = "REVISE";
+    result.recommendation = `No meta description found. Add one (120–160 chars) that states the topic, reflects intent, and communicates value.`;
+    result.improved_meta = generateMeta(keyword, searchIntent);
+    return result;
+  }
+  const check = scoreKeywordPresence(keyword, metaDescription);
+  result.keyword_represented = check.present;
+  const len = metaDescription.length;
+  result.length_ok = len >= 120 && len <= 160;
+
+  const lower = metaDescription.toLowerCase();
+  const intentKeywords = {
+    informational: ["how", "what", "why", "compare", "learn", "guide", "understand"],
+    transactional: ["calculator", "audit", "check", "verify", "estimate", "free", "upload"],
+    commercial: ["best", "top", "vs", "review", "compare", "alternative"]
+  };
+  const kwLower = keyword.toLowerCase();
+  let detectedIntent = "informational";
+  for (const [intent, triggers] of Object.entries(intentKeywords)) {
+    if (triggers.some(t => kwLower.includes(t))) { detectedIntent = intent; break; }
+  }
+  const intentTerms = intentKeywords[detectedIntent] || intentKeywords.informational;
+  result.intent_reflected = intentTerms.some(t => lower.includes(t)) || check.present;
+  result.benefit_oriented = /free|save|recover|identify|find|without|avoid|increase|improve|boost|earn|calculate|understand/.test(lower);
+
+  if (!check.present) {
+    result.status = "REVISE";
+    result.recommendation = `Target keyword "${keyword}" not represented in the meta description. Add it naturally.`;
+    result.improved_meta = generateMeta(keyword, searchIntent);
+    return result;
+  }
+  if (!result.length_ok) {
+    result.status = "REVISE";
+    result.recommendation = `Meta description is ${len} chars (target 120–160).`;
+    result.improved_meta = generateMeta(keyword, searchIntent);
+    return result;
+  }
+  if (!result.benefit_oriented) {
+    result.status = "REVISE";
+    result.recommendation = "Meta description lacks a clear benefit/CTR hook. Emphasize the value to the reader.";
+    result.improved_meta = generateMeta(keyword, searchIntent);
+    return result;
+  }
+  result.status = "PASS";
+  return result;
+}
+
+/* Generate an improved meta description (120–160 chars) from keyword + intent */
+function generateMeta(keyword, searchIntent) {
+  const kw = keyword.toLowerCase();
+  const titleCase = kw.split(/\s+/).map(w => w[0] ? w[0].toUpperCase() + w.slice(1) : w).join(" ");
+  const seed = {
+    informational: `Learn about ${kw} — how it works, what to expect, and practical tips to get the most from every calculation. ${titleCase} explained simply in 2026.`,
+    transactional: `Use this free ${kw} to check your numbers in seconds — no uploads, no waiting. Perfect for verifying ${kw} results and catching underpayments.`,
+    commercial: `Compare the best ${kw} options for 2026. Real rates, real numbers, and a side-by-side guide to help you choose what fits.`
+  }[searchIntent || "informational"];
+
+  let desc = seed.replace(/\s+/g, " ").trim();
+  if (desc.length > 158) desc = desc.slice(0, 155).trim() + "...";
+  if (desc.length < 120) desc = desc + " Get concrete numbers you can act on.";
+  return desc.slice(0, 160);
+}
+
 function extractPageContent(body) {
+  const metaDescMatch = body.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i) ||
+                        body.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["']/i);
+  const metaDescription = metaDescMatch ? metaDescMatch[1].trim() : "";
   const titleMatch = body.match(/<title>([^<]*)<\/title>/i);
   const h1Match = body.match(/<h1[^>]*>(.*?)<\/h1>/is);
   const title = titleMatch ? titleMatch[1].trim() : "";
@@ -205,24 +352,27 @@ function extractPageContent(body) {
     }
   }
 
-  return { title, h1, firstSentence, firstParagraph };
+  return { title, h1, firstSentence, firstParagraph, metaDescription };
 }
 
 export async function auditPage({ keyword, url, searchIntent }) {
-  if (!url) return { status: "UNAVAILABLE", reason: "No URL provided", title: null, h1: null, opening: null, overall_status: "NEEDS_OPTIMIZATION" };
+  if (!url) return { status: "UNAVAILABLE", reason: "No URL provided", title: null, h1: null, opening: null, url_check: null, meta_desc: null, overall_status: "NEEDS_OPTIMIZATION" };
   const targetUrl = url.startsWith("http") ? url : `${BASE}/${url}`;
   try {
     const res = await get(targetUrl);
     if (res.status === 404 || res.status >= 500) {
-      return { status: "PAGE_ERROR", http_status: res.status, title: null, h1: null, opening: null, overall_status: "NEEDS_OPTIMIZATION" };
+      return { status: "PAGE_ERROR", http_status: res.status, title: null, h1: null, opening: null, url_check: null, meta_desc: null, overall_status: "NEEDS_OPTIMIZATION" };
     }
-    const { title, h1, firstSentence, firstParagraph } = extractPageContent(res.body);
+    const { title, h1, firstSentence, firstParagraph, metaDescription } = extractPageContent(res.body);
     const titleResult = scoreTitle(keyword, title);
     const h1Result = scoreH1(keyword, h1, title);
     const openingResult = scoreOpening(keyword, firstSentence, firstParagraph, searchIntent);
+    const urlResult = scoreUrl({ keyword, url: targetUrl, base: BASE });
+    const metaResult = scoreMetaDescription(keyword, metaDescription, searchIntent);
 
     const overallStatus =
-      titleResult.status === "PASS" && h1Result.status === "PASS" && openingResult.status === "PASS"
+      titleResult.status === "PASS" && h1Result.status === "PASS" && openingResult.status === "PASS" &&
+      urlResult.status === "PASS" && metaResult.status === "PASS"
         ? "PASS"
         : "NEEDS_OPTIMIZATION";
 
@@ -231,15 +381,19 @@ export async function auditPage({ keyword, url, searchIntent }) {
       three_kings_status: {
         title: titleResult.status,
         h1: h1Result.status,
-        opening: openingResult.status
+        opening: openingResult.status,
+        url: urlResult.status,
+        meta_description: metaResult.status
       },
       title: titleResult,
       h1: h1Result,
       opening: openingResult,
+      url_check: urlResult,
+      meta_desc: metaResult,
       overall_status: overallStatus
     };
   } catch (e) {
-    return { status: "FETCH_ERROR", reason: e.message, title: null, h1: null, opening: null, overall_status: "NEEDS_OPTIMIZATION" };
+    return { status: "FETCH_ERROR", reason: e.message, title: null, h1: null, opening: null, url_check: null, meta_desc: null, overall_status: "NEEDS_OPTIMIZATION" };
   }
 }
 
@@ -275,6 +429,8 @@ export async function threeKingsAudit({ opportunities }) {
       title_check: audit.title,
       h1_check: audit.h1,
       opening_check: audit.opening,
+      url_check: audit.url,
+      meta_desc: audit.meta_desc,
       overall_status: audit.overall_status
     });
   }
@@ -287,7 +443,9 @@ export function threeKingsSummary(audits) {
   const byKing = {
     title: { pass: audits.filter(a => a.three_kings_status?.title === "PASS").length, fail: audits.filter(a => a.three_kings_status?.title === "REVISE").length },
     h1: { pass: audits.filter(a => a.three_kings_status?.h1 === "PASS").length, fail: audits.filter(a => a.three_kings_status?.h1 === "REVISE").length },
-    opening: { pass: audits.filter(a => a.three_kings_status?.opening === "PASS").length, fail: audits.filter(a => a.three_kings_status?.opening === "PASS").length }
+    opening: { pass: audits.filter(a => a.three_kings_status?.opening === "PASS").length, fail: audits.filter(a => a.three_kings_status?.opening === "REVISE").length },
+    url: { pass: audits.filter(a => a.three_kings_status?.url === "PASS").length, fail: audits.filter(a => a.three_kings_status?.url === "REVISE").length },
+    meta_description: { pass: audits.filter(a => a.three_kings_status?.meta_description === "PASS").length, fail: audits.filter(a => a.three_kings_status?.meta_description === "REVISE").length }
   };
   return {
     total_audited: audits.length,
