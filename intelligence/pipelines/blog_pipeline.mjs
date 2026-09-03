@@ -11,7 +11,7 @@ import { runTopicClusterAgent } from "../agents/topic_cluster_agent.mjs";
 import { runBlogWriterAgent } from "../agents/blog_writer_agent.mjs";
 import { runInternalLinkingAgent } from "../agents/internal_linking_agent.mjs";
 import { runBlogSeoAuditor } from "../agents/blog_seo_auditor.mjs";
-import { seoPreCheck, enhanceBriefFromSERPs, validateGeneratedContent, blogPipelineSEOAdvice } from "./blog_seo_bridge.mjs";
+import { seoPreCheck, enhanceBriefFromSERPs, validateGeneratedContent, blogPipelineSEOAdvice, seoPublishingGate } from "./blog_seo_bridge.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..");
@@ -87,6 +87,23 @@ export async function runBlogPipeline({ keyword, category = "Tools", autoPublish
     category: articleData.category
   });
   pipelineLog.steps.push({ step: "Internal Linking", data: linkingData });
+
+  // Step 10: Mandatory SEO Enforcement Gate
+  console.log(`[Step 10] Running SEO Enforcement Audit...`);
+  const gateResult = seoPublishingGate({
+    article: articleData,
+    keyword,
+    brief,
+    research: seoResearch,
+    cluster: clusterData,
+    linking: linkingData
+  });
+
+  if (!gateResult.passed) {
+    console.warn(`[SEO Gate] REJECTED: ${gateResult.reasons.join("; ")}`);
+    return { article: articleData, gate: gateResult, published: false, blocked: true };
+  }
+  pipelineLog.steps.push({ step: "SEO Enforcement Gate", data: gateResult });
 
   // Inject recommended internal links into HTML
   if (linkingData.recommended_links && linkingData.recommended_links.length > 0) {
