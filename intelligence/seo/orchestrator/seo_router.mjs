@@ -9,6 +9,8 @@ import { keywordOpportunityScore } from "./keyword_scoring.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadGscFeed } from "./gsc.mjs";
+import { detectDecay } from "./content_decay.mjs";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const DATA_DIR = path.join(__dirname, "../data/");
@@ -106,7 +108,50 @@ export class SEORouter {
   }
 
   routeNextAction(args) {
-    return { status: "OK", module: "next_action", data: { next: [], message: "DATA_UNAVAILABLE — connect GSC feed for next-action generation" }, confidence: "LOW" };
+    const site = loadSiteData();
+    const gsc = loadGscFeed();
+    
+    const nextActions = [];
+    
+    // Find striking distance keywords (position 5-20)
+    for (const q of (gsc.queries || [])) {
+      if (q.avg_position.available && q.avg_position.value >= 5 && q.avg_position.value <= 20) {
+        const page = site.articles.find(a => a.url === q.page || a.url?.includes(q.page));
+        if (page) {
+          nextActions.push({
+            type: "OPTIMIZE",
+            keyword: q.query,
+            page: page.slug,
+            position: Math.round(q.avg_position.value),
+            impressions: q.impressions.value,
+            reason: `Striking distance: #${Math.round(q.avg_position.value)} with ${q.impressions.value} impressions. Optimize content before creating new pages.`
+          });
+        }
+      }
+    }
+    
+    // Find content decay
+    const decay = detectDecay({});
+    if (decay.available && decay.decaying.length) {
+      for (const d of decay.decaying.slice(0, 5)) {
+        nextActions.push({
+          type: "REFRESH",
+          keyword: d.query,
+          page: d.page,
+          reason: `Content decay detected: ${d.decline_percent?.toFixed(1)}% decline over ${d.weeks} weeks.`
+        });
+      }
+    }
+
+    return { 
+      status: "OK", 
+      module: "next_action", 
+      data: { 
+        next: nextActions.slice(0, 10), 
+        summary: nextActions.length ? `${nextActions.length} actions recommended` : "No immediate actions required" 
+      }, 
+      confidence: gsc.queries?.length ? "HIGH" : "LOW" 
+    };
   }
 
   routeBlueprint(args) {
