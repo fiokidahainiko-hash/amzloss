@@ -170,11 +170,14 @@ export function lowHangingFruitReport({ maxPosition = 20, minImpressions = 5 } =
       priority: priority.length,
       secondary: secondary.length,
       low_hanging_fruit_count: lhf.length,
-      total_impressions: qualifying.reduce((s, q) => s + ((q.impressions?.value ?? q.impressions) || 0), 0),
+      total_impressions: qualifying.reduce((s, q) => {
+        const imp = q.impressions?.value ?? q.impressions;
+        return s + (imp || 0);
+      }, 0),
       avg_ctr: qualifying.length > 0
         ? Math.round(qualifying.reduce((s, q) => {
-          const imp = q.impressions?.value ?? q.impressions || 0;
-          const clk = q.clicks?.value ?? q.clicks || 0;
+          const imp = q.impressions?.value ?? q.impressions ?? 0;
+          const clk = q.clicks?.value ?? q.clicks ?? 0;
           return s + (imp > 0 ? clk / imp : 0);
         }, 0) / qualifying.length * 10000) / 100
         : null,
