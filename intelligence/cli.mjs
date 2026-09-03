@@ -661,6 +661,63 @@ async function main() {
       if (!result.next_actions?.length) console.log("  No next actions generated yet — add GSC feed for data");
       break;
     }
+    case "seo-low-hanging-fruit": {
+      const { lowHangingFruitReport } = await import("./seo/orchestrator/low_hanging_fruit.mjs");
+      const { PROVENANCE } = await import("./seo/orchestrator/provenance.mjs");
+
+      const report = lowHangingFruitReport({
+        maxPosition: parseInt(flags.maxpos || flags.max || "20", 10),
+        minImpressions: parseInt(flags.minimp || flags.min || "5", 10)
+      });
+
+      if (report.status === "DATA_UNAVAILABLE") {
+        console.log(`\n❌ GSC DATA UNAVAILABLE`);
+        console.log(`  ${report.message}`);
+        break;
+      }
+
+      const provLabel = report.provenance === PROVENANCE.TEST ? "⚠️ TEST DATA" :
+                        report.provenance === PROVENANCE.IMPORTED ? "📥 IMPORTED" :
+                        report.provenance === PROVENANCE.LIVE ? "✅ LIVE" :
+                        report.data_provenance === PROVENANCE.ESTIMATED ? "📊 ESTIMATED" :
+                        "❌ UNAVAILABLE";
+      console.log(`\n🍎 LOW-HANGING FRUIT CONTENT REFRESH`);
+      console.log(`  Provenance: ${provLabel}`);
+      if (report.meta) {
+        console.log(`  Date range: ${report.meta.date_range?.start} → ${report.meta.date_range?.end}`);
+        console.log(`  Source: ${report.meta.source || "N/A"} | Rows: ${report.meta.rows || "N/A"}`);
+      }
+      console.log(`  Qualifying queries (pos 1–${flags.maxpos || flags.max || "20"}): ${report.summary.total_qualifying}`);
+      console.log(`  Low-hanging fruit count: ${report.summary.low_hanging_fruit_count}`);
+      console.log(`  HIGH PRIORITY (pos 5–10):  ${report.summary.high_priority}`);
+      console.log(`  PRIORITY (pos 11–15):     ${report.summary.priority}`);
+      console.log(`  SECONDARY (pos 16–20):    ${report.summary.secondary}`);
+      console.log(`  Total impressions: ${report.summary.total_impressions.toLocaleString()}`);
+      console.log(`  Avg CTR: ${report.summary.avg_ctr !== null ? report.summary.avg_ctr + "%" : "DATA_UNAVAILABLE"}`);
+      console.log(`  OPTIMIZE: ${report.summary.optimize_count} | EXPAND: ${report.summary.expandable_count} | CREATE: ${report.summary.create_count}`);
+
+      const lhf = report.prioritized_opportunities;
+      if (lhf.length > 0) {
+        console.log(`\n  TOP ${Math.min(15, lhf.length)} PRIORITIZED OPPORTUNITIES:`);
+        lhf.slice(0, 15).forEach((o, i) => {
+          const actionLabel = o.recommended_action === "OPTIMIZE" ? "🔧 OPTIMIZE" :
+                              o.recommended_action === "EXPAND" ? "📈 EXPAND" :
+                              o.recommended_action === "CREATE" ? "📄 CREATE" : o.recommended_action;
+          const ctrFlag = o.ctr_opportunity ? " [CTR opportunity]" : "";
+          console.log(`  ${i + 1}. [${o.priority || o.tier}] ${o.query}`);
+          console.log(`     Action: ${actionLabel} | Pos: ${o.average_position} | Impressions: ${o.impressions.toLocaleString()} | CTR: ${o.ctr !== null ? o.ctr + "%" : "N/A"}${ctrFlag}`);
+          console.log(`     Page: ${o.current_url || "no matching page"}`);
+          console.log(`     Why: ${o.reason}`);
+          console.log(`     Data: ${o.data_provenance} | Score: ${o.opportunity_score}/100 | Conf: ${o.confidence}`);
+        });
+      }
+      if (lhf.length === 0) {
+        console.log(`\n  No low-hanging fruit found. Increase --maxpos or import more GSC data.`);
+      }
+      console.log(`\n  → Full report: node intelligence/cli.mjs seo-low-hanging-fruit [--maxpos=20] [--minimp=5]`);
+      console.log(`  → Import GSC: node intelligence/cli.mjs seo-import-gsc --path=<export.json> --property=https://yoursite.com`);
+      break;
+    }
 
     // --- EXISTING COMMANDS (Unmodified) ---
 
