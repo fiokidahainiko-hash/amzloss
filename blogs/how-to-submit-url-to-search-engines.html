@@ -103,7 +103,7 @@
  <div class="nav-item"><button class="nav-toggle" aria-haspopup="true">More Tools<span class="chev">▾</span></button>
  <div class="dropdown"><a href="../networks.html">Network Calculator</a>
  <a href="../link-builder.html">Link Builder</a>
- <a href="../submit.html">URL Submitter</a>
+ <a href="../url-submitter.html">URL Submitter</a>
  <a href="../directory.html">Resources Directory</a>
  </div>
  </div>
@@ -115,12 +115,13 @@
  <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
 </div></header>
 
+<main>
 <section class="section"><div class="container page-narrow"><p style="color:var(--muted);font-size:0.9rem;">Aug 17, 2026  6 min read</p>
  <h1>How to Submit a URL to Search Engines (Free)</h1>
 
- <div class="tools-bar"><span class="tools-bar-icon"></span><span class="tools-bar-label">Free tool:</span><a href="../submit.html">URL Submitter</a> — ping search engines and IndexNow for free.</div>
+ <div class="tools-bar"><span class="tools-bar-icon"></span><span class="tools-bar-label">Free tool:</span><a href="../url-submitter.html">URL Submitter</a> — ping search engines and IndexNow for free.</div>
 
- <p>Publishing a page and waiting for Google to find it can mean days of silence. Submitting the URL doesn't guarantee a ranking, but it removes the waiting from your control: a page submitted through the right channels gets crawled in hours instead of weeks. There are only two submission channels that matter in 2026 — Google Search Console and IndexNow — plus a pile of legacy services that no longer do anything. Here's what to use, in order, and what to skip. <a href="directory-listing-seo-guide.html">curated directory listings for additional visibility</a> <a href="url-submission-checklist.html">checklist to run before submitting a URL</a></p>
+ <p>Publishing a page and waiting for Google to find it can mean days of silence. Submitting the URL doesn't guarantee a ranking, but it removes the waiting from your control: a page submitted through the right channels gets crawled in hours instead of weeks. There are only two submission channels that matter in 2026 — Google Search Console and IndexNow — plus a pile of legacy services that no longer do anything. Here's what to use, in order, and what to skip. Run our <a href="url-submission-checklist.html">pre-publish submission checklist</a> first, and once the page is live consider <a href="directory-listing-seo-guide.html">directory listings for additional visibility</a>.</p>
 
  <h2>The only two channels that matter</h2>
  <p>Every modern search engine accepts discovery through one of two mechanisms. Google uses Search Console's URL Inspection tool: paste a live URL, click "Request indexing," and Google crawls it — typically within a few minutes to a day. Microsoft Bing, Yandex, and the other IndexNow partners use a protocol called IndexNow: you submit the URL plus a site key, and they crawl within hours. That's it. Between those two, you cover essentially every engine people actually use. The old XML-RPC ping directories and "submit to 10,000 engines" services are dead weight in 2026 — none of the major engines act on them, and several of those forms just harvest your email.</p>
@@ -132,7 +133,7 @@
  <p>IndexNow works differently and is genuinely fast: Bing and its partners promise crawling within minutes to hours of a valid submission. You need a key — a random string hosted at <code>yourdomain.com/{key}.txt</code> so the engines can verify you own the domain — then you send a simple HTTP call with your URLs. It sounds technical, but it's a two-step setup, covered step by step in our <a href="../blogs/indexnow-setup-guide.html">IndexNow setup guide</a>. Once the key is in place, submitting a new URL takes one request, and doing it on every publish keeps your pages fresh in Bing, Yandex, and the rest before their next scheduled crawl.</p>
 
  <h2>Automate it so you never forget</h2>
- <p>Submission only helps if it happens on every publish, and manual consistency fails. That's what the <a href="../submit.html">URL Submitter</a> is for: paste a URL once and it fires the Google Search Console request and the IndexNow ping for you, then remembers what you've submitted so you don't double-request the same page. Pair it with a short pre-publish checklist — the one in our <a href="../blogs/url-submission-checklist.html">submission checklist</a> covers title, meta, sitemap, and internal links — and every new page gets its crawl request the moment it goes live.</p>
+ <p>Submission only helps if it happens on every publish, and manual consistency fails. That's what the <a href="../url-submitter.html">URL Submitter</a> is for: paste a URL once and it fires the Google Search Console request and the IndexNow ping for you, then remembers what you've submitted so you don't double-request the same page. Pair it with a short pre-publish checklist — the one in our <a href="../blogs/url-submission-checklist.html">submission checklist</a> covers title, meta, sitemap, and internal links — and every new page gets its crawl request the moment it goes live.</p>
 
  <h2>Frequently asked questions</h2>
  <div class="faq" style="max-width:none;"><details><summary>Is it worth submitting URLs to search engines?</summary><p>Yes, but with realistic expectations. Submission is a nudge, not a guarantee — Google finds good pages on its own, but IndexNow speeds up Bing, Yandex, and other partners from days to hours, and Search Console's URL Inspection tells you exactly when and why a page was indexed or not. Submitting is free and takes seconds, so the only cost is doing it consistently.</p></details>
@@ -140,8 +141,9 @@
  <details><summary>Do ping services still matter in 2026?</summary><p>Mostly no. The old XML-RPC ping services that alerted blog directories are effectively dead, and none of the major search engines act on them anymore. The useful modern equivalent is an IndexNow ping against the engines that support it, plus a URL Inspection request in Google Search Console. Skip the legacy ping directories.</p></details>
  </div>
 
- <div class="cta-band" style="padding:30px;"><h2 style="font-size:1.4rem;">Submit any URL in seconds</h2><a class="btn btn-primary" href="../submit.html" style="background:#fff;color:var(--brand);background-image:none;">Open the URL Submitter</a></div>
+ <div class="cta-band" style="padding:30px;"><h2 style="font-size:1.4rem;">Submit any URL in seconds</h2><a class="btn btn-primary" href="../url-submitter.html" style="background:#fff;color:var(--brand);background-image:none;">Open the URL Submitter</a></div>
 </div></section>
+</main>
 <div class="cta-band" style="padding:20px;margin-top:24px;"><p style="margin:0;font-size:0.95rem;">Helped you understand your numbers? <a href="https://www.trustpilot.com/review/amzloss.com" target="_blank" rel="noopener">Leave a review on Trustpilot</a> — it helps other affiliates find an honest check on their payouts.</p></div>
 <footer class="site-footer">
  <div class="container"><div class="footer-grid"><div class="footer-col"><a class="brand" href="../index.html"><img class="brand-logo" src="../assets/img/favicon.svg" alt="AmzLoss" width="30" height="30">AmzLoss</a>
