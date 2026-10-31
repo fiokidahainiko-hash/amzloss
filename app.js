@@ -148,16 +148,8 @@ function initSurvey() {
   showStep(0);
 }
 
-const OMNIROUTE_ENDPOINT = "http://localhost:20128/v1/chat/completions";
-
-function getOmniRouteConfig() {
-  // Never commit API credentials to a static site. Supply this at runtime from
-  // a local development shell or a protected integration layer instead.
-  return {
-    endpoint: window.OMNIROUTE_ENDPOINT || OMNIROUTE_ENDPOINT,
-    apiKey: window.OMNIROUTE_API_KEY || ""
-  };
-}
+const API_KEY = "PASTE_YOUR_GROQ_KEY_HERE";
+const GROQ_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
 
 function extractRoutinePayload(response) {
   const content = response?.choices?.[0]?.message?.content;
@@ -228,19 +220,14 @@ async function generateRoutine() {
   try {
     const rawProfile = localStorage.getItem("userProfile");
     const userProfile = rawProfile ? JSON.parse(rawProfile) : {};
-    const config = getOmniRouteConfig();
-    if (!config.apiKey) {
-      throw new Error("OmniRoute is not configured for this browser session.");
-    }
-
-    const response = await fetch(config.endpoint, {
+    const response = await fetch(GROQ_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${config.apiKey}`
+        Authorization: `Bearer ${API_KEY}`
       },
       body: JSON.stringify({
-        model: "default",
+        model: "llama-3.1-8b-instant",
         temperature: 0.7,
         messages: [
           {
