@@ -1,0 +1,119 @@
+name: Tool Explainer Posts
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+    - cron: "0 13 * * *"
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: tool-posts
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure ffmpeg
+        run: command -v ffmpeg >/dev/null 2>&1 || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; }
+
+      - name: Install Playwright browser (best-effort, for screenshots)
+        run: |
+          npm install playwright --no-save >/dev/null 2>&1 || true
+          npx playwright install chromium --with-deps >/dev/null 2>&1 || true
+
+      - name: Discover AMZLOSS tools (auto content library)
+        run: |
+          python3 scripts/discover_tools.py
+          python3 .github/talkvid/content_matrix.py
+
+      - name: Post today's tool explainer
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
+          TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
+          TUMBLR_BLOG_IDENTIFIER: ${{ secrets.TUMBLR_BLOG_IDENTIFIER }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          IFTTT_KEY: ${{ secrets.IFTTT_KEY }}
+          IFTTT_EVENT: ${{ secrets.IFTTT_EVENT }}
+          REPORT_TELEGRAM_CHAT_ID: ${{ secrets.REPORT_TELEGRAM_CHAT_ID }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pip3 install --quiet edge-tts pillow imageio imageio-ffmpeg >/dev/null 2>&1 || true
+          node .github/tool-posts.mjs
+
+      - name: Premium AMZLOSS TikTok ad (auto-render + voice)
+        env:
+          TALKVID_TEXT: ${{ env.TIKTOK_TITLE }}
+          TALKVID_VOICE: en-US-ChristopherNeural
+        run: |
+          set -e
+          python3 --version
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1
+          pip3 install --quiet edge-tts pillow imageio imageio-ffmpeg
+          python3 .github/talkvid/premium_ad.py | tee talkvid.log
+          MP4=$(grep -oP 'TALKVID_MP4=\K.*' talkvid.log || true)
+          if [ -n "$MP4" ] && [ -s "$MP4" ]; then
+            git config user.name "amzloss-bot"
+            git config user.email "admin@amzloss.com"
+            git add blogs/img/talkvid.mp4
+            git commit -m "Premium TikTok ad (auto)" || true
+            git push || true
+            echo "TIKTOK_VIDEO_URL=https://amzloss.com/blogs/img/talkvid.mp4" >> "$GITHUB_ENV"
+            echo "TALKVID=ready"
+          else
+            echo "TALKVID=fallback (render failed)"
+          fi
+          exit 0
+
+      - name: Post to TikTok (skips silently if not configured)
+        env:
+          TIKTOK_ACCESS_TOKEN: ${{ secrets.TIKTOK_ACCESS_TOKEN }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_PRIVACY: ${{ vars.TIKTOK_PRIVACY || 'SELF_ONLY' }}
+        run: |
+          if [ -z "$TIKTOK_ACCESS_TOKEN" ] && [ -z "$TIKTOK_REFRESH_TOKEN" ]; then
+            echo "TIKTOK_RESULT=skipped (no credentials)"
+            exit 0
+          fi
+          command -v ffmpeg >/dev/null 2>&1 || true
+          node .github/tiktok-post.mjs
+
+      - name: File report as GitHub issue (emailed to owner via notifications)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url=$(gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Tool post report — $(date -u +'%Y-%m-%d %H:%M UTC')" \
+            --label "tool-post-report" \
+            --body-file report.txt)
+          num=${url##*/}
+          gh issue close "$num" -c "Auto-closed after emailing the report to the repo owner."

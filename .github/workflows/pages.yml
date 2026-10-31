@@ -1,0 +1,64 @@
+name: Deploy static content to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Wait for Pages to serve the update
+        run: sleep 90
+
+      - name: Ping IndexNow (Bing, Yandex, Seznam, Naver)
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: "cfa51088e98e4d29b9d374a48ec20d85"
+          HOST: "amzloss.com"
+        run: |
+          node -e '
+            const fs = require("fs");
+            const xml = fs.readFileSync("sitemap.xml", "utf8");
+            const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
+            const body = {
+              host: process.env.HOST,
+              key: process.env.INDEXNOW_KEY,
+              keyLocation: "https://" + process.env.HOST + "/" + process.env.INDEXNOW_KEY + ".txt",
+              urlList: urls
+            };
+            fs.writeFileSync("payload.json", JSON.stringify(body));
+          '
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" -H "Content-Type: application/json; charset=utf-8" --data @payload.json)
+            echo "IndexNow attempt $i -> HTTP $code"
+            if [ "$code" = "200" ] || [ "$code" = "202" ]; then echo "IndexNow ping accepted"; exit 0; fi
+            sleep 30
+          done
+          echo "IndexNow ping failed after retries"
+          exit 1

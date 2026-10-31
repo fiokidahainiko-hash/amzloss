@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Complete your private facial scan for a personalized Debloat wellness routine.">
+  <title>Facial Scan | Debloat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body class="scan-page">
+  <main class="scan-shell">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Debloat home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span>debloat<span class="brand-dot">.</span></span>
+      </a>
+      <span class="privacy-pill"><span class="status-dot" aria-hidden="true"></span>Private by design</span>
+    </nav>
+
+    <section class="scan-card" aria-labelledby="scan-title">
+      <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Step 2 of 2</p>
+      <h1 id="scan-title">Facial <span>Scan</span></h1>
+      <p class="scan-subtitle">Position your face in the circle and ensure good lighting.</p>
+
+      <div class="scan-stage">
+        <div id="camera-container" class="camera-panel" hidden>
+          <div class="scan-lens">
+            <video id="camera-video" autoplay muted playsinline aria-label="Live camera preview"></video>
+            <span class="scan-corner corner-top-left" aria-hidden="true"></span>
+            <span class="scan-corner corner-top-right" aria-hidden="true"></span>
+            <span class="scan-corner corner-bottom-left" aria-hidden="true"></span>
+            <span class="scan-corner corner-bottom-right" aria-hidden="true"></span>
+            <span class="scan-line" aria-hidden="true"></span>
+          </div>
+          <p class="camera-panel-title">Camera ready. Your preview stays on this device.</p>
+        </div>
+
+        <div id="camera-warning" class="camera-panel" hidden>
+          <div class="fallback-icon" aria-hidden="true">⌁</div>
+          <p class="camera-panel-title">No camera detected on this device. Scan the QR code below with your phone to continue.</p>
+          <div id="qrcode" aria-label="QR code for continuing on your phone"></div>
+        </div>
+      </div>
+
+      <p class="scan-privacy"><span class="lock-icon" aria-hidden="true">⌁</span> Your camera stays on this device. No images are uploaded.</p>
+      <button class="primary-button scan-submit" id="complete-scan" type="button" disabled>Complete Scan &amp; Get Routine <span class="button-arrow" aria-hidden="true">&#8594;</span></button>
+      <a class="back-link" href="survey.html">&#8592; Back to Survey</a>
+    </section>
+  </main>
+</body>
+</html>

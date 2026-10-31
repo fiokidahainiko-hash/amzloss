@@ -1,0 +1,85 @@
+name: Daily Blog Post
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate today's post
+        id: gen
+        run: |
+          node .github/daily-blog.mjs | tee -a "$GITHUB_ENV"
+
+      - name: Rebuild RSS feed
+        if: env.CHANGED == '1'
+        run: node scripts/generate-rss.mjs
+
+      - name: Commit and push
+        if: env.CHANGED == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "amzloss-bot"
+          git config user.email "admin@amzloss.com"
+          git add blogs js/blog.js sitemap.xml rss.xml .github/blog-state.json
+          git commit -m "Daily blog post: $(date -u +'%Y-%m-%d')"
+          git push
+
+      - name: Ping IndexNow (Bing, Yandex, Seznam, Naver)
+        if: env.CHANGED == '1'
+        run: |
+          KEY="cfa51088e98e4d29b9d374a48ec20d85"
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"amzloss.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://amzloss.com/$KEY.txt\",\"urlList\":[\"$INDEXNOW_URL\",\"https://amzloss.com/blogs.html\",\"https://amzloss.com/rss.xml\",\"https://amzloss.com/\"]}" \
+            -w "\nIndexNow status: %{http_code}\n"
+
+      - name: Share on social media
+        if: env.CHANGED == '1'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
+          TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
+          TUMBLR_BLOG_IDENTIFIER: ${{ secrets.TUMBLR_BLOG_IDENTIFIER }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          IFTTT_KEY: ${{ secrets.IFTTT_KEY }}
+          IFTTT_EVENT: ${{ secrets.IFTTT_EVENT }}
+        run: |
+          node .github/social-post.mjs
+
+      - name: Publish to YouTube
+        if: env.CHANGED == '1'
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          node .github/yt-post.mjs
