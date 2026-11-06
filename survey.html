@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Complete the free facial debloat survey and receive a personalized face scan plan.">
+  <title>Personalize Your Analysis | Debloat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="survey-page">
+  <main class="survey-shell">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Debloat home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span>debloat<span class="brand-dot">.</span></span>
+      </a>
+      <span class="privacy-pill"><span class="status-dot" aria-hidden="true"></span>Private by design</span>
+    </nav>
+
+    <section class="survey-card" aria-labelledby="survey-title">
+      <div class="survey-progress" aria-label="Survey progress">
+        <div class="progress-meta"><span id="question-count">Question 1 of 4</span><span id="progress-percent">25%</span></div>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+      </div>
+
+      <div class="survey-intro">
+        <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Make it yours</p>
+        <h1 id="survey-title">A few questions,<br><span>just for you.</span></h1>
+        <p>Your answers help shape a more relevant, gentle face wellness plan.</p>
+      </div>
+
+      <form id="survey-form" novalidate>
+        <fieldset class="survey-step is-active" data-step="1">
+          <legend>What is your main goal?</legend>
+          <div class="option-grid option-grid-2">
+            <label class="choice-card"><input type="radio" name="mainGoal" value="Slimmer Face"><span>Slimmer Face</span></label>
+            <label class="choice-card"><input type="radio" name="mainGoal" value="Defined Jawline"><span>Defined Jawline</span></label>
+            <label class="choice-card"><input type="radio" name="mainGoal" value="Reduce Puffiness"><span>Reduce Puffiness</span></label>
+            <label class="choice-card"><input type="radio" name="mainGoal" value="Improve Symmetry"><span>Improve Symmetry</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="survey-step" data-step="2" hidden>
+          <legend>What bothers you most?</legend>
+          <div class="option-grid option-grid-2">
+            <label class="choice-card"><input type="radio" name="biggestConcern" value="Puffy Cheeks"><span>Puffy Cheeks</span></label>
+            <label class="choice-card"><input type="radio" name="biggestConcern" value="Soft Jawline"><span>Soft Jawline</span></label>
+            <label class="choice-card"><input type="radio" name="biggestConcern" value="Asymmetry"><span>Asymmetry</span></label>
+            <label class="choice-card"><input type="radio" name="biggestConcern" value="Jaw Tension"><span>Jaw Tension</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="survey-step" data-step="3" hidden>
+          <legend>How much time can you commit daily?</legend>
+          <div class="option-grid option-grid-3">
+            <label class="choice-card"><input type="radio" name="dailyTime" value="2 mins"><span>2 mins</span><small>Quick reset</small></label>
+            <label class="choice-card"><input type="radio" name="dailyTime" value="5 mins"><span>5 mins</span><small>Balanced routine</small></label>
+            <label class="choice-card"><input type="radio" name="dailyTime" value="10 mins"><span>10 mins</span><small>Full practice</small></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="survey-step" data-step="4" hidden>
+          <legend>Which face shape are you aiming for?</legend>
+          <div class="shape-grid">
+            <label class="shape-card"><input type="radio" name="targetShape" value="Slim Face"><img src="https://placehold.co/300x400/e9f0ff/4b68bb?text=Slim+Face" alt="Slim Face shape placeholder"><span>Slim Face</span></label>
+            <label class="shape-card"><input type="radio" name="targetShape" value="Defined Jawline"><img src="https://placehold.co/300x400/efebff/7562c7?text=Defined+Jawline" alt="Defined Jawline shape placeholder"><span>Defined Jawline</span></label>
+            <label class="shape-card"><input type="radio" name="targetShape" value="V-Shape"><img src="https://placehold.co/300x400/e5f7f3/328c78?text=V-Shape" alt="V-Shape placeholder"><span>V-Shape</span></label>
+          </div>
+        </fieldset>
+
+        <p class="survey-error" id="survey-error" role="alert" hidden>Please choose an answer to continue.</p>
+        <div class="survey-actions">
+          <button class="secondary-button" id="prev-btn" type="button" hidden>Back</button>
+          <button class="primary-button" id="next-btn" type="button">Next <span class="button-arrow" aria-hidden="true">&#8594;</span></button>
+          <button class="primary-button" id="survey-submit" type="submit" hidden>Submit &amp; Scan Face <span class="button-arrow" aria-hidden="true">&#8594;</span></button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

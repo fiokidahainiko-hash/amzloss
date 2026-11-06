@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free facial debloat analysis designed with privacy in mind. Learn how to reduce visible puffiness naturally with a browser-first experience.">
+  <title>Free Facial Debloat Analysis | Debloat Naturally</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="Debloat home">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>debloat<span class="brand-dot">.</span></span>
+        </a>
+        <span class="privacy-pill"><span class="status-dot" aria-hidden="true"></span>Private by design</span>
+      </nav>
+
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Face wellness, simplified</p>
+        <h1 id="hero-title">Analyze your face.<br><span>Debloat naturally.</span></h1>
+        <p class="hero-copy">Discover the everyday habits that may contribute to facial puffiness and get simple, personalized guidance to help you feel refreshed.</p>
+        <p class="privacy-note"><span class="lock-icon" aria-hidden="true">⌁</span> 100% free &middot; Runs locally in your browser &middot; Your face stays private</p>
+        <button class="primary-button" id="start-analysis" type="button">Start Free Analysis <span class="button-arrow" aria-hidden="true">&#8594;</span></button>
+      </div>
+
+      <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+      <div class="hero-glow glow-left" aria-hidden="true"></div>
+      <div class="hero-glow glow-right" aria-hidden="true"></div>
+    </section>
+
+    <section class="features" aria-labelledby="features-title">
+      <div class="section-heading">
+        <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>A calmer way forward</p>
+        <h2 id="features-title">Three steps to a fresher you.</h2>
+        <p>Small insights can make a noticeable difference. Our gentle process turns your answers into practical next steps.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card card-blue">
+          <div class="card-topline"><span class="step-number">01</span><span class="card-icon icon-survey" aria-hidden="true">☷</span></div>
+          <h3>Take a survey</h3>
+          <p>Share a few details about your hydration, meals, sleep, and daily routine.</p>
+          <span class="card-accent" aria-hidden="true"></span>
+        </article>
+
+        <article class="feature-card card-purple">
+          <div class="card-topline"><span class="step-number">02</span><span class="card-icon icon-scan" aria-hidden="true">◌</span></div>
+          <h3>Scan your face</h3>
+          <p>Use your camera for a quick, private visual check that stays on your device.</p>
+          <span class="card-accent" aria-hidden="true"></span>
+        </article>
+
+        <article class="feature-card card-mint">
+          <div class="card-topline"><span class="step-number">03</span><span class="card-icon icon-exercise" aria-hidden="true">↗</span></div>
+          <h3>Get exercises</h3>
+          <p>Receive approachable facial exercises and lifestyle reminders tailored to you.</p>
+          <span class="card-accent" aria-hidden="true"></span>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><span class="brand-mark" aria-hidden="true">✦</span> debloat.</p>
+    <p>Wellness insights, thoughtfully private.</p>
+  </footer>
+
+  <div class="auth-modal" id="auth-modal" hidden>
+    <div class="auth-backdrop" data-auth-close></div>
+    <section class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <button class="auth-close" type="button" aria-label="Close authentication dialog" data-auth-close>&times;</button>
+      <div class="auth-heading">
+        <span class="auth-mark" aria-hidden="true">✦</span>
+        <p class="eyebrow">Your private wellness space</p>
+        <h2 id="auth-title">Welcome back.</h2>
+        <p>Sign in to continue your personalized debloat journey.</p>
+      </div>
+
+      <div class="auth-toggle" role="tablist" aria-label="Authentication mode">
+        <button class="auth-tab is-active" id="login-tab" type="button" role="tab" aria-selected="true" aria-controls="login-panel" data-auth-mode="login">Login</button>
+        <button class="auth-tab" id="signup-tab" type="button" role="tab" aria-selected="false" aria-controls="login-panel" data-auth-mode="signup">Sign Up</button>
+      </div>
+
+      <div class="auth-panel" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+        <button class="google-button" id="google-signin" type="button">
+          <span class="google-logo" aria-hidden="true">G</span>
+          <span>Continue with Google</span>
+        </button>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <div class="magic-link-group">
+          <label for="magic-email">Passwordless login</label>
+          <div class="inline-field">
+            <input id="magic-email" type="email" placeholder="Enter your email for a magic login link" autocomplete="email">
+            <button id="magic-link" type="button">Send link</button>
+          </div>
+        </div>
+
+        <div class="auth-divider"><span>or use your email</span></div>
+
+        <form id="auth-form">
+          <label for="auth-email">Email</label>
+          <input id="auth-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <label for="auth-password">Password</label>
+          <input id="auth-password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+          <button class="auth-submit" id="auth-submit" type="submit">Continue <span aria-hidden="true">&#8594;</span></button>
+        </form>
+
+        <p class="auth-privacy">We prioritize your privacy. Your facial data is never sold or shared.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FORCE BUTTONS TO WORK (BYPASS APP.JS BUGS) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const startBtn = document.getElementById("start-analysis");
+      const modal = document.getElementById("auth-modal");
+      const closeBtns = document.querySelectorAll("[data-auth-close]");
+      const googleBtn = document.getElementById("google-signin");
+      const authForm = document.getElementById("auth-form");
+      const magicBtn = document.getElementById("magic-link");
+
+      if (startBtn && modal) {
+        startBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          modal.removeAttribute("hidden");
+        });
+      }
+
+      closeBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          modal.setAttribute("hidden", "true");
+        });
+      });
+
+      // Bypass login and go to survey
+      const redirectToSurvey = function(e) {
+        if (e) e.preventDefault();
+        window.location.href = "survey.html";
+      };
+
+      if (googleBtn) googleBtn.addEventListener("click", redirectToSurvey);
+      if (authForm) authForm.addEventListener("submit", redirectToSurvey);
+      if (magicBtn) magicBtn.addEventListener("click", redirectToSurvey);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your personalized facial wellness routine from Debloat.">
+  <title>Your Personalized Routine | Debloat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="results-page">
+  <main class="results-shell">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Debloat home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span>debloat<span class="brand-dot">.</span></span>
+      </a>
+      <a class="text-link" href="survey.html">Retake survey</a>
+    </nav>
+
+    <section class="results-card" aria-labelledby="results-title">
+      <div id="routine-loading" class="routine-state">
+        <span class="loading-orb" aria-hidden="true"></span>
+        <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Creating your plan</p>
+        <h1 id="results-title">Your routine is<br><span>taking shape.</span></h1>
+        <p>We’re turning your answers into a gentle three-phase facial wellness routine.</p>
+      </div>
+
+      <div id="routine-error" class="routine-state" hidden>
+        <span class="error-mark" aria-hidden="true">!</span>
+        <p class="eyebrow">Something went wrong</p>
+        <h1>We couldn’t create<br><span>your routine yet.</span></h1>
+        <p id="routine-error-message">Please check your connection and try again.</p>
+        <button class="primary-button" id="retry-routine" type="button">Retry <span class="button-arrow" aria-hidden="true">&#8635;</span></button>
+      </div>
+
+      <div id="routine-content" hidden>
+        <div class="results-heading">
+          <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Your personalized plan</p>
+          <h1 id="routine-title">A routine made<br><span>for your face.</span></h1>
+          <p id="routine-summary" class="routine-summary"></p>
+        </div>
+        <div id="routine-phases" class="routine-phases" aria-live="polite"></div>
+        <p class="wellness-disclaimer">This routine is for general wellness education, not medical diagnosis or treatment. Stop if an exercise causes pain.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
