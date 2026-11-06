@@ -260,6 +260,22 @@ body.modal-open {
 
 .scan-stage {
   min-height: 350px;
+  display: grid;
+  place-items: center;
+}
+
+.start-camera-button {
+  margin: 32px auto;
+  font-size: 1rem;
+}
+
+.scan-error {
+  margin: 18px auto;
+  max-width: 440px;
+  color: #b65b70;
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.55;
 }
 
 .scan-stage .camera-panel {

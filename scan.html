@@ -26,6 +26,9 @@
       <p class="scan-subtitle">Position your face in the circle and ensure good lighting.</p>
 
       <div class="scan-stage">
+        <button class="primary-button start-camera-button" id="start-camera-btn" type="button">Start Face Scan <span class="button-arrow" aria-hidden="true">&#8594;</span></button>
+        <p id="camera-loading" class="scan-status" role="status" aria-live="polite" hidden>Requesting camera access...</p>
+
         <div id="camera-container" class="camera-panel" hidden>
           <div class="scan-lens">
             <video id="camera-video" autoplay muted playsinline aria-label="Live camera preview"></video>
@@ -45,6 +48,8 @@
           <div id="qrcode" aria-label="QR code for continuing on your phone"></div>
         </div>
       </div>
+
+      <p id="error-message" class="scan-error" role="alert" hidden></p>
 
       <p id="scan-status" class="scan-status" role="status" aria-live="polite">Preparing private face tracking...</p>
       <p class="scan-privacy"><span class="lock-icon" aria-hidden="true">⌁</span> Your camera stays on this device. No images are uploaded.</p>

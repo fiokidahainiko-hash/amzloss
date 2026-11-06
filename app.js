@@ -10,26 +10,33 @@ function showCameraWarning() {
   const warning = document.getElementById("camera-warning");
   const container = document.getElementById("camera-container");
   const qrTarget = document.getElementById("qrcode");
+  const profile = encodeURIComponent(localStorage.getItem("userProfile") || "{}");
+  const qrUrl = `${window.location.origin}${window.location.pathname}?profile=${profile}`;
 
-  if (container) {
-    container.hidden = true;
-  }
-  if (!warning) {
-    return;
-  }
-
+  if (container) container.hidden = true;
+  if (!warning) return;
   warning.hidden = false;
 
-  // Avoid creating duplicate QR markup if initialization is retried.
+  // QR fallback is only called for a genuinely missing/unreadable camera.
   if (qrTarget && !qrTarget.childElementCount && typeof QRCode !== "undefined") {
     new QRCode(qrTarget, {
-      text: window.location.href,
+      text: qrUrl,
       width: 152,
       height: 152,
       colorDark: "#182238",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.M
     });
+  }
+}
+
+function showCameraError(message) {
+  const error = document.getElementById("error-message");
+  const warning = document.getElementById("camera-warning");
+  if (warning) warning.hidden = true;
+  if (error) {
+    error.textContent = message;
+    error.hidden = false;
   }
 }
 
@@ -314,74 +321,85 @@ function initAuth() {
   });
 }
 
-async function initCamera() {
-  const warning = document.getElementById("camera-warning");
+async function startCameraScan() {
+  const startButton = document.getElementById("start-camera-btn");
+  const loading = document.getElementById("camera-loading");
   const container = document.getElementById("camera-container");
   const video = document.getElementById("camera-video");
   const canvas = document.getElementById("face-overlay");
   const status = document.getElementById("scan-status");
   const completeButton = document.getElementById("complete-scan");
 
-  if (!warning || !container || !video || !canvas) return;
+  if (!startButton || !container || !video || !canvas) return;
+  startButton.hidden = true;
+  if (loading) loading.hidden = false;
   if (completeButton) completeButton.disabled = true;
 
   if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
-    showCameraWarning();
+    if (loading) loading.hidden = true;
+    showCameraError("This browser does not support camera access. Please use a modern browser on a camera-enabled device.");
     return;
   }
 
   try {
-    if (!window.vision?.FilesetResolver || !window.vision?.FaceLandmarker) {
-      throw new Error("Face tracking library unavailable.");
-    }
-
-    const vision = await window.vision.FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
-    );
-    const faceLandmarker = await window.vision.FaceLandmarker.createFromOptions(vision, {
-      baseOptions: {
-        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
-        delegate: "GPU"
-      },
-      runningMode: "VIDEO",
-      numFaces: 1
-    });
-    const drawingUtils = new window.vision.DrawingUtils(canvas.getContext("2d"));
-
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "user" },
-      audio: false
-    });
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
     video.srcObject = stream;
-    warning.hidden = true;
     container.hidden = false;
+    if (loading) loading.hidden = true;
+    if (status) status.textContent = "Loading private face tracking...";
 
-    const drawFrame = () => {
-      if (video.readyState < 2) {
-        window.requestAnimationFrame(drawFrame);
-        return;
+    video.onloadedmetadata = async () => {
+      try {
+        if (!window.vision?.FilesetResolver || !window.vision?.FaceLandmarker) {
+          throw new Error("Face tracking library unavailable.");
+        }
+        const vision = await window.vision.FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
+        const faceLandmarker = await window.vision.FaceLandmarker.createFromOptions(vision, {
+          baseOptions: {
+            modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
+            delegate: "GPU"
+          },
+          runningMode: "VIDEO",
+          numFaces: 1
+        });
+        const context = canvas.getContext("2d");
+        const drawingUtils = new window.vision.DrawingUtils(context);
+
+        const detectFrame = () => {
+          if (video.readyState >= 2) {
+            if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+            }
+            const results = faceLandmarker.detectForVideo(video, performance.now());
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            if (results.faceLandmarks?.length) {
+              const landmarks = results.faceLandmarks[0];
+              drawingUtils.drawConnectors(landmarks, window.vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#a6c2ff", lineWidth: 1 });
+              drawingUtils.drawLandmarks(landmarks, { color: "#ffffff", lineWidth: 1, radius: 1.5 });
+              if (status) status.textContent = "Face Detected! Analyzing...";
+              if (completeButton) completeButton.disabled = false;
+              localStorage.setItem("scanResults", JSON.stringify({ symmetry: "85%", symmetryScore: 85, puffiness: "moderate", target: "Jawline" }));
+            }
+          }
+          window.requestAnimationFrame(detectFrame);
+        };
+        window.requestAnimationFrame(detectFrame);
+      } catch (error) {
+        console.error("Face tracking failed.", error);
+        showCameraError("Face tracking could not be started. Please refresh and try again.");
       }
-      if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-      }
-      const results = faceLandmarker.detectForVideo(video, performance.now());
-      const context = canvas.getContext("2d");
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      if (results.faceLandmarks?.length) {
-        const landmarks = results.faceLandmarks[0];
-        drawingUtils.drawConnectors(landmarks, window.vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#a6c2ff", lineWidth: 1 });
-        drawingUtils.drawLandmarks(landmarks, { color: "#ffffff", lineWidth: 1, radius: 1.5 });
-        if (status) status.textContent = "Face Detected! Analyzing...";
-        if (completeButton) completeButton.disabled = false;
-        localStorage.setItem("scanResults", JSON.stringify({ symmetry: "85%", symmetryScore: 85, puffiness: "moderate", target: "Jawline" }));
-      }
-      window.requestAnimationFrame(drawFrame);
     };
-    video.addEventListener("loadeddata", () => window.requestAnimationFrame(drawFrame), { once: true });
+    await video.play();
   } catch (error) {
-    console.info("Camera or face tracking unavailable; showing phone fallback.", error);
-    showCameraWarning();
+    if (loading) loading.hidden = true;
+    if (error.name === "NotAllowedError") {
+      showCameraError("Camera access denied. Please allow camera permissions in your browser settings and refresh the page.");
+    } else if (error.name === "NotFoundError" || error.name === "NotReadableError") {
+      showCameraWarning();
+    } else {
+      showCameraError("Unable to access the camera. Please check your browser settings and try again.");
+    }
   }
 }
 
@@ -391,8 +409,8 @@ window.addEventListener("DOMContentLoaded", () => {
   initResults();
   initScan();
 
-  // Camera access is requested only on scan.html, never on the landing page.
-  if (document.getElementById("camera-video")) {
-    initCamera();
+  const startCameraButton = document.getElementById("start-camera-btn");
+  if (startCameraButton) {
+    startCameraButton.addEventListener("click", startCameraScan);
   }
 });
