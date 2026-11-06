@@ -1,24 +1,30 @@
 /*
  * Camera capability and privacy fallback.
- *
- * This file only requests a local camera preview. No image or video data is
- * uploaded anywhere. When a camera is unavailable or permission is denied,
- * the user receives a QR code for opening this same page on a phone.
+ * This file only requests a local camera preview. No image or video data is uploaded.
  */
 
-function showCameraWarning() {
+function showCameraWarning(message) {
   const warning = document.getElementById("camera-warning");
   const container = document.getElementById("camera-container");
   const qrTarget = document.getElementById("qrcode");
+  const error = document.getElementById("error-message");
   const profile = encodeURIComponent(localStorage.getItem("userProfile") || "{}");
-  const qrUrl = `${window.location.origin}${window.location.pathname}?profile=${profile}`;
+  
+  // Always point to the live site so phones can connect securely
+  const qrUrl = `https://amzloss.com/scan.html?profile=${profile}`;
 
   if (container) container.hidden = true;
+  if (error && message) {
+    error.textContent = message;
+    error.hidden = false;
+  }
   if (!warning) return;
   warning.hidden = false;
 
-  // QR fallback is only called for a genuinely missing/unreadable camera.
-  if (qrTarget && !qrTarget.childElementCount && typeof QRCode !== "undefined") {
+  // Clear previous QR codes so they don't stack
+  if (qrTarget) qrTarget.innerHTML = "";
+
+  if (qrTarget && typeof QRCode !== "undefined") {
     new QRCode(qrTarget, {
       text: qrUrl,
       width: 152,
@@ -108,7 +114,6 @@ function initSurvey() {
     error.hidden = true;
   }
 
-  // Delegation keeps navigation working even if the visible step is re-rendered.
   document.body.addEventListener("click", (event) => {
     const next = event.target.closest("#next-btn, .next-btn");
     const previous = event.target.closest("#prev-btn, .prev-btn");
@@ -145,7 +150,6 @@ function initSurvey() {
   form.querySelectorAll("input").forEach((input) => {
     input.addEventListener("change", () => {
       error.hidden = true;
-      // Preserve the existing fast, polished progression after a selection.
       if (currentStep < steps.length - 1) {
         window.setTimeout(() => showStep(currentStep + 1), 180);
       }
@@ -155,7 +159,7 @@ function initSurvey() {
   showStep(0);
 }
 
-// Mock mode keeps the UI and scan flow testable without exposing API credentials.
+// Mock mode keeps the UI testable without exposing API credentials.
 const MOCK_ROUTINE = {
   summary: "A gentle jawline-focused routine based on your private scan.",
   phases: [
@@ -182,20 +186,6 @@ const MOCK_ROUTINE = {
     }
   ]
 };
-
-function extractRoutinePayload(response) {
-  const content = response?.choices?.[0]?.message?.content;
-  if (!content) throw new Error("The AI returned an empty response.");
-
-  // Models sometimes wrap valid JSON in a markdown code fence. Strip only the
-  // fence, then parse the JSON; no executable content is evaluated.
-  const cleaned = content.replace(/^```(?:json)?\\s*/i, "").replace(/\\s*```$/i, "").trim();
-  const routine = JSON.parse(cleaned);
-  if (!routine.summary || !Array.isArray(routine.phases)) {
-    throw new Error("The AI response did not match the routine schema.");
-  }
-  return routine;
-}
 
 function renderRoutine(routine) {
   const summary = document.getElementById("routine-summary");
@@ -250,7 +240,6 @@ async function generateRoutine() {
   errorPanel.hidden = true;
 
   try {
-    // Use a short delay to mimic generation while the UI is being finalized.
     await new Promise((resolve) => window.setTimeout(resolve, 650));
     renderRoutine(MOCK_ROUTINE);
     loading.hidden = true;
@@ -337,7 +326,7 @@ async function startCameraScan() {
 
   if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
     if (loading) loading.hidden = true;
-    showCameraError("This browser does not support camera access. Please use a modern browser on a camera-enabled device.");
+    showCameraWarning("Your browser does not support camera access. Scan the QR code below to use your phone.");
     return;
   }
 
@@ -387,18 +376,20 @@ async function startCameraScan() {
         window.requestAnimationFrame(detectFrame);
       } catch (error) {
         console.error("Face tracking failed.", error);
-        showCameraError("Face tracking could not be started. Please refresh and try again.");
+        // If MediaPipe crashes, give them the QR code fallback
+        showCameraWarning("Face tracking could not start. Please scan the QR code to try again on your phone.");
       }
     };
     await video.play();
   } catch (error) {
     if (loading) loading.hidden = true;
+    // ALWAYS show the QR code fallback if ANY error happens
     if (error.name === "NotAllowedError") {
-      showCameraError("Camera access denied. Please allow camera permissions in your browser settings and refresh the page.");
-    } else if (error.name === "NotFoundError" || error.name === "NotReadableError") {
-      showCameraWarning();
+      showCameraWarning("Camera access was denied or no webcam was found. You can scan the QR code below to continue on your phone.");
+    } else if (error.name === "NotFoundError") {
+      showCameraWarning("No camera found on this device. Scan the QR code below to continue on your phone.");
     } else {
-      showCameraError("Unable to access the camera. Please check your browser settings and try again.");
+      showCameraWarning("Camera access was unavailable. Scan the QR code below to continue on your phone.");
     }
   }
 }
