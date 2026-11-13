@@ -9,8 +9,6 @@ function showCameraWarning(message) {
   const qrTarget = document.getElementById("qrcode");
   const error = document.getElementById("error-message");
   const profile = encodeURIComponent(localStorage.getItem("userProfile") || "{}");
-  
-  // Always point to the live site so phones can connect securely
   const qrUrl = `https://amzloss.com/scan.html?profile=${profile}`;
 
   if (container) container.hidden = true;
@@ -21,7 +19,6 @@ function showCameraWarning(message) {
   if (!warning) return;
   warning.hidden = false;
 
-  // Clear previous QR codes so they don't stack
   if (qrTarget) qrTarget.innerHTML = "";
 
   if (qrTarget && typeof QRCode !== "undefined") {
@@ -68,12 +65,16 @@ function setAuthMode(mode) {
   const loginTab = document.getElementById("login-tab");
   const signupTab = document.getElementById("signup-tab");
 
-  title.textContent = isSignup ? "Create your space." : "Welcome back.";
-  submit.innerHTML = `${isSignup ? "Create account" : "Continue"} <span aria-hidden="true">&#8594;</span>`;
-  loginTab.classList.toggle("is-active", !isSignup);
-  signupTab.classList.toggle("is-active", isSignup);
-  loginTab.setAttribute("aria-selected", String(!isSignup));
-  signupTab.setAttribute("aria-selected", String(isSignup));
+  if (title) title.textContent = isSignup ? "Create your space." : "Welcome back.";
+  if (submit) submit.innerHTML = `${isSignup ? "Create account" : "Continue"} <span aria-hidden="true">&#8594;</span>`;
+  if (loginTab) {
+    loginTab.classList.toggle("is-active", !isSignup);
+    loginTab.setAttribute("aria-selected", String(!isSignup));
+  }
+  if (signupTab) {
+    signupTab.classList.toggle("is-active", isSignup);
+    signupTab.setAttribute("aria-selected", String(isSignup));
+  }
 }
 
 const userProfile = {};
@@ -105,13 +106,14 @@ function initSurvey() {
 
     const questionNumber = currentStep + 1;
     const percentage = Math.round((questionNumber / steps.length) * 100);
-    count.textContent = `Question ${questionNumber} of ${steps.length}`;
-    percent.textContent = `${percentage}%`;
-    progress.style.width = `${percentage}%`;
+    if (count) count.textContent = `Question ${questionNumber} of ${steps.length}`;
+    if (percent) percent.textContent = `${percentage}%`;
+    if (progress) progress.style.width = `${percentage}%`;
+    
     backButton.hidden = currentStep === 0;
     nextButton.hidden = currentStep === steps.length - 1;
     submitButton.hidden = currentStep !== steps.length - 1;
-    error.hidden = true;
+    if (error) error.hidden = true;
   }
 
   document.body.addEventListener("click", (event) => {
@@ -119,9 +121,8 @@ function initSurvey() {
     const previous = event.target.closest("#prev-btn, .prev-btn");
 
     if (next) {
-      console.log("Next clicked");
       if (!fieldForStep(currentStep)) {
-        error.hidden = false;
+        if (error) error.hidden = false;
         return;
       }
       showStep(currentStep + 1);
@@ -135,7 +136,7 @@ function initSurvey() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (!fieldForStep(currentStep)) {
-      error.hidden = false;
+      if (error) error.hidden = false;
       return;
     }
 
@@ -149,7 +150,7 @@ function initSurvey() {
 
   form.querySelectorAll("input").forEach((input) => {
     input.addEventListener("change", () => {
-      error.hidden = true;
+      if (error) error.hidden = true;
       if (currentStep < steps.length - 1) {
         window.setTimeout(() => showStep(currentStep + 1), 180);
       }
@@ -159,7 +160,6 @@ function initSurvey() {
   showStep(0);
 }
 
-// Mock mode keeps the UI testable without exposing API credentials.
 const MOCK_ROUTINE = {
   summary: "A gentle jawline-focused routine based on your private scan.",
   phases: [
@@ -190,8 +190,8 @@ const MOCK_ROUTINE = {
 function renderRoutine(routine) {
   const summary = document.getElementById("routine-summary");
   const phases = document.getElementById("routine-phases");
-  summary.textContent = routine.summary;
-  phases.replaceChildren();
+  if (summary) summary.textContent = routine.summary;
+  if (phases) phases.replaceChildren();
 
   routine.phases.slice(0, 3).forEach((phase, index) => {
     const card = document.createElement("article");
@@ -224,7 +224,7 @@ function renderRoutine(routine) {
     });
 
     card.append(label, heading, duration, list);
-    phases.append(card);
+    if (phases) phases.append(card);
   });
 }
 
@@ -240,14 +240,14 @@ async function generateRoutine() {
   errorPanel.hidden = true;
 
   try {
-    await new Promise((resolve) => window.setTimeout(resolve, 650));
+    await new Promise((resolve) => window.setTimeout(resolve, 800));
     renderRoutine(MOCK_ROUTINE);
     loading.hidden = true;
     content.hidden = false;
   } catch (error) {
     loading.hidden = true;
     errorPanel.hidden = false;
-    errorMessage.textContent = "AI request failed. Please check your connection.";
+    if (errorMessage) errorMessage.textContent = "AI request failed. Please check your connection.";
   }
 }
 
@@ -290,18 +290,11 @@ function initAuth() {
   });
 
   document.getElementById("google-signin")?.addEventListener("click", () => {
-    console.log("Google sign-in selected; simulating successful login.");
     window.location.href = "survey.html";
-  });
-
-  document.getElementById("magic-link")?.addEventListener("click", () => {
-    const email = document.getElementById("magic-email")?.value.trim();
-    console.log("Magic login link requested for:", email || "no email entered");
   });
 
   document.getElementById("auth-form")?.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log("Authentication form submitted; simulating successful login.");
     window.location.href = "survey.html";
   });
 
@@ -319,78 +312,90 @@ async function startCameraScan() {
   const status = document.getElementById("scan-status");
   const completeButton = document.getElementById("complete-scan");
 
-  if (!startButton || !container || !video || !canvas) return;
-  startButton.hidden = true;
-  if (loading) loading.hidden = false;
-  if (completeButton) completeButton.disabled = true;
-
-  if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
-    if (loading) loading.hidden = true;
-    showCameraWarning("Your browser does not support camera access. Scan the QR code below to use your phone.");
+  if (!startButton || !container || !video || !canvas) {
+    alert("Error: Missing HTML elements.");
     return;
   }
 
+  let frameCount = 0;
+  console.log("[FaceScan] Start button clicked.");
+  startButton.hidden = true;
+  if (loading) loading.hidden = false;
+  if (status) status.textContent = "Requesting camera access...";
+
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+    console.log("[FaceScan] Camera permission granted.");
+    if (status) status.textContent = "Camera ON";
     video.srcObject = stream;
+    
+    // Force the video container to show before anything else
     container.hidden = false;
-    if (loading) loading.hidden = true;
-    if (status) status.textContent = "Loading private face tracking...";
-
-    video.onloadedmetadata = async () => {
-      try {
-        if (!window.vision?.FilesetResolver || !window.vision?.FaceLandmarker) {
-          throw new Error("Face tracking library unavailable.");
-        }
-        const vision = await window.vision.FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
-        const faceLandmarker = await window.vision.FaceLandmarker.createFromOptions(vision, {
-          baseOptions: {
-            modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
-            delegate: "GPU"
-          },
-          runningMode: "VIDEO",
-          numFaces: 1
-        });
-        const context = canvas.getContext("2d");
-        const drawingUtils = new window.vision.DrawingUtils(context);
-
-        const detectFrame = () => {
-          if (video.readyState >= 2) {
-            if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
-              canvas.width = video.videoWidth;
-              canvas.height = video.videoHeight;
-            }
-            const results = faceLandmarker.detectForVideo(video, performance.now());
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            if (results.faceLandmarks?.length) {
-              const landmarks = results.faceLandmarks[0];
-              drawingUtils.drawConnectors(landmarks, window.vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#a6c2ff", lineWidth: 1 });
-              drawingUtils.drawLandmarks(landmarks, { color: "#ffffff", lineWidth: 1, radius: 1.5 });
-              if (status) status.textContent = "Face Detected! Analyzing...";
-              if (completeButton) completeButton.disabled = false;
-              localStorage.setItem("scanResults", JSON.stringify({ symmetry: "85%", symmetryScore: 85, puffiness: "moderate", target: "Jawline" }));
-            }
-          }
-          window.requestAnimationFrame(detectFrame);
-        };
-        window.requestAnimationFrame(detectFrame);
-      } catch (error) {
-        console.error("Face tracking failed.", error);
-        // If MediaPipe crashes, give them the QR code fallback
-        showCameraWarning("Face tracking could not start. Please scan the QR code to try again on your phone.");
-      }
-    };
+    container.style.display = "block"; 
+    
     await video.play();
-  } catch (error) {
+    console.log("[FaceScan] video.play() succeeded.");
+    
     if (loading) loading.hidden = true;
-    // ALWAYS show the QR code fallback if ANY error happens
-    if (error.name === "NotAllowedError") {
-      showCameraWarning("Camera access was denied or no webcam was found. You can scan the QR code below to continue on your phone.");
-    } else if (error.name === "NotFoundError") {
-      showCameraWarning("No camera found on this device. Scan the QR code below to continue on your phone.");
-    } else {
-      showCameraWarning("Camera access was unavailable. Scan the QR code below to continue on your phone.");
+    if (status) status.textContent = "Loading AI Model...";
+    console.log("[FaceScan] Loading MediaPipe..." );
+
+    if (!window.vision?.FilesetResolver || !window.vision?.FaceLandmarker) {
+      throw new Error("MediaPipe library failed to load from CDN.");
     }
+
+    const vision = await window.vision.FilesetResolver.forVisionTasks(
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
+    );
+    
+    // THE CRITICAL FIX: Using "CPU" instead of "GPU" so it doesn't crash Android
+    const faceLandmarker = await window.vision.FaceLandmarker.createFromOptions(vision, {
+      baseOptions: {
+        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
+        delegate: "CPU" 
+      },
+      runningMode: "VIDEO",
+      numFaces: 1
+    });
+    console.log("[FaceScan] MediaPipe initialized successfully.");
+    if (status) status.textContent = "AI Ready. Look at the camera";
+
+    const context = canvas.getContext("2d");
+    const drawingUtils = new window.vision.DrawingUtils(context);
+
+    const detectFrame = () => {
+      frameCount += 1;
+      if (frameCount % 60 === 0) {
+        console.log("[FaceScan] detectFrame running", { frameCount, readyState: video.readyState, width: video.videoWidth, height: video.videoHeight });
+      }
+      if (video.readyState >= 2) {
+        if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+        }
+        const results = faceLandmarker.detectForVideo(video, performance.now());
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        
+        if (results.faceLandmarks?.length) {
+          const landmarks = results.faceLandmarks[0];
+          drawingUtils.drawConnectors(landmarks, window.vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#a6c2ff", lineWidth: 1 });
+          drawingUtils.drawLandmarks(landmarks, { color: "#ffffff", lineWidth: 1, radius: 1.5 });
+          
+          if (status) status.textContent = "Face Detected! Analyzing...";
+          if (completeButton) completeButton.disabled = false;
+          
+          localStorage.setItem("scanResults", JSON.stringify({ symmetry: "85%", symmetryScore: 85, puffiness: "moderate", target: "Jawline" }));
+        }
+      }
+      window.requestAnimationFrame(detectFrame);
+    };
+    window.requestAnimationFrame(detectFrame);
+    
+  } catch (err) {
+    console.error("[FaceScan] Camera or MediaPipe error:", err);
+    if (loading) loading.hidden = true;
+    if (status) status.textContent = "AI Error: " + (err.message || "Unable to initialize face tracking.");
+    showCameraWarning("Camera failed to start. " + (err.message || "Please try again."));
   }
 }
 

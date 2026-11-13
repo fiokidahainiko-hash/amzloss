@@ -307,8 +307,9 @@ body.modal-open {
 
 #face-overlay {
   position: absolute;
-  inset: 0;
-  z-index: 1;
+  top: 0;
+  left: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -864,6 +865,7 @@ h1 span {
 }
 
 #camera-container {
+  position: relative;
   border-color: rgba(88, 120, 216, 0.24);
 }
 
