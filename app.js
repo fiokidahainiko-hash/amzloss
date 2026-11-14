@@ -303,7 +303,7 @@ function initAuth() {
   });
 }
 
-function waitForVision(timeoutMs = 10000) {
+function waitForVision(timeoutMs = 30000) {
   return new Promise((resolve, reject) => {
     const startedAt = Date.now();
     const check = () => {
@@ -355,7 +355,7 @@ async function startCameraScan() {
     console.log("[FaceScan] video.play() succeeded.");
 
     if (loading) loading.hidden = true;
-    if (status) status.textContent = "Camera ON. Loading AI model...";
+    if (status) status.textContent = "Camera ON. Downloading AI model... (This may take a few seconds on mobile)";
     console.log("[FaceScan] Waiting for MediaPipe script..." );
     await waitForVision();
     console.log("[FaceScan] MediaPipe script is ready." );
@@ -414,7 +414,11 @@ async function startCameraScan() {
   } catch (err) {
     console.error("[FaceScan] Camera or MediaPipe error:", err);
     if (loading) loading.hidden = true;
-    if (status) status.textContent = "AI Error: " + (err.message || "Unable to initialize face tracking.");
+    if (err.message === "MediaPipe script timed out while loading.") {
+      if (status) status.textContent = "AI Error: MediaPipe took too long to download. Please check your internet connection and refresh.";
+    } else if (status) {
+      status.textContent = "AI Error: " + (err.message || "Unable to initialize face tracking.");
+    }
     showCameraWarning("Camera failed to start. " + (err.message || "Please try again."));
   }
 }
