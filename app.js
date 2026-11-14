@@ -381,8 +381,9 @@ async function startCameraScan() {
         
         if (results.faceLandmarks?.length) {
           const landmarks = results.faceLandmarks[0];
-          drawingUtils.drawConnectors(landmarks, vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#a6c2ff", lineWidth: 1 });
-          drawingUtils.drawLandmarks(landmarks, { color: "#ffffff", lineWidth: 1, radius: 1.5 });
+          console.log("FACE DETECTED! Drawing mesh.");
+          drawingUtils.drawConnectors(landmarks, vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#00FF00", lineWidth: 2 });
+          drawingUtils.drawLandmarks(landmarks, { color: "#FFFFFF", lineWidth: 2, radius: 2 });
           
           if (status) status.textContent = "Face Detected! Analyzing...";
           if (completeButton) completeButton.disabled = false;
