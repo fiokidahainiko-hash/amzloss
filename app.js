@@ -303,24 +303,6 @@ function initAuth() {
   });
 }
 
-function waitForVision(timeoutMs = 30000) {
-  return new Promise((resolve, reject) => {
-    const startedAt = Date.now();
-    const check = () => {
-      if (window.vision) {
-        resolve(window.vision);
-        return;
-      }
-      if (Date.now() - startedAt >= timeoutMs) {
-        reject(new Error("MediaPipe script timed out while loading."));
-        return;
-      }
-      window.setTimeout(check, 100);
-    };
-    check();
-  });
-}
-
 async function startCameraScan() {
   const startButton = document.getElementById("start-camera-btn");
   const loading = document.getElementById("camera-loading");
@@ -355,21 +337,22 @@ async function startCameraScan() {
     console.log("[FaceScan] video.play() succeeded.");
 
     if (loading) loading.hidden = true;
-    if (status) status.textContent = "Camera ON. Downloading AI model... (This may take a few seconds on mobile)";
-    console.log("[FaceScan] Waiting for MediaPipe script..." );
-    await waitForVision();
-    console.log("[FaceScan] MediaPipe script is ready." );
-
-    if (!window.vision.FilesetResolver || !window.vision.FaceLandmarker) {
-      throw new Error("MediaPipe library failed to load from CDN.");
+    if (status) status.textContent = "Camera ON. Downloading AI model...";
+    let vision;
+    try {
+      // Dynamically load the MediaPipe module.
+      vision = await import("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18");
+    } catch (err) {
+      throw new Error("Failed to download MediaPipe: " + err.message);
     }
+    if (status) status.textContent = "AI Model downloaded. Initializing...";
 
-    const vision = await window.vision.FilesetResolver.forVisionTasks(
+    const filesetResolver = await vision.FilesetResolver.forVisionTasks(
       "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm"
     );
-    
+
     // THE CRITICAL FIX: Using "CPU" instead of "GPU" so it doesn't crash Android
-    const faceLandmarker = await window.vision.FaceLandmarker.createFromOptions(vision, {
+    const faceLandmarker = await vision.FaceLandmarker.createFromOptions(filesetResolver, {
       baseOptions: {
         modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
         delegate: "CPU" 
@@ -381,7 +364,7 @@ async function startCameraScan() {
     if (status) status.textContent = "AI Ready. Look at the camera";
 
     const context = canvas.getContext("2d");
-    const drawingUtils = new window.vision.DrawingUtils(context);
+    const drawingUtils = new vision.DrawingUtils(context);
 
     const detectFrame = () => {
       frameCount += 1;
@@ -398,7 +381,7 @@ async function startCameraScan() {
         
         if (results.faceLandmarks?.length) {
           const landmarks = results.faceLandmarks[0];
-          drawingUtils.drawConnectors(landmarks, window.vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#a6c2ff", lineWidth: 1 });
+          drawingUtils.drawConnectors(landmarks, vision.FaceLandmarker.FACE_LANDMARKS_TESSELATION, { color: "#a6c2ff", lineWidth: 1 });
           drawingUtils.drawLandmarks(landmarks, { color: "#ffffff", lineWidth: 1, radius: 1.5 });
           
           if (status) status.textContent = "Face Detected! Analyzing...";
@@ -414,9 +397,7 @@ async function startCameraScan() {
   } catch (err) {
     console.error("[FaceScan] Camera or MediaPipe error:", err);
     if (loading) loading.hidden = true;
-    if (err.message === "MediaPipe script timed out while loading.") {
-      if (status) status.textContent = "AI Error: MediaPipe took too long to download. Please check your internet connection and refresh.";
-    } else if (status) {
+    if (status) {
       status.textContent = "AI Error: " + (err.message || "Unable to initialize face tracking.");
     }
     showCameraWarning("Camera failed to start. " + (err.message || "Please try again."));
