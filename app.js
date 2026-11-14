@@ -341,7 +341,7 @@ async function startCameraScan() {
     let vision;
     try {
       // Dynamically load the MediaPipe module.
-      vision = await import("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18");
+      vision = await import("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/+esm");
     } catch (err) {
       throw new Error("Failed to download MediaPipe: " + err.message);
     }
