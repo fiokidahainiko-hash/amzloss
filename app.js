@@ -340,12 +340,16 @@ async function startCameraScan() {
     if (status) status.textContent = "Loading AI Model...";
     console.log("[FaceScan] Loading MediaPipe..." );
 
-    if (!window.vision?.FilesetResolver || !window.vision?.FaceLandmarker) {
+    if (!window.vision) {
+      console.error("[FaceScan] MediaPipe script is not available yet.");
+      throw new Error("MediaPipe script still loading. Please wait a moment and try again.");
+    }
+    if (!window.vision.FilesetResolver || !window.vision.FaceLandmarker) {
       throw new Error("MediaPipe library failed to load from CDN.");
     }
 
     const vision = await window.vision.FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm"
     );
     
     // THE CRITICAL FIX: Using "CPU" instead of "GPU" so it doesn't crash Android
