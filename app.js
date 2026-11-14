@@ -303,6 +303,24 @@ function initAuth() {
   });
 }
 
+function waitForVision(timeoutMs = 10000) {
+  return new Promise((resolve, reject) => {
+    const startedAt = Date.now();
+    const check = () => {
+      if (window.vision) {
+        resolve(window.vision);
+        return;
+      }
+      if (Date.now() - startedAt >= timeoutMs) {
+        reject(new Error("MediaPipe script timed out while loading."));
+        return;
+      }
+      window.setTimeout(check, 100);
+    };
+    check();
+  });
+}
+
 async function startCameraScan() {
   const startButton = document.getElementById("start-camera-btn");
   const loading = document.getElementById("camera-loading");
@@ -335,15 +353,13 @@ async function startCameraScan() {
     
     await video.play();
     console.log("[FaceScan] video.play() succeeded.");
-    
-    if (loading) loading.hidden = true;
-    if (status) status.textContent = "Loading AI Model...";
-    console.log("[FaceScan] Loading MediaPipe..." );
 
-    if (!window.vision) {
-      console.error("[FaceScan] MediaPipe script is not available yet.");
-      throw new Error("MediaPipe script still loading. Please wait a moment and try again.");
-    }
+    if (loading) loading.hidden = true;
+    if (status) status.textContent = "Camera ON. Loading AI model...";
+    console.log("[FaceScan] Waiting for MediaPipe script..." );
+    await waitForVision();
+    console.log("[FaceScan] MediaPipe script is ready." );
+
     if (!window.vision.FilesetResolver || !window.vision.FaceLandmarker) {
       throw new Error("MediaPipe library failed to load from CDN.");
     }
